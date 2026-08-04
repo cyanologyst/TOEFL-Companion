@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">TOEFL Companion</title>
+  <defs>
+    <linearGradient id="surface" x1="72" y1="52" x2="440" y2="460" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#168A84"/>
+      <stop offset="1" stop-color="#075B58"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="#EDF7F5"/>
+  <rect x="40" y="40" width="432" height="432" rx="96" fill="url(#surface)"/>
+  <path d="M150 155c0-25 20-45 45-45h122c25 0 45 20 45 45v93c0 25-20 45-45 45h-57l-58 54v-54h-7c-25 0-45-20-45-45v-93Z" fill="#fff"/>
+  <path d="M256 148a34 34 0 0 0-34 34v48a34 34 0 1 0 68 0v-48a34 34 0 0 0-34-34Z" fill="#0E7470"/>
+  <path d="M190 227a12 12 0 0 1 24 0 42 42 0 0 0 84 0 12 12 0 0 1 24 0 66 66 0 0 1-54 65v27h27a12 12 0 0 1 0 24h-78a12 12 0 0 1 0-24h27v-27a66 66 0 0 1-54-65Z" fill="#0E7470"/>
+  <circle cx="378" cy="371" r="63" fill="#F8FBFA"/>
+  <path d="M378 333v76M340 371h76" stroke="#0E7470" stroke-width="24" stroke-linecap="round"/>
+</svg>

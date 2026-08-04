@@ -1,0 +1,10 @@
+node_modules/
+dist/
+qa/
+coverage/
+work/
+src-tauri/target/
+releases/*.exe
+*.log
+.DS_Store
+Thumbs.db

@@ -1,0 +1,1034 @@
+{
+  "schemaVersion": 1,
+  "id": "toefl-neo-1-10",
+  "title": "TOEFL Vocabulary Neo 1-10",
+  "language": "en-fa",
+  "source": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf",
+  "words": [
+    {
+      "id": "toefl-neo-1-10-001",
+      "term": "Conversely",
+      "shortMeaning": "برعکس؛ در مقابل",
+      "order": 1,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Urban populations are increasing; conversely, many rural communities are shrinking."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-002",
+      "term": "Excess",
+      "shortMeaning": "مقدار بیش از حد؛ مازاد",
+      "order": 2,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "An excess of nutrients in a lake can cause harmful algal growth."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-003",
+      "term": "Market equilibrium",
+      "shortMeaning": "تعادل بازار؛ نقطه‌ای که عرضه و تقاضا برابر می‌شوند",
+      "order": 3,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Market equilibrium occurs when the quantity supplied matches the quantity demanded."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-004",
+      "term": "Invaluable",
+      "shortMeaning": "بسیار ارزشمند و مفید",
+      "order": 4,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "The fossil record provides invaluable evidence about the history of life on Earth."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-005",
+      "term": "Paleontologist",
+      "shortMeaning": "دیرینه‌شناس؛ دانشمندی که فسیل‌ها و حیات باستانی را مطالعه می‌کند",
+      "order": 5,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "A paleontologist examined the bones to determine the animal's approximate age."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-006",
+      "term": "Advantageous",
+      "shortMeaning": "سودمند؛ دارای مزیت",
+      "order": 6,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Living in groups can be advantageous for animals that need protection from predators."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-007",
+      "term": "Adapt",
+      "shortMeaning": "سازگار شدن یا سازگار کردن",
+      "order": 7,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Plants must adapt to changes in temperature and rainfall."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-008",
+      "term": "Diversity",
+      "shortMeaning": "تنوع؛ گوناگونی",
+      "order": 8,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Genetic diversity helps a population survive environmental change."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-009",
+      "term": "Natural selection",
+      "shortMeaning": "انتخاب طبیعی",
+      "order": 9,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Natural selection favors traits that improve an organism's chances of survival."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-010",
+      "term": "Strive",
+      "shortMeaning": "کوشیدن؛ تلاش جدی کردن",
+      "order": 10,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Researchers strive to develop treatments that are both effective and affordable."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-011",
+      "term": "Contemporary",
+      "shortMeaning": "معاصر؛ مربوط به زمان حال",
+      "order": 11,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Contemporary architecture often combines traditional materials with modern technology."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-012",
+      "term": "Criterion -> criteria",
+      "shortMeaning": "معیار؛ معیارها",
+      "order": 12,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Cost is one important criterion, but safety and reliability are equally important criteria."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-013",
+      "term": "Meticulously",
+      "shortMeaning": "با دقت و وسواس بسیار",
+      "order": 13,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "The archaeologists meticulously recorded the position of every object they uncovered."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-014",
+      "term": "Coastline",
+      "shortMeaning": "خط ساحلی",
+      "order": 14,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Rising sea levels may alter the coastline and threaten nearby settlements."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-015",
+      "term": "Encompasses",
+      "shortMeaning": "دربر می‌گیرد؛ شامل می‌شود",
+      "order": 15,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "The course encompasses topics from basic genetics to evolutionary biology."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-016",
+      "term": "Inspire",
+      "shortMeaning": "الهام بخشیدن؛ برانگیختن",
+      "order": 16,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Scientific discoveries can inspire students to pursue careers in research."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-017",
+      "term": "Visual",
+      "shortMeaning": "بصری؛ دیداری",
+      "order": 17,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "The lecturer used a visual diagram to explain the structure of the volcano."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-018",
+      "term": "Remains",
+      "shortMeaning": "بقایای انسان، حیوان یا اشیا",
+      "order": 18,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "The remains of the ancient settlement were discovered beneath layers of soil."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf",
+      "partOfSpeech": "noun"
+    },
+    {
+      "id": "toefl-neo-1-10-019",
+      "term": "Mitigate",
+      "shortMeaning": "کاهش دادن شدت یا اثر چیزی",
+      "order": 19,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Planting trees can help mitigate the effects of urban heat."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-020",
+      "term": "Biological clock",
+      "shortMeaning": "ساعت زیستی؛ سازوکار درونی تنظیم‌کننده چرخه‌های بدن",
+      "order": 20,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "A biological clock helps regulate sleep, hormone release, and body temperature."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-021",
+      "term": "Manage",
+      "shortMeaning": "مدیریت کردن؛ از عهده کاری برآمدن",
+      "order": 21,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "The city must manage its water supply carefully during periods of drought."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-022",
+      "term": "Allow",
+      "shortMeaning": "اجازه دادن؛ امکان‌پذیر کردن",
+      "order": 22,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "New imaging techniques allow scientists to observe cells in greater detail."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-023",
+      "term": "Respite",
+      "shortMeaning": "وقفه یا استراحت کوتاه از یک وضعیت دشوار",
+      "order": 23,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "The cooler evening temperatures offered a brief respite from the intense heat."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-024",
+      "term": "Carve out",
+      "shortMeaning": "تراشیدن یا ایجاد کردن یک شکل یا فضا، اغلب با فرسایش",
+      "order": 24,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Over thousands of years, rivers carve out deep channels in the landscape."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-025",
+      "term": "Delves into",
+      "shortMeaning": "به‌طور عمیق بررسی می‌کند",
+      "order": 25,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "The documentary delves into the causes of language loss among small communities."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-026",
+      "term": "Subjective expression",
+      "shortMeaning": "بیان ذهنی و شخصی",
+      "order": 26,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Poetry often relies on subjective expression rather than objective description."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-027",
+      "term": "Perceive",
+      "shortMeaning": "درک یا احساس کردن",
+      "order": 27,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Different species perceive light and sound in different ways."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-028",
+      "term": "Novice",
+      "shortMeaning": "تازه‌کار؛ فرد کم‌تجربه",
+      "order": 28,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "A novice researcher may need guidance when designing an experiment."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-029",
+      "term": "Equilibrium",
+      "shortMeaning": "تعادل؛ حالت توازن",
+      "order": 29,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "The ecosystem returned to equilibrium after the invasive species was removed."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-030",
+      "term": "Mantra",
+      "shortMeaning": "عبارت یا شعار تکرارشونده؛ ذکر",
+      "order": 30,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Efficiency became the company's mantra during the economic downturn."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-031",
+      "term": "Derived from",
+      "shortMeaning": "برگرفته یا به دست آمده از",
+      "order": 31,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Many modern medicines are derived from compounds found in plants."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-032",
+      "term": "Biodegradable plastics",
+      "shortMeaning": "پلاستیک‌های زیست‌تخریب‌پذیر",
+      "order": 32,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Biodegradable plastics may reduce long-term waste if they break down under suitable conditions."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-033",
+      "term": "Landfill burden",
+      "shortMeaning": "فشار و بار واردشده بر محل‌های دفن زباله",
+      "order": 33,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Recycling organic material can reduce the landfill burden of large cities."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-034",
+      "term": "Water and air purification",
+      "shortMeaning": "تصفیه آب و هوا",
+      "order": 34,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Wetlands contribute to water and air purification by filtering pollutants."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-035",
+      "term": "Submerge",
+      "shortMeaning": "غوطه‌ور کردن یا زیر آب رفتن",
+      "order": 35,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Scientists submerge the instruments to measure temperature at different depths."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-036",
+      "term": "Die out",
+      "shortMeaning": "منقرض شدن؛ به‌تدریج از بین رفتن",
+      "order": 36,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "A species may die out if it cannot adapt to rapid environmental change."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-037",
+      "term": "Cognitive function",
+      "shortMeaning": "عملکرد شناختی؛ توانایی‌های ذهنی مانند حافظه و استدلال",
+      "order": 37,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Regular sleep is essential for healthy cognitive function."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-038",
+      "term": "Cognitive disorders",
+      "shortMeaning": "اختلالات شناختی",
+      "order": 38,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Some cognitive disorders affect memory, attention, and decision-making."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-039",
+      "term": "Paving the way",
+      "shortMeaning": "هموار کردن مسیر؛ فراهم کردن زمینه",
+      "order": 39,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Early experiments were crucial in paving the way for later medical advances."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-040",
+      "term": "Catastrophic event",
+      "shortMeaning": "رویداد فاجعه‌بار",
+      "order": 40,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "A catastrophic event can disrupt ecosystems for many generations."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-041",
+      "term": "To align with nature",
+      "shortMeaning": "هماهنگ شدن با طبیعت",
+      "order": 41,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "The building was designed to align with nature by using natural light and ventilation."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-042",
+      "term": "Inner tranquility",
+      "shortMeaning": "آرامش درونی",
+      "order": 42,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Meditation can help some people develop a sense of inner tranquility."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-043",
+      "term": "Equanimity",
+      "shortMeaning": "آرامش و خونسردی ذهنی، به‌ویژه در شرایط دشوار",
+      "order": 43,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "She responded to the unexpected criticism with remarkable equanimity."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-044",
+      "term": "Marine animals",
+      "shortMeaning": "جانوران دریایی",
+      "order": 44,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Plastic waste can injure marine animals or enter the food chain."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-045",
+      "term": "Overfishing",
+      "shortMeaning": "صید بی‌رویه",
+      "order": 45,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Overfishing has reduced the population of several commercially important species."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-046",
+      "term": "Educational resources",
+      "shortMeaning": "منابع آموزشی",
+      "order": 46,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Online libraries provide educational resources to students in remote areas."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-047",
+      "term": "Historical eras",
+      "shortMeaning": "دوره‌های تاریخی",
+      "order": 47,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "The museum displays tools and artworks from several historical eras."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-048",
+      "term": "Volcanic eruptions",
+      "shortMeaning": "فوران‌های آتشفشانی",
+      "order": 48,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Large volcanic eruptions can temporarily affect global temperatures."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-049",
+      "term": "Losses of Species",
+      "shortMeaning": "از بین رفتن یا کاهش گونه‌ها",
+      "order": 49,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Losses of species can weaken food webs and reduce ecosystem stability."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-050",
+      "term": "Comprehensive",
+      "shortMeaning": "جامع؛ کامل و فراگیر",
+      "order": 50,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "The report offers a comprehensive analysis of the region's water resources."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-051",
+      "term": "Spanning",
+      "shortMeaning": "گسترده در؛ دربرگیرنده یک بازه",
+      "order": 51,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "The exhibition contains artifacts spanning more than two thousand years."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-052",
+      "term": "Complex societies",
+      "shortMeaning": "جوامع پیچیده",
+      "order": 52,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Complex societies often develop specialized occupations and systems of government."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-053",
+      "term": "Social structures",
+      "shortMeaning": "ساختارهای اجتماعی",
+      "order": 53,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Trade and migration can transform the social structures of a community."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-054",
+      "term": "Language revitalization",
+      "shortMeaning": "احیای زبان",
+      "order": 54,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Language revitalization programs encourage young people to learn endangered languages."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-055",
+      "term": "Career/job fair",
+      "shortMeaning": "نمایشگاه فرصت‌های شغلی و کاریابی",
+      "order": 55,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Students spoke with potential employers at the university career fair."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-056",
+      "term": "Depict",
+      "shortMeaning": "به تصویر کشیدن؛ نشان دادن",
+      "order": 56,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "The cave paintings depict animals that once lived in the region."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-057",
+      "term": "Intricate",
+      "shortMeaning": "پیچیده و دارای جزئیات ظریف",
+      "order": 57,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "The temple is famous for its intricate stone carvings."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-058",
+      "term": "Retention rate",
+      "shortMeaning": "نرخ حفظ و ماندگاری",
+      "order": 58,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "The university improved its student retention rate by expanding academic support services."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-059",
+      "term": "Sophisticated",
+      "shortMeaning": "پیشرفته، پیچیده یا ظریف",
+      "order": 59,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "The telescope uses sophisticated instruments to detect extremely faint signals."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-060",
+      "term": "Jigsaw puzzle",
+      "shortMeaning": "پازل تکه‌ای",
+      "order": 60,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Reconstructing the ancient manuscript was like solving a difficult jigsaw puzzle."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-061",
+      "term": "Shifting of earth's plates",
+      "shortMeaning": "جابه‌جایی صفحات زمین",
+      "order": 61,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "The shifting of Earth's plates can generate earthquakes and form mountain ranges."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-062",
+      "term": "Sediment",
+      "shortMeaning": "رسوب؛ ذرات ته‌نشین‌شده",
+      "order": 62,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Layers of sediment accumulated at the bottom of the lake."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-063",
+      "term": "Exert pressure",
+      "shortMeaning": "فشار وارد کردن",
+      "order": 63,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Growing roots can exert pressure on rocks and gradually break them apart."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    },
+    {
+      "id": "toefl-neo-1-10-064",
+      "term": "Lithification",
+      "shortMeaning": "سنگ‌شدگی؛ فرایند تبدیل رسوبات به سنگ رسوبی",
+      "order": 64,
+      "tags": [
+        "TOEFL",
+        "NEO",
+        "Tests 1-10"
+      ],
+      "exampleSentences": [
+        "Lithification occurs when sediment is compacted and cemented over time."
+      ],
+      "difficulty": 3,
+      "enrichmentSource": "User-provided TOEFL_Vocabulary_Neo_1_10.pdf"
+    }
+  ]
+}

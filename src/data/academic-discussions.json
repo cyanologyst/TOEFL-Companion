@@ -1,0 +1,667 @@
+{
+  "schemaVersion": 1,
+  "source": "User-provided Writing.zip; extracted with Windows OCR and normalized locally",
+  "taskType": "TOEFL Academic Discussion",
+  "discussions": [
+    {
+      "id": "academic-discussion-01",
+      "sequence": 1,
+      "week": 1,
+      "title": "Nature, nurture, and human development",
+      "course": "Psychology",
+      "professor": "Dr. Achebe",
+      "prompt": "We've been discussing the role of nature versus nurture in human development. Some experts believe that genetics play the most significant role in shaping who we are, while others argue that our environment and experiences are more important. Which do you think has a greater impact on human development: nature or nurture? Why?",
+      "students": [
+        {
+          "name": "Claire",
+          "response": "I think nurture has a greater impact on human development. Our environment and experiences shape our beliefs, behaviors, and personalities. While genetics provide a foundation, it is our interactions and experiences that truly define who we become."
+        },
+        {
+          "name": "Paul",
+          "response": "In my opinion, nature has a more significant role. Genetics determine many aspects of our personality, intelligence, and physical abilities. While the environment can influence these traits, our genetic makeup is the primary factor in shaping who we are."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 1 Writing Topics/1.png"
+    },
+    {
+      "id": "academic-discussion-02",
+      "sequence": 2,
+      "week": 1,
+      "title": "Technology in education",
+      "course": "Technology In Education",
+      "professor": "Dr. Gupta",
+      "prompt": "We have been discussing the integration of technology in educational settings. Some educators believe that digital tools enhance student learning by providing interactive and engaging experiences. Others are concerned that too much technology in the classroom can be distracting and may negatively impact learning outcomes. Do you think the use of technology in education is beneficial or harmful to students? Why?",
+      "students": [
+        {
+          "name": "Kelly",
+          "response": "I believe that technology in education is beneficial for students. It provides interactive learning experiences that can make complex topics easier to understand. Additionally, digital tools can cater to various learning styles, making education more accessible."
+        },
+        {
+          "name": "Paul",
+          "response": "In my opinion, excessive use of technology in the classroom can be harmful. It can distract students from their studies and reduce face-to-face interactions with teachers and peers. A balanced approach is necessary to ensure that technology enhances, rather than hinders, learning."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 1 Writing Topics/2.png"
+    },
+    {
+      "id": "academic-discussion-03",
+      "sequence": 3,
+      "week": 1,
+      "title": "Corporate transparency",
+      "course": "Business Ethics",
+      "professor": "Dr. Achebe",
+      "prompt": "We've been discussing the practice of corporate transparency, where businesses are completely transparent with their employees about their operations. Others argue that certain information should remain confidential to protect competitive advantages. Do you think corporate transparency is essential, or should some information be kept confidential? Why?",
+      "students": [
+        {
+          "name": "Claire",
+          "response": "I think corporate transparency is essential. It builds trust with consumers and stakeholders and demonstrates a company's commitment to ethical practices. Transparency can lead to greater accountability and long-term success, as customers appreciate honest and open communication."
+        },
+        {
+          "name": "Paul",
+          "response": "In my opinion, certain information should be confidential to protect competitive advantages. While transparency is important, businesses need to safeguard proprietary information and strategic plans to stay competitive. Complete transparency could potentially harm a company's position in the market."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 1 Writing Topics/3.png"
+    },
+    {
+      "id": "academic-discussion-04",
+      "sequence": 4,
+      "week": 1,
+      "title": "Digital communication and relationships",
+      "course": "Communication Studies",
+      "professor": "Dr. Achebe",
+      "prompt": "We've been discussing the rise of digital communication and its impact on face-to-face interactions. Some people believe digital communication enhances relationships by making it easier to stay in touch, while others argue it diminishes the quality of personal interactions. What do you think is the impact of digital communication on personal relationships?",
+      "students": [
+        {
+          "name": "Kelly",
+          "response": "I believe digital communication enhances relationships. It allows people to stay connected regardless of distance and time. Tools like video calls and instant messaging make it possible to maintain close relationships with friends and family who live far away."
+        },
+        {
+          "name": "Andrew",
+          "response": "In my opinion, digital communication diminishes the quality of personal interactions. It often lacks the emotional depth and non-verbal cues of face-to-face conversations. People may feel more isolated and less emotionally connected despite frequent digital interactions."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 1 Writing Topics/4.png"
+    },
+    {
+      "id": "academic-discussion-05",
+      "sequence": 5,
+      "week": 1,
+      "title": "Ethical concerns in artificial intelligence",
+      "course": "Ethics",
+      "professor": "Dr. Diaz",
+      "prompt": "This week, we are examining the ethical implications of artificial intelligence. Some technology advocates argue that AI can greatly benefit society by improving efficiency, reducing human errors, and solving complex problems like medical diagnosis and climate prediction. Others worry about serious ethical concerns, such as widespread job displacement, privacy violations through data collection, and potential bias in automated decision-making systems. What do you think are the most significant ethical concerns related to AI development and use?",
+      "students": [
+        {
+          "name": "Andrew",
+          "response": "systems automate tasks previously performed by humans, millions of workers in manufacturing, customer service, transportation, and even professional fields like accounting may lose their employment opportunities permanently, creating economic instability and requiring massive retraining programs that society may not be prepared to provide effectively"
+        },
+        {
+          "name": "Claire",
+          "response": "I think privacy violations and data misuse represent the most serious ethical concerns related to artificial intelligence. AI systems collect vast amounts of personal information about our daily activities, purchasing habits, location data, and online behavior, often without clear consent or transparency about how this sensitive information will be stored, shared, or potentially used against individuals in the future."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 1 Writing Topics/5.png"
+    },
+    {
+      "id": "academic-discussion-06",
+      "sequence": 6,
+      "week": 2,
+      "title": "Emotional intelligence at work",
+      "course": "Psychology",
+      "professor": "Dr. Gupta",
+      "prompt": "We've been talking about the role of emotional intelligence in personal and professional settings. Emotional intelligence involves the ability to recognize, understand, and manage our own emotions and the emotions of others. Do you think emotional intelligence is more important than technical skills in the workplace? Why or why not?",
+      "students": [
+        {
+          "name": "Paul",
+          "response": "I think emotional intelligence is more important than technical skills in the workplace. Being able to communicate effectively, manage stress, and work well in teams can lead to better collaboration and a healthier work environment."
+        },
+        {
+          "name": "Kelly",
+          "response": "In my opinion, technical skills are more important in the workplace. Without the necessary technical expertise, employees wouldn't be able to perform their tasks efficiently. Emotional intelligence is valuable, but technical skills are essential for job performance."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 2 Writing Topics/Task 3 Writing for an Academic Dicussion/1.png"
+    },
+    {
+      "id": "academic-discussion-07",
+      "sequence": 7,
+      "week": 2,
+      "title": "What shapes history?",
+      "course": "History",
+      "professor": "Dr. Diaz",
+      "prompt": "We've been discussing the impact of major historical figures on their respective societies. Some historians argue that individuals like political leaders or influential thinkers shape the course of history more than broader social and economic forces. Others believe social and economic events are the primary drivers of historical change. What do you think has a greater impact on shaping history: individual actions or broader social and economic forces? Why?",
+      "students": [
+        {
+          "name": "Andrew",
+          "response": "I believe individuals and their actions have a greater impact on shaping history. Leaders and influential thinkers can inspire movements, create significant changes, and leave a lasting legacy. Their decisions and actions often alter the course of events in profound ways."
+        },
+        {
+          "name": "Kelly",
+          "response": "In my opinion, broader social and economic events are more significant in shaping history. While individuals can influence events, it is the underlying conditions and trends that drive major changes. These forces affect large groups of people and create the context in which individuals operate."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 2 Writing Topics/Task 3 Writing for an Academic Dicussion/2.png"
+    },
+    {
+      "id": "academic-discussion-08",
+      "sequence": 8,
+      "week": 2,
+      "title": "Digital communication in daily life",
+      "course": "Communication Studies",
+      "professor": "Dr. Gupta",
+      "prompt": "Digital communication includes texting, video chats, and social media. Some people say these tools help relationships by allowing instant messages, sharing photos, and staying in touch over long distances. Others believe they cause problems—like misunderstandings and less eye contact—because people rely less on talking in person. Think about how you communicate with family, friends, or classmates. Do you believe digital communication makes your relationships stronger or weaker? Share specific examples and explain your opinion clearly.",
+      "students": [
+        {
+          "name": "Paul",
+          "response": "I think digital communication strengthens relationships. It allows people to maintain bonds with family members who live far away. For example, my brothers work in another country, but we can stay in touch and remain a loving family thanks to various digital communication platforms."
+        },
+        {
+          "name": "Claire",
+          "response": "I think digital communication can weaken relationships. People may text instead of talking face-to-face, which makes conversations shorter and less personal. It's easy to miss feelings or misunderstand someone's meaning. When people rely too much on phones or apps, they may feel distant from others even when they're constantly connected. Real conversations matter more."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 2 Writing Topics/Task 3 Writing for an Academic Dicussion/3.png"
+    },
+    {
+      "id": "academic-discussion-09",
+      "sequence": 9,
+      "week": 2,
+      "title": "Advertising and consumer behavior",
+      "course": "Marketing Studies",
+      "professor": "Dr. Diaz",
+      "prompt": "We've been discussing the influence of advertising on consumer behavior. Advertisements can inform consumers about new products and services, such as the latest tech products or new local businesses, potentially boosting sales and driving economic growth. However, some experts argue that advertisements can be deceptive, create unrealistic expectations about products, and promote materialistic values. Reflect on a specific advertisement that influenced your behavior. Do you think its impact was positive or negative? Why?",
+      "students": [
+        {
+          "name": "Paul",
+          "response": "I think the primary effect of advertising is to inform consumers. Ads provide valuable information about products and services, helping consumers make informed purchasing decisions and boosting economic growth."
+        },
+        {
+          "name": "Claire",
+          "response": "I believe advertisements mainly manipulate consumer choices. They often create unrealistic expectations and encourage materialism, leading people to buy things they don't need and fostering a culture of overconsumption."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 2 Writing Topics/Task 3 Writing for an Academic Dicussion/4.png"
+    },
+    {
+      "id": "academic-discussion-10",
+      "sequence": 10,
+      "week": 2,
+      "title": "Advertising: information or manipulation?",
+      "course": "Marketing Studies",
+      "professor": "Dr. Diaz",
+      "prompt": "We've been discussing the influence of advertising on consumer behavior. Advertisements can inform consumers about new products and services, such as the latest tech products or new local businesses, potentially boosting sales and driving economic growth. However, some experts argue that advertisements can be deceptive, create unrealistic expectations about products, and promote materialistic values. Reflect on a specific advertisement that influenced your behavior. Do you think its impact was positive or negative? Why?",
+      "students": [
+        {
+          "name": "Paul",
+          "response": "I think the primary effect of advertising is to inform consumers. Ads provide valuable information about products and services, helping consumers make informed purchasing decisions and boosting economic growth."
+        },
+        {
+          "name": "Claire",
+          "response": "I believe advertisements mainly manipulate consumer choices. They often create unrealistic expectations and encourage materialism, leading people to buy things they don't need and fostering a culture of overconsumption."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 2 Writing Topics/Task 3 Writing for an Academic Dicussion/5.png"
+    },
+    {
+      "id": "academic-discussion-11",
+      "sequence": 11,
+      "week": 3,
+      "title": "Active participation or lectures?",
+      "course": "Education",
+      "professor": "Dr. Gupta",
+      "prompt": "We've been discussing whether students learn better through active participation or passive listening during class instruction. Some educators believe that students retain information more effectively when they actively engage through discussion, problem-solving activities, and hands-on practice rather than simply listening to lectures. Others argue that well-structured lectures allow teachers to present information efficiently and systematically helping students build foundational knowledge before attempting practical applications. Do you think educators should prioritize active student participation or structured lecture-based instruction?",
+      "students": [
+        {
+          "name": "Paul",
+          "response": "Educators should prioritize active participation because it helps students retain information more effectively and develop critical thinking skills. When students engage in discussions, solve problems collaboratively, and practice applying concepts immediately, they create stronger memory connections and better understand how to use their knowledge in real situations. Active participation also keeps students focused and motivated throughout the learning process."
+        },
+        {
+          "name": "Claire",
+          "response": "I think structured lecture-based instruction is more effective for building solid foundational knowledge that students need before attempting complex applications. Well-organized lectures allow teachers to present information systematically. ensure all students receive the same essential content, and cover curriculum requirements efficiently. Students can then apply this foundational knowledge through homework assignments and later practical exercises outside of class time."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 3 Writing Topics/Task 3 Writing for an Academic Dicussion/1.png"
+    },
+    {
+      "id": "academic-discussion-12",
+      "sequence": 12,
+      "week": 3,
+      "title": "Cultural globalization and local traditions",
+      "course": "Anthropology",
+      "professor": "Dr. Gupta",
+      "prompt": "We've been discussing the impact of cultural globalization on local traditions. Some anthropologists argue that cultural globalization leads to the loss of unique and diverse cultural identities, while others believe it promotes cultural exchange and understanding. What is your perspective on the impact of cultural globalization on local traditions?",
+      "students": [
+        {
+          "name": "Kelly",
+          "response": "I believe cultural globalization can lead to the loss of unique cultural identities. As global culture becomes more dominant, traditional practices and languages can be forgotten or replaced. It's important to preserve and celebrate local cultures to maintain diversity."
+        },
+        {
+          "name": "Andrew",
+          "response": "In my opinion, cultural globalization promotes cultural exchange and understanding. It allows people to learn about and appreciate different cultures. This exchange can enrich local traditions and create a more interconnected and tolerant world."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 3 Writing Topics/Task 3 Writing for an Academic Dicussion/2.png"
+    },
+    {
+      "id": "academic-discussion-13",
+      "sequence": 13,
+      "week": 3,
+      "title": "Can art create social change?",
+      "course": "Sociology",
+      "professor": "Dr. Gupta",
+      "prompt": "We've been discussing how different art forms affect people and communities. Consider these specific examples: protest songs that motivate people to join movements, murals that bring communities together, or movies that change how people think about important issues. Some people argue that art creates change by making people aware of problems and motivating them to act. Others believe art simply shows what already exists in society without actually changing anything. Which view do you agree with? Why?",
+      "students": [
+        {
+          "name": "Andrew",
+          "response": "I believe art has the power to drive social change. At many times in history, protest songs helped unite people to support important causes, while political cartoons exposed corruption and motivated voters to demand better leadership. Art doesn't just show problems; it gives people emotional reasons to care and practical ways to take action for justice."
+        },
+        {
+          "name": "Claire",
+          "response": "I think art mainly reflects society by showing us what people experience and observe in their daily lives. Artists create paintings, songs, and stories based on their personal experiences and cultural backgrounds. While art can sometimes inspire people to think differently, its primary role is to document and preserve the current state of society for future generations."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 3 Writing Topics/Task 3 Writing for an Academic Dicussion/3.png"
+    },
+    {
+      "id": "academic-discussion-14",
+      "sequence": 14,
+      "week": 3,
+      "title": "Career priorities and long-term satisfaction",
+      "course": "Business Management",
+      "professor": "Dr. Diaz",
+      "prompt": "We've been discussing what factors people consider most important when choosing a career field. Some career counselors believe that financial considerations, such as high salaries and job security, are the primary factors that influence people's career decisions. Others argue that non-financial factors, like personal fulfillment, work-life balance, and opportunities to help others, are more important for long-term career satisfaction. Which factors do you think are more important when choosing a career field?",
+      "students": [
+        {
+          "name": "Andrew",
+          "response": "I believe financial considerations are the most important factors when choosing a career field. High salaries and job security provide stability for supporting families and building savings for the future. While personal fulfillment is valuable, people need sufficient income to meet their basic needs and achieve financial independence before they can focus on other aspects of career satisfaction."
+        },
+        {
+          "name": "Kelly",
+          "response": "I think non-financial factors are more important for choosing a career field because they determine long-term happiness and life satisfaction. When people choose careers based on personal interests, work-life balance, and opportunities to make meaningful contributions to society, they feel more motivated and engaged daily. Money feels empty if the work itself is boring, stressful, or conflicts with personal values."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 3 Writing Topics/Task 3 Writing for an Academic Dicussion/4.png"
+    },
+    {
+      "id": "academic-discussion-15",
+      "sequence": 15,
+      "week": 3,
+      "title": "Social media and public opinion",
+      "course": "Sociology",
+      "professor": "Dr. Gupta",
+      "prompt": "We've been exploring how social media platforms influence public opinion in today's connected world. These platforms allow ideas, news, and perspectives to spread quickly, giving individuals and organizations powerful tools to shape conversations. From raising awareness to mobilizing support, social media plays a key role in how people engage with current events. Do you think its influence is mostly beneficial, or should we be more cautious about its reach and impact?",
+      "students": [
+        {
+          "name": "Claire",
+          "response": "I think social media has a negative impact on public opinion. It can often create echo chambers, where people only hear opinions that reinforce their existing beliefs. For example, if my friends on social media all seem to be saying the same thing, how can we be challenged to think more independently?"
+        },
+        {
+          "name": "Andrew",
+          "response": "I believe that the influence of social media is mostly beneficial. It allows people to access a wide range of viewpoints and engage in all kinds of discussions and across languages. This enhances understanding and awareness of different issues."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 3 Writing Topics/Task 3 Writing for an Academic Dicussion/5.png"
+    },
+    {
+      "id": "academic-discussion-16",
+      "sequence": 16,
+      "week": 4,
+      "title": "Corporate transparency and confidentiality",
+      "course": "Business Ethics",
+      "professor": "Dr. Achebe",
+      "prompt": "We've been discussing the practice of corporate transparency, where businesses are completely transparent with their employees about their operations. Others argue that certain information should remain confidential to protect competitive advantages. Do you think corporate transparency is essential, or should some information be kept confidential? Why?",
+      "students": [
+        {
+          "name": "Claire",
+          "response": "I think corporate transparency is essential. It builds trust with consumers and stakeholders and demonstrates a company's commitment to ethical practices. Transparency can lead to greater accountability and long-term success, as customers appreciate honest and open communication."
+        },
+        {
+          "name": "Paul",
+          "response": "In my opinion, certain information should be kept confidential to protect competitive advantages. While transparency is important, businesses need to safeguard proprietary information and strategic plans to stay competitive. Complete transparency could potentially harm a company's position in the market."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 4 Writing Topics/Task 3 Writing for an Academic Dicussion/1.png"
+    },
+    {
+      "id": "academic-discussion-17",
+      "sequence": 17,
+      "week": 4,
+      "title": "Nature versus nurture",
+      "course": "Psychology",
+      "professor": "Dr. Achebe",
+      "prompt": "We've been discussing the role of nature versus nurture in human development. Some experts believe that genetics play the most significant role in shaping who we are, while others argue that our environment and experiences are more important. Which do you think has a greater impact on human development: nature or nurture? Why?",
+      "students": [
+        {
+          "name": "Claire",
+          "response": "I think nurture has a greater impact on human development. Our environment and experiences shape our beliefs, behaviors, and personalities. While genetics provide a foundation, it is our interactions and experiences that truly define who we become."
+        },
+        {
+          "name": "Paul",
+          "response": "In my opinion, nature has a more significant role. Genetics determine many aspects of our personality, intelligence, and physical abilities. While the environment can influence these traits, our genetic makeup is the primary factor in shaping who we are."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 4 Writing Topics/Task 3 Writing for an Academic Dicussion/2.png"
+    },
+    {
+      "id": "academic-discussion-18",
+      "sequence": 18,
+      "week": 4,
+      "title": "Do social norms help or restrict?",
+      "course": "Sociology",
+      "professor": "Dr. Gupta",
+      "prompt": "This week we are exploring the concept of social norms and their influence on behavior. Social norms are unwritten rules that dictate how individuals should act. For example, norms can include dressing appropriately for different occasions or greeting others politely. Some sociologists argue that social norms help maintain order and predictability, while others believe they can restrict personal freedom and creativity. Are the effects of social norms mostly positive, or are they mostly negative? Explain your views.",
+      "students": [
+        {
+          "name": "Paul",
+          "response": "I believe social norms help maintain order and predictability. They provide guidelines for acceptable behavior, which can make it easier for people to understand what is expected of them in various social situations. These expectations are helpful to guide interactions that are at times unclear."
+        },
+        {
+          "name": "Claire",
+          "response": "l, personally, believe that social norms can sometimes restrict personal freedom as well as creativity. They often pressure individuals to conform to what the majority thinks is appropriate behavior. Breaking free from these norms can help people to express themselves more easily."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 4 Writing Topics/Task 3 Writing for an Academic Dicussion/3.png"
+    },
+    {
+      "id": "academic-discussion-19",
+      "sequence": 19,
+      "week": 4,
+      "title": "Global expansion or local roots?",
+      "course": "Business Ethics",
+      "professor": "Dr. Gupta",
+      "prompt": "We've been discussing strategic growth in corporations. Businesses may often choose to expand globally or prefer instead to deepen local roots. Global growth offers access to new markets and new resources, but can dilute brand identity and strain resources. A local focus, on the other hand, builds community trust, adapts to regional needs, and strengthens customer loyalty. Do you think corporations should concentrate more on expansion or local business? Why?",
+      "students": [
+        {
+          "name": "Claire",
+          "response": "I think global expansion is vital for businesses. It unlocks opportunities, like broader talent pools and increased innovation. Most companies that I know seek to stay competitive in a connected world. While local focus has its strengths, going global builds resilience and relevance across cultures and economies. Why limit potential to one region when the world is within reach?"
+        },
+        {
+          "name": "Paul",
+          "response": "Focusing on local business practices supports regional economies and allows companies to tailor offerings to local needs. It builds trust, loyalty, and authenticity qualities that global strategies can struggle to replicate. My favorite businesses are the family-owned ones downtown. Sometimes, deep roots in one place can create more lasting impact than a broad reach across many."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 4 Writing Topics/Task 3 Writing for an Academic Dicussion/4.png"
+    },
+    {
+      "id": "academic-discussion-20",
+      "sequence": 20,
+      "week": 4,
+      "title": "Multitasking in the workplace",
+      "course": "Business Management",
+      "professor": "Dr. Diaz",
+      "prompt": "This week we have been discussing strategies to promote workplace productivity and employee performance. One particularly controversial topic that has emerged is multitasking. While some argue that the ability to juggle multiple tasks at once is essential in today's fast-paced work environments, others believe that multitasking actually reduces efficiency and increases the likelihood of errors. Do you believe that managers should promote multitasking in the workplace? Why or why not?",
+      "students": [
+        {
+          "name": "Andrew",
+          "response": "I think managers should promote multitasking. It helps employees handle routine tasks simultaneously and mirrors real-world demands. Even outside of the office, who has the luxury of focusing only on one task? With the right tools and training, multitasking can improve time management and adaptability key traits in today's dynamic workplaces."
+        },
+        {
+          "name": "Kelly",
+          "response": "I oppose multitasking in the workplace. It Increases the chance of mistakes and leads to mental fatigue. For example, when employees answer emails during meetings, they often miss key details or misinterpret information. Deep, focused work is more effective for quality outcomes and long-term employee well-being."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 4 Writing Topics/Task 3 Writing for an Academic Dicussion/5.png"
+    },
+    {
+      "id": "academic-discussion-21",
+      "sequence": 21,
+      "week": 5,
+      "title": "Social media influencers in marketing",
+      "course": "Marketing",
+      "professor": "Dr. Diaz",
+      "prompt": "We've been discussing how companies hire popular social media personalities with thousands of followers to promote their products through posts, videos, and reviews on social media platforms. Some marketers believe these influencers can effectively increase sales because their followers trust their personal recommendations and view them as friends rather than advertisers. Others argue that hiring influencers is expensive and unpredictable since their popularity can decline suddenly. Which view about using social media personalities for marketing do you agree with?",
+      "students": [
+        {
+          "name": "Claire",
+          "response": "Social media influencers are highly effective for marketing because they create authentic connections with their audiences. When popular personalities share reviews and demonstrate products in their daily lives, followers trust these recommendations more than traditional advertisements. Influencers also reach specific target groups like young adults, helping companies connect with customers who are genuinely interested in their products."
+        },
+        {
+          "name": "Andrew",
+          "response": "I think relying on influencers for marketing can be risky and unpredictable for business success. Their popularity can change quickly due to scandals or changing trends, potentially damaging the brand's reputation. Additionally, many influencer campaigns fail to generate actual sales despite high costs, making it difficult for companies to measure whether their investment produced profitable results and increased revenue."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 5 Writing Topics/Task 3 Writing for an Academic Dicussion/1.png"
+    },
+    {
+      "id": "academic-discussion-22",
+      "sequence": 22,
+      "week": 5,
+      "title": "Surveillance technology and freedom",
+      "course": "Technology",
+      "professor": "Dr. Achebe",
+      "prompt": "These days, technology plays a critical role in many aspects of life, including security. Some argue that technology used in surveillance, such as cameras and data collection software, is essential for maintaining safety and preventing fraud. Others believe it infringes on personal freedoms, as it may involve monitoring individuals without their consent. What do you think? Is the use of technology in surveillance for security purposes a necessary measure or a threat to personal freedoms? Why do you think so?",
+      "students": [
+        {
+          "name": "Andrew",
+          "response": "Yes, surveillance technology has its uses for security purposes, but it can backfire too. If it gets hacked or misused, our personal information could end up in the wrong hands. Plus, relying too much on it might make us more paranoid than safe."
+        },
+        {
+          "name": "Claire",
+          "response": "I think that, with proper regulations, surveillance technology can ensure security without significantly infringing on privacy. If clear rules define who can access the data and how it is used, technology can be a powerful tool for safety. Responsible usage is key to balancing security and privacy."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 5 Writing Topics/Task 3 Writing for an Academic Dicussion/2.png"
+    },
+    {
+      "id": "academic-discussion-23",
+      "sequence": 23,
+      "week": 5,
+      "title": "Advertising that changes behavior",
+      "course": "Media Studies",
+      "professor": "Dr. Achebe",
+      "prompt": "We've been discussing the influence of advertising on consumer behavior. Advertisements can inform consumers about new products and services, such as the latest tech products or new local businesses, potentially boosting sales and driving economic growth. However, some experts argue that advertisements can be deceptive, create unrealistic expectations about products, and promote materialistic values. Reflect on a specific advertisement that influenced your behavior. Do you think its impact was positive or negative?",
+      "students": [
+        {
+          "name": "Claire",
+          "response": "I think the primary effect of advertising is to inform consumers. Ads provide valuable information about products and services, helping consumers make informed purchasing decisions and boosting economic growth."
+        },
+        {
+          "name": "Paul",
+          "response": "I believe advertisements mainly manipulate consumer choices. They often create unrealistic expectations and encourage materialism, leading people to buy things they don't need and fostering a culture of overconsumption."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 5 Writing Topics/Task 3 Writing for an Academic Dicussion/3.png"
+    },
+    {
+      "id": "academic-discussion-24",
+      "sequence": 24,
+      "week": 5,
+      "title": "Customer feedback and innovation",
+      "course": "Marketing",
+      "professor": "Dr. Gupta",
+      "prompt": "We've been discussing the importance of customer feedback in product development. Gathering feedback can help companies understand customer needs and improve their products. However, some argue that relying too heavily on customer feedback can stifle innovation and lead to mediocre products. What is your opinion on this?",
+      "students": [
+        {
+          "name": "Paul",
+          "response": "Customer feedback is essential for product development. It helps companies understand customer needs and preferences. ensuring that products are tailored to the market. Feedback can guide improvements and enhance customer satisfaction."
+        },
+        {
+          "name": "Kelly",
+          "response": "I believe that relying too heavily on customer feedback can stifle innovation. Companies should balance feedback with creative vision to avoid producing mediocre products. Innovation often requires taking risks and pursuing new ideas that customers may not initially recognize."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 5 Writing Topics/Task 3 Writing for an Academic Dicussion/4.png"
+    },
+    {
+      "id": "academic-discussion-25",
+      "sequence": 25,
+      "week": 5,
+      "title": "Durable products or efficient upgrades?",
+      "course": "Environmental Science",
+      "professor": "Dr. Gupta",
+      "prompt": "We've been discussing how consumer purchasing decisions affect environmental outcomes. Some economists believe that people should prioritize buying products that last longer and can be repaired, even if they cost more initially, because this reduces manufacturing waste and resource consumption. Others argue that people should prioritize buying newer products with advanced energy-efficient technologies, even if they replace items more frequently, because modern innovations significantly reduce daily environmental impact. Which purchasing strategy do you think produces better environmental outcomes?",
+      "students": [
+        {
+          "name": "Kelly",
+          "response": "more initially. When people buy high-quality goods like long-lasting electronics and well-made clothing, they reduce the demand for frequent manufacturing and prevent tons of waste. This purchasing strategy also supports companies that design products responsibly rather than those focused only on planned obsolescence and profit maximization."
+        },
+        {
+          "name": "Andrew",
+          "response": "I think buying newer products with advanced, energy-efficient technologies produces better environmental outcomes despite more frequent replacement. Modern appliances, vehicles, and electronics use significantly less energy than older models, reducing daily carbon emissions and resource consumption. The environmental savings from using highly efficient technology for several years often outweigh the manufacturing costs of producing newer, cleaner products more frequently."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 5 Writing Topics/Task 3 Writing for an Academic Dicussion/5.png"
+    },
+    {
+      "id": "academic-discussion-26",
+      "sequence": 26,
+      "week": 6,
+      "title": "Should literature inspire or entertain?",
+      "course": "Literature",
+      "professor": "Dr. Gupta",
+      "prompt": "Literature includes novels, poems, plays, and stories that express ideas and emotions. Some writers aim to inspire change by showing problems like inequality or injustice. Others focus on entertaining readers through exciting plots or imaginative worlds. Both types of literature influence readers in different ways. Think about how stories can shape how people think or feel. Which do you believe is the main purpose of literature: to inspire change or to entertain? Give reasons to support your view.",
+      "students": [
+        {
+          "name": "Kelly",
+          "response": "The main purpose of literature is to inspire social change. Many stories explore serious topics like historical conflicts, unfair treatment, or climate problems. When people read about these issues, they develop an understanding of other people's viewpoints and want to make improvements. Literature can open minds and help readers care about what others think and experience."
+        },
+        {
+          "name": "Andrew",
+          "response": "Literature's primary goal is to entertain. It allows readers to enter new worlds, meet fictional characters, and enjoy surprising events. Even stories with serious themes often include exciting moments. Entertainment helps readers relax, imagine new possibilities, and appreciate creativity, which are also important benefits for individuals and society."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 6 Writing Topics/Task 3 Writing for an Academic Dicussion/1.png"
+    },
+    {
+      "id": "academic-discussion-27",
+      "sequence": 27,
+      "week": 6,
+      "title": "Storytelling in communication",
+      "course": "Communications",
+      "professor": "Dr. Gupta",
+      "prompt": "We've been discussing the role of storytelling in effective communication. Storytelling can be a powerful tool to convey messages and connect with audiences emotionally. Some experts argue that storytelling is essential for engaging presentations, while others believe that factual, straightforward communication is more effective. What is your opinion on the use of storytelling in communication?",
+      "students": [
+        {
+          "name": "Kelly",
+          "response": "Storytelling is essential for successful communication during, for instance, presentations. It helps to connect with the audience on an emotional level, making the message more memorable and impactful. Stories can illustrate points more vividly than plain facts and keep the audience engaged from start to finish."
+        },
+        {
+          "name": "Paul",
+          "response": "Factual, straightforward communication is more effective. Clear and concise information ensures that the audience understands the message without any ambiguity. While stories can be engaging, they may sometimes distract from the main points. Successful communication is determined more by its ability to convey a message than it is to entertain an audience."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 6 Writing Topics/Task 3 Writing for an Academic Dicussion/2.png"
+    },
+    {
+      "id": "academic-discussion-28",
+      "sequence": 28,
+      "week": 6,
+      "title": "Nature versus nurture",
+      "course": "Psychology",
+      "professor": "Dr. Achebe",
+      "prompt": "We've been discussing the role of nature versus nurture in human development. Some experts believe that genetics play the most significant role in shaping who we are, while others argue that our environment and experiences are more important. Which do you think has a greater impact on human development: nature or nurture? Why?",
+      "students": [
+        {
+          "name": "Claire",
+          "response": "I think nurture has a greater impact on human development. Our environment and experiences shape our beliefs, behaviors and personalities. While genetics provide a foundation, it is our interactions and experiences that truly define who we become."
+        },
+        {
+          "name": "Paul",
+          "response": "In my opinion, nature has a more significant role. Genetics determine many aspects of our personality, intelligence, and physical abilities. While the environment can influence these traits, our genetic makeup is the primary factor in shaping who we are."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 6 Writing Topics/Task 3 Writing for an Academic Dicussion/3.png"
+    },
+    {
+      "id": "academic-discussion-29",
+      "sequence": 29,
+      "week": 6,
+      "title": "Technology's effect on education",
+      "course": "Education",
+      "professor": "Dr. Gupta",
+      "prompt": "Today we'll discuss the role of technology in modern education. As you know, technology can enhance learning by providing access to a wealth of information and interactive tools. However, many people believe that technology can be a distraction and hinder traditional learning methods. So, technology can be beneficial or harmful to learners depending on the context. But considered in general terms, has technology had a positive or negative effect on modern education as a whole? Explain your reasoning.",
+      "students": [
+        {
+          "name": "Claire",
+          "response": "I think technology enhances learning by making information more accessible and engaging. Tools like educational apps and online resources can cater to different learning styles and help students understand complex concepts."
+        },
+        {
+          "name": "Paul",
+          "response": "Overreliance on technology prevents learners from developing critical thinking skills and solving problems independently. A well-rounded education is only possible through traditional teaching and learning methods."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 6 Writing Topics/Task 3 Writing for an Academic Dicussion/4.png"
+    },
+    {
+      "id": "academic-discussion-30",
+      "sequence": 30,
+      "week": 6,
+      "title": "What determines educational outcomes?",
+      "course": "Education",
+      "professor": "Dr. Gupta",
+      "prompt": "Today we'll discuss how different factors affect educational outcomes. Clearly, the quality of teaching and the resources available to students play a significant role in their academic success. On the other hand, some people believe that a student's home environment and parental involvement are equally, if not more, important. Which do you believe plays a larger role in a student's educational outcomes? Why?",
+      "students": [
+        {
+          "name": "Claire",
+          "response": "I think that the home environment and parental involvement are crucial. Students who have supportive parents and a stable home life tend to perform better academically. Parents who are involved in their child's education can provide additional support and encouragement."
+        },
+        {
+          "name": "Paul",
+          "response": "I believe that the quality of teaching and the resources available at school are more important. Schools that provide a positive learning environment and the necessary tools for learning can significantly impact a student's academic achievements."
+        }
+      ],
+      "recommendedWords": 100,
+      "timeLimitSeconds": 600,
+      "sourceImage": "Week 6 Writing Topics/Task 3 Writing for an Academic Dicussion/5.png"
+    }
+  ]
+}

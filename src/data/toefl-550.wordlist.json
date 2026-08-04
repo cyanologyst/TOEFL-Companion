@@ -1,0 +1,6609 @@
+{
+  "schemaVersion": 1,
+  "id": "toefl-550-march-2026",
+  "title": "550 Must-know Words for TOEFL iBT",
+  "language": "en",
+  "source": "User-provided PDF, updated March 2026",
+  "words": [
+    {
+      "id": "toefl-550-march-2026-001",
+      "term": "Dissolve",
+      "partOfSpeech": "verb",
+      "pronunciation": "/dɪˈzɑːlv/",
+      "shortMeaning": "melt, thaw, soften end, break up, discontinue, suspend, terminate",
+      "chapter": 1,
+      "order": 1,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-002",
+      "term": "Precipitate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/prɪˈsɪp.ə.teɪt/",
+      "shortMeaning": "quicken, accelerate, expedite, hasten throw, launch",
+      "chapter": 1,
+      "order": 2,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-003",
+      "term": "Halt",
+      "partOfSpeech": "verb",
+      "pronunciation": "/hɔːlt/",
+      "shortMeaning": "stop, break off, cease, come to an end, block, curb, terminate to prevent someone or something from continuing – used especially in",
+      "chapter": 1,
+      "order": 3,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-004",
+      "term": "Refuge",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈrɛf.juːdʒ/",
+      "shortMeaning": "shelter, asylum, haven, sanctuary shelter or protection from someone or something",
+      "chapter": 1,
+      "order": 4,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-005",
+      "term": "Sprout",
+      "partOfSpeech": "verb",
+      "pronunciation": "/spraʊt/",
+      "shortMeaning": "grow, develop if vegetables, seeds, or plants sprout, they start to grow, producing",
+      "chapter": 1,
+      "order": 5,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-006",
+      "term": "Aesthetic",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/iːsˈθɛt.ɪk/",
+      "shortMeaning": "connected with beauty and the study of beauty : a work of great aesthetic appeal",
+      "chapter": 1,
+      "order": 6,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-007",
+      "term": "Hierarchy",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈhaɪ.ɚˌɑːr.ki/",
+      "shortMeaning": "grading, pecking order, ranking a system of organization in which people or things are divided into",
+      "chapter": 1,
+      "order": 7,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-008",
+      "term": "Nurture",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈnɝː.tʃɚ/",
+      "shortMeaning": "develop, bring up, discipline, educate, rear, train to help a plan, idea, feeling etc. to develop",
+      "chapter": 1,
+      "order": 8,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-009",
+      "term": "Bias",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈbaɪ.əs/",
+      "shortMeaning": "prejudice, favoritism, inclination, leaning, partiality, tendency, an opinion about whether a person, group, or idea is good or",
+      "chapter": 1,
+      "order": 9,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-010",
+      "term": "Nascent",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈneɪ.sənt/",
+      "shortMeaning": "budding, developing, insipient coming into existence or starting to develop",
+      "chapter": 1,
+      "order": 10,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-011",
+      "term": "Insatiable",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ɪnˈseɪ.ʃə.bəl/",
+      "shortMeaning": "voracious, unquenchable, greedy always wanting more and more of something",
+      "chapter": 1,
+      "order": 11,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-012",
+      "term": "Affirm",
+      "partOfSpeech": "verb",
+      "pronunciation": "/əˈfɝːm/",
+      "shortMeaning": "declare, assert, certify, confirm, maintain, testify, pronounce to state publicly that something is true",
+      "chapter": 1,
+      "order": 12,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-013",
+      "term": "Placid",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈplæs.ɪd/",
+      "shortMeaning": "calm, collected, composed, serene, tranquil a placid person does not often get angry or upset and does not usually",
+      "chapter": 1,
+      "order": 13,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-014",
+      "term": "Onerous",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈɑːnərəs/",
+      "shortMeaning": "difficult, burdensome, demanding, hard, heavy, exacting, demanding, laborious",
+      "chapter": 1,
+      "order": 14,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-015",
+      "term": "Despotic",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/dɪˈspɑː.tɪk/",
+      "shortMeaning": "authoritarian, autocratic, dictatorial, oppressive of or typical of a despot, tyrannical",
+      "chapter": 1,
+      "order": 15,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-016",
+      "term": "Groundbreaking",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈɡraʊndˌbreɪkɪŋ/",
+      "shortMeaning": "Innovative: pioneering: revolutionary: original: trailblazing The scientist published a groundbreaking study on climate",
+      "chapter": 1,
+      "order": 16,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-017",
+      "term": "Immerse",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪˈmɝːs/",
+      "shortMeaning": "Submerge: involve deeply: absorb completely: engage fully my immersion in black music and culture (noun)",
+      "chapter": 1,
+      "order": 17,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-018",
+      "term": "Acquisition",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˌækwɪˈzɪʃən/",
+      "shortMeaning": "Obtaining: gaining: procurement: purchase: attainment She acquired fluency in Spanish after living in Madrid for two",
+      "chapter": 1,
+      "order": 18,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-019",
+      "term": "Component",
+      "partOfSpeech": "noun",
+      "pronunciation": "/kəmˈpoʊnənt/",
+      "shortMeaning": "Part: element: piece: constituent: unit",
+      "chapter": 1,
+      "order": 19,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-020",
+      "term": "Retention",
+      "partOfSpeech": "noun",
+      "pronunciation": "/rɪˈtɛnʃən/",
+      "shortMeaning": "Keeping: preservation: maintenance: holding: remembrance The company is trying to retain skilled employees. (verb)",
+      "chapter": 1,
+      "order": 20,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-021",
+      "term": "Substantial",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/səbˈstænʃəl/",
+      "shortMeaning": "Considerable: significant: large: solid: meaningful",
+      "chapter": 1,
+      "order": 21,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-022",
+      "term": "Hurdle",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈhɝːdəl/",
+      "shortMeaning": "Obstacle: barrier: difficulty: challenge: impediment",
+      "chapter": 1,
+      "order": 22,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-023",
+      "term": "Sedimentary",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌsɛdəˈmɛntəri/",
+      "shortMeaning": "Formed by deposits: layered: accumulated: stratified Geologists study sedimentary formations to understand Earth’s",
+      "chapter": 1,
+      "order": 23,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-024",
+      "term": "Precipitate",
+      "partOfSpeech": "noun",
+      "pronunciation": "/prɪˈsɪpɪtət/",
+      "shortMeaning": "Solid deposit: residue: sediment formed during a chemical reaction",
+      "chapter": 1,
+      "order": 24,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-025",
+      "term": "Leach",
+      "partOfSpeech": "verb",
+      "pronunciation": "/liːtʃ/",
+      "shortMeaning": "Drain away: dissolve out: remove gradually",
+      "chapter": 1,
+      "order": 25,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-026",
+      "term": "Drive",
+      "partOfSpeech": "verb",
+      "pronunciation": "/draɪv/",
+      "shortMeaning": "Propel: motivate: push: cause: stimulate",
+      "chapter": 1,
+      "order": 26,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-027",
+      "term": "Cognitive",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈkɑːɡnɪtɪv/",
+      "shortMeaning": "Related to thinking: mental: intellectual: reasoning-based",
+      "chapter": 1,
+      "order": 27,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-028",
+      "term": "Perpetual",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/pərˈpɛtʃuəl/",
+      "shortMeaning": "Continuous: endless: constant: everlasting",
+      "chapter": 1,
+      "order": 28,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-029",
+      "term": "Vibrant",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈvaɪbrənt/",
+      "shortMeaning": "Lively: energetic: colorful: dynamic",
+      "chapter": 1,
+      "order": 29,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-030",
+      "term": "Combat",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈkɑːmbæt/",
+      "shortMeaning": "Fight: oppose: battle: counteract",
+      "chapter": 1,
+      "order": 30,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-031",
+      "term": "Promising",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈprɑːmɪsɪŋ/",
+      "shortMeaning": "Hopeful: encouraging: likely to succeed",
+      "chapter": 1,
+      "order": 31,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-032",
+      "term": "Transplant",
+      "partOfSpeech": "verb",
+      "pronunciation": "/trænsˈplænt/",
+      "shortMeaning": "Move and replant: transfer: implant surgically",
+      "chapter": 1,
+      "order": 32,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-033",
+      "term": "Seasoned",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈsiːzənd/",
+      "shortMeaning": "Experienced: skilled: veteran: well-trained",
+      "chapter": 1,
+      "order": 33,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-034",
+      "term": "RSVP",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˌɑːr ɛs viː ˈpiː/",
+      "shortMeaning": "Reply to an invitation: confirm attendance",
+      "chapter": 1,
+      "order": 34,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-035",
+      "term": "Inspiration",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˌɪnspəˈreɪʃən/",
+      "shortMeaning": "Motivation: creative influence: encouragement",
+      "chapter": 1,
+      "order": 35,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-036",
+      "term": "Habitat",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈhæbɪtæt/",
+      "shortMeaning": "Natural home: environment: living place of organisms",
+      "chapter": 1,
+      "order": 36,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-037",
+      "term": "Initiate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪˈnɪʃieɪt/",
+      "shortMeaning": "Begin: start: launch: introduce",
+      "chapter": 1,
+      "order": 37,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-038",
+      "term": "Captive",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈkæptɪv/",
+      "shortMeaning": "Imprisoned: confined: held against freedom",
+      "chapter": 1,
+      "order": 38,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-039",
+      "term": "Enthusiast",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ɪnˈθuːziæst/",
+      "shortMeaning": "Devotee: fan: admirer: passionate supporter",
+      "chapter": 1,
+      "order": 39,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-040",
+      "term": "Vendor",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈvɛndər/",
+      "shortMeaning": "Seller: merchant: supplier",
+      "chapter": 1,
+      "order": 40,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-041",
+      "term": "Mantra",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈmæntrə/",
+      "shortMeaning": "Repeated phrase: guiding principle: motto",
+      "chapter": 1,
+      "order": 41,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-042",
+      "term": "Dispense with",
+      "partOfSpeech": "phrasal verb",
+      "pronunciation": "/dɪˈspɛns wɪð/",
+      "shortMeaning": "Do without: eliminate: get rid of",
+      "chapter": 1,
+      "order": 42,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-043",
+      "term": "Habitual",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/həˈbɪtʃuəl/",
+      "shortMeaning": "Regular: customary: routine: usual",
+      "chapter": 1,
+      "order": 43,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-044",
+      "term": "Alter",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈɔːltər/",
+      "shortMeaning": "Change: modify: adjust: transform",
+      "chapter": 1,
+      "order": 44,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-045",
+      "term": "Palatable",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈpælətəbəl/",
+      "shortMeaning": "Pleasant: acceptable: agreeable: tasty",
+      "chapter": 1,
+      "order": 45,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-046",
+      "term": "Cumbersome",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈkʌmbərsəm/",
+      "shortMeaning": "Bulky: awkward: difficult to handle",
+      "chapter": 1,
+      "order": 46,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-047",
+      "term": "Infancy",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈɪnfənsi/",
+      "shortMeaning": "Early stage: beginning phase: childhood The nurse carefully examined the infant during the routine",
+      "chapter": 1,
+      "order": 47,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-048",
+      "term": "Haptic",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈhæptɪk/",
+      "shortMeaning": "Related to touch: tactile",
+      "chapter": 1,
+      "order": 48,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-049",
+      "term": "Mimic",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈmɪmɪk/",
+      "shortMeaning": "Imitate: copy: replicate: simulate",
+      "chapter": 1,
+      "order": 49,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-050",
+      "term": "Amputate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈæmpjuteɪt/",
+      "shortMeaning": "Surgically remove a limb or body part Amputee (noun) → /ˌæmpjuˈtiː/ A person who has had a limb removed: someone missing an",
+      "chapter": 1,
+      "order": 50,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-051",
+      "term": "Seamlessly",
+      "partOfSpeech": "adverb",
+      "pronunciation": "/ˈsiːmləsli/",
+      "shortMeaning": "Smoothly: flawlessly: without interruption",
+      "chapter": 1,
+      "order": 51,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-052",
+      "term": "Evacuate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪˈvækjueɪt/",
+      "shortMeaning": "Empty: remove people from danger: clear out",
+      "chapter": 1,
+      "order": 52,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-053",
+      "term": "Afforestation",
+      "partOfSpeech": "noun",
+      "pronunciation": "/əˌfɔːrɪˈsteɪʃən/",
+      "shortMeaning": "Planting trees to create a forest",
+      "chapter": 1,
+      "order": 53,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-054",
+      "term": "Fertilization",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˌfɝːtələˈzeɪʃən/",
+      "shortMeaning": "Process of making fertile The valley provides fertile land for agriculture. (adjective)",
+      "chapter": 1,
+      "order": 54,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-055",
+      "term": "Ethical",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈɛθɪkəl/",
+      "shortMeaning": "Moral: principled: relating to right conduct",
+      "chapter": 1,
+      "order": 55,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-056",
+      "term": "Governance",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈɡʌvərnəns/",
+      "shortMeaning": "Management: administration: control of an organization",
+      "chapter": 1,
+      "order": 56,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-057",
+      "term": "Mitigate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈmɪtəɡeɪt/",
+      "shortMeaning": "Reduce: lessen: alleviate: soften",
+      "chapter": 1,
+      "order": 57,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-058",
+      "term": "Intriguing",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ɪnˈtriːɡɪŋ/",
+      "shortMeaning": "Fascinating: interesting: mysterious",
+      "chapter": 1,
+      "order": 58,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-059",
+      "term": "Transient",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈtrænziənt/",
+      "shortMeaning": "Temporary: short-lived: brief",
+      "chapter": 1,
+      "order": 59,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-060",
+      "term": "Showcase",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈʃoʊkeɪs/",
+      "shortMeaning": "Display: present: highlight",
+      "chapter": 1,
+      "order": 60,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-061",
+      "term": "Accelerate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/əkˈsɛləˌreɪt/",
+      "shortMeaning": "Speed up: expedite: hasten: quicken ≠ decelerate measures to accelerate the rate of economic growth",
+      "chapter": 2,
+      "order": 61,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-062",
+      "term": "Account for",
+      "partOfSpeech": "verb",
+      "pronunciation": "/əˈkaʊnt fɔːr/",
+      "shortMeaning": "Explain: clarify: rationalize: illuminate: justify Can you account for your movements on that night?",
+      "chapter": 2,
+      "order": 62,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-063",
+      "term": "Acknowledge",
+      "partOfSpeech": "verb",
+      "pronunciation": "/əkˈnɑːlɪdʒ/",
+      "shortMeaning": "Accept: admit: concede: confess: grant: profess: recognize",
+      "chapter": 2,
+      "order": 63,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-064",
+      "term": "Adjacent",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/əˈdʒeɪsənt/",
+      "shortMeaning": "Next: adjoining: neighboring: close the building adjacent to the library",
+      "chapter": 2,
+      "order": 64,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-065",
+      "term": "Aggravate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈæɡrəveɪt/",
+      "shortMeaning": "Worsen: exacerbate: intensify: increase irritate: bother: offend",
+      "chapter": 2,
+      "order": 65,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-066",
+      "term": "Agile",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈædʒaɪl/",
+      "shortMeaning": "Nimble: active: supple: swift: alert: sharp",
+      "chapter": 2,
+      "order": 66,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-067",
+      "term": "Allude",
+      "partOfSpeech": "verb",
+      "pronunciation": "/əˈlud/",
+      "shortMeaning": "Refer: hint: mention: touch upon: imply Rick didn't want to discuss his past, though he alluded darkly to",
+      "chapter": 2,
+      "order": 67,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-068",
+      "term": "Annihilate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/əˈnaɪəˌleɪt/",
+      "shortMeaning": "Destroy: abolish: eradicate: obliterate Just one of these bombs could annihilate a city the size of New",
+      "chapter": 2,
+      "order": 68,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-069",
+      "term": "Arduous",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈɑrdʒuəs/",
+      "shortMeaning": "Difficult: exhausting: fatiguing: laborious: strenuous: tiring: tough: challenging: daunting",
+      "chapter": 2,
+      "order": 69,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-070",
+      "term": "Arid",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈærɪd/",
+      "shortMeaning": "Dry: barren: sterile Boring: tedious: uninteresting",
+      "chapter": 2,
+      "order": 70,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-071",
+      "term": "Assert",
+      "partOfSpeech": "verb",
+      "pronunciation": "/əˈsɝːt/",
+      "shortMeaning": "State: insist on: claim: stress He asserted that nuclear power was a safe and nonpolluting",
+      "chapter": 2,
+      "order": 71,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-072",
+      "term": "Asset",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈæsɛt/",
+      "shortMeaning": "Benefit: advantage: blessing: boon: resource: capital: wealth",
+      "chapter": 2,
+      "order": 72,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-073",
+      "term": "Astounding",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/əˈstaʊndɪŋ/",
+      "shortMeaning": "Astonishing: amazing: impressive: sensational: breathtaking: brilliant: stunning",
+      "chapter": 2,
+      "order": 73,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-074",
+      "term": "Attain",
+      "partOfSpeech": "verb",
+      "pronunciation": "/əˈteɪn/",
+      "shortMeaning": "Achieve: accomplish: acquire: gain: obtain: reach More women are attaining positions of power. Share prices",
+      "chapter": 2,
+      "order": 74,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-075",
+      "term": "Attribute",
+      "partOfSpeech": "verb",
+      "pronunciation": "/əˈtrɪbjuːt/",
+      "shortMeaning": "Ascribe: assign: refer: trace to The fall in the number of deaths from heart disease is generally",
+      "chapter": 2,
+      "order": 75,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-076",
+      "term": "Augment",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɔːɡˈmɛnt/",
+      "shortMeaning": "Increase: raise: enlarge To augment the supplies",
+      "chapter": 2,
+      "order": 76,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-077",
+      "term": "Avid",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈævɪd/",
+      "shortMeaning": "Enthusiastic: eager: fanatical: keen: passionate an avid collector of old jazz records",
+      "chapter": 2,
+      "order": 77,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-078",
+      "term": "Boast",
+      "partOfSpeech": "verb",
+      "pronunciation": "/boʊst/",
+      "shortMeaning": "Brag Possess",
+      "chapter": 2,
+      "order": 78,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-079",
+      "term": "Boom",
+      "partOfSpeech": "verb",
+      "pronunciation": "/buːm/",
+      "shortMeaning": "Flourish: develop: prosper: thrive",
+      "chapter": 2,
+      "order": 79,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-080",
+      "term": "Breakthrough",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈbreɪkθruː/",
+      "shortMeaning": "Development: advancement: progress: quantum leap, leap",
+      "chapter": 2,
+      "order": 80,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-081",
+      "term": "Onset",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈɑnˌsɛt/",
+      "shortMeaning": "beginning, inception, outbreak, start beginning of something, especially something bad",
+      "chapter": 2,
+      "order": 81,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-082",
+      "term": "Burgeon",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈbɝːdʒən/",
+      "shortMeaning": "Develop: flourish: grow: expand the burgeoning market for digital cameras",
+      "chapter": 2,
+      "order": 82,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-083",
+      "term": "Cardinal",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈkɑrdənəl/",
+      "shortMeaning": "Principal: central: chief: fundamental: leading: main: primary",
+      "chapter": 2,
+      "order": 83,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-084",
+      "term": "Celebrated",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈsɛləˌbreɪtɪd/",
+      "shortMeaning": "Renowned: eminent: noted: legendary: acclaimed: prominent: distinguished",
+      "chapter": 2,
+      "order": 84,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-085",
+      "term": "Chaotic",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/keɪˈɑtɪk/",
+      "shortMeaning": "Disordered: anarchic: confused: riotous a chaotic mixture of images",
+      "chapter": 2,
+      "order": 85,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-086",
+      "term": "Chronic",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈkrɑnɪk/",
+      "shortMeaning": "Persistent Chronic arthritis/heart disease",
+      "chapter": 2,
+      "order": 86,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-087",
+      "term": "Cling",
+      "partOfSpeech": "verb",
+      "pronunciation": "/klɪŋ/",
+      "shortMeaning": "Stick: adhere: clasp: embrace: grip: hug an attempt to cling to power",
+      "chapter": 2,
+      "order": 87,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-088",
+      "term": "Collide",
+      "partOfSpeech": "verb",
+      "pronunciation": "/kəˈlaɪd/",
+      "shortMeaning": "Crash: clash: conflict Two trains collided head-on (=when they were moving directly",
+      "chapter": 2,
+      "order": 88,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-089",
+      "term": "Comprise",
+      "partOfSpeech": "verb",
+      "pronunciation": "/kəmˈpraɪz/",
+      "shortMeaning": "Be composed to: consist of: contain: embrace: encompass",
+      "chapter": 2,
+      "order": 89,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-090",
+      "term": "Abrasion",
+      "partOfSpeech": "noun",
+      "pronunciation": "/əˈbreɪʒən/",
+      "shortMeaning": "Scrape: scratch: surface injury an area on the surface of your skin that has been injured by being the process of rubbing a surface very hard so that it rude or unkind having a rough surface, especially one that can be used",
+      "chapter": 2,
+      "order": 90,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-091",
+      "term": "Congregate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈkɑŋɡrəˌɡeɪt/",
+      "shortMeaning": "Assemble: convene: gather",
+      "chapter": 2,
+      "order": 91,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-092",
+      "term": "Conspicuous",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/kənˈspɪkjəwəs/",
+      "shortMeaning": "Obvious: blatant: clear: evident: salient: outstanding: remarkable: striking",
+      "chapter": 2,
+      "order": 92,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-093",
+      "term": "Contentious",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/kənˈtɛnʃəs/",
+      "shortMeaning": "Argumentative: disputatious Animal welfare did not become a contentious issue until the late",
+      "chapter": 2,
+      "order": 93,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-094",
+      "term": "Conviction",
+      "partOfSpeech": "noun",
+      "pronunciation": "/kənˈvɪkʃən/",
+      "shortMeaning": "Belief: creed: opinion: principle a woman of strong political convictions Certitude: confidence a formal declaration by the verdict of a jury or the",
+      "chapter": 2,
+      "order": 94,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-095",
+      "term": "Counterpart",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈkaʊntɚˌpɑrt/",
+      "shortMeaning": "Match: complement: equal: mate: equivalent Belgian officials are discussing this with their French",
+      "chapter": 2,
+      "order": 95,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-096",
+      "term": "Crisis",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈkraɪsɪs/",
+      "shortMeaning": "Critical point: climax: emergency: plight: predicament The Prime Minister was criticized for the way in which he handled",
+      "chapter": 2,
+      "order": 96,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-097",
+      "term": "Saturate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈsætʃəˌreɪt/",
+      "shortMeaning": "Saturate: soak: drench: to make something very wet [= soak ≠ dry]",
+      "chapter": 2,
+      "order": 97,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-098",
+      "term": "Abundant",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/əˈbʌndənt/",
+      "shortMeaning": "Abundant: plentiful: adequate: ample: rich # scarce Abundant supplies/ opportunities/ work force(adjective)",
+      "chapter": 2,
+      "order": 98,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-099",
+      "term": "Consolidate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/kənˈsɑləˌdeɪt/",
+      "shortMeaning": "strengthen: fortify: stabilize Samsung tries to consolidate its position in the market through",
+      "chapter": 2,
+      "order": 99,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-100",
+      "term": "Champion",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈtʃæmpiən/",
+      "shortMeaning": "support: advocate: back: espouse",
+      "chapter": 2,
+      "order": 100,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-101",
+      "term": "Abandon",
+      "partOfSpeech": "verb",
+      "pronunciation": "/əˈbændən/",
+      "shortMeaning": "Abandon: leave: desert Abandon your family/ city/ country/ house/ attempts to do sth/",
+      "chapter": 2,
+      "order": 101,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-102",
+      "term": "Sophisticated",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/səˈfɪstɪˌkeɪtɪd/",
+      "shortMeaning": "Sophisticated: cultivated: refined: urbane: Complex: complicated: intricate",
+      "chapter": 2,
+      "order": 102,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-103",
+      "term": "Successive",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/səkˈsɛsɪv/",
+      "shortMeaning": "Successive: consecutive: in sequence Successive classes left him absolutely worn-out. (adjective)",
+      "chapter": 2,
+      "order": 103,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-104",
+      "term": "Ambiguous",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/æmˈbɪɡjuəs/",
+      "shortMeaning": "indefinite: dubious: equivocal: enigmatic: vague: obscure",
+      "chapter": 2,
+      "order": 104,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-105",
+      "term": "Intrusive",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ɪnˈtruːsɪv/",
+      "shortMeaning": "Intrusive: interfering: meddlesome The paparazzi can be intrusive at times. (Adjective)",
+      "chapter": 2,
+      "order": 105,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-106",
+      "term": "Formidable",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈfɔrmɪdəbəl/",
+      "shortMeaning": "Formidable: terrifying: intimidating: fearful: dismaying You have to deal with the formidable task of scoring high on TOEFL",
+      "chapter": 2,
+      "order": 106,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-107",
+      "term": "Withstand",
+      "partOfSpeech": "verb",
+      "pronunciation": "/wɪðˈstænd/",
+      "shortMeaning": "Withstand: endure: resist: bear: tolerate Exercise helps you enormously withstand stresses and strains",
+      "chapter": 2,
+      "order": 107,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-108",
+      "term": "Enhance",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪnˈhæns/",
+      "shortMeaning": "Enhance: boost: improve: heighten: elevate Performance-enhancing drugs are strictly forbidden. (adjective)",
+      "chapter": 2,
+      "order": 108,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-109",
+      "term": "Acclaim",
+      "partOfSpeech": "verb",
+      "pronunciation": "/əˈkleɪm/",
+      "shortMeaning": "Acclaim: praise: compliment: applaud: honor This movie has been widely acclaimed by film critics. (Verb)",
+      "chapter": 2,
+      "order": 109,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-110",
+      "term": "Profound",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/prəˈfaʊnd/",
+      "shortMeaning": "Profound: intense: extreme: acute a profound effect/influence/impact/consequence/ question/",
+      "chapter": 2,
+      "order": 110,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-111",
+      "term": "Prevailing",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/prɪˈveɪlɪŋ/",
+      "shortMeaning": "Prevailing: prevalent: widespread: customary: popular: usual: predominant",
+      "chapter": 2,
+      "order": 111,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-112",
+      "term": "Shortcoming",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈʃɔrtˌkʌmɪŋ/",
+      "shortMeaning": "imperfection: flaw: weakness: defect: fault The report suggested that there were severe shortcomings in",
+      "chapter": 2,
+      "order": 112,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-113",
+      "term": "Elaborate",
+      "partOfSpeech": "verb/ adjective",
+      "pronunciation": "/(verb): /ɪˈlæbəˌreɪt/",
+      "shortMeaning": "(adjective): /ɪˈlæbərət/ (Adjective) detailed: precise: thorough: complete (Verb) expand: amplify",
+      "chapter": 2,
+      "order": 113,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-114",
+      "term": "Secluded",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/sɪˈkluːdɪd/",
+      "shortMeaning": "Secluded: Private: solitary: sheltered: lonely He preferred to stay at home in seclusion. (Noun)",
+      "chapter": 2,
+      "order": 114,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-115",
+      "term": "Bizarre",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/bɪˈzɑr/",
+      "shortMeaning": "Bizarre: unusual, strange, odd, extraordinary, exceptional, remarkable: weird",
+      "chapter": 2,
+      "order": 115,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-116",
+      "term": "Suppress",
+      "partOfSpeech": "verb",
+      "pronunciation": "/səˈprɛs/",
+      "shortMeaning": "Suppress: oppress: crush: stifle The uprising was ruthlessly suppressed. (Verb)",
+      "chapter": 2,
+      "order": 116,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-117",
+      "term": "Culminate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈkʌlməˌneɪt/",
+      "shortMeaning": "End up: conclude: finish A series of events for teachers and students will culminate in a",
+      "chapter": 2,
+      "order": 117,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-118",
+      "term": "Decimate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈdɛsəˌmeɪt/",
+      "shortMeaning": "Devastate: destroy: wreak havoc on Decimation of rain forests",
+      "chapter": 2,
+      "order": 118,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-119",
+      "term": "Deficient",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/dɪˈfɪʃənt/",
+      "shortMeaning": "Lacking: inadequate: insufficient: scant: scarce: defective: inferior: weak",
+      "chapter": 2,
+      "order": 119,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-120",
+      "term": "Desiccated",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈdɛsɪˌkeɪtɪd/",
+      "shortMeaning": "Dehydrated: dried: completely dry Desiccated soil",
+      "chapter": 2,
+      "order": 120,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-121",
+      "term": "Deplete",
+      "partOfSpeech": "verb",
+      "pronunciation": "/dɪˈpliːt/",
+      "shortMeaning": "Use up: consume: drain: empty: exhaust: impoverish the depletion of the ozone layer (noun)",
+      "chapter": 3,
+      "order": 121,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-122",
+      "term": "Deviate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈdiːviˌeɪt/",
+      "shortMeaning": "Differ: depart: diverge: stray",
+      "chapter": 3,
+      "order": 122,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-123",
+      "term": "Devoid of",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/dɪˈvɔɪd əv/",
+      "shortMeaning": "Lacking: bereft: deficient: empty",
+      "chapter": 3,
+      "order": 123,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-124",
+      "term": "Diffuse",
+      "partOfSpeech": "verb",
+      "pronunciation": "/dɪˈfjuːz/",
+      "shortMeaning": "Spread: expand: propagate an attempt to diffuse his anger(to make a bad feeling or situation",
+      "chapter": 3,
+      "order": 124,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-125",
+      "term": "Dilute",
+      "partOfSpeech": "verb",
+      "pronunciation": "/daɪˈluːt/",
+      "shortMeaning": "Weaken: reduce: decrease: lessen: mitigate diluted fruit juice",
+      "chapter": 3,
+      "order": 125,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-126",
+      "term": "Adroit",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/əˈdrɔɪt/",
+      "shortMeaning": "Skillful: adept: deft: dexterous: expert: proficient an adroit negotiator/politician",
+      "chapter": 3,
+      "order": 126,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-127",
+      "term": "Disguise",
+      "partOfSpeech": "verb",
+      "pronunciation": "/dɪsˈɡaɪz/",
+      "shortMeaning": "Hide: camouflage: conceal: shroud: cover: mask: veil The speech was seen by many as a thinly disguised attack on the",
+      "chapter": 3,
+      "order": 127,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-128",
+      "term": "Disposition",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˌdɪspəˈzɪʃən/",
+      "shortMeaning": "Character: temper: tendency: inclination: propensity People of a nervous/sociable/sensitive etc. disposition",
+      "chapter": 3,
+      "order": 128,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-129",
+      "term": "Dissipate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈdɪsəˌpeɪt/",
+      "shortMeaning": "Squander: waste: consume: disappear: vanish",
+      "chapter": 3,
+      "order": 129,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-130",
+      "term": "Elusive",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ɪˈluːsɪv/",
+      "shortMeaning": "Difficult to catch: shifty: slippery: tricky: fleeting: intangible",
+      "chapter": 3,
+      "order": 130,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-131",
+      "term": "Embark on",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪmˈbɑrk ɑn/",
+      "shortMeaning": "Begin: commence: launch: initiate: set out The government has embarked on a new program of radical",
+      "chapter": 3,
+      "order": 131,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-132",
+      "term": "Endorse",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪnˈdɔrs/",
+      "shortMeaning": "Approve: advocate: champion: support: promote celebrity endorsements (noun)",
+      "chapter": 3,
+      "order": 132,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-133",
+      "term": "Engulf",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪnˈɡʌlf/",
+      "shortMeaning": "Immerse: envelop: overwhelm",
+      "chapter": 3,
+      "order": 133,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-134",
+      "term": "Ephemeral",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ɪˈfɛmərəl/",
+      "shortMeaning": "Brief: fleeting: passing: short-lived: transient",
+      "chapter": 3,
+      "order": 134,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-135",
+      "term": "Conjecture",
+      "partOfSpeech": "noun",
+      "pronunciation": "/kənˈdʒɛktʃər/",
+      "shortMeaning": "guess , hypothesis, speculation, supposition, surmise, theory to form an idea or opinion without having much",
+      "chapter": 3,
+      "order": 135,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-136",
+      "term": "Escalate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈɛskəˌleɪt/",
+      "shortMeaning": "Increase: expand: extend: heighten: intensify: mount policies that escalate their own costs",
+      "chapter": 3,
+      "order": 136,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-137",
+      "term": "Evoke",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪˈvoʊk/",
+      "shortMeaning": "Recall: arouse: awaken: induce: stir up The photographs evoked strong memories of our holidays in",
+      "chapter": 3,
+      "order": 137,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-138",
+      "term": "Exceed",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪkˈsiːd/",
+      "shortMeaning": "Surpass: go over the limit of",
+      "chapter": 3,
+      "order": 138,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-139",
+      "term": "Surplus",
+      "partOfSpeech": "noun/ adjective",
+      "pronunciation": "/ˈsɝːpləs/",
+      "shortMeaning": "Excess: remaining: remainder a surplus of crude oil",
+      "chapter": 3,
+      "order": 139,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-140",
+      "term": "Exert",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪɡˈzɝːt/",
+      "shortMeaning": "Use: apply: utilize Environmental groups are exerting pressure on the government to Make an effort: endeavor",
+      "chapter": 3,
+      "order": 140,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-141",
+      "term": "Elegant",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈɛləɡənt/",
+      "shortMeaning": "stylish, delicate, exquisite, graceful, polished, refined. a tall, elegant young woman an idea or a plan that is elegant is very intelligent yet",
+      "chapter": 3,
+      "order": 141,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-142",
+      "term": "Feasible",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈfiːzəbəl/",
+      "shortMeaning": "Possible: attainable: likely: viable: workable a feasible solution",
+      "chapter": 3,
+      "order": 142,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-143",
+      "term": "Intensify",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪnˈtɛnsɪˌfaɪ/",
+      "shortMeaning": "to increase: deepen: escalate: strengthen",
+      "chapter": 3,
+      "order": 143,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-144",
+      "term": "Utilitarian",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/juːˌtɪləˈtɛriən/",
+      "shortMeaning": "intended to be useful and practical rather than attractive or comfortable, functional",
+      "chapter": 3,
+      "order": 144,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-145",
+      "term": "Lucrative",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈluːkrətɪv/",
+      "shortMeaning": "Profitable: advantageous: fruitful A lucrative job/ business",
+      "chapter": 3,
+      "order": 145,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-146",
+      "term": "Coincide",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˌkoʊɪnˈsaɪd/",
+      "shortMeaning": "Coincide: concur coincide with Noun: coincidence",
+      "chapter": 3,
+      "order": 146,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-147",
+      "term": "Obsolete",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌɑːbsəˈliːt/",
+      "shortMeaning": "Antiquated: archaic: outdated obsolete weapons computer hardware that quickly became obsolete",
+      "chapter": 3,
+      "order": 147,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-148",
+      "term": "Plague",
+      "partOfSpeech": "verb/noun",
+      "pronunciation": "/pleɪɡ/",
+      "shortMeaning": "Bother: annoy: make suffer: harass",
+      "chapter": 3,
+      "order": 148,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-149",
+      "term": "Abrupt",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/əˈbrʌpt/",
+      "shortMeaning": "Sudden: unexpected: quick His abruptness irked her. (noun)",
+      "chapter": 3,
+      "order": 149,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-150",
+      "term": "Susceptible",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/səˈsɛptəbəl/",
+      "shortMeaning": "Prone: vulnerable: suggestible",
+      "chapter": 3,
+      "order": 150,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-151",
+      "term": "Fragile",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈfrædʒəl/",
+      "shortMeaning": "Delicate: easily broken: frail: flimsy weak fragile bones",
+      "chapter": 3,
+      "order": 151,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-152",
+      "term": "Massive",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈmæsɪv/",
+      "shortMeaning": "Huge: gigantic: enormous: monumental There were massive increases in the number of homeless",
+      "chapter": 3,
+      "order": 152,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-153",
+      "term": "Stimulate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈstɪmjəˌleɪt/",
+      "shortMeaning": "Arouse: provoke: encourage It was an article on the President's plan to stimulate economic",
+      "chapter": 3,
+      "order": 153,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-154",
+      "term": "Surpass",
+      "partOfSpeech": "verb",
+      "pronunciation": "/sərˈpæs/",
+      "shortMeaning": "Outdo: excel In 15 years, China will likely surpass the U.S. as the world's largest",
+      "chapter": 3,
+      "order": 154,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-155",
+      "term": "Rapport",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ræˈpɔːr/",
+      "shortMeaning": "Relationship: tie: bond: sympathy: affinity establish/build up/develop (a) rapport",
+      "chapter": 3,
+      "order": 155,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-156",
+      "term": "Undermine",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˌʌndərˈmaɪn/",
+      "shortMeaning": "Weaken: undermine somebody's confidence/authority/position/credibility",
+      "chapter": 3,
+      "order": 156,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-157",
+      "term": "Tenacious",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/təˈneɪʃəs/",
+      "shortMeaning": "Resolute: determined: iron: adamant: unyielding Tenacity: tenaciousness(NOUN)",
+      "chapter": 3,
+      "order": 157,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-158",
+      "term": "Intermittent",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌɪntərˈmɪtənt/",
+      "shortMeaning": "Occasional: sporadic: periodic After three hours of intermittent rain, the game was finally",
+      "chapter": 3,
+      "order": 158,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-159",
+      "term": "Scanty",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈskænti/",
+      "shortMeaning": "Insufficient: inadequate: deficient scanty clothing",
+      "chapter": 3,
+      "order": 159,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-160",
+      "term": "Inaugurate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪˈnɔːɡjəˌreɪt/",
+      "shortMeaning": "Launch: begin: commence: initiate: introduce On 8 January 1959 De Gaulle was inaugurated as First President of",
+      "chapter": 3,
+      "order": 160,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-161",
+      "term": "Illuminate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪˈluːməˌneɪt/",
+      "shortMeaning": "Elucidate: clarify: shed light on sth… The report illuminated the difficult issues at the heart of science",
+      "chapter": 3,
+      "order": 161,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-162",
+      "term": "Depict",
+      "partOfSpeech": "verb",
+      "pronunciation": "/dɪˈpɪkt/",
+      "shortMeaning": "Draw: illustrate: portray: demonstrate: picture In this new biography, she is depicted as a lonely and unhappy",
+      "chapter": 3,
+      "order": 162,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-163",
+      "term": "Spontaneous",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/spɑnˈteɪniəs/",
+      "shortMeaning": "Natural: impulsive: unplanned She laughed spontaneously.(adverb)",
+      "chapter": 3,
+      "order": 163,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-164",
+      "term": "Distinguish",
+      "partOfSpeech": "verb",
+      "pronunciation": "/dɪˈstɪŋɡwɪʃ/",
+      "shortMeaning": "Differentiate: discriminate: determine: separate The factor that distinguishes this company from the competition",
+      "chapter": 3,
+      "order": 164,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-165",
+      "term": "Contradictory",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌkɑːntrəˈdɪktəri/",
+      "shortMeaning": "Incompatible: inconsistent: contrary: converse: paradoxical",
+      "chapter": 3,
+      "order": 165,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-166",
+      "term": "Decline",
+      "partOfSpeech": "verb/noun",
+      "pronunciation": "/dɪˈklaɪn/",
+      "shortMeaning": "Transitive: refuse: reject: to turn down Intransitive: lessen: decrease: diminish: deteriorate",
+      "chapter": 3,
+      "order": 166,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-167",
+      "term": "By far",
+      "partOfSpeech": "phrase",
+      "pronunciation": "/baɪ fɑːr/",
+      "shortMeaning": "You use the expression by far when you are comparing something or someone with others of the same kind, in order to",
+      "chapter": 3,
+      "order": 167,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-168",
+      "term": "Abolish",
+      "partOfSpeech": "verb",
+      "pronunciation": "/əˈbɑːlɪʃ/",
+      "shortMeaning": "Cancel: end: eliminate: eradicate: revoke He served over 27 years in prison for fighting to abolish white-only",
+      "chapter": 3,
+      "order": 168,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-169",
+      "term": "Disperse",
+      "partOfSpeech": "verb",
+      "pronunciation": "/dɪˈspɝːs/",
+      "shortMeaning": "Scatter: diffuse: spread The clouds dispersed as quickly as they had gathered",
+      "chapter": 3,
+      "order": 169,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-170",
+      "term": "Germinate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈdʒɝː.məˌneɪt/",
+      "shortMeaning": "Develop: grow Most seeds germinate best between 85 and 95 degrees",
+      "chapter": 3,
+      "order": 170,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-171",
+      "term": "Relic",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈrɛ.lɪk/",
+      "shortMeaning": "Remnant: memento The books and photos are relics of Rob's university days",
+      "chapter": 3,
+      "order": 171,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-172",
+      "term": "Versatile",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈvɝː.sə.t̬əl/",
+      "shortMeaning": "All-purpose: all-round: resourceful a very versatile performer",
+      "chapter": 3,
+      "order": 172,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-173",
+      "term": "Underestimate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˌʌn.dɚˈɛs.təˌmeɪt/",
+      "shortMeaning": "Underrate: undervalue: minimize Underestimate the importance/extent/effect/power etc. of",
+      "chapter": 3,
+      "order": 173,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-174",
+      "term": "Synthesize",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈsɪn.θəˌsaɪz/",
+      "shortMeaning": "Mix: combine Your paper has to synthesize what you read and what you",
+      "chapter": 3,
+      "order": 174,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-175",
+      "term": "Edible",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈɛ.də.bəl/",
+      "shortMeaning": "Eatable: digestible: palatable Are these mushrooms edible?",
+      "chapter": 3,
+      "order": 175,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-176",
+      "term": "Unprecedented",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ʌnˈprɛ.səˌdɛn.t̬ɪd/",
+      "shortMeaning": "Unheard-of, remarkable, singular, extraordinary He took the unprecedented step of stating that the rumors were",
+      "chapter": 3,
+      "order": 176,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-177",
+      "term": "Resilient",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/rɪˈzɪl.jənt/",
+      "shortMeaning": "Strong: tough: hardy: sturdy: flexible People showed remarkable resilience during the war. (noun)",
+      "chapter": 3,
+      "order": 177,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-178",
+      "term": "Proliferate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/prəˈlɪ.fɚˌeɪt/",
+      "shortMeaning": "Increase: expand: multiply",
+      "chapter": 3,
+      "order": 178,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-179",
+      "term": "Fluctuate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈflʌk.tʃuˌeɪt/",
+      "shortMeaning": "Vary: oscillate: waver: alternate",
+      "chapter": 3,
+      "order": 179,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-180",
+      "term": "Exotic",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ɪɡˈzɑː.t̬ɪk/",
+      "shortMeaning": "Unusual: foreign: alien exotic birds",
+      "chapter": 3,
+      "order": 180,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-181",
+      "term": "Eradicate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪˈrædɪˌkeɪt/",
+      "shortMeaning": "Wipe out: eliminate: root out: uproot: exterminate: obliterate The disease has been eradicated from the Western world through",
+      "chapter": 4,
+      "order": 181,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-182",
+      "term": "Foster",
+      "partOfSpeech": "verb/adjective",
+      "pronunciation": "/ˈfɔstɚ/",
+      "shortMeaning": "Cultivate: encourage: stimulate: raise: nurse: rear: take care of",
+      "chapter": 4,
+      "order": 182,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-183",
+      "term": "Friction",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈfrɪkʃən/",
+      "shortMeaning": "Rubbing: resistance: scraping Hostility: animosity: conflict: discord: resentment",
+      "chapter": 4,
+      "order": 183,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-184",
+      "term": "Frigid",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈfrɪdʒɪd/",
+      "shortMeaning": "Cold: arctic: frosty: glacial unapproachable: unfeeling the frigid air",
+      "chapter": 4,
+      "order": 184,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-185",
+      "term": "Gear",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɡɪr/",
+      "shortMeaning": "Equip: adjust: prepare: adapt: fit The typical career pattern was geared to men whose wives didn't",
+      "chapter": 4,
+      "order": 185,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-186",
+      "term": "Genuine",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈdʒɛnjuɪn/",
+      "shortMeaning": "Authentic: actual: real: true Sincere: candid: earnest: unfeigned",
+      "chapter": 4,
+      "order": 186,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-187",
+      "term": "Give rise to",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɡɪv raɪz tu/",
+      "shortMeaning": "Cause: bring about: elicit: induce: incite: produce: prompt: promote",
+      "chapter": 4,
+      "order": 187,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-188",
+      "term": "Groom",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɡruːm/",
+      "shortMeaning": "Clean: preen: tidy: spruce up: brush: tend",
+      "chapter": 4,
+      "order": 188,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-189",
+      "term": "Groundless",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈɡraʊndləs/",
+      "shortMeaning": "Unjustified: baseless: idle: unfounded: unwarranted",
+      "chapter": 4,
+      "order": 189,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-190",
+      "term": "Forage",
+      "partOfSpeech": "verb/noun",
+      "pronunciation": "/ˈfɔrɪdʒ/",
+      "shortMeaning": "Search: explore: hunt: seek In the summer, the goats forage freely (=in any place they want to",
+      "chapter": 4,
+      "order": 190,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-191",
+      "term": "Hallmark",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈhɔlˌmɑrk/",
+      "shortMeaning": "Mark: sign: symbol: indication These hotels still offer the sort of service which were the hallmark",
+      "chapter": 4,
+      "order": 191,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-192",
+      "term": "Haphazard",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌhæpˈhæzɚd/",
+      "shortMeaning": "Disorganized: aimless: slapdash: indiscriminate",
+      "chapter": 4,
+      "order": 192,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-193",
+      "term": "Harsh",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/hɑrʃ/",
+      "shortMeaning": "Rough: severe: ruthless: cruel the harsh Canadian winters",
+      "chapter": 4,
+      "order": 193,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-194",
+      "term": "Hasten",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈheɪsən/",
+      "shortMeaning": "Rush: hurry: race: speed: make haste",
+      "chapter": 4,
+      "order": 194,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-195",
+      "term": "Havoc",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈhævək/",
+      "shortMeaning": "Disorder: chaos: confusion: disruption These policies would wreak havoc on the country's economy",
+      "chapter": 4,
+      "order": 195,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-196",
+      "term": "Hazard",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈhæzɚd/",
+      "shortMeaning": "Danger: jeopardy: peril: pitfall: risk: threat That pile of rubbish is a fire hazard (=something that is likely to",
+      "chapter": 4,
+      "order": 196,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-197",
+      "term": "Heritage",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈhɛrɪtɪdʒ/",
+      "shortMeaning": "Inheritance: bequest: endowment: legacy: tradition the importance of preserving the national heritage",
+      "chapter": 4,
+      "order": 197,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-198",
+      "term": "Host of",
+      "partOfSpeech": "noun",
+      "pronunciation": "/hoʊst əv/",
+      "shortMeaning": "Multitude: array: horde: myriad: swarm: throng",
+      "chapter": 4,
+      "order": 198,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-199",
+      "term": "Idiosyncrasy",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˌɪdioʊˈsɪŋkrəsi/",
+      "shortMeaning": "Peculiarity: characteristic: eccentricity: oddity my uncle's idiosyncrasies",
+      "chapter": 4,
+      "order": 199,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-200",
+      "term": "Ignite",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪɡˈnaɪt/",
+      "shortMeaning": "Catch fire: burn: burst into flames: flare up: inflame: take fire Set fire to: kindle",
+      "chapter": 4,
+      "order": 200,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-201",
+      "term": "Impetus",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈɪmpɪtəs/",
+      "shortMeaning": "Incentive: impulse: push: motivation: stimulus: force: energy: power",
+      "chapter": 4,
+      "order": 201,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-202",
+      "term": "Implement",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈɪmpləˌmɛnt/",
+      "shortMeaning": "Carry out: bring about: complete: execute: fulfill We have decided to implement the committee's",
+      "chapter": 4,
+      "order": 202,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-203",
+      "term": "Inadvertently",
+      "partOfSpeech": "adverb",
+      "pronunciation": "/ˌɪnədˈvɝtəntli/",
+      "shortMeaning": "Unintentionally: accidentally: by mistake: involuntarily: mistakenly",
+      "chapter": 4,
+      "order": 203,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-204",
+      "term": "Incentive",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ɪnˈsɛntɪv/",
+      "shortMeaning": "Encouragement: inducement: lure: motivation: stimulus create/provide/give somebody an incentive",
+      "chapter": 4,
+      "order": 204,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-205",
+      "term": "Coarse",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/kɔrs/",
+      "shortMeaning": "rough, crude, impure, unprocessed, unrefined having a rough surface that feels slightly hard",
+      "chapter": 4,
+      "order": 205,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-206",
+      "term": "Inclement",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ɪnˈklɛmɪnt/",
+      "shortMeaning": "Stormy: foul: harsh: intemperate: rough: severe",
+      "chapter": 4,
+      "order": 206,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-207",
+      "term": "Incorporate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪnˈkɔrpəˌreɪt/",
+      "shortMeaning": "Include: absorb: assimilate: blend: integrate: merge We've incorporated many environmentally-friendly features into",
+      "chapter": 4,
+      "order": 207,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-208",
+      "term": "Illusory",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ɪˈluːsəri/ = illusive  /ɪˈluːsɪv/",
+      "shortMeaning": "unreal, deceptive, delusive, fallacious, false, sham, hallucinatory",
+      "chapter": 4,
+      "order": 208,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-209",
+      "term": "Inert",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ɪˈnɝt/",
+      "shortMeaning": "Inactive: dead: dormant: immobile: static: still: unresponsive inert gases: not producing a chemical reaction when combined",
+      "chapter": 4,
+      "order": 209,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-210",
+      "term": "Inherent",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ɪnˈhɪrənt/",
+      "shortMeaning": "Innate: essential: inborn: inbuilt: ingrained: intrinsic: natural Firefighting is an inherently dangerous occupation. (adverb)",
+      "chapter": 4,
+      "order": 210,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-211",
+      "term": "Inhibit",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪnˈhɪbɪt/",
+      "shortMeaning": "Restrain: check: constrain: frustrate: discourage: hinder: impede: obstruct",
+      "chapter": 4,
+      "order": 211,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-212",
+      "term": "Inhospitable",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌɪnhɑˈspɪtəbəl/",
+      "shortMeaning": "Unwelcoming: unfriendly: unreceptive: unsociable: Barren: hostile: desolate",
+      "chapter": 4,
+      "order": 212,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-213",
+      "term": "Inordinate",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ɪnˈɔrdənɪt/",
+      "shortMeaning": "Excessive: extravagant: immoderate: unreasonable: unwarranted",
+      "chapter": 4,
+      "order": 213,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-214",
+      "term": "Instigate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈɪnstɪˌɡeɪt/",
+      "shortMeaning": "Provoke: bring about: initiate: prompt: influence: trigger: set off: incite",
+      "chapter": 4,
+      "order": 214,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-215",
+      "term": "Fierce",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/fɪrs/",
+      "shortMeaning": "wild, brutal: savage: vicious strong, furious: violent",
+      "chapter": 4,
+      "order": 215,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-216",
+      "term": "Discern",
+      "partOfSpeech": "verb",
+      "pronunciation": "/dɪˈsɝn/",
+      "shortMeaning": "Perceive: notice: behold: determine Officials were keen to discern how much public support there",
+      "chapter": 4,
+      "order": 216,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-217",
+      "term": "Proponent",
+      "partOfSpeech": "noun",
+      "pronunciation": "/prəˈpoʊnənt/",
+      "shortMeaning": "Supporter: advocate ≠ opponent leading/main/major proponent",
+      "chapter": 4,
+      "order": 217,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-218",
+      "term": "Volatile",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈvɑlətəl/",
+      "shortMeaning": "Unsteady: variable: inconstant: changeable an increasingly volatile political situation",
+      "chapter": 4,
+      "order": 218,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-219",
+      "term": "Detrimental",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌdɛtrəˈmɛntl/",
+      "shortMeaning": "Unfavorable: damaging: destructive: deleterious: adverse the detrimental effect of pollution on the environment",
+      "chapter": 4,
+      "order": 219,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-220",
+      "term": "Debris",
+      "partOfSpeech": "noun",
+      "pronunciation": "/dəˈbriː/",
+      "shortMeaning": "Fragments: remains: rubble: wreckage plant/garden/industrial etc. debris",
+      "chapter": 4,
+      "order": 220,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-221",
+      "term": "Contagious",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/kənˈteɪdʒəs/",
+      "shortMeaning": "Communicable: infectious her contagious enthusiasm",
+      "chapter": 4,
+      "order": 221,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-222",
+      "term": "Devastate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈdɛvəˌsteɪt/",
+      "shortMeaning": "Devastate: destroy: demolish: wreck devastating effect/impact (adjective)",
+      "chapter": 4,
+      "order": 222,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-223",
+      "term": "Implausible",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ɪmˈplɔzəbəl/",
+      "shortMeaning": "Impossible: inconceivable: impractical It's not entirely implausible that a galaxy could be identical to our",
+      "chapter": 4,
+      "order": 223,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-224",
+      "term": "Compelling",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/kəmˈpɛlɪŋ/",
+      "shortMeaning": "Fascinating: forcing: convincing: irrefutable The court was presented with compelling evidence that she'd",
+      "chapter": 4,
+      "order": 224,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-225",
+      "term": "Assortment",
+      "partOfSpeech": "noun",
+      "pronunciation": "/əˈsɔrtmənt/",
+      "shortMeaning": "Medley: mixture: array: variety The soldier received a parcel containing an assortment of shirts,",
+      "chapter": 4,
+      "order": 225,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-226",
+      "term": "Lethal",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈliːθəl/",
+      "shortMeaning": "Deadly: fatal: dangerous: devastating: murderous: destructive a lethal dose of heroin",
+      "chapter": 4,
+      "order": 226,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-227",
+      "term": "Natal",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈneɪtəl/",
+      "shortMeaning": "relating to birth Prenatal (adjective)",
+      "chapter": 4,
+      "order": 227,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-228",
+      "term": "Monopolize",
+      "partOfSpeech": "verb",
+      "pronunciation": "/məˈnɑpəˌlaɪz/",
+      "shortMeaning": "Dominate: take the control of: take over Virtually all her time and energy is now monopolized by the",
+      "chapter": 4,
+      "order": 228,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-229",
+      "term": "Camouflage",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈkæməˌflɑʒ/",
+      "shortMeaning": "Mask: disguise: veil The men were dressed in camouflage and carrying automatic",
+      "chapter": 4,
+      "order": 229,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-230",
+      "term": "Surrender",
+      "partOfSpeech": "verb",
+      "pronunciation": "/səˈrɛndɚ/",
+      "shortMeaning": "Give up: abandon: submit Thousands of illegal immigrants in Japan have surrendered to",
+      "chapter": 4,
+      "order": 230,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-231",
+      "term": "Deprive",
+      "partOfSpeech": "verb",
+      "pronunciation": "/dɪˈpraɪv/",
+      "shortMeaning": "withhold: dispossess: remove: leave without: take away deprived areas/neighborhoods etc. (=where a lot of deprived",
+      "chapter": 4,
+      "order": 231,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-232",
+      "term": "Perish",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈpɛrɪʃ/",
+      "shortMeaning": "Die: vanish: rot: decay",
+      "chapter": 4,
+      "order": 232,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-233",
+      "term": "Distinctive",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/dɪˈstɪŋktɪv/",
+      "shortMeaning": "Characteristic: peculiar: special: typical: unique a distinctive smell/taste",
+      "chapter": 4,
+      "order": 233,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-234",
+      "term": "Deciduous",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/dɪˈsɪdʒuəs/",
+      "shortMeaning": "deciduous trees lose their leaves in winter Antonym→ evergreen",
+      "chapter": 4,
+      "order": 234,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-235",
+      "term": "Integral",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈɪntɪɡrəl/",
+      "shortMeaning": "Essential: basic: fundamental: indispensable: intrinsic Statistics are integral to medical research",
+      "chapter": 4,
+      "order": 235,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-236",
+      "term": "Virtually",
+      "partOfSpeech": "adverb",
+      "pronunciation": "/ˈvɝtʃuəli/",
+      "shortMeaning": "Almost completely: practically",
+      "chapter": 4,
+      "order": 236,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-237",
+      "term": "Intricate",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈɪntrɪkət/",
+      "shortMeaning": "Complicated: complex: elaborate: involved: tangled intricate patterns",
+      "chapter": 4,
+      "order": 237,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-238",
+      "term": "Intrigue",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪnˈtriːɡ/",
+      "shortMeaning": "Interest: attract: fascinate: rivet",
+      "chapter": 4,
+      "order": 238,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-239",
+      "term": "Invaluable",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ɪnˈvæljuəbəl/",
+      "shortMeaning": "Precious: priceless: valuable",
+      "chapter": 4,
+      "order": 239,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-240",
+      "term": "Invariably",
+      "partOfSpeech": "adverb",
+      "pronunciation": "/ɪnˈvɛriəbli/",
+      "shortMeaning": "Always: consistently: habitually: regularly: perpetually",
+      "chapter": 4,
+      "order": 240,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-241",
+      "term": "Invoke",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪnˈvoʊk/",
+      "shortMeaning": "Call upon: appeal to: beg: implore :Apply: initiate: use The UN threatened to invoke economic sanctions if the talks were",
+      "chapter": 5,
+      "order": 241,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-242",
+      "term": "Reconcile",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈrɛkənsaɪl/",
+      "shortMeaning": "Resolve: adjust: compose: reunite: accept Bevan tried to reconcile British socialism with a wider",
+      "chapter": 5,
+      "order": 242,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-243",
+      "term": "Linger",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈlɪŋɡɚ/",
+      "shortMeaning": "Stay: hang around taste that lingers in your mouth",
+      "chapter": 5,
+      "order": 243,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-244",
+      "term": "Mobilize",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈmoʊbəlaɪz/",
+      "shortMeaning": "Prepare: call up: organize An attempt to mobilize popular opinion a campaign to mobilize",
+      "chapter": 5,
+      "order": 244,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-245",
+      "term": "Manifest",
+      "partOfSpeech": "adjective/ verb",
+      "pronunciation": "/ˈmænəˌfɛst/",
+      "shortMeaning": "(verb)display: demonstrate: exhibit: express: reveal The shareholders have manifested their intention to sell the (adjective)Obvious: apparent: blatant: clear: conspicuous:",
+      "chapter": 5,
+      "order": 245,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-246",
+      "term": "Marvelous",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈmɑrvələs/",
+      "shortMeaning": "Splendid: excellent: wonderful: impressive",
+      "chapter": 5,
+      "order": 246,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-247",
+      "term": "Ingenious",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ɪnˈdʒinjəs/",
+      "shortMeaning": "Creative: bright: brilliant: inventive: original: shrewd Many fish have ingenious ways of protecting their eggs from Originality: cleverness: inventiveness: flair: genius:",
+      "chapter": 5,
+      "order": 247,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-248",
+      "term": "Meticulous",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/məˈtɪkjələs/",
+      "shortMeaning": "Thorough: exact: particular: precise The attack was meticulously planned and executed. (adjective)",
+      "chapter": 5,
+      "order": 248,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-249",
+      "term": "Merge",
+      "partOfSpeech": "verb",
+      "pronunciation": "/mɝdʒ/",
+      "shortMeaning": "Combine: blend: converge: fuse: mingle: unite The bank announced that it was to merge with another of the high",
+      "chapter": 5,
+      "order": 249,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-250",
+      "term": "Segregate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈsɛɡrɪˌɡeɪt/",
+      "shortMeaning": "Set apart: discriminate: isolate The coffee room had been segregated into smoking and non",
+      "chapter": 5,
+      "order": 250,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-251",
+      "term": "Tandem",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈtændəm/",
+      "shortMeaning": "In tandem: together",
+      "chapter": 5,
+      "order": 251,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-252",
+      "term": "Mock",
+      "partOfSpeech": "verb",
+      "pronunciation": "/mɑk/",
+      "shortMeaning": "Laugh at: ridicule: scorn: scoff: sneer: tease",
+      "chapter": 5,
+      "order": 252,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-253",
+      "term": "Momentous",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/moʊˈmɛntəs/",
+      "shortMeaning": "Significant: critical: crucial: fateful: pivotal: vital: weighty A momentous decision",
+      "chapter": 5,
+      "order": 253,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-254",
+      "term": "Monumental",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌmɑnjəˈmɛntəl/",
+      "shortMeaning": "Important: awesome: enormous: epoch-making: historic: memorable: immense: colossal: great: massive",
+      "chapter": 5,
+      "order": 254,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-255",
+      "term": "Mundane",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/mʌnˈdeɪn/",
+      "shortMeaning": "Ordinary: banal: commonplace: routine Earthly: mortal: secular: temporal: worldly",
+      "chapter": 5,
+      "order": 255,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-256",
+      "term": "Nocturnal",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/nɑkˈtɝnəl/",
+      "shortMeaning": "Nightly: night-time",
+      "chapter": 5,
+      "order": 256,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-257",
+      "term": "Notwithstanding",
+      "partOfSpeech": "preposition/ adverb",
+      "pronunciation": "/ˌnɑtwɪθˈstændɪŋ/",
+      "shortMeaning": "Despite: in spite of Notwithstanding differences, there are clear similarities in all of",
+      "chapter": 5,
+      "order": 257,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-258",
+      "term": "Objective",
+      "partOfSpeech": "noun",
+      "pronunciation": "/əbˈdʒɛktɪv/",
+      "shortMeaning": "Purpose: aim: ambition: end: intension: target He vowed to achieve certain objectives before the end of his",
+      "chapter": 5,
+      "order": 258,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-259",
+      "term": "Obscure",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/əbˈskjʊr/",
+      "shortMeaning": "Vague: ambiguous: confusing: mysterious: blurred an obscure poet",
+      "chapter": 5,
+      "order": 259,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-260",
+      "term": "Obsession",
+      "partOfSpeech": "noun",
+      "pronunciation": "/əbˈsɛʃən/",
+      "shortMeaning": "Preoccupation: fixation: infatuation Gambling became an obsession, and he eventually lost",
+      "chapter": 5,
+      "order": 260,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-261",
+      "term": "Legitimate",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/lɪˈdʒɪtəmət/",
+      "shortMeaning": "Reasonable: proper Acceptable: legal",
+      "chapter": 5,
+      "order": 261,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-262",
+      "term": "Opaque",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/oʊˈpeɪk/",
+      "shortMeaning": "Cloudy: dim: hazy: impenetrable: muddy a shower with an opaque glass door",
+      "chapter": 5,
+      "order": 262,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-263",
+      "term": "Ornamentation",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˌɔrnəmɛnˈteɪʃən/",
+      "shortMeaning": "Decoration: adornment: elaboration: embellishment a bronze plate with gold ornamentation Decorate: adorn: embellish: beautify",
+      "chapter": 5,
+      "order": 263,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-264",
+      "term": "Ostentatious",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌɑstɛnˈteɪʃəs/",
+      "shortMeaning": "Pretentious: conspicuous: flashy: loud: obtrusive an ostentatious display of wealth",
+      "chapter": 5,
+      "order": 264,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-265",
+      "term": "Outbreak",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈaʊtˌbreɪk/",
+      "shortMeaning": "Eruption: burst: epidemic: outburst: rash a cholera outbreak",
+      "chapter": 5,
+      "order": 265,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-266",
+      "term": "Overlook",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˌoʊvɚˈlʊk/",
+      "shortMeaning": "Forget: disregard: miss: neglect: ignore: Our room overlooks the ocean. (has the view of)",
+      "chapter": 5,
+      "order": 266,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-267",
+      "term": "Overwhelming",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌoʊvɚˈwɛlmɪŋ/",
+      "shortMeaning": "Devastating: breathtaking: crushing: irresistible: shattering: stunning",
+      "chapter": 5,
+      "order": 267,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-268",
+      "term": "Pacify",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈpæsəˌfaɪ/",
+      "shortMeaning": "Calm: appease: assuage: mollify: soothe Economic reforms are needed to pacify and modernize the",
+      "chapter": 5,
+      "order": 268,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-269",
+      "term": "Flaw",
+      "partOfSpeech": "noun",
+      "pronunciation": "/flɔ/",
+      "shortMeaning": "Weakness: defect: fault: imperfection a flaw in the software having no mistakes or marks, or not lacking anything, perfect",
+      "chapter": 5,
+      "order": 269,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-270",
+      "term": "Incongruous",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ɪnˈkɑŋɡruəs/",
+      "shortMeaning": "Inappropriate: improper: incompatible: unsuitable He was dressed in a three-piece suit with an incongruous tie",
+      "chapter": 5,
+      "order": 270,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-271",
+      "term": "Precede",
+      "partOfSpeech": "verb",
+      "pronunciation": "/prɪˈsiːd/",
+      "shortMeaning": "Antedate: predate: go before a type of cloud that precedes rain",
+      "chapter": 5,
+      "order": 271,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-272",
+      "term": "Equilibrium",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˌikwəˈlɪbriəm/",
+      "shortMeaning": "Balance: stability: steadiness: symmetry The operation of the free market maintains an equilibrium",
+      "chapter": 5,
+      "order": 272,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-273",
+      "term": "Assess",
+      "partOfSpeech": "verb",
+      "pronunciation": "/əˈsɛs/",
+      "shortMeaning": "Judge: appraise: evaluate: estimate a report to assess the impact of advertising on children",
+      "chapter": 5,
+      "order": 273,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-274",
+      "term": "Climax",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈklaɪmæks/",
+      "shortMeaning": "Culmination: peak: summit: top: pinnacle: zenith the climax of his career",
+      "chapter": 5,
+      "order": 274,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-275",
+      "term": "Indigenous",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ɪnˈdɪdʒənəs/",
+      "shortMeaning": "Native: local: domestic the many indigenous cultures which existed in Siberia",
+      "chapter": 5,
+      "order": 275,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-276",
+      "term": "Dormant",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈdɔrmənt/",
+      "shortMeaning": "Inactive: asleep: latent: inoperative a huge dormant volcano",
+      "chapter": 5,
+      "order": 276,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-277",
+      "term": "Epoch",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈiːpɑk/",
+      "shortMeaning": "Era: age: date: period: time the Victorian epoch",
+      "chapter": 5,
+      "order": 277,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-278",
+      "term": "Triumph",
+      "partOfSpeech": "noun/verb",
+      "pronunciation": "/ˈtraɪəmf/",
+      "shortMeaning": "Joy: elation: success: accomplishment: feat a tremendous diplomatic triumph for France",
+      "chapter": 5,
+      "order": 278,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-279",
+      "term": "Mainstay",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈmeɪnsteɪ/",
+      "shortMeaning": "Backbone: crucial part",
+      "chapter": 5,
+      "order": 279,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-280",
+      "term": "Mutually exclusive",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈmjutʃuəli ɪkˈsklusɪv/",
+      "shortMeaning": "two things which are mutually exclusive cannot both exist or be true at the same time",
+      "chapter": 5,
+      "order": 280,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-281",
+      "term": "Repudiate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/rɪˈpjudieɪt/",
+      "shortMeaning": "Reject: disclaim: contradict: refute",
+      "chapter": 5,
+      "order": 281,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-282",
+      "term": "Consensus",
+      "partOfSpeech": "noun",
+      "pronunciation": "/kənˈsɛnsəs/",
+      "shortMeaning": "Agreement: consent: unanimity consensus on/about a lack of consensus about the aims of the project",
+      "chapter": 5,
+      "order": 282,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-283",
+      "term": "Interplay",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈɪntɚˌpleɪ/",
+      "shortMeaning": "Association: bond: connection There's a lot of wonderful interplay between the writer and his",
+      "chapter": 5,
+      "order": 283,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-284",
+      "term": "Frugal",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈfruɡəl/",
+      "shortMeaning": "thrifty, abstemious, careful, economical, parsimonious, prudent, sparing, careful to buy only what is necessary: Antonym→",
+      "chapter": 5,
+      "order": 284,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-285",
+      "term": "Rudimentary",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌrudəˈmɛntəri/",
+      "shortMeaning": "Basic: elementary: fundamental: initial: primitive: undeveloped",
+      "chapter": 5,
+      "order": 285,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-286",
+      "term": "proxy",
+      "partOfSpeech": "Noun/ adjective",
+      "pronunciation": "/ˈprɑksi/",
+      "shortMeaning": "representative: agent: delegate: substitute if you do something by proxy, you arrange for someone else to do it for",
+      "chapter": 5,
+      "order": 286,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-287",
+      "term": "Pristine",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈprɪstiːn/",
+      "shortMeaning": "New: pure: untouched: uncorrupted a pristine white shirt(fresh)",
+      "chapter": 5,
+      "order": 287,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-288",
+      "term": "Prohibit",
+      "partOfSpeech": "verb",
+      "pronunciation": "/proʊˈhɪbɪt/",
+      "shortMeaning": "Forbid: ban: prevent: hinder: hamper: impede a prohibition on/against Sunday trading (noun)",
+      "chapter": 5,
+      "order": 288,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-289",
+      "term": "Perceptible",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/pɚˈsɛptəbəl/",
+      "shortMeaning": "Visible: apparent: appreciable: clear: discernible: tangible a small but perceptible change",
+      "chapter": 5,
+      "order": 289,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-290",
+      "term": "Peril",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈpɛrəl/",
+      "shortMeaning": "Danger: hazard: menace: risk: jeopardy a voyage that was fraught with peril (=full of danger)",
+      "chapter": 5,
+      "order": 290,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-291",
+      "term": "Pervasive",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/pɚˈveɪsɪv/",
+      "shortMeaning": "Widespread: common: extensive: general: omnipresent: prevalent: ubiquitous: universal",
+      "chapter": 5,
+      "order": 291,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-292",
+      "term": "Phenomenal",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/fəˈnɑmənəl/",
+      "shortMeaning": "Extraordinary: exceptional: marvelous: miraculous: fantastic the phenomenal success of computer games",
+      "chapter": 5,
+      "order": 292,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-293",
+      "term": "Pinpoint",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈpɪnˌpɔɪnt/",
+      "shortMeaning": "Identify: define: distinguish: locate",
+      "chapter": 5,
+      "order": 293,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-294",
+      "term": "Pledge",
+      "partOfSpeech": "verb/noun",
+      "pronunciation": "/plɛdʒ/",
+      "shortMeaning": "Promise: assurance: vow: guarantee: bail Moore pledged $100,000 to the orchestra at the fund-raising",
+      "chapter": 5,
+      "order": 294,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-295",
+      "term": "Postulate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈpɑstʃəˌleɪt/",
+      "shortMeaning": "Presuppose: assume: posit: propose: take for granted Such hypotheses have been postulated by highly reputable",
+      "chapter": 5,
+      "order": 295,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-296",
+      "term": "Potent",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈpoʊtənt/",
+      "shortMeaning": "Powerful: authoritative: dominant: dynamic: strong: vigorous potent drugs",
+      "chapter": 5,
+      "order": 296,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-297",
+      "term": "Precarious",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/prɪˈkɛriəs/",
+      "shortMeaning": "Dangerous: hazardous: insecure: perilous: risky: tricky: unreliable",
+      "chapter": 5,
+      "order": 297,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-298",
+      "term": "Hypocrisy",
+      "partOfSpeech": "noun",
+      "pronunciation": "/hɪˈpɑkrəsi/",
+      "shortMeaning": "Insincerity: deceitfulness: deception: duplicity: pretense There's one rule for her and another rule for everyone else and it's",
+      "chapter": 5,
+      "order": 298,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-299",
+      "term": "Radical",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈrædɪkəl/",
+      "shortMeaning": "fundamental, basic, natural, profound extreme, complete, drastic, entire, fanatical, severe, sweeping,",
+      "chapter": 5,
+      "order": 299,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-300",
+      "term": "Preclude",
+      "partOfSpeech": "verb",
+      "pronunciation": "/prɪˈklud/",
+      "shortMeaning": "Prevent: check: exclude: inhibit: prohibit rules that preclude experimentation in teaching methods",
+      "chapter": 5,
+      "order": 300,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-301",
+      "term": "Cordial",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈkɔːrdʒəl/",
+      "shortMeaning": "Warm: affordable: agreeable: genial: hearty: sociable a cordial dislike for each other(=strongly felt)",
+      "chapter": 6,
+      "order": 301,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-302",
+      "term": "Presumably",
+      "partOfSpeech": "adverb",
+      "pronunciation": "/prɪˈzuːməbli/",
+      "shortMeaning": "Apparently: in all likelihood: seemingly It's raining, which presumably means that your football match will",
+      "chapter": 6,
+      "order": 302,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-303",
+      "term": "Probe",
+      "partOfSpeech": "noun/verb",
+      "pronunciation": "/proʊb/",
+      "shortMeaning": "Examine: explore: investigate: search: poke",
+      "chapter": 6,
+      "order": 303,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-304",
+      "term": "Procure",
+      "partOfSpeech": "verb",
+      "pronunciation": "/prəˈkjʊr/",
+      "shortMeaning": "Obtain: acquire: find: purchase",
+      "chapter": 6,
+      "order": 304,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-305",
+      "term": "Prolific",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/prəˈlɪfɪk/",
+      "shortMeaning": "Productive: abundant: copious",
+      "chapter": 6,
+      "order": 305,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-306",
+      "term": "Prompt",
+      "partOfSpeech": "verb/adjective",
+      "pronunciation": "/prɑːmpt/",
+      "shortMeaning": "(verb) cause: elicit: give rise to: provoke What prompted you to buy that suit? (adjective) immediate: instant: quick: rapid: swift",
+      "chapter": 6,
+      "order": 306,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-307",
+      "term": "Propagate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈprɑːpəˌɡeɪt/",
+      "shortMeaning": "Spread: broadcast: promote: promulgate",
+      "chapter": 6,
+      "order": 307,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-308",
+      "term": "Propel",
+      "partOfSpeech": "verb",
+      "pronunciation": "/prəˈpɛl/",
+      "shortMeaning": "Drive: force: impel: launch: send: thrust a boat propelled by a small motor",
+      "chapter": 6,
+      "order": 308,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-309",
+      "term": "Ravage",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈrævɪdʒ/",
+      "shortMeaning": "Destroy: demolish: devastate: ruin The country was ravaged by civil war",
+      "chapter": 6,
+      "order": 309,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-310",
+      "term": "Courteous",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈkɜːrtiəs/",
+      "shortMeaning": "Polite: affable: gracious: civil: gallant: well-mannered urbane: well-mannered",
+      "chapter": 6,
+      "order": 310,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-311",
+      "term": "Remedy",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈrɛmədi/",
+      "shortMeaning": "cure: medicine: treatment Rectify: correct: fix cold/cough remedy",
+      "chapter": 6,
+      "order": 311,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-312",
+      "term": "Render",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈrɛndər/",
+      "shortMeaning": "Make: Provide: supply The blow to his head was strong enough to render him",
+      "chapter": 6,
+      "order": 312,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-313",
+      "term": "Excavate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈɛkskəˌveɪt/",
+      "shortMeaning": "dig out, delve, mine, quarry, unearth if a scientist or archaeologist excavates an area of land, they dig",
+      "chapter": 6,
+      "order": 313,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-314",
+      "term": "Replenish",
+      "partOfSpeech": "verb",
+      "pronunciation": "/rɪˈplɛnɪʃ/",
+      "shortMeaning": "Refill: provide: reload: replace: restore",
+      "chapter": 6,
+      "order": 314,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-315",
+      "term": "Retrospect",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈrɛtrəˌspɛkt/",
+      "shortMeaning": "Hindsight: review",
+      "chapter": 6,
+      "order": 315,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-316",
+      "term": "Rigid",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈrɪdʒɪd/",
+      "shortMeaning": "Strict: exact: fixed: inflexible: rigorous: unbending: stiff: unyielding",
+      "chapter": 6,
+      "order": 316,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-317",
+      "term": "Rigorous",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈrɪɡərəs/",
+      "shortMeaning": "Strict: demanding: hard: harsh: severe: tough a rigorous analysis of defense needs the rigorous standards",
+      "chapter": 6,
+      "order": 317,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-318",
+      "term": "Roam",
+      "partOfSpeech": "verb",
+      "pronunciation": "/roʊm/",
+      "shortMeaning": "Wander: ramble: range: travel",
+      "chapter": 6,
+      "order": 318,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-319",
+      "term": "Robust",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/roʊˈbʌst/",
+      "shortMeaning": "Strong: fit: hardy: powerful: sturdy: tough: vigorous a robust man of six feet four",
+      "chapter": 6,
+      "order": 319,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-320",
+      "term": "Disdain",
+      "partOfSpeech": "verb/noun",
+      "pronunciation": "/dɪsˈdeɪn/",
+      "shortMeaning": "Contempt: arrogance: scorn: look down on: sneer at his disdain for capitalism",
+      "chapter": 6,
+      "order": 320,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-321",
+      "term": "Sacred",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈseɪkrɪd/",
+      "shortMeaning": "Holy: blessed: revered: religious: ecclesiastical: inviolable: protected",
+      "chapter": 6,
+      "order": 321,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-322",
+      "term": "Eschew",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɛsˈtʃuː/",
+      "shortMeaning": "Hate: refrain from",
+      "chapter": 6,
+      "order": 322,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-323",
+      "term": "Scorn",
+      "partOfSpeech": "verb/noun",
+      "pronunciation": "/skɔːrn/",
+      "shortMeaning": "Despise: deride: scoff at: disparage Labor poured scorn on the Tory claim to be the party of law and",
+      "chapter": 6,
+      "order": 323,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-324",
+      "term": "Sustainable",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/səˈsteɪnəbəl/",
+      "shortMeaning": "enduring, proceeding The government should do more to promote sustainable",
+      "chapter": 6,
+      "order": 324,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-325",
+      "term": "Relay",
+      "partOfSpeech": "verb",
+      "pronunciation": "/rɪˈleɪ/",
+      "shortMeaning": "send: spread: broadcast: transmit The speaker opened the session by relaying some messages to",
+      "chapter": 6,
+      "order": 325,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-326",
+      "term": "Colony",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈkɑːləni/",
+      "shortMeaning": "possession: territory a dead tree that has been colonized by ants (verb)",
+      "chapter": 6,
+      "order": 326,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-327",
+      "term": "Hamper",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈhæmpər/",
+      "shortMeaning": "hinder: impede: restrict: obstruct An attempt to rescue the men has been hampered by bad",
+      "chapter": 6,
+      "order": 327,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-328",
+      "term": "Compromise",
+      "partOfSpeech": "noun/verb",
+      "pronunciation": "/ˈkɑːmprəˌmaɪz/",
+      "shortMeaning": "agreement: concession a compromise between government and opposition",
+      "chapter": 6,
+      "order": 328,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-329",
+      "term": "Trim",
+      "partOfSpeech": "verb/noun",
+      "pronunciation": "/trɪm/",
+      "shortMeaning": "cut: reduce: neat: groom: crop: prune My beard needs a trim. (noun)",
+      "chapter": 6,
+      "order": 329,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-330",
+      "term": "Perplex",
+      "partOfSpeech": "verb",
+      "pronunciation": "/pərˈplɛks/",
+      "shortMeaning": "puzzle: baffle: mystify: bewilder The question of how the murderer had gained entry to the house",
+      "chapter": 6,
+      "order": 330,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-331",
+      "term": "Ritual",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈrɪtʃuəl/",
+      "shortMeaning": "rite: ceremony: custom: habit: procedure The importance of religion and ritual in our lives",
+      "chapter": 6,
+      "order": 331,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-332",
+      "term": "Condense",
+      "partOfSpeech": "verb",
+      "pronunciation": "/kənˈdɛns/",
+      "shortMeaning": "abridge: abbreviate: compress: shorten: concentrate The water produced would be condensed and stored for recycling",
+      "chapter": 6,
+      "order": 332,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-333",
+      "term": "Encompass",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪnˈkʌmpəs/",
+      "shortMeaning": "encircle: envelop: include: comprise: incorporate The study encompasses the social, political, and economic",
+      "chapter": 6,
+      "order": 333,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-334",
+      "term": "Surmise",
+      "partOfSpeech": "noun/ verb",
+      "pronunciation": "/sərˈmaɪz/",
+      "shortMeaning": "guess: presume: suppose: speculate: suppose When he came in, he didn't look up, so she surmised that he was",
+      "chapter": 6,
+      "order": 334,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-335",
+      "term": "Preposterous",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/prɪˈpɑːstərəs/",
+      "shortMeaning": "ridiculous: absurd: crazy: incredible: insane: ludicrous: outrageous",
+      "chapter": 6,
+      "order": 335,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-336",
+      "term": "Straightforward",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌstreɪtˈfɔːrwərd/",
+      "shortMeaning": "Frank: honest: candid: genuine: sincere: forthright Simple: elementary",
+      "chapter": 6,
+      "order": 336,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-337",
+      "term": "Startle",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈstɑːrtəl/",
+      "shortMeaning": "Surprise: shock: frighten: scare a startled expression (adjective)",
+      "chapter": 6,
+      "order": 337,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-338",
+      "term": "Constitute",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈkɑːnstɪˌtuːt/",
+      "shortMeaning": "establish: found: set up: form According to Marx, \"money constitutes true power.\"",
+      "chapter": 6,
+      "order": 338,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-339",
+      "term": "Vogue",
+      "partOfSpeech": "noun",
+      "pronunciation": "/voʊɡ/",
+      "shortMeaning": "fashion: craze: custom: trend: style In the 1870s, after all, when plumpness was in vogue, physicians",
+      "chapter": 6,
+      "order": 339,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-340",
+      "term": "Obliterate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/əˈblɪtəˌreɪt/",
+      "shortMeaning": "destroy: annihilate: eradicate: expunge: root out: wipe out Then the fog came down, obliterating everything.(covering)",
+      "chapter": 6,
+      "order": 340,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-341",
+      "term": "Adept",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/əˈdɛpt/",
+      "shortMeaning": "skillful: able: adroit: proficient: expert",
+      "chapter": 6,
+      "order": 341,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-342",
+      "term": "Scrutinize",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈskruːtəˌnaɪz/",
+      "shortMeaning": "Examine: explore: investigate: probe: study Scrutiny (noun) Examination: analysis: exploration: inspection: perusal:",
+      "chapter": 6,
+      "order": 342,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-343",
+      "term": "Sedentary",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈsɛdənˌtɛri/",
+      "shortMeaning": "Inactive: desk-bound: sitting health problems caused by our sedentary lifestyles",
+      "chapter": 6,
+      "order": 343,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-344",
+      "term": "Sensational",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/sɛnˈseɪʃənəl/",
+      "shortMeaning": "Dramatic: amazing: astounding: exciting: excellent impressive: mind-blowing: superb",
+      "chapter": 6,
+      "order": 344,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-345",
+      "term": "Serene",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/səˈriːn/",
+      "shortMeaning": "Calm: composed: peaceful: tranquil: untroubled a serene mountain lake",
+      "chapter": 6,
+      "order": 345,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-346",
+      "term": "Setback",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈsɛtˌbæk/",
+      "shortMeaning": "Defeat: disappointment: misfortune The team's hopes of playing in Europe suffered a setback last",
+      "chapter": 6,
+      "order": 346,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-347",
+      "term": "Shatter",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈʃætər/",
+      "shortMeaning": "Smash: break: burst: crack: destroy: demolish: ruin A few weeks in a tiny damp room soon shattered his illusions",
+      "chapter": 6,
+      "order": 347,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-348",
+      "term": "Shiver",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈʃɪvər/",
+      "shortMeaning": "Tremble: quake: quiver: shake She shivered with fear and anger",
+      "chapter": 6,
+      "order": 348,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-349",
+      "term": "Molten",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈmoʊltən/",
+      "shortMeaning": "molten metal or rock has been made into a liquid by being heated to a very high temperature :",
+      "chapter": 6,
+      "order": 349,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-350",
+      "term": "Span",
+      "partOfSpeech": "adjective/ verb",
+      "pronunciation": "/spæn/",
+      "shortMeaning": "(Noun) extent: amount: distance: length: reach: stretch It'll be difficult to hire that many new staff in such a short time (Verb) extend across: bridge: cover",
+      "chapter": 6,
+      "order": 350,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-351",
+      "term": "Sparse",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/spɑːrs/",
+      "shortMeaning": "Scattered: meagre: scanty: scarce his sparse brown hair",
+      "chapter": 6,
+      "order": 351,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-352",
+      "term": "Spawn",
+      "partOfSpeech": "verb",
+      "pronunciation": "/spɔːn/",
+      "shortMeaning": "Lay eggs Cause: make",
+      "chapter": 6,
+      "order": 352,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-353",
+      "term": "Sporadic",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/spəˈrædɪk/",
+      "shortMeaning": "Intermittent: irregular: occasional: scattered The fighting continued sporadically for several days. (adverb)",
+      "chapter": 6,
+      "order": 353,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-354",
+      "term": "Staggering",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈstæɡərɪŋ/",
+      "shortMeaning": "Astounding: amazing: astonishing: bewildering: brilliant: impressive: sensational",
+      "chapter": 6,
+      "order": 354,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-355",
+      "term": "Staple",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈsteɪpəl/",
+      "shortMeaning": "Principal: basic: chief: fundamental: key: main: predominant a staple ingredient of comedy staple diet",
+      "chapter": 6,
+      "order": 355,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-356",
+      "term": "Stem",
+      "partOfSpeech": "verb",
+      "pronunciation": "/stɛm/",
+      "shortMeaning": "Originate in: arise from: derive from",
+      "chapter": 6,
+      "order": 356,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-357",
+      "term": "Stride",
+      "partOfSpeech": "verb",
+      "pronunciation": "/straɪd/",
+      "shortMeaning": "Step: move: action Stride (noun) a long step you make while you are walking → pace : an improvement in a situation or in the development of",
+      "chapter": 6,
+      "order": 357,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-358",
+      "term": "Stringent",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈstrɪndʒənt/",
+      "shortMeaning": "Strict: inflexible: rigid: rigorous: tough: tight stringent anti-noise regulations",
+      "chapter": 6,
+      "order": 358,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-359",
+      "term": "Stunning",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈstʌnɪŋ/",
+      "shortMeaning": "Wonderful: beautiful: dazzling: lovely: marvelous: spectacular: striking",
+      "chapter": 6,
+      "order": 359,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-360",
+      "term": "Sturdy",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈstɜːrdi/",
+      "shortMeaning": "Robust: athletic: hardy: muscular: well-built: durable sturdy comfortable shoes a sturdy young man sturdy legs",
+      "chapter": 6,
+      "order": 360,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-361",
+      "term": "Subsidiary",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/sʌbˈsɪdiˌɛri/",
+      "shortMeaning": "Lesser: auxiliary: subordinate: supplementary a subsidiary hypothesis a company that is owned or controlled by another larger",
+      "chapter": 7,
+      "order": 361,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-362",
+      "term": "Supersede",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˌsuːpərˈsiːd/",
+      "shortMeaning": "Replace: displace: supplant",
+      "chapter": 7,
+      "order": 362,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-363",
+      "term": "Sustain",
+      "partOfSpeech": "verb",
+      "pronunciation": "/səˈsteɪn/",
+      "shortMeaning": "Maintain: continue: prolong: protect: keep up: withstand The policies necessary to sustain economic growth",
+      "chapter": 7,
+      "order": 363,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-364",
+      "term": "Swell",
+      "partOfSpeech": "verb",
+      "pronunciation": "/swɛl/",
+      "shortMeaning": "Expand: bulge: enlarge: increase Large numbers of refugees have swollen the ranks of the",
+      "chapter": 7,
+      "order": 364,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-365",
+      "term": "Tame",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/teɪm/",
+      "shortMeaning": "Domesticated: amenable: broken disciplined: submissive: compliant: obedient: unresisting to reduce the power or strength of something and prevent it to train a wild animal to obey you and not to attack people",
+      "chapter": 7,
+      "order": 365,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-366",
+      "term": "Labor-intensive",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌleɪbər ɪnˈtɛnsɪv/",
+      "shortMeaning": "an industry or type of work that is labor-intensive needs a lot of workers",
+      "chapter": 7,
+      "order": 366,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-367",
+      "term": "Deploy",
+      "partOfSpeech": "verb",
+      "pronunciation": "/dɪˈplɔɪ/",
+      "shortMeaning": "arrange, use, utilize, set out to organize or move soldiers, military equipment etc. so that to use something for a particular purpose, especially ideas,",
+      "chapter": 7,
+      "order": 367,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-368",
+      "term": "Teeming",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈtiːmɪŋ/",
+      "shortMeaning": "Full: abundant: alive: swarming the teeming streets of the city",
+      "chapter": 7,
+      "order": 368,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-369",
+      "term": "Tenet",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈtɛnɪt/",
+      "shortMeaning": "Rule: criterion: dogma: fundamental: maxim: percept: moral: conscience: scruples",
+      "chapter": 7,
+      "order": 369,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-370",
+      "term": "Tenuous",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈtɛnjuəs/",
+      "shortMeaning": "Slight: doubtful: dubious: flimsy: insubstantial: shaky: weak The United Peace Alliance had only a tenuous connection with the",
+      "chapter": 7,
+      "order": 370,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-371",
+      "term": "Threshold",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈθrɛʃˌhoʊld/",
+      "shortMeaning": "Entrance: doorstep: brink: start: beginning: opening: verge: dawn: inception",
+      "chapter": 7,
+      "order": 371,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-372",
+      "term": "Thrill",
+      "partOfSpeech": "verb/noun",
+      "pronunciation": "/θrɪl/",
+      "shortMeaning": "Excite: arouse: electrify: move: stimulate: stir Winning first place must have been quite a thrill. (noun)",
+      "chapter": 7,
+      "order": 372,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-373",
+      "term": "Toxic",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈtɑːksɪk/",
+      "shortMeaning": "Poisonous: deadly: harmful: pernicious: lethal: noxious fumes from a toxic waste dump",
+      "chapter": 7,
+      "order": 373,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-374",
+      "term": "Transitory",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈtrænzəˌtɔːri/",
+      "shortMeaning": "Short-lived: brief: ephemeral: fleeting: short: temporary: transient",
+      "chapter": 7,
+      "order": 374,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-375",
+      "term": "Trauma",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈtraʊmə/",
+      "shortMeaning": "Suffering: agony: anguish: ordeal: pain: torture traumas such as death or divorce",
+      "chapter": 7,
+      "order": 375,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-376",
+      "term": "Turbulent",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈtɜːrbyələnt/",
+      "shortMeaning": "Agitated: furious: rough: choppy: foaming The turbulent times of the French Revolution",
+      "chapter": 7,
+      "order": 376,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-377",
+      "term": "Ubiquitous",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/juːˈbɪkwɪtəs/",
+      "shortMeaning": "Everywhere: ever-present: omnipresent: pervasive: universal",
+      "chapter": 7,
+      "order": 377,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-378",
+      "term": "Unanimity",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˌjuːnəˈnɪmɪɾi/",
+      "shortMeaning": "Agreement: accord: assent: concord: consensus: harmony: like-mindedness",
+      "chapter": 7,
+      "order": 378,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-379",
+      "term": "Underlying",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌʌndərˈlaɪɪŋ/",
+      "shortMeaning": "Fundamental: basic: elementary: intrinsic: primary the underlying causes of her depression",
+      "chapter": 7,
+      "order": 379,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-380",
+      "term": "Skeptical",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈskɛptɪkəl/",
+      "shortMeaning": "unsure: hesitant: dubious: undecided: wavering skeptical about/of (ADJECTIVE) Doubt: suspicion: uncertainty mistrust",
+      "chapter": 7,
+      "order": 380,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-381",
+      "term": "Accord",
+      "partOfSpeech": "verb",
+      "pronunciation": "/əˈkɔːrd/",
+      "shortMeaning": "fit: agree: conform: harmonize These results are in accord with earlier research. (noun)",
+      "chapter": 7,
+      "order": 381,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-382",
+      "term": "Trigger",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈtrɪgər/",
+      "shortMeaning": "set off: activate: cause: generate: produce: start trigger a memory (=make you suddenly remember something)",
+      "chapter": 7,
+      "order": 382,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-383",
+      "term": "Exhaustive",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ɪɡˈzɔːstɪv/",
+      "shortMeaning": "thorough: complete: comprehensive: extensive An exhaustive investigation into better methods of financing",
+      "chapter": 7,
+      "order": 383,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-384",
+      "term": "Conquest",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈkɑːnˌkwɛst/",
+      "shortMeaning": "Defeat: triumph: takeover: occupation: invasion the Spanish conquest of the Inca Empire(Noun)",
+      "chapter": 7,
+      "order": 384,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-385",
+      "term": "Bulky",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈbʌlki/",
+      "shortMeaning": "large: massive: substantial: weighty a bulky parcel",
+      "chapter": 7,
+      "order": 385,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-386",
+      "term": "Supplement",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈsʌpləmənt/",
+      "shortMeaning": "add: augment: extend vitamins and other dietary supplements",
+      "chapter": 7,
+      "order": 386,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-387",
+      "term": "Insulate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈɪnsəˌleɪt/",
+      "shortMeaning": "protect: shield Pipes may need insulating against the cold. an insulated attic",
+      "chapter": 7,
+      "order": 387,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-388",
+      "term": "Recur",
+      "partOfSpeech": "verb",
+      "pronunciation": "/rɪˈkɜːr/",
+      "shortMeaning": "happen again: revert Love is a recurring theme in the book. (adjective)",
+      "chapter": 7,
+      "order": 388,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-389",
+      "term": "Starvation",
+      "partOfSpeech": "noun",
+      "pronunciation": "/stɑːrˈveɪʃən/",
+      "shortMeaning": "famine: hunger people dying of starvation",
+      "chapter": 7,
+      "order": 389,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-390",
+      "term": "Anomaly",
+      "partOfSpeech": "noun",
+      "pronunciation": "/əˈnɑːməli/",
+      "shortMeaning": "abnormality: eccentricity: exception: inconsistency various anomalies in the tax system",
+      "chapter": 7,
+      "order": 390,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-391",
+      "term": "Disintegrate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/dɪsˈɪntəˌɡreɪt/",
+      "shortMeaning": "break apart: separate: shatter a society disintegrating under economic pressures",
+      "chapter": 7,
+      "order": 391,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-392",
+      "term": "Surge",
+      "partOfSpeech": "verb/noun",
+      "pronunciation": "/sɜːrdʒ/",
+      "shortMeaning": "rush: flood: rise: swell The taxi surged forward.(verb)",
+      "chapter": 7,
+      "order": 392,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-393",
+      "term": "Humiliate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/hjuːˈmɪliˌeɪt/",
+      "shortMeaning": "embarrass: crush: degrade: shame Her boss humiliated her in front of all her colleagues.(verb)",
+      "chapter": 7,
+      "order": 393,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-394",
+      "term": "Intermediary",
+      "partOfSpeech": "noun/ adjective",
+      "pronunciation": "/ˌɪntərˈmiːdiˌɛri/",
+      "shortMeaning": "middleman, agent, mediator Switzerland's foreign minister served as an intermediary between",
+      "chapter": 7,
+      "order": 394,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-395",
+      "term": "Longevity",
+      "partOfSpeech": "noun",
+      "pronunciation": "/lɔnˈdʒɛvɪɾi/",
+      "shortMeaning": "long life The greater longevity of women compared with men(noun)",
+      "chapter": 7,
+      "order": 395,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-396",
+      "term": "Deception",
+      "partOfSpeech": "noun",
+      "pronunciation": "/dɪˈsɛpʃən/",
+      "shortMeaning": "fraud: trickery: deceit: lie: deceit He had been deceived by a young man claiming to be the son of a",
+      "chapter": 7,
+      "order": 396,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-397",
+      "term": "Headway",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈhɛdˌweɪ/",
+      "shortMeaning": "progress: advancement I note that you've made some headway towards solving things on",
+      "chapter": 7,
+      "order": 397,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-398",
+      "term": "Canny",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈkæni/",
+      "shortMeaning": "shrewd: astute: judicious: prudent: wise: clever She's far too canny to keep her money in this country. She's got it",
+      "chapter": 7,
+      "order": 398,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-399",
+      "term": "Maxim",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈmæksɪm/",
+      "shortMeaning": "rule: saying: adage According to this principle, we interpret language on the",
+      "chapter": 7,
+      "order": 399,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-400",
+      "term": "BENEFICIARY",
+      "partOfSpeech": "NOUN",
+      "pronunciation": "/ˌbɛnəˈfɪʃiˌɛri/",
+      "shortMeaning": "receiver: inheritor: recipient The rich were the main beneficiaries of the tax cuts. (NOUN)",
+      "chapter": 7,
+      "order": 400,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-401",
+      "term": "Sarcasm",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈsɑːrˌkæzəm/",
+      "shortMeaning": "irony: satire 'Good of you to arrive on time,' George said, with heavy sarcasm",
+      "chapter": 7,
+      "order": 401,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-402",
+      "term": "Irony",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈaɪrəni/",
+      "shortMeaning": "Sarcasm It's ironic that her husband smoked for thirty years, and yet she's",
+      "chapter": 7,
+      "order": 402,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-403",
+      "term": "Retreat",
+      "partOfSpeech": "noun/verb",
+      "pronunciation": "/rɪˈtriːt/",
+      "shortMeaning": "withdraw: back away: depart: leave The rebel forces are in full retreat (=retreating very fast).(noun)",
+      "chapter": 7,
+      "order": 403,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-404",
+      "term": "Rot",
+      "partOfSpeech": "verb",
+      "pronunciation": "/rɑːt/",
+      "shortMeaning": "decay: deteriorate: spoil: corrupt Candy will rot your teeth. (verb)",
+      "chapter": 7,
+      "order": 404,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-405",
+      "term": "Eligible",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈɛlɪdʒəbəl/",
+      "shortMeaning": "qualified: acceptable: appropriate: worthy: proper",
+      "chapter": 7,
+      "order": 405,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-406",
+      "term": "Far-fetched",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌfɑːrˈfɛtʃt/",
+      "shortMeaning": "unconvincing: fantastic: unbelievable The idea that aliens built the pyramids seems far-fetched to most",
+      "chapter": 7,
+      "order": 406,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-407",
+      "term": "Distort",
+      "partOfSpeech": "verb",
+      "pronunciation": "/dɪsˈtɔːrt/",
+      "shortMeaning": "misrepresent: falsify: deform: misshape: contort An expensive subsidy which distorts the market",
+      "chapter": 7,
+      "order": 407,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-408",
+      "term": "Savvy",
+      "partOfSpeech": "adjective/noun",
+      "pronunciation": "/ˈsævi/",
+      "shortMeaning": "intelligent: canny: cunning: sagacious: shrewd He's obviously got a lot of political savvy. (noun)",
+      "chapter": 7,
+      "order": 408,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-409",
+      "term": "Legend",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈlɛdʒənd/",
+      "shortMeaning": "tale: myth the legend of St George and the dragon(noun)",
+      "chapter": 7,
+      "order": 409,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-410",
+      "term": "Repercussion",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˌriːpərˈkʌʃən/",
+      "shortMeaning": "side effects: consequence: result The collapse of the company had repercussions for the whole",
+      "chapter": 7,
+      "order": 410,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-411",
+      "term": "Erudite",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈɛrjəˌdaɪt/",
+      "shortMeaning": "learned: cultivated: cultured: educated He was never dull, always erudite and well informed. (adjective)",
+      "chapter": 7,
+      "order": 411,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-412",
+      "term": "Minute",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/maɪˈnuːt/",
+      "shortMeaning": "small: tiny: miniscule: detailed a minute examination of the rock(thorough: detailed)",
+      "chapter": 7,
+      "order": 412,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-413",
+      "term": "Soar",
+      "partOfSpeech": "verb",
+      "pronunciation": "/sɔːr/",
+      "shortMeaning": "rise: mount: escalate soaring unemployment(adjective)",
+      "chapter": 7,
+      "order": 413,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-414",
+      "term": "Inception",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ɪnˈsɛpʃən/",
+      "shortMeaning": "beginning: commencement: dawn: initiation Not long after their inception, the welfare programs were under",
+      "chapter": 7,
+      "order": 414,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-415",
+      "term": "Tardy",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈtɑːrdi/",
+      "shortMeaning": "Late: belated",
+      "chapter": 7,
+      "order": 415,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-416",
+      "term": "Supremacy",
+      "partOfSpeech": "noun",
+      "pronunciation": "/səˈprɛməsi/",
+      "shortMeaning": "domination: mastery: predominance Japan's retains its unchallenged supremacy in the field of",
+      "chapter": 7,
+      "order": 416,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-417",
+      "term": "Incite",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪnˈsaɪt/",
+      "shortMeaning": "provoke: stimulate: stir: encourage They were charged with inciting racial hatred.(verb)",
+      "chapter": 7,
+      "order": 417,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-418",
+      "term": "Divergent",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/daɪˈvɜːrdʒənt/",
+      "shortMeaning": "different: unlike divergent views",
+      "chapter": 7,
+      "order": 418,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-419",
+      "term": "Adhere",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ædˈhɪr/",
+      "shortMeaning": "stick: fasten: glue The eggs of these fish adhere to plant leaves.(verb)",
+      "chapter": 7,
+      "order": 419,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-420",
+      "term": "Pliable",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈplaɪəbəl/",
+      "shortMeaning": "flexible: bendy: adaptable A shoe made of soft, pliable leather(adjective)",
+      "chapter": 7,
+      "order": 420,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-421",
+      "term": "Alliance",
+      "partOfSpeech": "noun",
+      "pronunciation": "/əˈlaɪəns/",
+      "shortMeaning": "union: affiliation: coalition: partnership Britain's military alliance with her NATO partners",
+      "chapter": 8,
+      "order": 421,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-422",
+      "term": "Affluent",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈæfluənt/",
+      "shortMeaning": "rich: well-off: wealthy: prosperous An affluent neighborhood",
+      "chapter": 8,
+      "order": 422,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-423",
+      "term": "Rupture",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈrʌptʃɚ/",
+      "shortMeaning": "break: burst: crack: tear: split The eleventh century saw the formal rupture between East and",
+      "chapter": 8,
+      "order": 423,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-424",
+      "term": "Desolate",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈdɛsələt/",
+      "shortMeaning": "uninhabited: wild: miserable: depressed We looked out over a desolate landscape of bare trees and stony",
+      "chapter": 8,
+      "order": 424,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-425",
+      "term": "Discrete",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/dɪˈskrit/",
+      "shortMeaning": "separate: detached: disconnected: apart",
+      "chapter": 8,
+      "order": 425,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-426",
+      "term": "Penchant",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈpɛntʃənt/",
+      "shortMeaning": "inclination: propensity: leaning: fondness",
+      "chapter": 8,
+      "order": 426,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-427",
+      "term": "Underrate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˌʌndɚˈreɪt/",
+      "shortMeaning": "Underestimate: belittle: undervalue People often underrate how much time a complex project",
+      "chapter": 8,
+      "order": 427,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-428",
+      "term": "Underscore",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˌʌndɚˈskɔr/",
+      "shortMeaning": "Emphasize: accentuate: highlight: stress These failures underscore the difficulty of what we're attempting",
+      "chapter": 8,
+      "order": 428,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-429",
+      "term": "Unleash",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ʌnˈliʃ/",
+      "shortMeaning": "Release: free: let loose: vent Her speech managed to unleash a wave of excitement among the",
+      "chapter": 8,
+      "order": 429,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-430",
+      "term": "Zenith",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈzinɪθ/",
+      "shortMeaning": "Height: acme: apex: climax: crest: peak: pinnacle: summit Her popularity was at its zenith during the early years of her acting",
+      "chapter": 8,
+      "order": 430,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-431",
+      "term": "Acute",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/əˈkjut/",
+      "shortMeaning": "Serious: critical: grave: excruciating: fierce: severe: Perceptive: astute: clever",
+      "chapter": 8,
+      "order": 431,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-432",
+      "term": "Yearn",
+      "partOfSpeech": "verb",
+      "pronunciation": "/jɝn/",
+      "shortMeaning": "Long: crave: desire: covet",
+      "chapter": 8,
+      "order": 432,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-433",
+      "term": "Viable",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈvaɪəbəl/",
+      "shortMeaning": "Workable: applicable: feasible: usable: practicable Will a hotel here be financially viable?",
+      "chapter": 8,
+      "order": 433,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-434",
+      "term": "Vicinity",
+      "partOfSpeech": "noun",
+      "pronunciation": "/vəˈsɪnəti/",
+      "shortMeaning": "Neighborhood: area: proximity All meteorites are of the same age, somewhere in the vicinity of",
+      "chapter": 8,
+      "order": 434,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-435",
+      "term": "Warrant",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈwɔrənt/",
+      "shortMeaning": "(Noun) authorization, authority: permission: permit: sanction (Verb) demand, deserve: necessitate",
+      "chapter": 8,
+      "order": 435,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-436",
+      "term": "Improvise",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈɪmprəˌvaɪz/",
+      "shortMeaning": "Extemporize: speak off the cuff: ad lib: concoct I just started playing, and the other guys started improvising",
+      "chapter": 8,
+      "order": 436,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-437",
+      "term": "Yield",
+      "partOfSpeech": "verb",
+      "pronunciation": "/jild/",
+      "shortMeaning": "Produce: bear: generate high-yielding crops Surrender: give in: relinquish: succumb: resign",
+      "chapter": 8,
+      "order": 437,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-438",
+      "term": "Address",
+      "partOfSpeech": "verb",
+      "pronunciation": "/əˈdrɛs/",
+      "shortMeaning": "deal with to speak to someone directly To make a formal speech to a large group of people",
+      "chapter": 8,
+      "order": 438,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-439",
+      "term": "Adhesive",
+      "partOfSpeech": "noun/ adjective",
+      "pronunciation": "/ædˈhisɪv/",
+      "shortMeaning": "a substance such as glue that you use to stick two things together :",
+      "chapter": 8,
+      "order": 439,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-440",
+      "term": "Akin",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/əˈkɪn/",
+      "shortMeaning": "very similar to something :",
+      "chapter": 8,
+      "order": 440,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-441",
+      "term": "Aptitude",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈæptɪˌtud/",
+      "shortMeaning": "Tendency: inclination: propensity Gift: ability: capability: faculty: intelligence: proficiency: talent",
+      "chapter": 8,
+      "order": 441,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-442",
+      "term": "Ardent",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈɑrdənt/",
+      "shortMeaning": "Passionate: enthusiastic: avid: eager: keen: zealous an ardent supporter of free trade",
+      "chapter": 8,
+      "order": 442,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-443",
+      "term": "Assimilate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/əˈsɪməˌleɪt/",
+      "shortMeaning": "Learn: absorb: recognize Adjust: adapt: blend in It took her a few months to assimilate the new information from the to completely understand and begin to use new ideas, if people assimilate, or are assimilated into a country or",
+      "chapter": 8,
+      "order": 443,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-444",
+      "term": "Associate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/əˈsoʊʃieɪt/",
+      "shortMeaning": "Connect: ally: combine: mix be associated (with somebody/something): to be related to a particular",
+      "chapter": 8,
+      "order": 444,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-445",
+      "term": "Attest",
+      "partOfSpeech": "verb",
+      "pronunciation": "/əˈtɛst/",
+      "shortMeaning": "Testify, to show or prove that something is true, to officially state that you believe something is true, especially in a court of law",
+      "chapter": 8,
+      "order": 445,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-446",
+      "term": "Baffle",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈbæfəl/",
+      "shortMeaning": "Puzzle: bewilder: confound: confuse We were all utterly baffled. (adjective)",
+      "chapter": 8,
+      "order": 446,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-447",
+      "term": "Bar",
+      "partOfSpeech": "verb",
+      "pronunciation": "/bɑr/",
+      "shortMeaning": "Hinder: prevent: exclude to officially prevent someone from entering a place or from doing to prevent people from going somewhere by placing",
+      "chapter": 8,
+      "order": 447,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-448",
+      "term": "Cease",
+      "partOfSpeech": "verb",
+      "pronunciation": "/sis/",
+      "shortMeaning": "Stop: discontinue: halt: refrain The things people will do for charity never cease to amaze me (= I",
+      "chapter": 8,
+      "order": 448,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-449",
+      "term": "Characteristic",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌkærəktəˈrɪstɪk/",
+      "shortMeaning": "Typical: distinctive: distinguishing: identifying the highly characteristic (= very typical ) flint walls of the local",
+      "chapter": 8,
+      "order": 449,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-450",
+      "term": "Cluster",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈklʌstɚ/",
+      "shortMeaning": "Group: collection: batch A cluster of low farm buildings",
+      "chapter": 8,
+      "order": 450,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-451",
+      "term": "Compile",
+      "partOfSpeech": "verb",
+      "pronunciation": "/kəmˈpaɪl/",
+      "shortMeaning": "Put together: accumulate: amass: garner: organize",
+      "chapter": 8,
+      "order": 451,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-452",
+      "term": "Conducive",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/kənˈdusɪv/",
+      "shortMeaning": "Favorable to: if a situation is conducive to something such as work, rest etc. it provides conditions that make it easy for you to work",
+      "chapter": 8,
+      "order": 452,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-453",
+      "term": "Conform",
+      "partOfSpeech": "verb",
+      "pronunciation": "/kənˈfɔrm/",
+      "shortMeaning": "Comply: adapt: match: accord: correspond: to obey a law, All new buildings must conform with the regional development",
+      "chapter": 8,
+      "order": 453,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-454",
+      "term": "Congested",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/kənˈdʒɛstɪd/",
+      "shortMeaning": "Overcrowded: teeming: clogged: jammed: packed: full of traffic",
+      "chapter": 8,
+      "order": 454,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-455",
+      "term": "Constrain",
+      "partOfSpeech": "verb",
+      "pronunciation": "/kənˈstreɪn/",
+      "shortMeaning": "Force: coerce: restrict: confine: restrain Financial factors should not constrain doctors from prescribing",
+      "chapter": 8,
+      "order": 455,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-456",
+      "term": "Continual",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/kənˈtɪnjuəl/",
+      "shortMeaning": "Constant, frequent, incessant, interminable: recurrent five weeks of continual rain",
+      "chapter": 8,
+      "order": 456,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-457",
+      "term": "Continuous",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/kənˈtɪnjuəs/",
+      "shortMeaning": "Prolonged: nonstop: unceasing: uninterrupted continuous economic growth",
+      "chapter": 8,
+      "order": 457,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-458",
+      "term": "Conventional",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/kənˈvɛnʃənəl/",
+      "shortMeaning": "Traditional: customary: regular: usual Internet connections through conventional phone lines are fairly",
+      "chapter": 8,
+      "order": 458,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-459",
+      "term": "Critical",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈkrɪtɪkəl/",
+      "shortMeaning": "Essential: crucial: vital: pivotal: decisive a critical time or situation is serious and worrying because things",
+      "chapter": 8,
+      "order": 459,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-460",
+      "term": "Embody",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪmˈbɑdi/",
+      "shortMeaning": "personify, exemplify, manifest, represent, symbolize, typify incorporate, collect, combine, comprise, contain, include someone or something that represents or is very typical of an",
+      "chapter": 8,
+      "order": 460,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-461",
+      "term": "Decipher",
+      "partOfSpeech": "verb",
+      "pronunciation": "/dɪˈsaɪfɚ/",
+      "shortMeaning": "Figure out: decode: interpret: make out: solve She studied the envelope, trying to decipher the handwriting",
+      "chapter": 8,
+      "order": 461,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-462",
+      "term": "Decisive",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/dɪˈsaɪsɪv/",
+      "shortMeaning": "Determining: essential: crucial: vital: pivotal: critical decisive decisive action/steps",
+      "chapter": 8,
+      "order": 462,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-463",
+      "term": "Deposit",
+      "partOfSpeech": "verb",
+      "pronunciation": "/dɪˈpɑzɪt/",
+      "shortMeaning": "Put: drop: lay: locate: place You are advised to deposit your valuables in the hotel safe",
+      "chapter": 8,
+      "order": 463,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-464",
+      "term": "Derive",
+      "partOfSpeech": "verb",
+      "pronunciation": "/dɪˈraɪv/",
+      "shortMeaning": "Obtain",
+      "chapter": 8,
+      "order": 464,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-465",
+      "term": "Discard",
+      "partOfSpeech": "verb",
+      "pronunciation": "/dɪsˈkɑrd/",
+      "shortMeaning": "Abandon: get rid of: dispose of discarded paper",
+      "chapter": 8,
+      "order": 465,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-466",
+      "term": "Embrace",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪmˈbreɪs/",
+      "shortMeaning": "Adopt: accept Most West European countries have embraced the concept of",
+      "chapter": 8,
+      "order": 466,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-467",
+      "term": "Emerge",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪˈmɝdʒ/",
+      "shortMeaning": "Newly develop: appear: arise: spring up",
+      "chapter": 8,
+      "order": 467,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-468",
+      "term": "Exquisite",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ɪkˈskwɪzɪt/",
+      "shortMeaning": "Perfect: beautiful: attractive: charming: delicate the most exquisite craftsmanship",
+      "chapter": 8,
+      "order": 468,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-469",
+      "term": "Flee",
+      "partOfSpeech": "verb",
+      "pronunciation": "/fli/",
+      "shortMeaning": "Run away: escape: depart Many German artists fled to America at the beginning of World",
+      "chapter": 8,
+      "order": 469,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-470",
+      "term": "Fleeting",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈflitɪŋ/",
+      "shortMeaning": "brief: ephemeral: short-lived: temporary: transient: transitory a fleeting smile",
+      "chapter": 8,
+      "order": 470,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-471",
+      "term": "Gross",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/groʊs/",
+      "shortMeaning": "Overall: aggregate: entire: whole A gross profit of $5 million",
+      "chapter": 8,
+      "order": 471,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-472",
+      "term": "Hollow",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈhɑloʊ/",
+      "shortMeaning": "Empty: vacant: void having an empty space inside :",
+      "chapter": 8,
+      "order": 472,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-473",
+      "term": "Impede",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪmˈpid/",
+      "shortMeaning": "Restrict: hinder: block: hamper: obstruct",
+      "chapter": 8,
+      "order": 473,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-474",
+      "term": "Indiscriminate",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌɪndɪˈskrɪmənət/",
+      "shortMeaning": "Random: careless an indiscriminate action is done without thinking about what harm it",
+      "chapter": 8,
+      "order": 474,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-475",
+      "term": "Indispensable",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌɪndɪˈspɛnsəbəl/",
+      "shortMeaning": "Essential: imperative: necessary: vital This book is indispensable to anyone interested in space",
+      "chapter": 8,
+      "order": 475,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-476",
+      "term": "Induce",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪnˈdus/",
+      "shortMeaning": "Cause: bring about: engender a drug-induced coma",
+      "chapter": 8,
+      "order": 476,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-477",
+      "term": "Discriminate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/dɪˈskrɪməˌneɪt/",
+      "shortMeaning": "show prejudice, show bias, victimize, favor differentiate, distinguish, segregate, separate",
+      "chapter": 8,
+      "order": 477,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-478",
+      "term": "Initiative",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ɪˈnɪʃətɪv/",
+      "shortMeaning": "Action: drive the ability to make decisions and take action without waiting for",
+      "chapter": 8,
+      "order": 478,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-479",
+      "term": "Justifiable",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈdʒʌstəˌfaɪəbəl/",
+      "shortMeaning": "Rightful: reasonable: acceptable justifiable anger",
+      "chapter": 8,
+      "order": 479,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-480",
+      "term": "Magnitude",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈmæɡnəˌtud/",
+      "shortMeaning": "Extent: greatness: amount: mass: quantity",
+      "chapter": 8,
+      "order": 480,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-481",
+      "term": "Momentum",
+      "partOfSpeech": "noun",
+      "pronunciation": "/moʊˈmɛn.təm/",
+      "shortMeaning": "Impetus: drive: force: push: thrust the ability to keep increasing, developing, or being more successful",
+      "chapter": 9,
+      "order": 481,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-482",
+      "term": "Motive",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈmoʊ.tɪv/",
+      "shortMeaning": "Reason: ground: incentive: stimulus: inspiration What do you suppose the killer’s motive was?",
+      "chapter": 9,
+      "order": 482,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-483",
+      "term": "Mount",
+      "partOfSpeech": "verb",
+      "pronunciation": "/maʊnt/",
+      "shortMeaning": "Grow: intensify: multiply: escalate: swell",
+      "chapter": 9,
+      "order": 483,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-484",
+      "term": "Obstruction",
+      "partOfSpeech": "noun",
+      "pronunciation": "/əbˈstrʌk.ʃən/",
+      "shortMeaning": "Barrier: obstacle: difficulty: impediment an unlawful obstruction of the highway",
+      "chapter": 9,
+      "order": 484,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-485",
+      "term": "Subsist",
+      "partOfSpeech": "verb",
+      "pronunciation": "/səbˈsɪst/",
+      "shortMeaning": "Exist, survive to stay alive when you only have small amounts of food or money",
+      "chapter": 9,
+      "order": 485,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-486",
+      "term": "Painstaking",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈpeɪnˌsteɪ.kɪŋ/",
+      "shortMeaning": "Thorough: careful: meticulous painstakingly (adverb) :",
+      "chapter": 9,
+      "order": 486,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-487",
+      "term": "Permeate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈpɝː.mi.eɪt/",
+      "shortMeaning": "Fill: penetrate: spread through: saturate",
+      "chapter": 9,
+      "order": 487,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-488",
+      "term": "Preoccupation",
+      "partOfSpeech": "noun",
+      "pronunciation": "/priˌɑː.kjuˈpeɪ.ʃən/",
+      "shortMeaning": "Concern: obsession: fixation the current preoccupation with sex and scandal",
+      "chapter": 9,
+      "order": 488,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-489",
+      "term": "Prerequisite",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˌpriːˈrɛ.kwə.zɪt/",
+      "shortMeaning": "Requirement: must: necessity A reasonable proficiency in English is a prerequisite for the",
+      "chapter": 9,
+      "order": 489,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-490",
+      "term": "Presume",
+      "partOfSpeech": "verb",
+      "pronunciation": "/prɪˈzuːm/",
+      "shortMeaning": "Suppose: assume: guess: surmise: think ‘Are his parents still alive?’ ‘I presume so.’",
+      "chapter": 9,
+      "order": 490,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-491",
+      "term": "Profuse",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/prəˈfjuːs/",
+      "shortMeaning": "Plentiful: abundant: ample: prolific The wound was bleeding profusely. (adverb)",
+      "chapter": 9,
+      "order": 491,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-492",
+      "term": "Quest",
+      "partOfSpeech": "noun",
+      "pronunciation": "/kwɛst/",
+      "shortMeaning": "Search: adventure: crusade: enterprise: mission: journey his long quest for truth",
+      "chapter": 9,
+      "order": 492,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-493",
+      "term": "Reinforce",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˌriː.ɪnˈfɔːrs/",
+      "shortMeaning": "Strengthen: fortify: toughen: supplement The film reinforces the idea that women should be pretty and",
+      "chapter": 9,
+      "order": 493,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-494",
+      "term": "Repulse",
+      "partOfSpeech": "verb",
+      "pronunciation": "/rɪˈpʌls/",
+      "shortMeaning": "Drive back: repel: ward off: refuse",
+      "chapter": 9,
+      "order": 494,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-495",
+      "term": "Revere",
+      "partOfSpeech": "verb",
+      "pronunciation": "/rɪˈvɪr/",
+      "shortMeaning": "Honor: look up to: respect: venerate: worship",
+      "chapter": 9,
+      "order": 495,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-496",
+      "term": "Rule out",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ruːl aʊt/",
+      "shortMeaning": "Exclude: dismiss: preclude: reject",
+      "chapter": 9,
+      "order": 496,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-497",
+      "term": "Sabotage",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈsæb.ə.tɑːʒ/",
+      "shortMeaning": "Intentionally damage: destroy: vandalize: wreck",
+      "chapter": 9,
+      "order": 497,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-498",
+      "term": "Exhibit",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪɡˈzɪb.ɪt/",
+      "shortMeaning": "display, demonstrate, express, indicate, manifest, reveal, show",
+      "chapter": 9,
+      "order": 498,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-499",
+      "term": "Sculpt",
+      "partOfSpeech": "verb",
+      "pronunciation": "/skʌlpt/",
+      "shortMeaning": "Shape sculpting human figures from ivory",
+      "chapter": 9,
+      "order": 499,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-500",
+      "term": "Sentimental",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌsɛn.təˈmɛn.təl/",
+      "shortMeaning": "Emotional: romantic: touching He wasn’t the sort of person who kept things for sentimental",
+      "chapter": 9,
+      "order": 500,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-501",
+      "term": "Shrinkage",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈʃrɪŋ.kɪdʒ/",
+      "shortMeaning": "Reduction: decrease Retail stores often monitor shrinkage caused by theft or inventory",
+      "chapter": 9,
+      "order": 501,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-502",
+      "term": "Signify",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈsɪɡ.nə.faɪ/",
+      "shortMeaning": "Indicate: connote: denote: imply: mean: suggest Hamilton waved his hand to signify that he didn’t mind what they",
+      "chapter": 9,
+      "order": 502,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-503",
+      "term": "Severe",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/səˈvɪr/",
+      "shortMeaning": "Strict, austere, cruel, hard, harsh, rigid grim, grave, serious, stern",
+      "chapter": 9,
+      "order": 503,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-504",
+      "term": "Interim",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈɪn.tɚ.ɪm/",
+      "shortMeaning": "Temporary: makeshift During the interim period, air quality has deteriorated. (= the",
+      "chapter": 9,
+      "order": 504,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-505",
+      "term": "Spectacular",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/spɛkˈtæk.jə.lɚ/",
+      "shortMeaning": "Remarkable: impressive: dazzling: sensational: magnificent: splendid: striking: stunning",
+      "chapter": 9,
+      "order": 505,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-506",
+      "term": "Speculate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈspɛk.jə.leɪt/",
+      "shortMeaning": "Guess: suppose: conjecture",
+      "chapter": 9,
+      "order": 506,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-507",
+      "term": "Spurt",
+      "partOfSpeech": "noun",
+      "pronunciation": "/spɝːt/",
+      "shortMeaning": "Sudden increase: burst: rush: surge a sudden spurt of flame",
+      "chapter": 9,
+      "order": 507,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-508",
+      "term": "Stamina",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈstæm.ə.nə/",
+      "shortMeaning": "Endurance: strength: energy: force: power: resilience",
+      "chapter": 9,
+      "order": 508,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-509",
+      "term": "Stance",
+      "partOfSpeech": "noun",
+      "pronunciation": "/stæns/",
+      "shortMeaning": "Posture Attitude, stand, viewpoint",
+      "chapter": 9,
+      "order": 509,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-510",
+      "term": "Strenuous",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈstrɛn.ju.əs/",
+      "shortMeaning": "Demanding: arduous: hard: tough a strenuous climb",
+      "chapter": 9,
+      "order": 510,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-511",
+      "term": "Subtle",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈsʌt.əl/",
+      "shortMeaning": "Unobvious: slight: not easy to notice or understand unless you pay careful attention",
+      "chapter": 9,
+      "order": 511,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-512",
+      "term": "Suffice",
+      "partOfSpeech": "verb",
+      "pronunciation": "/səˈfaɪs/",
+      "shortMeaning": "Be enough/ adequate/ sufficient",
+      "chapter": 9,
+      "order": 512,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-513",
+      "term": "Suspicion",
+      "partOfSpeech": "noun",
+      "pronunciation": "/səˈspɪʃ.ən/",
+      "shortMeaning": "Doubt: distrust: skepticism I can’t say for definite who did it, but I certainly have my",
+      "chapter": 9,
+      "order": 513,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-514",
+      "term": "Swift",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/swɪft/",
+      "shortMeaning": "Quick: fast: hurried: prompt: rapid: speedy",
+      "chapter": 9,
+      "order": 514,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-515",
+      "term": "Thereby",
+      "partOfSpeech": "adverb",
+      "pronunciation": "/ˌðerˈbaɪ/",
+      "shortMeaning": "Consequently: thus The government introduced new policies, thereby encouraging",
+      "chapter": 9,
+      "order": 515,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-516",
+      "term": "Typify",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈtɪp.ə.faɪ/",
+      "shortMeaning": "Characterize: symbolize: epitomize: exemplify the features which typify a Scottish Highland landscape",
+      "chapter": 9,
+      "order": 516,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-517",
+      "term": "Vacate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/veɪˈkeɪt/",
+      "shortMeaning": "Empty: leave: evacuate",
+      "chapter": 9,
+      "order": 517,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-518",
+      "term": "Vigorous",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈvɪɡ.ɚ.əs/",
+      "shortMeaning": "Energetic: active: dynamic: forceful: lively: strong Environmentalists have begun a vigorous campaign to oppose",
+      "chapter": 9,
+      "order": 518,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-519",
+      "term": "Allege",
+      "partOfSpeech": "verb",
+      "pronunciation": "/əˈlɛdʒ/",
+      "shortMeaning": "claim, affirm, assert, declare, maintain, state to say that something is true or that someone has done something",
+      "chapter": 9,
+      "order": 519,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-520",
+      "term": "Wrought",
+      "partOfSpeech": "verb",
+      "pronunciation": "/rɔːt/",
+      "shortMeaning": "Created Events in Paris wrought a change in British opinion towards France",
+      "chapter": 9,
+      "order": 520,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-521",
+      "term": "Lavish",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈlæv.ɪʃ/",
+      "shortMeaning": "plentiful, abundant, prolific: generous, bountiful, open handed: extravagant, immoderate, wasteful",
+      "chapter": 9,
+      "order": 521,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-522",
+      "term": "Discontent",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˌdɪs.kənˈtɛnt/",
+      "shortMeaning": "Dissatisfaction: displeasure The workers became discontented with the low wages and poor",
+      "chapter": 9,
+      "order": 522,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-523",
+      "term": "Deleterious",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌdɛl.əˈtɪr.i.əs/",
+      "shortMeaning": "damaging: harmful: detrimental the deleterious effects of smoking",
+      "chapter": 9,
+      "order": 523,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-524",
+      "term": "Deprecate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈdɛp.rɪ.keɪt/",
+      "shortMeaning": "criticize: disapprove of: disparage: censure to strongly disapprove of or criticize something",
+      "chapter": 9,
+      "order": 524,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-525",
+      "term": "Intact",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ɪnˈtækt/",
+      "shortMeaning": "undamaged: complete: perfect: not broken, damaged, or spoiled",
+      "chapter": 9,
+      "order": 525,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-526",
+      "term": "Dynasty",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈdaɪ.nə.sti/",
+      "shortMeaning": "empire: government: regime: sovereignty a family of kings or other rulers whose parents, grandparents etc. have",
+      "chapter": 9,
+      "order": 526,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-527",
+      "term": "Maroon",
+      "partOfSpeech": "verb",
+      "pronunciation": "/məˈruːn/",
+      "shortMeaning": "abandon: leave: strand to be left in a place where there are no other people and where you",
+      "chapter": 9,
+      "order": 527,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-528",
+      "term": "Imperceptible",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌɪm.pɚˈsɛp.tə.bəl/",
+      "shortMeaning": "undetectable: faint: indiscernible: microscopic: minute: slight: subtle: tiny",
+      "chapter": 9,
+      "order": 528,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-529",
+      "term": "Morale",
+      "partOfSpeech": "noun",
+      "pronunciation": "/məˈræl/",
+      "shortMeaning": "confidence: spirit the level of confidence and positive feelings that people have,",
+      "chapter": 9,
+      "order": 529,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-530",
+      "term": "Procrastinate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/proʊˈkræs.tə.neɪt/",
+      "shortMeaning": "put off: delay: postpone to delay doing something that you ought to do, usually because you do",
+      "chapter": 9,
+      "order": 530,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-531",
+      "term": "Picturesque",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌpɪk.tʃəˈrɛsk/",
+      "shortMeaning": "pretty: attractive: charming: scenic: striking (especially of a place) attractive in appearance, especially in an old",
+      "chapter": 9,
+      "order": 531,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-532",
+      "term": "Pertinent",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈpɝː.tɪ.nənt/",
+      "shortMeaning": "relevant: apposite: apt: germane: proper directly relating to something that is being considered",
+      "chapter": 9,
+      "order": 532,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-533",
+      "term": "Gifted",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˈɡɪf.tɪd/",
+      "shortMeaning": "talented: accomplished: capable: ingenious: skilled having a natural ability to do one or more things extremely well",
+      "chapter": 9,
+      "order": 533,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-534",
+      "term": "Appall",
+      "partOfSpeech": "verb",
+      "pronunciation": "/əˈpɔːl/",
+      "shortMeaning": "horrify, dishearten: dismay: shock: unnerve: outrage The decision to execute the two men has appalled many",
+      "chapter": 9,
+      "order": 534,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-535",
+      "term": "Philanthropic",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ˌfɪl.ənˈθrɑː.pɪk/",
+      "shortMeaning": "humanitarian: beneficent: benevolent: charitable: humane a philanthropic person or institution gives money and help to people",
+      "chapter": 9,
+      "order": 535,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-536",
+      "term": "Envision",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪnˈvɪʒ.ən/",
+      "shortMeaning": "envisage, imagine to imagine something that you think might happen in the future,",
+      "chapter": 9,
+      "order": 536,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-537",
+      "term": "Replicate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈrɛp.lɪ.keɪt/",
+      "shortMeaning": "copy, duplicate, mimic, recreate, reproduce if you replicate someone’s work, a scientific study etc., you do it again,",
+      "chapter": 9,
+      "order": 537,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-538",
+      "term": "Hinder",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈhɪn.dɚ/",
+      "shortMeaning": "obstruct, block, delay, hamper, impede, stop, interrupt to make it difficult for something to develop or succeed",
+      "chapter": 9,
+      "order": 538,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-539",
+      "term": "Precise",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/prɪˈsaɪs/",
+      "shortMeaning": "precise information, details etc. are exact, clear, and correct SYN exact :",
+      "chapter": 9,
+      "order": 539,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-540",
+      "term": "Constituent",
+      "partOfSpeech": "noun",
+      "pronunciation": "/kənˈstɪtʃ.u.ənt/",
+      "shortMeaning": "component, element, factor, part, ingredient one of the substances or things that combine to form something",
+      "chapter": 9,
+      "order": 540,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-541",
+      "term": "Prophecy",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈprɑːfəsi/",
+      "shortMeaning": "Prediction: foretelling: oracle",
+      "chapter": 10,
+      "order": 541,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-542",
+      "term": "Spectator",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈspɛkteɪtər/",
+      "shortMeaning": "Viewer: observer: onlooker",
+      "chapter": 10,
+      "order": 542,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-543",
+      "term": "Illusion",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ɪˈluːʒən/",
+      "shortMeaning": "False perception: deception: misleading appearance",
+      "chapter": 10,
+      "order": 543,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-544",
+      "term": "Narrative",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈnærətɪv/",
+      "shortMeaning": "Story: account: description of events",
+      "chapter": 10,
+      "order": 544,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-545",
+      "term": "Evoke",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪˈvoʊk/",
+      "shortMeaning": "Bring to mind: call forth: elicit",
+      "chapter": 10,
+      "order": 545,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-546",
+      "term": "Enlighten",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ɪnˈlaɪtən/",
+      "shortMeaning": "Inform: educate: give greater understanding",
+      "chapter": 10,
+      "order": 546,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-547",
+      "term": "Validate",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˈvæləˌdeɪt/",
+      "shortMeaning": "Confirm: verify: prove the accuracy or legitimacy of something The researcher conducted several experiments to validate the",
+      "chapter": 10,
+      "order": 547,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-548",
+      "term": "Intertwine",
+      "partOfSpeech": "verb",
+      "pronunciation": "/ˌɪntərˈtwaɪn/",
+      "shortMeaning": "interlace: interweave: twist together: braid: connect closely: link tightly",
+      "chapter": 10,
+      "order": 548,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-549",
+      "term": "Precedent",
+      "partOfSpeech": "noun",
+      "pronunciation": "/ˈprɛsɪdənt/",
+      "shortMeaning": "earlier example: prior case: model: guide: standard: reference for future actions",
+      "chapter": 10,
+      "order": 549,
+      "tags": [
+        "TOEFL"
+      ]
+    },
+    {
+      "id": "toefl-550-march-2026-550",
+      "term": "Empirical",
+      "partOfSpeech": "adjective",
+      "pronunciation": "/ɪmˈpɪrɪkəl/",
+      "shortMeaning": "based on observation: based on experience: evidence-based: experimental: data-driven",
+      "chapter": 10,
+      "order": 550,
+      "tags": [
+        "TOEFL"
+      ]
+    }
+  ]
+}

@@ -11,6 +11,7 @@ import clsx from "clsx";
 import { useId, useRef } from "react";
 import type { KeyboardEvent, ReactElement, ReactNode } from "react";
 import { DoodleIcon, type DoodleIconName } from "./DoodleIcon";
+import { Icon8, illustrationFor } from "./Icon8";
 import { Modal } from "./Modal";
 
 type StudyIcon = DoodleIconName | ReactNode;
@@ -381,12 +382,19 @@ export function EmptyState({
   className,
 }: EmptyStateProps): React.JSX.Element {
   const titleId = useId();
+  // An empty screen is the one place a full drawing earns its size; fall back
+  // to the flat glyph when no illustration matches the meaning.
+  const illustration = typeof icon === "string" ? illustrationFor(icon) : null;
   return (
     <section
       className={clsx("study-empty-state", compact && "is-compact", className)}
       aria-labelledby={titleId}
     >
-      <IconSlot icon={icon} className="study-empty-state__icon" size={28} />
+      {illustration ? (
+        <Icon8 name={illustration} size={compact ? 34 : 48} className="study-empty-state__art" />
+      ) : (
+        <IconSlot icon={icon} className="study-empty-state__icon" size={28} />
+      )}
       <div className="study-empty-state__copy">
         <h2 id={titleId}>{title}</h2>
         <p>{description}</p>

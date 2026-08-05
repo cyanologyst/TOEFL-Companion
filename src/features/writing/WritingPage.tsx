@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { DoodleIcon } from "../../components/DoodleIcon";
+import { assignFaces, Icon8 } from "../../components/Icon8";
 import { AsyncStatus, ConfirmDialog, StatusBadge, StudyAccordion } from "../../components/StudyUI";
 import rawDiscussions from "../../data/academic-discussions.json";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
@@ -57,6 +58,11 @@ export function WritingPage({
   );
   const discussion =
     library.discussions.find((item) => item.id === selectedId) ?? library.discussions[0];
+  // One distinct face per participant, stable for a given discussion.
+  const discussionFaces = useMemo(
+    () => assignFaces([discussion.professor, ...discussion.students.map((s) => s.name)]),
+    [discussion],
+  );
   const stored = initialSnapshot.writing[discussion.id];
   const initialDraft = stored?.draft ?? "";
   const [text, setText] = useState(initialDraft);
@@ -367,7 +373,9 @@ export function WritingPage({
       <div className="discussion-context discussion-context--refined">
         <article className="panel professor-card professor-card--dominant">
           <header>
-            <span className="person-avatar person-avatar--professor">P</span>
+            <span className="person-avatar person-avatar--professor">
+              <Icon8 name={discussionFaces[0]} size={34} label={discussion.professor} />
+            </span>
             <div>
               <strong>{discussion.professor}</strong>
               <small>{discussion.course}</small>
@@ -395,7 +403,7 @@ export function WritingPage({
               <article className="panel student-card student-card--secondary" key={student.name}>
                 <header>
                   <span className={`person-avatar person-avatar--student-${index + 1}`}>
-                    {student.name.charAt(0)}
+                    <Icon8 name={discussionFaces[index + 1]} size={30} label={student.name} />
                   </span>
                   <strong>{student.name}</strong>
                 </header>

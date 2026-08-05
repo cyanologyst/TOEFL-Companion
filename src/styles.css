@@ -12,6 +12,10 @@
   font-synthesis: none;
   --font-ui: "Lexend Variable", "Segoe UI", sans-serif;
   --font-body: "Source Sans 3 Variable", "Segoe UI", sans-serif;
+  /* Rounded, hand-drawn-adjacent display face for headings only. It matches
+     the doodle illustrations without costing legibility the way an actual
+     handwriting face would in an app read for hours. */
+  --font-display: "Fredoka Variable", "Lexend Variable", "Segoe UI", sans-serif;
   --font-persian: "A Iranian Sans", Tahoma, "Segoe UI", Arial, sans-serif;
   --navy-950: #071638;
   --navy-900: #0d1d42;
@@ -163,15 +167,21 @@ summary {
   outline-offset: 2px;
 }
 
-h1,
-h2,
-h3,
-h4,
 strong,
 button,
 label,
 th {
   font-family: var(--font-ui);
+}
+
+/* Headings take the display face; controls and labels stay on Lexend so the
+   personality sits in the titles rather than in every button. */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.005em;
 }
 
 h1,
@@ -2957,30 +2967,46 @@ textarea {
   margin-bottom: 11px;
 }
 
+/* Holds a drawn portrait now rather than an initial, so it is sized to the
+   illustration and the tinted disc reads as a frame behind it. */
 .person-avatar {
   display: grid;
-  width: 30px;
-  height: 30px;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  overflow: hidden;
   place-items: center;
+  border: 1px solid transparent;
   border-radius: 50%;
   font-family: var(--font-ui);
   font-size: 10px;
   font-weight: 600;
 }
 
+.person-avatar .icon8 {
+  display: block;
+  /* The drawings sit low in their own box; nudge so the face centres. */
+  margin-bottom: -3px;
+}
+
 .person-avatar--professor {
+  width: 46px;
+  height: 46px;
+  border-color: var(--teal-100);
   color: var(--teal-700);
-  background: var(--teal-100);
+  background: var(--teal-50);
 }
 
 .person-avatar--student-1 {
+  border-color: var(--green-100);
   color: var(--green-600);
-  background: var(--green-100);
+  background: #f2fbf7;
 }
 
 .person-avatar--student-2 {
+  border-color: var(--blue-100);
   color: var(--blue-600);
-  background: var(--blue-100);
+  background: #f3f8ff;
 }
 
 .professor-card header strong,
@@ -5152,14 +5178,20 @@ textarea {
   }
 }
 
+/* Reduced motion drops travel and looping but keeps a short cross-fade, so a
+   state change still registers. Collapsing every duration to 0.01ms made the
+   interface feel broken rather than calm. Movement properties are the ones
+   that cause trouble; opacity and colour are not.
+   See motion.css for the per-component reduced-motion treatment. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+    transition-property:
+      opacity, background-color, border-color, color, fill, stroke, box-shadow !important;
+    transition-duration: 120ms !important;
   }
 }
 

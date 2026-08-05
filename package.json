@@ -23,6 +23,7 @@
     "quality": "npm run format:check && npm run lint && npm run check && npm run check:tests && npm run test:unit"
   },
   "dependencies": {
+    "@fontsource-variable/fredoka": "^5.3.0",
     "@fontsource-variable/lexend": "^5.3.0",
     "@fontsource-variable/source-sans-3": "^5.3.0",
     "@phosphor-icons/react": "^2.1.10",

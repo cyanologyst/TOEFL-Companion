@@ -10,11 +10,13 @@
  * topic rail and long prose scroll, inside their own panels.
  */
 
-.speaking {
-  /* Scoped to this surface on purpose. The global stylesheet has no type or
-     weight scale yet, so these live here rather than being introduced
-     app-wide as a side effect of one page. Nothing outside `.speaking`
-     inherits them. */
+/* Scoped to these surfaces on purpose. The global stylesheet has no type or
+   weight scale yet, so these live here rather than being introduced app-wide
+   as a side effect of one feature. The three Speaking views are siblings, so
+   each needs the block; nothing outside them inherits it. */
+.speaking,
+.practice,
+.repeat {
   --text-2xs: 12px;
   --text-xs: 13px;
   --text-sm: 14px;
@@ -33,13 +35,22 @@
   --skill-speaking-border: #bfd8f2;
   --skill-vocabulary-ink: #08715d;
   --scrollbar-thumb: #b8c6ce;
+}
 
+/* Every Speaking view owns the viewport: it fills the shell exactly and hands
+   the app scroller nothing. Only inner panels scroll. */
+.speaking,
+.practice,
+.repeat {
   display: flex;
   height: 100%;
   flex-direction: column;
+  overflow: hidden;
+}
+
+.speaking {
   padding: var(--space-6) var(--space-8);
   gap: var(--space-5);
-  overflow: hidden;
 }
 
 /* -- Header ---------------------------------------------------------------- */
@@ -613,4 +624,551 @@
   .speaking__body {
     grid-template-columns: 264px minmax(0, 1fr);
   }
+}
+
+/* ===========================================================================
+   Interview practice
+   The recorder is the only thing that matters while answering, so it holds
+   the right column at a fixed size and the question and transcript share the
+   left. Nothing here scrolls except the transcript and the support material.
+   =========================================================================== */
+
+.practice {
+  padding: var(--space-5) var(--space-8) var(--space-4);
+  gap: var(--space-4);
+}
+
+.practice__head {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.practice__back {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-muted-foreground);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  gap: var(--space-2);
+}
+
+.practice__back:hover:not(:disabled) {
+  border-color: var(--color-border-strong);
+  color: var(--color-foreground);
+}
+
+.practice__ident {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.practice__ident h1 {
+  margin: 0;
+  color: var(--color-foreground);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+}
+
+.practice__ident span {
+  color: var(--color-subtle-foreground);
+  font-size: var(--text-xs);
+}
+
+.practice__modes {
+  display: flex;
+  flex: 0 0 auto;
+  padding: 3px;
+  border: 0;
+  border-radius: 999px;
+  margin: 0;
+  background: var(--color-surface-muted);
+  gap: 2px;
+}
+
+.practice__modes button {
+  height: 30px;
+  padding: 0 var(--space-4);
+  border-radius: 999px;
+  color: var(--color-muted-foreground);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+}
+
+.practice__modes button[data-active="true"] {
+  color: var(--skill-speaking-ink);
+  background: var(--color-surface);
+  box-shadow: 0 1px 2px rgba(12, 32, 55, 0.08);
+}
+
+.practice__body {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  gap: var(--space-4);
+  grid-template-columns: minmax(0, 1fr) 336px;
+}
+
+.practice__main,
+.practice__side {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* -- Question --------------------------------------------------------------- */
+
+.practice-question {
+  flex: 0 0 auto;
+}
+
+.practice-question__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.practice-question__head span {
+  color: var(--color-subtle-foreground);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+}
+
+.practice-question p {
+  margin: 0;
+  color: var(--color-foreground);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  line-height: 1.35;
+  text-wrap: balance;
+}
+
+.practice-question small {
+  color: var(--color-subtle-foreground);
+  font-size: var(--text-xs);
+}
+
+/* -- Transcript ------------------------------------------------------------- */
+
+.practice-transcript {
+  min-height: 0;
+  flex: 1;
+}
+
+.practice-transcript__canvas {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-muted);
+  gap: var(--space-3);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+  scrollbar-width: thin;
+}
+
+.practice-transcript__canvas p {
+  margin: 0;
+  color: var(--color-muted-foreground);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.practice-transcript__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.practice-transcript__foot audio {
+  height: 32px;
+  max-width: 260px;
+}
+
+.practice-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* -- Recorder --------------------------------------------------------------- */
+
+.practice-recorder {
+  flex: 0 0 auto;
+  align-items: center;
+  text-align: center;
+}
+
+.practice-recorder__head {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.practice-recorder__head h2 {
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.practice-recorder__status {
+  min-height: 34px;
+  margin: 0;
+  color: var(--color-muted-foreground);
+  font-size: var(--text-xs);
+  line-height: var(--leading-snug);
+}
+
+.practice-recorder .button {
+  width: 100%;
+  justify-content: center;
+}
+
+/* -- Support ---------------------------------------------------------------- */
+
+.practice-support {
+  min-height: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.practice-support__body {
+  min-height: 0;
+  flex: 1;
+  padding-bottom: var(--space-2);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+  scrollbar-width: thin;
+}
+
+/* -- Question navigation ---------------------------------------------------- */
+
+.practice__foot {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  gap: var(--space-4);
+}
+
+.practice__dots {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.practice__dots button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  color: var(--color-muted-foreground);
+  background: var(--color-surface);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+}
+
+.practice__dots button:hover:not(:disabled) {
+  border-color: var(--color-border-strong);
+}
+
+.practice__dots button[data-active="true"] {
+  border-color: var(--skill-speaking);
+  color: var(--color-surface);
+  background: var(--skill-speaking);
+}
+
+@media (max-width: 1120px) {
+  .practice__body {
+    grid-template-columns: minmax(0, 1fr) 292px;
+  }
+}
+
+/* Directional glyph helpers: the doodle arrow points north-east, so it is
+   rotated into place rather than swapped for a different drawing. */
+.doodle-icon--forward {
+  transform: rotate(45deg);
+}
+
+.doodle-icon--back {
+  transform: rotate(-135deg);
+}
+
+/* ===========================================================================
+   Listen & Repeat
+   A four-step loop. The two acting steps sit on top at a fixed height; the
+   two reviewing steps share the remaining space and scroll inside themselves.
+   =========================================================================== */
+
+.repeat {
+  padding: var(--space-5) var(--space-8) var(--space-4);
+  gap: var(--space-4);
+}
+
+.repeat__body {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  gap: var(--space-4);
+  grid-template-columns: 300px minmax(0, 1fr);
+}
+
+.repeat__main {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* -- Step strip ------------------------------------------------------------- */
+
+.repeat__steps {
+  display: flex;
+  flex: 0 0 auto;
+  padding: 0;
+  margin: 0;
+  gap: var(--space-2);
+  list-style: none;
+}
+
+.repeat__steps li {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-subtle-foreground);
+  background: var(--color-surface);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  gap: var(--space-2);
+}
+
+.repeat__steps li span {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  color: var(--color-subtle-foreground);
+  background: var(--color-surface-muted);
+  font-size: var(--text-2xs);
+  place-items: center;
+}
+
+.repeat__steps li[data-state="current"] {
+  border-color: var(--skill-speaking-border);
+  color: var(--skill-speaking-ink);
+  background: var(--skill-speaking-soft);
+}
+
+.repeat__steps li[data-state="current"] span {
+  color: var(--color-surface);
+  background: var(--skill-speaking);
+}
+
+.repeat__steps li[data-state="complete"] {
+  color: var(--skill-vocabulary-ink);
+}
+
+.repeat__steps li[data-state="complete"] span {
+  color: var(--color-surface);
+  background: var(--skill-vocabulary);
+}
+
+/* -- Practice grid ---------------------------------------------------------- */
+
+/* Both rows are constrained. An `auto` first row let the listen and record
+   cards take the height they wanted, which pushed the review row past the
+   bottom of the window and under the footer. */
+.repeat__grid {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  gap: var(--space-3);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+/* Each card is clipped to its grid cell and scrolls its own body. Without
+   this the taller top row spilled over the review row beneath it. */
+.repeat-card {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: 0 1px 3px rgba(12, 32, 55, 0.04);
+  gap: var(--space-3);
+  overflow: hidden;
+}
+
+/* Everything after the card heading shares the remaining height and scrolls. */
+.repeat-card > *:not(.repeat-card__head) {
+  flex: 0 0 auto;
+}
+
+.repeat-card > .repeat-card__body {
+  min-height: 0;
+  flex: 1;
+  padding-bottom: var(--space-2);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+  scrollbar-width: thin;
+}
+
+.repeat-card[data-step-state="current"] {
+  border-color: var(--skill-speaking-border);
+}
+
+.repeat-card__head {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.repeat-card__head h2 {
+  margin: 0;
+  color: var(--color-foreground);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.repeat-card__head span,
+.repeat-card__head small {
+  color: var(--color-subtle-foreground);
+  font-size: var(--text-2xs);
+}
+
+.repeat-card__scroll {
+  min-height: 0;
+  flex: 1;
+  padding-bottom: var(--space-2);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+  scrollbar-width: thin;
+}
+
+/* -- Footer ----------------------------------------------------------------- */
+
+.repeat__foot {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: flex-end;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  gap: var(--space-3);
+}
+
+@media (max-width: 1120px) {
+  .repeat__body {
+    grid-template-columns: 258px minmax(0, 1fr);
+  }
+}
+
+/* Listen & Repeat renders inside the shared Speaking shell, so its host just
+   needs to fill the remaining height. */
+.speaking__repeat-host {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+}
+
+.speaking__repeat-host > .repeat__body {
+  flex: 1;
+}
+
+/* Prompt rail: the scenario picker label matches the other rail filters
+   rather than shouting in uppercase. */
+.repeat__body .listen-scenario-picker {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--space-4) var(--space-3);
+  gap: 3px;
+}
+
+.repeat__body .listen-scenario-picker span {
+  color: var(--color-subtle-foreground);
+  font-family: var(--font-ui);
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.repeat__body .listen-scenario-picker select {
+  width: 100%;
+  height: 32px;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  font-size: var(--text-xs);
+}
+
+/* The queue is the rail's scroller. */
+.repeat__body .prompt-queue > ol {
+  min-height: 0;
+  flex: 1;
+  padding: var(--space-2);
+  margin: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  list-style: none;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+  scrollbar-width: thin;
+}
+
+.repeat__body .prompt-queue > header,
+.repeat__body .prompt-queue > .prompt-queue__context,
+.repeat__body .prompt-queue > .prompt-queue__progress {
+  flex: 0 0 auto;
+}
+
+.repeat__body .prompt-queue > header {
+  padding: var(--space-4) var(--space-4) var(--space-2);
+}
+
+.repeat__body .prompt-queue > .prompt-queue__context {
+  padding: 0 var(--space-4);
+  margin: 0 0 var(--space-2);
+}
+
+.repeat__body .prompt-queue > .prompt-queue__progress {
+  margin: 0 var(--space-4) var(--space-2);
 }

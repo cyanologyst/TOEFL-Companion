@@ -6,6 +6,7 @@ import rawDiscussions from "../../data/academic-discussions.json";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { studyRepository } from "../../services/studyRepository";
 import type { AcademicDiscussionLibrary, StudyState } from "../../types/study";
+import "./writing.css";
 
 interface WritingPageProps {
   initialSnapshot: StudyState;
@@ -370,135 +371,137 @@ export function WritingPage({
         </section>
       ) : null}
 
-      <div className="discussion-context discussion-context--refined">
-        <article className="panel professor-card professor-card--dominant">
-          <header>
-            <span className="person-avatar person-avatar--professor">
-              <Icon8 name={discussionFaces[0]} size={34} label={discussion.professor} />
-            </span>
-            <div>
-              <strong>{discussion.professor}</strong>
-              <small>{discussion.course}</small>
-            </div>
-          </header>
-          <h2>{discussion.title}</h2>
-          <p>{discussion.prompt}</p>
-        </article>
-        {compactWriting ? (
-          <section className="panel student-responses-compact" aria-label="Student responses">
-            <StudyAccordion
-              className="student-responses-accordion"
-              items={discussion.students.map((student) => ({
-                value: student.name,
-                title: student.name,
-                description: "Student response",
-                icon: "doc",
-                content: <p>{student.response}</p>,
-              }))}
-            />
-          </section>
-        ) : (
-          <section className="student-response-stack" aria-label="Student responses">
-            {discussion.students.map((student, index) => (
-              <article className="panel student-card student-card--secondary" key={student.name}>
-                <header>
-                  <span className={`person-avatar person-avatar--student-${index + 1}`}>
-                    <Icon8 name={discussionFaces[index + 1]} size={30} label={student.name} />
-                  </span>
-                  <strong>{student.name}</strong>
-                </header>
-                <p>{student.response}</p>
-              </article>
-            ))}
-          </section>
-        )}
-      </div>
-
-      <div className="writing-workspace writing-workspace--refined">
-        <section className="panel writing-editor writing-editor--primary">
-          <header>
-            <div>
-              <h2>Your response</h2>
-              <AsyncStatus
-                className="writing-save-status"
-                status={
-                  saveState === "saving"
-                    ? "loading"
-                    : saveState === "error"
-                      ? "error"
-                      : saveState === "saved"
-                        ? "success"
-                        : "idle"
-                }
-                message={
-                  initialSnapshot.settings.autoSaveWriting
-                    ? saveMessage
-                    : isDirty
-                      ? "Unsaved changes"
-                      : "Saved on this device"
-                }
-                onRetry={saveDraft}
-                retryLabel="Save again"
+      <div className="writing__body">
+        <div className="discussion-context discussion-context--refined writing__source">
+          <article className="panel professor-card professor-card--dominant">
+            <header>
+              <span className="person-avatar person-avatar--professor">
+                <Icon8 name={discussionFaces[0]} size={34} label={discussion.professor} />
+              </span>
+              <div>
+                <strong>{discussion.professor}</strong>
+                <small>{discussion.course}</small>
+              </div>
+            </header>
+            <h2>{discussion.title}</h2>
+            <p>{discussion.prompt}</p>
+          </article>
+          {compactWriting ? (
+            <section className="panel student-responses-compact" aria-label="Student responses">
+              <StudyAccordion
+                className="student-responses-accordion"
+                items={discussion.students.map((student) => ({
+                  value: student.name,
+                  title: student.name,
+                  description: "Student response",
+                  icon: "doc",
+                  content: <p>{student.response}</p>,
+                }))}
               />
-            </div>
-            <div className="word-count">
-              <span>Words: {count}</span>
-              <strong data-ready={count >= discussion.recommendedWords}>
-                {count} / {discussion.recommendedWords}+
-              </strong>
-            </div>
-          </header>
-          <div className="editor-toolbar" role="toolbar" aria-label="Writing editor toolbar">
-            <span>Exam conditions</span>
-            <small>Plain-text TOEFL response</small>
-            <button
-              type="button"
-              onClick={() => setConfirmAction("clear")}
-              disabled={!text}
-              aria-label="Clear this draft"
-            >
-              Clear
-            </button>
-          </div>
-          <label className="writing-editor__field">
-            <span className="sr-only">Your Academic Discussion response</span>
-            <textarea
-              className="writing-editor__textarea"
-              value={text}
-              onChange={(event) => {
-                setText(event.target.value);
-                setSaveState("idle");
-                if (!running && secondsLeft > 0 && event.target.value.length === 1) {
-                  setRunning(true);
-                }
-              }}
-              placeholder="Write your contribution here..."
-              spellCheck
-            />
-          </label>
-          <footer>
-            <button
-              type="button"
-              className="button button--quiet"
-              onClick={saveDraft}
-              disabled={!isDirty || saveState === "saving"}
-            >
-              <DoodleIcon name="floppy" size={17} />
-              {saveState === "saving" ? "Saving..." : "Save draft"}
-            </button>
-            <div>
+            </section>
+          ) : (
+            <section className="student-response-stack" aria-label="Student responses">
+              {discussion.students.map((student, index) => (
+                <article className="panel student-card student-card--secondary" key={student.name}>
+                  <header>
+                    <span className={`person-avatar person-avatar--student-${index + 1}`}>
+                      <Icon8 name={discussionFaces[index + 1]} size={30} label={student.name} />
+                    </span>
+                    <strong>{student.name}</strong>
+                  </header>
+                  <p>{student.response}</p>
+                </article>
+              ))}
+            </section>
+          )}
+        </div>
+
+        <div className="writing-workspace writing-workspace--refined writing__compose">
+          <section className="panel writing-editor writing-editor--primary">
+            <header>
+              <div>
+                <h2>Your response</h2>
+                <AsyncStatus
+                  className="writing-save-status"
+                  status={
+                    saveState === "saving"
+                      ? "loading"
+                      : saveState === "error"
+                        ? "error"
+                        : saveState === "saved"
+                          ? "success"
+                          : "idle"
+                  }
+                  message={
+                    initialSnapshot.settings.autoSaveWriting
+                      ? saveMessage
+                      : isDirty
+                        ? "Unsaved changes"
+                        : "Saved on this device"
+                  }
+                  onRetry={saveDraft}
+                  retryLabel="Save again"
+                />
+              </div>
+              <div className="word-count">
+                <span>Words: {count}</span>
+                <strong data-ready={count >= discussion.recommendedWords}>
+                  {count} / {discussion.recommendedWords}+
+                </strong>
+              </div>
+            </header>
+            <div className="editor-toolbar" role="toolbar" aria-label="Writing editor toolbar">
+              <span>Exam conditions</span>
+              <small>Plain-text TOEFL response</small>
               <button
                 type="button"
-                className="button button--primary button--writing-primary"
-                onClick={submit}
-                disabled={count < 20}
+                onClick={() => setConfirmAction("clear")}
+                disabled={!text}
+                aria-label="Clear this draft"
               >
-                <DoodleIcon name="send" size={17} />
-                Submit
+                Clear
               </button>
             </div>
-          </footer>
-        </section>
+            <label className="writing-editor__field">
+              <span className="sr-only">Your Academic Discussion response</span>
+              <textarea
+                className="writing-editor__textarea"
+                value={text}
+                onChange={(event) => {
+                  setText(event.target.value);
+                  setSaveState("idle");
+                  if (!running && secondsLeft > 0 && event.target.value.length === 1) {
+                    setRunning(true);
+                  }
+                }}
+                placeholder="Write your contribution here..."
+                spellCheck
+              />
+            </label>
+            <footer>
+              <button
+                type="button"
+                className="button button--quiet"
+                onClick={saveDraft}
+                disabled={!isDirty || saveState === "saving"}
+              >
+                <DoodleIcon name="floppy" size={17} />
+                {saveState === "saving" ? "Saving..." : "Save draft"}
+              </button>
+              <div>
+                <button
+                  type="button"
+                  className="button button--primary button--writing-primary"
+                  onClick={submit}
+                  disabled={count < 20}
+                >
+                  <DoodleIcon name="send" size={17} />
+                  Submit
+                </button>
+              </div>
+            </footer>
+          </section>
+        </div>
       </div>
 
       <footer className="writing-navigation">

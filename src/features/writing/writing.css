@@ -1,0 +1,104 @@
+/* Writing
+ *
+ * The reading and the writing happen together: you keep glancing back at the
+ * professor's question and the two classmates while composing. Stacking them
+ * vertically pushed the editor off the bottom of the window and made that
+ * glance a scroll. They sit side by side now, and the page owns the viewport.
+ */
+
+.writing-page {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  padding: var(--space-5) var(--space-8) var(--space-4);
+  gap: var(--space-4);
+  overflow: hidden;
+}
+
+.writing-page > .page-heading {
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+.writing__body {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  gap: var(--space-4);
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1fr);
+}
+
+/* -- The discussion --------------------------------------------------------- */
+
+/* The source column stacks. The inherited `.discussion-context` grid splits
+   this into two or three columns, which inside half the window left the
+   professor's prompt about one word wide. */
+.writing-page .writing__source.discussion-context,
+.writing-page .writing__source.discussion-context--refined {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  padding-right: 2px;
+  margin-bottom: 0;
+  gap: var(--space-3);
+  grid-template-columns: none;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: #b8c6ce transparent;
+  scrollbar-width: thin;
+}
+
+.writing__source .professor-card,
+.writing__source .student-card,
+.writing__source .student-response-stack {
+  flex: 0 0 auto;
+}
+
+/* The response stack is itself a grid in the old layout; stack it too. */
+.writing__source .student-response-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* -- The editor -------------------------------------------------------------
+   Fixed frame, flexible field: the textarea takes whatever height is left
+   rather than growing the page. */
+
+.writing__compose {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+}
+
+.writing__compose > .writing-editor {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.writing__compose .writing-editor__field {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.writing__compose .writing-editor__textarea {
+  min-height: 0;
+  flex: 1;
+  resize: none;
+}
+
+/* Below this the two columns cannot both hold a readable measure. */
+@media (max-width: 1080px) {
+  .writing__body {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(120px, 0.8fr) minmax(0, 1.2fr);
+  }
+}
+
+.writing-page > .writing-navigation {
+  flex: 0 0 auto;
+}

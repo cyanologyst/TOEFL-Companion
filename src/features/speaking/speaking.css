@@ -1,0 +1,616 @@
+/* Speaking
+ *
+ * Built to the same rules as the rest of the app: separate rounded panels
+ * sitting on the canvas with real gaps between them, no internal rules
+ * dividing a slab into cells, sentence-case headings, and no uppercase
+ * micro-labels.
+ *
+ * The page owns the viewport. `.app-content` is the app's scroller, but this
+ * surface fills it exactly and never hands it anything to scroll - only the
+ * topic rail and long prose scroll, inside their own panels.
+ */
+
+.speaking {
+  /* Scoped to this surface on purpose. The global stylesheet has no type or
+     weight scale yet, so these live here rather than being introduced
+     app-wide as a side effect of one page. Nothing outside `.speaking`
+     inherits them. */
+  --text-2xs: 12px;
+  --text-xs: 13px;
+  --text-sm: 14px;
+  --text-base: 15px;
+  --text-md: 16px;
+  --text-lg: 19px;
+  --text-xl: 24px;
+  --text-2xl: 30px;
+  --leading-tight: 1.2;
+  --leading-snug: 1.45;
+  --leading-normal: 1.6;
+  --weight-medium: 550;
+  --weight-semibold: 660;
+  /* Darker skill tones for text and borders on the soft speaking fill. */
+  --skill-speaking-ink: #1d5d9f;
+  --skill-speaking-border: #bfd8f2;
+  --skill-vocabulary-ink: #08715d;
+  --scrollbar-thumb: #b8c6ce;
+
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  padding: var(--space-6) var(--space-8);
+  gap: var(--space-5);
+  overflow: hidden;
+}
+
+/* -- Header ---------------------------------------------------------------- */
+
+.speaking__head {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.speaking__title {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.speaking__title-icon {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  border-radius: var(--radius-md);
+  color: var(--skill-speaking);
+  background: var(--skill-speaking-soft);
+  place-items: center;
+}
+
+.speaking__title h1 {
+  margin: 0;
+  color: var(--color-foreground);
+  font-family: var(--font-ui);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.02em;
+  line-height: var(--leading-tight);
+}
+
+.speaking__title p {
+  margin: 2px 0 0;
+  color: var(--color-muted-foreground);
+  font-size: var(--text-sm);
+}
+
+/* -- Body shell ------------------------------------------------------------ */
+
+.speaking__body {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  gap: var(--space-4);
+  grid-template-columns: 312px minmax(0, 1fr);
+}
+
+/* -- Topic rail ------------------------------------------------------------ */
+
+.speaking-rail {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: 0 1px 3px rgba(12, 32, 55, 0.04);
+}
+
+.speaking-rail__head {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  padding: var(--space-4) var(--space-4) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  gap: var(--space-3);
+}
+
+.speaking-rail__title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.speaking-rail__title h2 {
+  margin: 0;
+  color: var(--color-foreground);
+  font-family: var(--font-ui);
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+}
+
+.speaking-rail__count {
+  flex: 0 0 auto;
+  color: var(--color-subtle-foreground);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+}
+
+.speaking-rail__search {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-muted);
+  color: var(--color-subtle-foreground);
+  gap: var(--space-2);
+}
+
+.speaking-rail__search input {
+  width: 100%;
+  min-width: 0;
+  height: 36px;
+  border: 0;
+  background: transparent;
+  color: var(--color-foreground);
+  font-size: var(--text-sm);
+}
+
+.speaking-rail__search input::placeholder {
+  color: var(--color-subtle-foreground);
+}
+
+.speaking-rail__search:focus-within {
+  border-color: var(--skill-speaking);
+  background: var(--color-surface);
+}
+
+.speaking-rail__filters {
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.speaking-rail__filters label {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.speaking-rail__filters span {
+  color: var(--color-subtle-foreground);
+  font-family: var(--font-ui);
+  font-size: var(--text-2xs);
+}
+
+.speaking-rail__filters select {
+  width: 100%;
+  min-width: 0;
+  height: 32px;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-foreground);
+  font-size: var(--text-xs);
+}
+
+.speaking-rail__scroll {
+  min-height: 0;
+  flex: 1;
+  padding: var(--space-2) var(--space-2) var(--space-3);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--scrollbar-thumb, #b8c6ce) transparent;
+  scrollbar-width: thin;
+}
+
+.speaking-rail__group + .speaking-rail__group {
+  margin-top: var(--space-3);
+}
+
+.speaking-rail__group h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) var(--space-2) var(--space-1);
+  margin: 0;
+  color: var(--color-subtle-foreground);
+  font-family: var(--font-ui);
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-semibold);
+  gap: var(--space-2);
+}
+
+.speaking-topic {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  gap: var(--space-3);
+  text-align: left;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.speaking-topic:hover {
+  background: var(--color-surface-muted);
+}
+
+.speaking-topic[data-active="true"] {
+  border-color: var(--skill-speaking-border);
+  background: var(--skill-speaking-soft);
+}
+
+.speaking-topic__num {
+  flex: 0 0 auto;
+  color: var(--color-subtle-foreground);
+  font-family: var(--font-ui);
+  font-size: var(--text-2xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.speaking-topic[data-active="true"] .speaking-topic__num {
+  color: var(--skill-speaking-ink);
+}
+
+.speaking-topic__copy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+/* Topic names are the content of this list; they wrap rather than ellipse. */
+.speaking-topic__copy strong {
+  color: var(--color-foreground);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-tight);
+}
+
+.speaking-topic__copy small {
+  margin-top: 2px;
+  color: var(--color-subtle-foreground);
+  font-size: var(--text-2xs);
+}
+
+.speaking-topic[data-active="true"] .speaking-topic__copy small {
+  color: var(--color-muted-foreground);
+}
+
+.speaking-topic__pct {
+  flex: 0 0 auto;
+  color: var(--color-subtle-foreground);
+  font-family: var(--font-ui);
+  font-size: var(--text-2xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.speaking-topic[data-status="complete"] .speaking-topic__pct {
+  color: var(--skill-vocabulary-ink);
+}
+
+.speaking-rail__foot {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-subtle-foreground);
+  font-size: var(--text-2xs);
+  gap: var(--space-2);
+}
+
+/* -- Detail column --------------------------------------------------------- */
+
+.speaking-detail {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.speaking-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-5) var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: 0 1px 3px rgba(12, 32, 55, 0.04);
+  gap: var(--space-4);
+}
+
+.speaking-question {
+  flex: 0 0 auto;
+}
+
+.speaking-question__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.speaking-question__meta {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.speaking-question__meta strong {
+  color: var(--color-foreground);
+  font-family: var(--font-ui);
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+}
+
+.speaking-question__meta span {
+  color: var(--color-subtle-foreground);
+  font-size: var(--text-xs);
+}
+
+.speaking-question__controls {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Question selector: quiet pills, not a full-bleed tab bar. */
+.speaking-qpicker {
+  display: flex;
+  flex: 0 0 auto;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--color-surface-muted);
+  gap: 2px;
+}
+
+.speaking-qpicker button {
+  min-width: 38px;
+  height: 30px;
+  padding: 0 var(--space-3);
+  border-radius: 999px;
+  color: var(--color-muted-foreground);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.speaking-qpicker button:hover {
+  color: var(--color-foreground);
+}
+
+.speaking-qpicker button[data-active="true"] {
+  color: var(--skill-speaking-ink);
+  background: var(--color-surface);
+  box-shadow: 0 1px 2px rgba(12, 32, 55, 0.08);
+}
+
+.speaking-question__prompt {
+  margin: 0;
+  color: var(--color-foreground);
+  font-family: var(--font-ui);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  text-wrap: balance;
+}
+
+.speaking-question__hint {
+  display: flex;
+  align-items: flex-start;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--skill-speaking-border);
+  border-radius: var(--radius-sm);
+  margin: 0;
+  color: var(--color-muted-foreground);
+  background: var(--skill-speaking-soft);
+  font-size: var(--text-sm);
+  gap: var(--space-2);
+  line-height: var(--leading-snug);
+}
+
+/* -- Preparation ----------------------------------------------------------- */
+
+.speaking-prep {
+  min-height: 0;
+  flex: 1;
+  gap: var(--space-3);
+}
+
+/* The tab labels name this panel, so the heading is for assistive tech only
+   and the row stays on one line at the width this column actually gets. */
+.speaking-prep__head {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.speaking-prep__actions {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.speaking-tabs {
+  display: flex;
+  padding: 3px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-muted);
+  gap: 2px;
+}
+
+.speaking-tabs button {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 var(--space-3);
+  border-radius: 6px;
+  color: var(--color-muted-foreground);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  gap: var(--space-2);
+  white-space: nowrap;
+}
+
+.speaking-tabs button[data-active="true"] {
+  color: var(--skill-speaking-ink);
+  background: var(--color-surface);
+  box-shadow: 0 1px 2px rgba(12, 32, 55, 0.08);
+}
+
+.speaking-tabs small {
+  color: var(--color-subtle-foreground);
+  font-size: var(--text-2xs);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Both scrollers keep a little slack at the bottom so a clipped row is
+   visibly mid-list rather than flush against the panel edge. */
+.speaking-prep__body {
+  min-height: 0;
+  flex: 1;
+  padding-bottom: var(--space-2);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--scrollbar-thumb, #b8c6ce) transparent;
+  scrollbar-width: thin;
+}
+
+.speaking-prep__list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  gap: var(--space-2);
+  list-style: none;
+}
+
+.speaking-prep__list li {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-muted-foreground);
+  background: var(--color-surface-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.speaking-prep__samples {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.speaking-prep__samples section {
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-muted);
+}
+
+.speaking-prep__samples h3 {
+  margin: 0 0 var(--space-2);
+  color: var(--color-foreground);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+}
+
+.speaking-prep__samples p {
+  max-width: 68ch;
+  margin: 0;
+  color: var(--color-muted-foreground);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+/* -- Start bar ------------------------------------------------------------- */
+
+.speaking-start {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--skill-speaking-border);
+  border-radius: var(--radius-md);
+  background: var(--skill-speaking-soft);
+  gap: var(--space-4);
+}
+
+.speaking-start__copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.speaking-start__copy strong {
+  color: var(--color-foreground);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.speaking-start__copy span {
+  color: var(--color-muted-foreground);
+  font-size: var(--text-xs);
+}
+
+/* -- Empty state ----------------------------------------------------------- */
+
+.speaking-empty-detail {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  color: var(--color-subtle-foreground);
+  gap: var(--space-2);
+  text-align: center;
+}
+
+.speaking-empty-detail strong {
+  color: var(--color-foreground);
+  font-family: var(--font-ui);
+  font-size: var(--text-md);
+}
+
+.speaking-empty-detail p {
+  max-width: 44ch;
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 1120px) {
+  .speaking__body {
+    grid-template-columns: 264px minmax(0, 1fr);
+  }
+}

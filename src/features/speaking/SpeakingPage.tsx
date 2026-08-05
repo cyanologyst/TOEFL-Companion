@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AudioWaveform } from "../../components/AudioWaveform";
 import { DoodleIcon } from "../../components/DoodleIcon";
 import { Modal } from "../../components/Modal";
-import { EmptyState, PageHeader, SegmentedControl, StudyAccordion } from "../../components/StudyUI";
+import { SegmentedControl, StudyAccordion } from "../../components/StudyUI";
 import rawListenRepeat from "../../data/listen-repeat.json";
 import rawTopics from "../../data/toefl-data.json";
 import { useSpeakingRecorder } from "../../hooks/useSpeakingRecorder";
@@ -16,6 +16,7 @@ import type {
   SavedRecordingMetadata,
   Topic,
 } from "../../types/toefl";
+import "./speaking.css";
 
 type SpeakingMode = "interview" | "repeat";
 type InterviewMode = "practice" | "exam";
@@ -471,57 +472,61 @@ export function SpeakingPage({
   };
 
   return (
-    <div
-      className={`page speaking-page${
-        !activeTopic && mode === "repeat" ? " speaking-page--repeat" : ""
-      }`}
-    >
+    <div className={`speaking${!activeTopic && mode === "repeat" ? " speaking--repeat" : ""}`}>
       {!activeTopic ? (
         <>
-          <PageHeader
-            className="speaking-page-header"
-            title="Speaking"
-            description="Build natural interview answers and accurate spoken repetition."
-            icon="mic"
-            actions={
-              <SegmentedControl
-                id="speaking-mode"
-                className="speaking-mode-switch"
-                label="Practice type"
-                items={[
-                  {
-                    value: "interview",
-                    label: "Interview practice",
-                    icon: "mic",
-                    tabId: "speaking-interview-tab",
-                    panelId: "speaking-interview-panel",
-                  },
-                  {
-                    value: "repeat",
-                    label: "Listen & Repeat",
-                    icon: "headphone",
-                    tabId: "speaking-repeat-tab",
-                    panelId: "speaking-repeat-panel",
-                  },
-                ]}
-                value={mode}
-                onValueChange={(nextMode) => {
-                  if (
-                    hasProtectedRecording &&
-                    !window.confirm(
-                      "Discard the active or unsaved recording and change practice type?",
-                    )
-                  ) {
-                    return;
-                  }
-                  setMode(nextMode);
-                }}
-              />
-            }
-          />
+          <header className="speaking__head">
+            <div className="speaking__title">
+              <span className="speaking__title-icon">
+                <DoodleIcon name="mic" size={24} />
+              </span>
+              <div>
+                <h1>Speaking</h1>
+                <p>Build natural interview answers and accurate spoken repetition.</p>
+              </div>
+            </div>
+            <SegmentedControl
+              id="speaking-mode"
+              className="speaking-mode-switch"
+              label="Practice type"
+              items={[
+                {
+                  value: "interview",
+                  label: "Interview practice",
+                  icon: "mic",
+                  tabId: "speaking-interview-tab",
+                  panelId: "speaking-interview-panel",
+                },
+                {
+                  value: "repeat",
+                  label: "Listen & Repeat",
+                  icon: "headphone",
+                  tabId: "speaking-repeat-tab",
+                  panelId: "speaking-repeat-panel",
+                },
+              ]}
+              value={mode}
+              onValueChange={(nextMode) => {
+                if (
+                  hasProtectedRecording &&
+                  !window.confirm(
+                    "Discard the active or unsaved recording and change practice type?",
+                  )
+                ) {
+                  return;
+                }
+                setMode(nextMode);
+              }}
+            />
+          </header>
 
           {mode === "repeat" ? (
-            <div id="speaking-repeat-panel" role="tabpanel" aria-labelledby="speaking-repeat-tab">
+            <div
+              id="speaking-repeat-panel"
+              role="tabpanel"
+              aria-labelledby="speaking-repeat-tab"
+              className="speaking__body speaking__body--repeat"
+            >
               <ListenRepeatWorkspace
                 onNotice={onNotice}
                 onSaved={onSaved}
@@ -529,182 +534,166 @@ export function SpeakingPage({
               />
             </div>
           ) : (
-            <section
+            <div
               id="speaking-interview-panel"
               role="tabpanel"
               aria-labelledby="speaking-interview-tab"
-              className="speaking-library"
+              className="speaking__body"
             >
-              <div className="speaking-library-toolbar">
-                <label className="search-field speaking-search">
-                  <DoodleIcon name="search" size={17} />
-                  <span className="visually-hidden">Search speaking sets</span>
-                  <input
-                    value={query}
-                    onChange={(event) => setQuery(event.target.value)}
-                    placeholder="Search topics or questions…"
-                  />
-                </label>
-                <label className="speaking-sort speaking-category-filter">
-                  <span>Group</span>
-                  <select value={category} onChange={(event) => setCategory(event.target.value)}>
-                    {categories.map((item) => (
-                      <option key={item} value={item}>
-                        {formatCategory(item)}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <label className="speaking-sort">
-                  <span>Sort</span>
-                  <select
-                    value={sort}
-                    onChange={(event) => setSort(event.target.value as TopicSort)}
-                  >
-                    <option value="library">Library order</option>
-                    <option value="recent">Recently practiced</option>
-                    <option value="progress">Needs practice</option>
-                    <option value="bookmarked">Most bookmarked</option>
-                  </select>
-                </label>
-              </div>
-
-              <div className="speaking-topic-browser">
-                <aside className="panel speaking-topic-navigator">
-                  <header className="speaking-topic-navigator__header">
-                    <div>
-                      <p>NEO interview library</p>
-                      <h2>Topics 1–30</h2>
-                      <small>120 interview questions</small>
-                    </div>
-                    <span aria-live="polite">
+              {/* Search and filters live inside the rail they act on, rather
+                  than as a full-width toolbar above the whole page. */}
+              <aside className="speaking-rail" aria-label="Interview topics">
+                <div className="speaking-rail__head">
+                  <div className="speaking-rail__title">
+                    <h2>NEO interview library</h2>
+                    <span className="speaking-rail__count" aria-live="polite">
                       {filteredTopics.length}/{topics.length}
                     </span>
-                  </header>
+                  </div>
 
-                  <nav
-                    ref={topicNavigatorScrollRef}
-                    className="speaking-topic-navigator__scroll"
-                    aria-label="Interview topics"
-                  >
-                    {topicGroups.map((group) => {
-                      const groupId = `speaking-topic-group-${group.category
-                        .toLocaleLowerCase()
-                        .replace(/[^a-z0-9]+/gu, "-")}`;
-                      return (
-                        <section
-                          key={group.category}
-                          className="speaking-topic-group"
-                          aria-labelledby={groupId}
-                        >
-                          <h3 id={groupId}>
-                            {formatCategory(group.category)}
-                            <span>{group.topics.length}</span>
-                          </h3>
-                          <div className="speaking-topic-group__items">
-                            {group.topics.map((topic) => {
-                              const progress = progressByTopic.get(topic.id)!;
-                              const selected = selectedTopic.id === topic.id;
-                              return (
-                                <button
-                                  key={topic.id}
-                                  ref={(node) => {
-                                    if (node) {
-                                      topicButtonRefs.current.set(topic.id, node);
-                                    } else {
-                                      topicButtonRefs.current.delete(topic.id);
-                                    }
-                                  }}
-                                  type="button"
-                                  className="speaking-topic-nav-item"
-                                  data-active={selected}
-                                  data-status={progress.status}
-                                  aria-current={selected ? "page" : undefined}
-                                  tabIndex={
-                                    selected ||
-                                    (selectedFilteredIndex < 0 &&
-                                      topic.id === filteredTopics[0]?.id)
-                                      ? 0
-                                      : -1
-                                  }
-                                  onClick={() => selectTopicForPreview(topic.id)}
-                                  onKeyDown={(event) =>
-                                    handleTopicNavigatorKeyDown(event, topic.id)
-                                  }
-                                >
-                                  <span className="speaking-topic-nav-item__number">
-                                    {String(topic.id).padStart(2, "0")}
-                                  </span>
-                                  <span className="speaking-topic-nav-item__copy">
-                                    <strong>{topic.title}</strong>
-                                    <small>
-                                      {progress.completedQuestions}/{topic.questions.length}{" "}
-                                      complete
-                                    </small>
-                                  </span>
-                                  <span className="speaking-topic-nav-item__progress">
-                                    {progress.percent}%
-                                  </span>
-                                </button>
-                              );
-                            })}
-                          </div>
-                        </section>
-                      );
-                    })}
-                  </nav>
+                  <label className="speaking-rail__search">
+                    <DoodleIcon name="search" size={16} />
+                    <span className="visually-hidden">Search speaking sets</span>
+                    <input
+                      value={query}
+                      onChange={(event) => setQuery(event.target.value)}
+                      placeholder="Search topics or questions…"
+                    />
+                  </label>
 
-                  <footer className="speaking-topic-navigator__footer">
-                    <span>{filteredTopics.length * 4} questions shown</span>
-                    <span>{savedKeys.length} saved</span>
-                  </footer>
-                </aside>
+                  <div className="speaking-rail__filters">
+                    <label>
+                      <span>Group</span>
+                      <select
+                        value={category}
+                        onChange={(event) => setCategory(event.target.value)}
+                      >
+                        {categories.map((item) => (
+                          <option key={item} value={item}>
+                            {formatCategory(item)}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                    <label>
+                      <span>Sort</span>
+                      <select
+                        value={sort}
+                        onChange={(event) => setSort(event.target.value as TopicSort)}
+                      >
+                        <option value="library">Library order</option>
+                        <option value="recent">Recently practiced</option>
+                        <option value="progress">Needs practice</option>
+                        <option value="bookmarked">Most bookmarked</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
 
-                <section
-                  className="speaking-topic-preview-region"
-                  aria-label="Selected topic overview"
+                <nav
+                  ref={topicNavigatorScrollRef}
+                  className="speaking-rail__scroll"
+                  aria-label="Interview topics"
                 >
-                  {filteredTopics.length ? (
-                    <SelectedTopicOverview
-                      key={selectedTopic.id}
-                      topic={selectedTopic}
-                      progress={selectedTopicProgress}
-                      questionIndex={previewQuestionIndex}
-                      bookmarked={savedKeys.includes(
-                        questionKey(selectedTopic.id, previewQuestionIndex),
-                      )}
-                      onQuestionChange={setPreviewQuestionIndex}
-                      onToggleBookmark={() =>
-                        toggleBookmark(selectedTopic.id, previewQuestionIndex)
-                      }
-                      onStart={() => {
-                        setQuestionIndex(previewQuestionIndex);
-                        setActiveTopicId(selectedTopic.id);
-                      }}
-                    />
-                  ) : (
-                    <EmptyState
-                      className="speaking-empty speaking-topic-preview-empty"
-                      icon="search"
-                      title="No matching speaking sets"
-                      description="Try another search phrase or clear the active topic filter."
-                      action={
-                        <button
-                          type="button"
-                          className="button button--outline"
-                          onClick={() => {
-                            setQuery("");
-                            setCategory("All topics");
-                          }}
-                        >
-                          Clear filters
-                        </button>
-                      }
-                    />
+                  {topicGroups.map((group) => {
+                    const groupId = `speaking-topic-group-${group.category
+                      .toLocaleLowerCase()
+                      .replace(/[^a-z0-9]+/gu, "-")}`;
+                    return (
+                      <section
+                        key={group.category}
+                        className="speaking-rail__group"
+                        aria-labelledby={groupId}
+                      >
+                        <h3 id={groupId}>
+                          {formatCategory(group.category)}
+                          <span>{group.topics.length}</span>
+                        </h3>
+                        {group.topics.map((topic) => {
+                          const progress = progressByTopic.get(topic.id)!;
+                          const selected = selectedTopic.id === topic.id;
+                          return (
+                            <button
+                              key={topic.id}
+                              ref={(node) => {
+                                if (node) {
+                                  topicButtonRefs.current.set(topic.id, node);
+                                } else {
+                                  topicButtonRefs.current.delete(topic.id);
+                                }
+                              }}
+                              type="button"
+                              className="speaking-topic"
+                              data-active={selected}
+                              data-status={progress.status}
+                              aria-current={selected ? "page" : undefined}
+                              tabIndex={
+                                selected ||
+                                (selectedFilteredIndex < 0 && topic.id === filteredTopics[0]?.id)
+                                  ? 0
+                                  : -1
+                              }
+                              onClick={() => selectTopicForPreview(topic.id)}
+                              onKeyDown={(event) => handleTopicNavigatorKeyDown(event, topic.id)}
+                            >
+                              <span className="speaking-topic__num">
+                                {String(topic.id).padStart(2, "0")}
+                              </span>
+                              <span className="speaking-topic__copy">
+                                <strong>{topic.title}</strong>
+                                <small>
+                                  {progress.completedQuestions}/{topic.questions.length} complete
+                                </small>
+                              </span>
+                              <span className="speaking-topic__pct">{progress.percent}%</span>
+                            </button>
+                          );
+                        })}
+                      </section>
+                    );
+                  })}
+                </nav>
+
+                <footer className="speaking-rail__foot">
+                  <span>{filteredTopics.length * 4} questions shown</span>
+                  <span>{savedKeys.length} saved</span>
+                </footer>
+              </aside>
+
+              {filteredTopics.length ? (
+                <SelectedTopicOverview
+                  key={selectedTopic.id}
+                  topic={selectedTopic}
+                  progress={selectedTopicProgress}
+                  questionIndex={previewQuestionIndex}
+                  bookmarked={savedKeys.includes(
+                    questionKey(selectedTopic.id, previewQuestionIndex),
                   )}
-                </section>
-              </div>
-            </section>
+                  onQuestionChange={setPreviewQuestionIndex}
+                  onToggleBookmark={() => toggleBookmark(selectedTopic.id, previewQuestionIndex)}
+                  onStart={() => {
+                    setQuestionIndex(previewQuestionIndex);
+                    setActiveTopicId(selectedTopic.id);
+                  }}
+                />
+              ) : (
+                <div className="speaking-empty-detail">
+                  <DoodleIcon name="search" size={30} />
+                  <strong>No matching speaking sets</strong>
+                  <p>Try another search phrase or clear the active topic filter.</p>
+                  <button
+                    type="button"
+                    className="button button--outline"
+                    onClick={() => {
+                      setQuery("");
+                      setCategory("All topics");
+                    }}
+                  >
+                    Clear filters
+                  </button>
+                </div>
+              )}
+            </div>
           )}
         </>
       ) : (
@@ -817,6 +806,9 @@ function SelectedTopicOverview({
   onStart: () => void;
 }): React.JSX.Element {
   const [supportDialog, setSupportDialog] = useState<SpeakingSupportKind | null>(null);
+  const [prepTab, setPrepTab] = useState<SpeakingSupportKind>("ideas");
+  const questionTabRefs = useRef(new Map<number, HTMLButtonElement>());
+  const questionTabBaseId = `speaking-topic-${topic.id}-questions`;
   const activeQuestion = topic.questions[questionIndex];
   const actionLabel =
     progress.status === "ready"
@@ -825,150 +817,189 @@ function SelectedTopicOverview({
         ? "Practice again"
         : "Continue practice";
 
+  const prepTabs: Array<{ value: SpeakingSupportKind; label: string; count: number }> = [
+    { value: "ideas", label: "Ideas", count: activeQuestion.ideas.length },
+    {
+      value: "collocations",
+      label: "Collocations",
+      count: activeQuestion.collocations.length,
+    },
+    { value: "samples", label: "Sample answers", count: 2 },
+  ];
+
   return (
-    <article className="panel speaking-topic-preview" data-status={progress.status}>
-      <section className="speaking-topic-question-preview" aria-label="Question preview">
-        <SegmentedControl
-          key={topic.id}
-          id={`speaking-topic-${topic.id}-questions`}
-          className="speaking-topic-question-tabs"
-          label={`${topic.title} questions`}
-          items={topic.questions.map((item, index) => ({
-            value: String(index),
-            label: `Q${index + 1}`,
-            panel: (
-              <div className="speaking-topic-question-panel">
-                <header className="speaking-topic-question-panel__header">
-                  <div>
-                    <p>Question {index + 1} preview</p>
-                    <h3>{item.prompt}</h3>
-                  </div>
-                  <button
-                    type="button"
-                    className="icon-button speaking-topic-question-bookmark"
-                    aria-label={bookmarked ? "Remove question bookmark" : "Bookmark this question"}
-                    aria-pressed={bookmarked}
-                    title={bookmarked ? "Remove bookmark" : "Save question"}
-                    onClick={onToggleBookmark}
-                  >
-                    <DoodleIcon name="bookmark" size={20} />
-                  </button>
-                </header>
+    <div className="speaking-detail" data-status={progress.status}>
+      <section className="speaking-card speaking-question" aria-label="Question preview">
+        <div className="speaking-question__top">
+          <div className="speaking-question__meta">
+            <strong>{topic.title}</strong>
+            <span>
+              {formatCategory(topic.category)} · {progress.completedQuestions}/
+              {topic.questions.length} complete
+            </span>
+          </div>
 
-                <p className="speaking-topic-question-panel__plan">
-                  <DoodleIcon name="bulb" size={18} />
-                  {item.plan}
-                </p>
+          <div className="speaking-question__controls">
+            {/* One panel, four tabs: the questions share a single region that
+                swaps content, so roving tabindex moves focus while only the
+                selected tab owns the panel. */}
+            <div
+              className="speaking-qpicker"
+              role="tablist"
+              aria-label={`${topic.title} questions`}
+              onKeyDown={(event) => {
+                const last = topic.questions.length - 1;
+                let next: number | null = null;
+                if (event.key === "ArrowRight") {
+                  next = questionIndex === last ? 0 : questionIndex + 1;
+                } else if (event.key === "ArrowLeft") {
+                  next = questionIndex === 0 ? last : questionIndex - 1;
+                } else if (event.key === "Home") {
+                  next = 0;
+                } else if (event.key === "End") {
+                  next = last;
+                }
+                if (next !== null) {
+                  event.preventDefault();
+                  setSupportDialog(null);
+                  onQuestionChange(next);
+                  questionTabRefs.current.get(next)?.focus();
+                }
+              }}
+            >
+              {topic.questions.map((item, index) => (
+                <button
+                  key={item.prompt}
+                  ref={(node) => {
+                    if (node) {
+                      questionTabRefs.current.set(index, node);
+                    } else {
+                      questionTabRefs.current.delete(index);
+                    }
+                  }}
+                  type="button"
+                  role="tab"
+                  id={`${questionTabBaseId}-tab-${index}`}
+                  aria-controls={`${questionTabBaseId}-panel`}
+                  aria-selected={index === questionIndex}
+                  tabIndex={index === questionIndex ? 0 : -1}
+                  data-active={index === questionIndex}
+                  onClick={() => {
+                    setSupportDialog(null);
+                    onQuestionChange(index);
+                  }}
+                >
+                  Q{index + 1}
+                </button>
+              ))}
+            </div>
+            <button
+              type="button"
+              className="icon-button"
+              aria-label={bookmarked ? "Remove question bookmark" : "Bookmark this question"}
+              aria-pressed={bookmarked}
+              title={bookmarked ? "Remove bookmark" : "Save question"}
+              onClick={onToggleBookmark}
+            >
+              <DoodleIcon name="bookmark" size={19} />
+            </button>
+          </div>
+        </div>
 
-                <div className="speaking-topic-support-summary">
-                  <article className="speaking-topic-support-card speaking-topic-support-card--ideas">
-                    <header>
-                      <span>
-                        <DoodleIcon name="bulb" size={18} />
-                        Ideas
-                      </span>
-                      <div className="speaking-topic-support-card__header-actions">
-                        <small>{item.ideas.length}</small>
-                        <button
-                          type="button"
-                          className="speaking-topic-support-card__view"
-                          aria-label={`View all ${item.ideas.length} ideas`}
-                          aria-haspopup="dialog"
-                          onClick={() => setSupportDialog("ideas")}
-                        >
-                          Open
-                          <DoodleIcon name="arrow" size={11} className="doodle-icon--forward" />
-                        </button>
-                      </div>
-                    </header>
-                    <ul>
-                      {item.ideas.slice(0, 3).map((idea) => (
-                        <li key={idea}>{idea}</li>
-                      ))}
-                    </ul>
-                  </article>
+        <div
+          className="speaking-question__panel"
+          id={`${questionTabBaseId}-panel`}
+          role="tabpanel"
+          aria-labelledby={`${questionTabBaseId}-tab-${questionIndex}`}
+        >
+          <p className="speaking-question__prompt">{activeQuestion.prompt}</p>
 
-                  <article className="speaking-topic-support-card speaking-topic-support-card--collocations">
-                    <header>
-                      <span>
-                        <DoodleIcon name="bookmark" size={18} />
-                        Collocations
-                      </span>
-                      <div className="speaking-topic-support-card__header-actions">
-                        <small>{item.collocations.length}</small>
-                        <button
-                          type="button"
-                          className="speaking-topic-support-card__view"
-                          aria-label={`View all ${item.collocations.length} collocations`}
-                          aria-haspopup="dialog"
-                          onClick={() => setSupportDialog("collocations")}
-                        >
-                          Open
-                          <DoodleIcon name="arrow" size={11} className="doodle-icon--forward" />
-                        </button>
-                      </div>
-                    </header>
-                    <div className="speaking-topic-collocation-preview">
-                      {item.collocations.slice(0, 4).map((collocation) => (
-                        <span key={collocation}>{collocation}</span>
-                      ))}
-                    </div>
-                  </article>
-
-                  <article className="speaking-topic-support-card speaking-topic-support-card--samples">
-                    <header>
-                      <span>
-                        <DoodleIcon name="doc" size={18} />
-                        Sample answers
-                      </span>
-                      <div className="speaking-topic-support-card__header-actions">
-                        <small>2</small>
-                        <button
-                          type="button"
-                          className="speaking-topic-support-card__view"
-                          aria-label="View both sample answers"
-                          aria-haspopup="dialog"
-                          onClick={() => setSupportDialog("samples")}
-                        >
-                          Open
-                          <DoodleIcon name="arrow" size={11} className="doodle-icon--forward" />
-                        </button>
-                      </div>
-                    </header>
-                    <div className="speaking-topic-sample-preview">
-                      <p>
-                        <strong>Sample 1</strong>
-                        {item.answer}
-                      </p>
-                      <p>
-                        <strong>Sample 2</strong>
-                        {item.answer2}
-                      </p>
-                    </div>
-                  </article>
-                </div>
-              </div>
-            ),
-          }))}
-          value={String(questionIndex)}
-          onValueChange={(value) => {
-            setSupportDialog(null);
-            onQuestionChange(Number(value));
-          }}
-        />
+          <p className="speaking-question__hint">
+            <DoodleIcon name="bulb" size={17} />
+            {activeQuestion.plan}
+          </p>
+        </div>
       </section>
 
-      <footer className="speaking-topic-preview__actions">
-        <div>
+      {/* One preparation panel rather than three side-by-side cells: the cells
+          were narrow enough that every idea, phrase, and sample was truncated. */}
+      <section className="speaking-card speaking-prep" aria-label="Preparation material">
+        <div className="speaking-prep__head">
+          <h2 className="visually-hidden">Preparation</h2>
+          <div className="speaking-prep__actions">
+            <div className="speaking-tabs" role="tablist" aria-label="Preparation material">
+              {prepTabs.map((tab) => (
+                <button
+                  key={tab.value}
+                  type="button"
+                  role="tab"
+                  aria-selected={prepTab === tab.value}
+                  data-active={prepTab === tab.value}
+                  onClick={() => setPrepTab(tab.value)}
+                >
+                  {tab.label}
+                  <small>{tab.count}</small>
+                </button>
+              ))}
+            </div>
+            {/* Named for what it opens, not for what it is: "Open full" alone
+                gives a screen-reader user no idea which list appears. */}
+            <button
+              type="button"
+              className="button button--quiet button--small"
+              aria-haspopup="dialog"
+              aria-label={
+                prepTab === "ideas"
+                  ? `View all ${activeQuestion.ideas.length} ideas`
+                  : prepTab === "collocations"
+                    ? `View all ${activeQuestion.collocations.length} collocations`
+                    : "View both sample answers"
+              }
+              onClick={() => setSupportDialog(prepTab)}
+            >
+              Open full
+            </button>
+          </div>
+        </div>
+
+        <div className="speaking-prep__body">
+          {prepTab === "ideas" ? (
+            <ul className="speaking-prep__list">
+              {activeQuestion.ideas.map((idea) => (
+                <li key={idea}>{idea}</li>
+              ))}
+            </ul>
+          ) : prepTab === "collocations" ? (
+            <ul className="speaking-prep__list">
+              {activeQuestion.collocations.map((collocation) => (
+                <li key={collocation}>{collocation}</li>
+              ))}
+            </ul>
+          ) : (
+            <div className="speaking-prep__samples">
+              <section>
+                <h3>Sample 1</h3>
+                <p>{activeQuestion.answer}</p>
+              </section>
+              <section>
+                <h3>Sample 2</h3>
+                <p>{activeQuestion.answer2}</p>
+              </section>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <div className="speaking-start">
+        <div className="speaking-start__copy">
           <strong>Ready for question {questionIndex + 1}?</strong>
           <span>The recorder opens only when you start practice.</span>
         </div>
         <button type="button" className="button button--primary" onClick={onStart}>
           <DoodleIcon name="mic" size={18} />
           {actionLabel}
-          <DoodleIcon name="arrow" size={16} className="doodle-icon--forward" />
         </button>
-      </footer>
+      </div>
 
       {supportDialog ? (
         <SpeakingSupportDialog
@@ -979,7 +1010,7 @@ function SelectedTopicOverview({
           onClose={() => setSupportDialog(null)}
         />
       ) : null}
-    </article>
+    </div>
   );
 }
 

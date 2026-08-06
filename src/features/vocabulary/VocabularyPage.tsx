@@ -1,13 +1,7 @@
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import { DoodleIcon } from "../../components/DoodleIcon";
 import { Modal } from "../../components/Modal";
-import {
-  ConfirmDialog,
-  EmptyState,
-  ProgressBar,
-  SegmentedControl,
-  Tooltip,
-} from "../../components/StudyUI";
+import { ConfirmDialog, EmptyState, Tooltip } from "../../components/StudyUI";
 import { applyReviewAction, calculateVocabularyStats } from "./vocabularyEngine";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { useVocabularySnapshot } from "../../hooks/useVocabularySnapshot";
@@ -21,6 +15,7 @@ import {
 import { studyRepository } from "../../services/studyRepository";
 import { speakVocabulary } from "../../services/vocabularyBrowser";
 import type { ReviewAction } from "../../types/vocabulary";
+import "./brutal.css";
 
 type VocabularyView = "library" | "review";
 const WORDS_PER_PAGE = 20;
@@ -321,18 +316,48 @@ export function VocabularyPage({
   );
 
   return (
-    <div className="page vocabulary-page">
-      <header className="page-heading">
-        <div className="page-heading__title">
-          <span className="page-heading__icon page-heading__icon--vocabulary">
+    <div className="brutal vocabulary-page">
+      <header className="brutal__head">
+        <div className="brutal__title">
+          <span className="brutal__title-mark">
             <DoodleIcon name="doc" size={28} />
           </span>
           <div>
             <h1>Vocabulary</h1>
-            <p>Build and master your personal TOEFL vocabulary.</p>
+            <p className="b-eyebrow">Build and master your TOEFL wordlist</p>
           </div>
         </div>
-        <div className="page-heading__actions">
+
+        <div className="brutal__head-actions">
+          {/* The view switch is the primary control here, so it sits with the
+              actions rather than as a band under the title. */}
+          <div className="b-switch" role="tablist" aria-label="Vocabulary view">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={view === "library"}
+              data-active={view === "library"}
+              onClick={() => {
+                if (onOpenLibrary) {
+                  onOpenLibrary();
+                  return;
+                }
+                setView("library");
+              }}
+            >
+              Library {stats.totalWords}
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={view === "review"}
+              data-active={view === "review"}
+              onClick={() => setView("review")}
+            >
+              Review {stats.dueNow + stats.new}
+            </button>
+          </div>
+
           <input
             ref={importRef}
             hidden
@@ -340,41 +365,16 @@ export function VocabularyPage({
             accept="application/json,.json"
             onChange={(event) => void importLibrary(event)}
           />
-          <button
-            type="button"
-            className="button button--outline"
-            onClick={() => importRef.current?.click()}
-          >
+          <button type="button" className="b-btn" onClick={() => importRef.current?.click()}>
             <DoodleIcon name="upload" size={17} />
-            Import JSON
+            Import
           </button>
-          <button type="button" className="button button--primary" onClick={openAdd}>
+          <button type="button" className="b-btn b-btn--lime" onClick={openAdd}>
             <span aria-hidden>＋</span>
             Add word
           </button>
         </div>
       </header>
-
-      <SegmentedControl
-        id="vocabulary-view"
-        label="Vocabulary view"
-        value={view}
-        onValueChange={(nextView) => {
-          if (nextView === "library" && onOpenLibrary) {
-            onOpenLibrary();
-            return;
-          }
-          setView(nextView);
-        }}
-        items={[
-          { value: "library", label: `Library · ${stats.totalWords}`, icon: "doc" },
-          {
-            value: "review",
-            label: `Review · ${stats.dueNow + stats.new}`,
-            icon: "sync",
-          },
-        ]}
-      />
 
       {view === "review" ? (
         <ReviewWorkspace snapshot={snapshot} onNotice={onNotice} />
@@ -965,147 +965,179 @@ function ReviewWorkspace({
 
   if (!current) {
     return (
-      <section className="panel review-complete">
-        <DoodleIcon name="trophy" size={62} />
-        <h2>{queue.length ? "Session complete" : "No review words available"}</h2>
+      <section className="b-frame rev-done">
+        <span className="brutal__title-mark" aria-hidden>
+          <DoodleIcon name="trophy" size={30} />
+        </span>
+        <h2>{queue.length ? "Session complete" : "Nothing due"}</h2>
         <p>
           {queue.length
-            ? `You reviewed ${queue.length} words. Your next due times are saved locally.`
-            : "Enable a wordlist or add a personal word to start reviewing."}
+            ? `You reviewed ${queue.length} ${queue.length === 1 ? "word" : "words"}. The next due times are saved on this device.`
+            : "Turn on a wordlist or add a personal word to start reviewing."}
         </p>
         {queue.length ? (
           <button
             type="button"
-            className="button button--primary"
+            className="b-btn b-btn--lime"
             onClick={() => window.location.reload()}
           >
-            Start another session
+            Go again
           </button>
         ) : null}
       </section>
     );
   }
 
-  return (
-    <div className="review-layout">
-      <section className="panel flashcard-panel">
-        <header className="review-header">
-          <div>
-            <span>Vocabulary review</span>
-            <strong>
-              {index + 1} of {queue.length} cards
-            </strong>
-          </div>
-          <ProgressBar
-            className="review-progress"
-            value={index}
-            max={queue.length}
-            ariaLabel={`Vocabulary review: ${index} of ${queue.length} cards complete`}
-          />
-        </header>
+  const seen = Boolean(snapshot.progress[current.word.id]?.timesSeen);
+  const percent = Math.round((index / queue.length) * 100);
 
-        <article className="flashcard">
-          <span className="status-chip status-chip--learning">
-            {snapshot.progress[current.word.id]?.timesSeen ? "Review" : "New"}
+  return (
+    <div className="rev">
+      <div className="rev__main">
+        <div className="b-frame rev-progress">
+          <span className="rev-progress__count">
+            {index + 1} / {queue.length}
           </span>
-          <div className="flashcard__term">
-            <h2>{current.word.term}</h2>
+          <span
+            className="rev-progress__track"
+            role="progressbar"
+            aria-label={`${index} of ${queue.length} cards complete`}
+            aria-valuemin={0}
+            aria-valuemax={queue.length}
+            aria-valuenow={index}
+          >
+            <span className="rev-progress__fill" style={{ width: `${percent}%` }} />
+          </span>
+          <span className={`b-tag ${seen ? "b-tag--sky" : "b-tag--rose"}`}>
+            {seen ? "Review" : "New"}
+          </span>
+        </div>
+
+        <article className="b-frame rev-card">
+          <div className="rev-card__top">
+            <div className="rev-card__term">
+              <h2>{current.word.term}</h2>
+              {current.word.pronunciation ? (
+                <p className="rev-card__phonetic">{current.word.pronunciation}</p>
+              ) : null}
+            </div>
             <button
               type="button"
-              className="icon-button"
+              className="b-icon-btn"
               onClick={() => speakVocabulary(current.word.term, snapshot.settings)}
               aria-label={`Pronounce ${current.word.term}`}
             >
-              <DoodleIcon name="speaker" size={22} />
+              <DoodleIcon name="speaker" size={21} />
             </button>
-            {current.word.pronunciation ? <p>{current.word.pronunciation}</p> : null}
           </div>
 
           {revealed ? (
-            <div className="flashcard__answer">
-              <h3>{current.word.shortMeaning || "No meaning available"}</h3>
+            <div className="rev-answer">
+              <p className="rev-answer__meaning">
+                {current.word.shortMeaning || "No meaning recorded"}
+              </p>
               {current.word.exampleSentences[0] ? (
-                <p>“{current.word.exampleSentences[0]}”</p>
+                <p className="rev-answer__example">“{current.word.exampleSentences[0]}”</p>
               ) : null}
               {current.word.collocations?.length ? (
-                <ul>
-                  {current.word.collocations.slice(0, 3).map((item) => (
+                <ul className="rev-answer__chips">
+                  {current.word.collocations.slice(0, 4).map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
               ) : null}
             </div>
           ) : (
-            <button type="button" className="reveal-button" onClick={() => setRevealed(true)}>
-              <span>
-                <DoodleIcon name="bulb" size={22} />
-                Show meaning
-              </span>
-              <small>Recall the meaning before revealing it.</small>
+            /* Recall has to happen before the answer appears, so the hidden
+               state is a target you hit rather than a blank space. */
+            <button type="button" className="rev-reveal" onClick={() => setRevealed(true)}>
+              <DoodleIcon name="bulb" size={30} />
+              <strong>Show meaning</strong>
+              <small>Say it out loud first, then check.</small>
             </button>
           )}
         </article>
 
-        <div className="review-ratings" data-visible={revealed}>
-          <button type="button" disabled={!revealed} onClick={() => rate("skipped", "Again")}>
-            <span className="rating-face rating-face--again">↻</span>
+        <div className="rev-ratings">
+          <button
+            type="button"
+            className="b-btn b-btn--flame rev-rating"
+            disabled={!revealed}
+            onClick={() => rate("skipped", "Again")}
+          >
             <strong>Again</strong>
-            <small>&lt; 5 min</small>
+            <small>under 5 min</small>
           </button>
-          <button type="button" disabled={!revealed} onClick={() => rate("later", "Hard")}>
-            <span className="rating-face rating-face--hard">⌁</span>
+          <button
+            type="button"
+            className="b-btn b-btn--rose rev-rating"
+            disabled={!revealed}
+            onClick={() => rate("later", "Hard")}
+          >
             <strong>Hard</strong>
             <small>10 min</small>
           </button>
-          <button type="button" disabled={!revealed} onClick={() => rate("known", "Good")}>
-            <span className="rating-face rating-face--good">○</span>
+          <button
+            type="button"
+            className="b-btn b-btn--sky rev-rating"
+            disabled={!revealed}
+            onClick={() => rate("known", "Good")}
+          >
             <strong>Good</strong>
             <small>1+ day</small>
           </button>
-          <button type="button" disabled={!revealed} onClick={() => rate("known", "Easy")}>
-            <span className="rating-face rating-face--easy">✓</span>
+          <button
+            type="button"
+            className="b-btn b-btn--mint rev-rating"
+            disabled={!revealed}
+            onClick={() => rate("known", "Easy")}
+          >
             <strong>Easy</strong>
             <small>2+ days</small>
           </button>
         </div>
-      </section>
+      </div>
 
-      <aside className="review-side">
-        <section className="panel session-stats">
+      <aside className="rev__side">
+        <section className="b-frame rev-stat">
           <h3>Session</h3>
-          <div className="session-ring">
-            <strong>{Math.round((index / queue.length) * 100)}%</strong>
-            <span>complete</span>
+          <div
+            className="rev-dial"
+            style={{ "--dial": `${percent * 3.6}deg` } as React.CSSProperties}
+            aria-hidden
+          >
+            <span>{percent}%</span>
           </div>
-          <dl>
+          <dl className="rev-tally">
             <div>
-              <dt>Reviewed</dt>
+              <dt>Done</dt>
               <dd>{index}</dd>
             </div>
             <div>
-              <dt>Remaining</dt>
+              <dt>Left</dt>
               <dd>{queue.length - index}</dd>
             </div>
           </dl>
         </section>
-        <section className="panel reminder-card">
+
+        <section className="b-frame b-frame--sun rev-reminder">
           <h3>
-            <DoodleIcon name="bell" size={20} />
-            Reminder cards
+            <DoodleIcon name="bell" size={18} />
+            Reminders
           </h3>
           <p>
-            Every {snapshot.settings.reminderIntervalMinutes} minutes ·{" "}
+            Every {snapshot.settings.reminderIntervalMinutes} min ·{" "}
             {snapshot.settings.notificationMode === "off" ? "paused" : "active"}
           </p>
           <button
             type="button"
-            className="button button--quiet"
+            className="b-btn b-btn--block"
             onClick={() => {
               vocabularyRepository.pauseReminders(60);
               onNotice("Vocabulary reminders paused for one hour.");
             }}
           >
-            Pause for 1 hour
+            Pause 1 hour
           </button>
         </section>
       </aside>

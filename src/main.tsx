@@ -1,6 +1,8 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
+import "@fontsource/archivo-black/400.css";
 import "@fontsource-variable/fredoka/wght.css";
+import "@fontsource-variable/space-grotesk/wght.css";
 import "@fontsource-variable/lexend/wght.css";
 import "@fontsource-variable/source-sans-3/wght.css";
 import { App } from "./App";

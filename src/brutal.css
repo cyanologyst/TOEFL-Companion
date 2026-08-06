@@ -718,3 +718,211 @@
     height: 104px;
   }
 }
+
+/* ===========================================================================
+   Motion
+   This world moves mechanically, not fluidly. Things snap, stamp, and press
+   into their own shadow; nothing floats or eases softly, because soft easing
+   contradicts a style built on hard edges and flat fills.
+
+   Per surface there is one authored moment - the card or panel arriving with
+   a sticker-drop - and everything else is feedback measured in 90-160ms.
+   =========================================================================== */
+
+.brutal {
+  --snap: cubic-bezier(0.2, 0.9, 0.25, 1);
+  --stamp: cubic-bezier(0.34, 1.4, 0.5, 1);
+}
+
+/* The authored moment: a frame lands like a sticker being pressed down. The
+   slight rotation is what separates this from a generic fade-and-rise. */
+@keyframes b-stamp {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.965) rotate(-0.8deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes b-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.b-stamp {
+  animation: b-stamp 320ms var(--stamp) both;
+}
+
+/* A list arrives as a list. The cap keeps the last item under ~250ms. */
+.b-stagger > * {
+  animation: b-stamp 280ms var(--stamp) both;
+}
+
+.b-stagger > *:nth-child(1) {
+  animation-delay: 0ms;
+}
+.b-stagger > *:nth-child(2) {
+  animation-delay: 45ms;
+}
+.b-stagger > *:nth-child(3) {
+  animation-delay: 90ms;
+}
+.b-stagger > *:nth-child(4) {
+  animation-delay: 135ms;
+}
+.b-stagger > *:nth-child(5) {
+  animation-delay: 170ms;
+}
+.b-stagger > *:nth-child(n + 6) {
+  animation-delay: 200ms;
+}
+
+/* Recording is a live condition: a hard two-step blink, not a soft pulse. */
+@keyframes b-live {
+  0%,
+  49% {
+    background: var(--pop-flame);
+    box-shadow: var(--shadow-hard);
+  }
+  50%,
+  100% {
+    background: var(--paper);
+    box-shadow: 2px 2px 0 var(--ink);
+  }
+}
+
+.b-live {
+  animation: b-live 900ms steps(1, end) infinite;
+}
+
+/* Something completed. One stamp, no repeat. */
+@keyframes b-thump {
+  0% {
+    transform: scale(0.82) rotate(-3deg);
+  }
+  60% {
+    transform: scale(1.06) rotate(1.5deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+.b-thump {
+  animation: b-thump 300ms var(--stamp) both;
+}
+
+/* Tiles tilt very slightly under the cursor - the style's tactility. */
+.b-tilt {
+  transition:
+    transform 120ms var(--snap),
+    box-shadow 120ms var(--snap);
+}
+
+.b-tilt:hover {
+  transform: translate(-2px, -2px) rotate(-0.5deg);
+  box-shadow: var(--shadow-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .b-stamp,
+  .b-stagger > *,
+  .b-thump {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .b-live {
+    animation: none;
+    background: var(--pop-flame);
+  }
+
+  .b-tilt:hover {
+    transform: none;
+  }
+
+  .b-btn:hover:not(:disabled),
+  .b-icon-btn:hover {
+    transform: none;
+  }
+}
+
+/* ===========================================================================
+   Shared page shell
+   Every brutalist surface fills the viewport and hands the app scroller
+   nothing. Only lists and prose scroll, inside their own frames.
+   =========================================================================== */
+
+.brutal__body {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  gap: 16px;
+}
+
+.brutal__col {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.brutal__lede {
+  margin: 2px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* A row inside a frame has to opt out of the frame's column direction. */
+.b-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.b-row--between {
+  justify-content: space-between;
+}
+
+.b-pad {
+  padding: 16px 18px;
+}
+
+.b-pad--tight {
+  padding: 12px 14px;
+}
+
+.b-head {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: var(--edge) solid var(--ink);
+  gap: 12px;
+}
+
+.b-head h2,
+.b-head h3 {
+  font-size: 15px;
+}
+
+.b-body {
+  min-height: 0;
+  flex: 1;
+  padding: 14px 16px;
+}

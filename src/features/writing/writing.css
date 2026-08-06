@@ -1,148 +1,264 @@
-/* Writing
+/* Writing - neo-brutalism
  *
- * The reading and the writing happen together: you keep glancing back at the
- * professor's question and the two classmates while composing. Stacking them
- * vertically pushed the editor off the bottom of the window and made that
- * glance a scroll. They sit side by side now, and the page owns the viewport.
+ * Reading and writing happen together: you glance back at the professor's
+ * question while composing. Two columns, both bounded, each scrolling its own
+ * content so the page never hands the app scroller anything.
+ *
+ * The authored moment is the discussion arriving - professor then classmates,
+ * stamped down in sequence like cards dealt onto a table.
  */
 
-.writing-page {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  padding: var(--space-5) var(--space-8) var(--space-4);
-  gap: var(--space-4);
-  overflow: hidden;
-}
-
-.writing-page > .page-heading {
-  flex: 0 0 auto;
-  margin: 0;
+.writing-page.brutal {
+  padding: 20px 24px 18px;
+  gap: 14px;
 }
 
 .writing__body {
   display: grid;
   min-height: 0;
   flex: 1;
-  gap: var(--space-4);
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1fr);
+  gap: 14px;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
 }
 
-/* -- The discussion --------------------------------------------------------- */
+/* -- Source column ---------------------------------------------------------- */
 
-/* The source column stacks. The inherited `.discussion-context` grid splits
-   this into two or three columns, which inside half the window left the
-   professor's prompt about one word wide. */
-.writing-page .writing__source.discussion-context,
-.writing-page .writing__source.discussion-context--refined {
+.writing__source {
   display: flex;
   min-height: 0;
   flex-direction: column;
-  padding-right: 2px;
-  margin-bottom: 0;
-  gap: var(--space-3);
-  grid-template-columns: none;
+  padding-right: 4px;
+  gap: 12px;
   overflow-y: auto;
   overscroll-behavior: contain;
-  scrollbar-color: #b8c6ce transparent;
+  scrollbar-color: var(--ink) transparent;
   scrollbar-width: thin;
 }
 
-.writing__source .professor-card,
-.writing__source .student-card,
-.writing__source .student-response-stack {
+.writing__source::-webkit-scrollbar {
+  width: 12px;
+}
+
+.writing__source::-webkit-scrollbar-thumb {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--pop-sun);
+}
+
+.w-card {
   flex: 0 0 auto;
+  padding: 16px 18px;
+  gap: 10px;
 }
 
-/* The response stack is itself a grid in the old layout; stack it too. */
-.writing__source .student-response-stack {
+.w-card__who {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
+  flex-direction: row;
+  align-items: center;
+  gap: 11px;
 }
 
-/* -- The editor -------------------------------------------------------------
-   Fixed frame, flexible field: the textarea takes whatever height is left
-   rather than growing the page. */
+.w-card__face {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border: var(--edge) solid var(--ink);
+  border-radius: 50%;
+  background: var(--paper);
+  place-items: center;
+}
+
+.w-card__face img {
+  display: block;
+  margin-bottom: -3px;
+}
+
+.w-card__name {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.w-card__name strong {
+  font-family: var(--font-display);
+  font-size: 15px;
+}
+
+.w-card__name span {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.w-card h2 {
+  font-size: 21px;
+  line-height: 1.15;
+}
+
+.w-card p {
+  margin: 0;
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* The professor's question is the source of truth; it gets the yellow. */
+.w-card--prof {
+  background: var(--pop-sun);
+}
+
+/* -- Compose column --------------------------------------------------------- */
 
 .writing__compose {
   display: flex;
   min-height: 0;
   flex-direction: column;
+  gap: 12px;
 }
 
-.writing__compose > .writing-editor {
+.w-editor {
+  min-height: 0;
+  flex: 1;
+  padding: 0;
+  gap: 0;
+}
+
+.w-editor__field {
   display: flex;
   min-height: 0;
   flex: 1;
   flex-direction: column;
+  padding: 14px 16px;
 }
 
-.writing__compose .writing-editor__field {
-  display: flex;
+.w-editor__field textarea {
+  width: 100%;
   min-height: 0;
   flex: 1;
-  flex-direction: column;
-}
-
-.writing__compose .writing-editor__textarea {
-  min-height: 0;
-  flex: 1;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-flat);
+  font-size: 15.5px;
+  font-weight: 500;
+  line-height: 1.6;
   resize: none;
 }
 
-/* Below this the two columns cannot both hold a readable measure. */
-@media (max-width: 1080px) {
+/* No ring on the surface you stare at for ten minutes. */
+.w-editor__field textarea:focus,
+.w-editor__field textarea:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.w-editor__field textarea::placeholder {
+  color: var(--ink);
+  opacity: 0.42;
+}
+
+.w-editor__foot {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-top: var(--edge) solid var(--ink);
+  gap: 12px;
+}
+
+.w-count {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 7px;
+  font-family: var(--font-display);
+  font-size: 17px;
+}
+
+.w-count small {
+  font-family: var(--font-flat);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  opacity: 0.65;
+  text-transform: uppercase;
+}
+
+.w-count[data-ready="true"] {
+  color: var(--ink);
+}
+
+/* -- Timer ------------------------------------------------------------------ */
+
+.w-timer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 8px 6px 14px;
+  gap: 10px;
+}
+
+.w-timer__digits {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.w-timer[data-low="true"] {
+  background: var(--pop-flame);
+}
+
+/* -- Nav -------------------------------------------------------------------- */
+
+.writing__nav {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.writing__nav-meta {
+  font-family: var(--font-flat);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1120px) {
   .writing__body {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: minmax(120px, 0.8fr) minmax(0, 1.2fr);
+    grid-template-rows: minmax(110px, 0.75fr) minmax(0, 1.25fr);
   }
 }
 
-.writing-page > .writing-navigation {
+/* The editor head carries a heading and three controls; at this column width
+   the heading was wrapping and shunting the tags. It stays on one line and
+   the controls wrap beneath it instead. */
+.w-editor > .b-head {
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+
+.w-editor > .b-head h2 {
   flex: 0 0 auto;
+  white-space: nowrap;
 }
 
-/* -- Editor ----------------------------------------------------------------- */
-
-/* The textarea is the surface you look at for ten minutes. The global 3px
-   focus ring drew a heavy blue frame around it the entire time you typed,
-   which is noise rather than information - you already know where the caret
-   is. Keyboard users still get a ring on every other control. */
-.writing__compose .writing-editor__textarea:focus,
-.writing__compose .writing-editor__textarea:focus-visible {
-  outline: none;
-  border-color: var(--color-border-strong);
-  box-shadow: none;
+.w-editor > .b-head .b-row {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  row-gap: 8px;
 }
 
-.writing__compose .writing-editor__field:focus-within {
-  box-shadow: none;
-}
-
-.writing-editor__hint {
-  color: var(--color-subtle-foreground);
-  font-family: var(--font-ui);
-  font-size: 13px;
-}
-
-/* -- Column heights ---------------------------------------------------------
-   Both columns are the same height and each manages its own overflow, so the
-   panels line up at the top and bottom instead of ending at whatever height
-   their content happened to need. */
-.writing__body > .writing__source,
-.writing__body > .writing__compose {
-  min-height: 0;
-  height: 100%;
-}
-
-.writing__compose > .writing-editor {
-  height: 100%;
-  margin: 0;
-}
-
-/* The source column's cards keep their natural height but the column itself
-   is bounded, so a long prompt scrolls rather than stretching the row. */
-.writing__source > * {
-  flex-shrink: 0;
+.w-editor > .b-head .b-tag {
+  font-size: 11px;
 }

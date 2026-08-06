@@ -102,3 +102,47 @@
 .writing-page > .writing-navigation {
   flex: 0 0 auto;
 }
+
+/* -- Editor ----------------------------------------------------------------- */
+
+/* The textarea is the surface you look at for ten minutes. The global 3px
+   focus ring drew a heavy blue frame around it the entire time you typed,
+   which is noise rather than information - you already know where the caret
+   is. Keyboard users still get a ring on every other control. */
+.writing__compose .writing-editor__textarea:focus,
+.writing__compose .writing-editor__textarea:focus-visible {
+  outline: none;
+  border-color: var(--color-border-strong);
+  box-shadow: none;
+}
+
+.writing__compose .writing-editor__field:focus-within {
+  box-shadow: none;
+}
+
+.writing-editor__hint {
+  color: var(--color-subtle-foreground);
+  font-family: var(--font-ui);
+  font-size: 13px;
+}
+
+/* -- Column heights ---------------------------------------------------------
+   Both columns are the same height and each manages its own overflow, so the
+   panels line up at the top and bottom instead of ending at whatever height
+   their content happened to need. */
+.writing__body > .writing__source,
+.writing__body > .writing__compose {
+  min-height: 0;
+  height: 100%;
+}
+
+.writing__compose > .writing-editor {
+  height: 100%;
+  margin: 0;
+}
+
+/* The source column's cards keep their natural height but the column itself
+   is bounded, so a long prompt scrolls rather than stretching the row. */
+.writing__source > * {
+  flex-shrink: 0;
+}

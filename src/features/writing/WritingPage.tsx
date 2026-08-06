@@ -163,13 +163,17 @@ export function WritingPage({
     if (saveTimer.current !== null) {
       window.clearTimeout(saveTimer.current);
     }
-    setSaveState("saving");
+    // Two things made typing stutter here. Setting "saving" outside the
+    // timeout re-rendered the editor on every single keystroke, and
+    // onChanged() re-rendered the whole app - re-reading the snapshot and
+    // recomputing vocabulary stats - after every autosave. The draft is
+    // written on this device either way; the rest of the app does not need to
+    // hear about it until the learner submits or changes question.
     saveTimer.current = window.setTimeout(() => {
       try {
         studyRepository.saveWritingDraft(discussion.id, text);
         setSavedText(text);
         setSaveState("saved");
-        onChanged();
       } catch (error) {
         setSaveState("error");
         onNotice(error instanceof Error ? error.message : "The draft could not be saved.");
@@ -180,7 +184,7 @@ export function WritingPage({
         window.clearTimeout(saveTimer.current);
       }
     };
-  }, [discussion.id, initialSnapshot.settings.autoSaveWriting, isDirty, onChanged, onNotice, text]);
+  }, [discussion.id, initialSnapshot.settings.autoSaveWriting, isDirty, onNotice, text]);
 
   const selectDiscussion = (id: string) => {
     if (isDirty) {
@@ -196,20 +200,6 @@ export function WritingPage({
     setSelectedId(id);
     setBrowserOpen(false);
     onChanged();
-  };
-
-  const saveDraft = () => {
-    setSaveState("saving");
-    try {
-      studyRepository.saveWritingDraft(discussion.id, text);
-      setSavedText(text);
-      setSaveState("saved");
-      onChanged();
-      onNotice("Draft saved on this device.");
-    } catch (error) {
-      setSaveState("error");
-      onNotice(error instanceof Error ? error.message : "The draft could not be saved.");
-    }
   };
 
   const submit = () => {
@@ -439,7 +429,20 @@ export function WritingPage({
                         ? "Unsaved changes"
                         : "Saved on this device"
                   }
-                  onRetry={saveDraft}
+                  // Retry writes straight through rather than going via a
+                  // handler that also re-rendered the app.
+                  onRetry={() => {
+                    try {
+                      studyRepository.saveWritingDraft(discussion.id, text);
+                      setSavedText(text);
+                      setSaveState("saved");
+                    } catch (error) {
+                      setSaveState("error");
+                      onNotice(
+                        error instanceof Error ? error.message : "The draft could not be saved.",
+                      );
+                    }
+                  }}
                   retryLabel="Save again"
                 />
               </div>
@@ -475,30 +478,32 @@ export function WritingPage({
                   }
                 }}
                 placeholder="Write your contribution here..."
-                spellCheck
+                // The real exam gives no spelling or grammar help, and the red
+                // squiggles trained the wrong habit. Autocomplete and
+                // autocapitalise go for the same reason.
+                spellCheck={false}
+                autoCorrect="off"
+                autoCapitalize="off"
+                autoComplete="off"
               />
             </label>
+            {/* No manual save. The draft is already written on this device as
+                you type; a second button only invited a mid-sentence click. */}
             <footer>
+              <span className="writing-editor__hint">
+                {count < 20
+                  ? `${20 - count} more ${20 - count === 1 ? "word" : "words"} before you can submit`
+                  : "Ready to submit"}
+              </span>
               <button
                 type="button"
-                className="button button--quiet"
-                onClick={saveDraft}
-                disabled={!isDirty || saveState === "saving"}
+                className="button button--primary button--writing-primary"
+                onClick={submit}
+                disabled={count < 20}
               >
-                <DoodleIcon name="floppy" size={17} />
-                {saveState === "saving" ? "Saving..." : "Save draft"}
+                <DoodleIcon name="send" size={17} />
+                Submit
               </button>
-              <div>
-                <button
-                  type="button"
-                  className="button button--primary button--writing-primary"
-                  onClick={submit}
-                  disabled={count < 20}
-                >
-                  <DoodleIcon name="send" size={17} />
-                  Submit
-                </button>
-              </div>
             </footer>
           </section>
         </div>

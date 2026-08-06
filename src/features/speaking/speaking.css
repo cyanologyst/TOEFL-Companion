@@ -1172,3 +1172,66 @@
 .repeat__body .prompt-queue > .prompt-queue__progress {
   margin: 0 var(--space-4) var(--space-2);
 }
+
+/* -- Waveform ---------------------------------------------------------------
+   The bars were a fixed 3px each, so a wider window left a growing empty gap
+   to the right of them. They flex now and the row always fills its track. */
+.repeat__body .waveform-placeholder {
+  min-width: 0;
+  height: 38px;
+  gap: 2px;
+}
+
+.repeat__body .waveform-placeholder i {
+  width: auto;
+  min-width: 2px;
+  max-width: 6px;
+  flex: 1 1 3px;
+}
+
+.repeat__body .prompt-player {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* -- Transcript card --------------------------------------------------------
+   Head and actions are fixed; the field takes the remaining height. Without
+   this the Compare control was pushed under the card's clipped edge. */
+.repeat-card.transcript-result > label,
+.repeat-card.transcript-result > small,
+.repeat-card.transcript-result > .compare-button {
+  flex: 0 0 auto;
+}
+
+.repeat-card.transcript-result > textarea {
+  min-height: 0;
+  flex: 1;
+  resize: none;
+}
+
+.repeat-card.transcript-result > .compare-button {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* -- Recorder card ----------------------------------------------------------
+   Same treatment: the stage breathes, the actions stay reachable. */
+.repeat-card.repeat-recorder > .repeat-recorder__stage {
+  min-height: 0;
+  flex: 1;
+}
+
+.repeat-card.repeat-recorder > .repeat-recorder__actions {
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+}
+
+/* -- Listen card ------------------------------------------------------------ */
+
+.repeat-card.listen-prompt-card > .repeat-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}

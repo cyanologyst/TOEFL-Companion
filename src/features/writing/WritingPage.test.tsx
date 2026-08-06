@@ -33,7 +33,9 @@ describe("WritingPage", () => {
     expect(screen.queryByRole("button", { name: "View feedback" })).not.toBeInTheDocument();
     expect(screen.queryByText("Feedback workspace")).not.toBeInTheDocument();
 
-    expect(screen.getByRole("button", { name: "Save draft" })).toBeVisible();
+    // Drafts save themselves as you type; a manual Save button only invited a
+    // mid-sentence click, so Submit is the single action in the editor.
+    expect(screen.queryByRole("button", { name: "Save draft" })).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Submit" })).toBeVisible();
   });
 });

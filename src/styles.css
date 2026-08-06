@@ -4575,19 +4575,27 @@ textarea {
   padding: 10px 9px 9px 12px;
 }
 
+/* White cards with a tinted border and illustration rather than three blocks
+   of flat colour, which read as heavier than anything else on the page. */
 .dashboard-continue-card--vocabulary {
   border-color: #cfe9e2;
-  background: #eaf8f2;
+  background: var(--color-surface);
 }
 
 .dashboard-continue-card--speaking {
   border-color: #d4e6f5;
-  background: #e7f1fa;
+  background: var(--color-surface);
 }
 
 .dashboard-continue-card--writing {
-  border-color: #bdb3c7;
-  background: #d1cad8;
+  border-color: #d2c6ee;
+  background: var(--color-surface);
+}
+
+/* The artwork carries its own pale backdrop; blending it drops the hard
+   rectangle that colour fill used to hide. */
+.dashboard-continue-card img {
+  mix-blend-mode: multiply;
 }
 
 .dashboard-continue-card.is-recommended {

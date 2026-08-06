@@ -1,7 +1,31 @@
+import { gsap } from "gsap";
+import { useEffect, useMemo, useRef } from "react";
+import {
+  Area,
+  AreaChart,
+  Bar,
+  BarChart,
+  Cell,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import { DoodleIcon, type DoodleIconName } from "../../components/DoodleIcon";
-import { EmptyState, PageHeader, ProgressBar, StatusBadge } from "../../components/StudyUI";
+import { Icon8, type Icon8Name } from "../../components/Icon8";
 import type { StudyActivity, StudyState } from "../../types/study";
 import type { VocabularyStats } from "../../types/vocabulary";
+import {
+  accuracyTrend,
+  activityByDay,
+  hasAnyHistory,
+  masteryBreakdown,
+  studyStreak,
+  writingSubmissionCount,
+} from "./progressModel";
+import "./progress.css";
 
 interface ProgressPageProps {
   vocabularyStats: VocabularyStats;
@@ -9,74 +33,125 @@ interface ProgressPageProps {
   studyState: StudyState;
 }
 
-interface PracticeDay {
-  id: string;
-  label: string;
-  fullLabel: string;
-  vocabulary: number;
-  speaking: number;
-  writing: number;
-}
+const SKILL_COLOR = {
+  vocabulary: "#0d7c6a",
+  speaking: "#2b6cbd",
+  writing: "#6b4fb0",
+} as const;
 
-function writingSubmissions(state: StudyState): number {
-  return Object.values(state.writing).reduce(
-    (total, record) => total + record.submissions.length,
-    0,
+const MASTERY_COLOR = {
+  mastered: "#0d7c6a",
+  familiar: "#3fa88f",
+  learning: "#e9a13b",
+  new: "#d7dfe3",
+} as const;
+
+const ACTIVITY_ICON: Record<StudyActivity["kind"], DoodleIconName> = {
+  vocabulary: "doc",
+  speaking: "mic",
+  writing: "pen",
+};
+
+/**
+ * Counts a number up when it first appears. Reading "0" tick to a real total
+ * makes the figure land as an achievement rather than a label, and it is the
+ * only scripted motion on the page.
+ */
+function CountUp({ value, suffix = "" }: { value: number; suffix?: string }): React.JSX.Element {
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) {
+      return;
+    }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || value === 0) {
+      node.textContent = `${value}${suffix}`;
+      return;
+    }
+    const counter = { current: 0 };
+    const tween = gsap.to(counter, {
+      current: value,
+      duration: Math.min(1.1, 0.35 + value / 900),
+      ease: "power2.out",
+      onUpdate: () => {
+        node.textContent = `${Math.round(counter.current)}${suffix}`;
+      },
+    });
+    return () => {
+      tween.kill();
+    };
+  }, [value, suffix]);
+
+  return (
+    <span ref={ref} className="progress-stat__value">
+      0{suffix}
+    </span>
   );
 }
 
-function activityDayKey(date: Date): string {
-  return date.toLocaleDateString("en-CA");
+function ChartTip({
+  active,
+  payload,
+  label,
+}: {
+  active?: boolean;
+  payload?: Array<{ name?: string; value?: number; color?: string; payload?: unknown }>;
+  label?: string | number;
+}): React.JSX.Element | null {
+  if (!active || !payload?.length) {
+    return null;
+  }
+  return (
+    <div className="progress-tip">
+      {label !== undefined ? <strong>{String(label)}</strong> : null}
+      {payload.map((entry) => (
+        <span key={entry.name ?? String(entry.value)} style={{ color: entry.color }}>
+          {entry.name}: {entry.value}
+        </span>
+      ))}
+    </div>
+  );
 }
 
-function recentWeek(activities: StudyActivity[]): PracticeDay[] {
-  const shortFormatter = new Intl.DateTimeFormat(undefined, { weekday: "short" });
-  const fullFormatter = new Intl.DateTimeFormat(undefined, {
-    weekday: "long",
-    month: "short",
-    day: "numeric",
-  });
-  return Array.from({ length: 7 }, (_, offset) => {
-    const date = new Date();
-    date.setDate(date.getDate() - (6 - offset));
-    const id = activityDayKey(date);
-    const matches = activities.filter(
-      (activity) => activityDayKey(new Date(activity.createdAt)) === id,
-    );
-    return {
-      id,
-      label: shortFormatter.format(date),
-      fullLabel: fullFormatter.format(date),
-      vocabulary: matches.filter((activity) => activity.kind === "vocabulary").length,
-      speaking: matches.filter((activity) => activity.kind === "speaking").length,
-      writing: matches.filter((activity) => activity.kind === "writing").length,
-    };
-  });
+function StatTile({
+  art,
+  value,
+  suffix,
+  label,
+  note,
+}: {
+  art: Icon8Name;
+  value: number;
+  suffix?: string;
+  label: string;
+  note: string;
+}): React.JSX.Element {
+  return (
+    <article className="progress-stat">
+      <span className="progress-stat__art">
+        <Icon8 name={art} size={38} />
+      </span>
+      <span className="progress-stat__copy">
+        <CountUp value={value} suffix={suffix} />
+        <span className="progress-stat__label">{label}</span>
+        <span className="progress-stat__note">{note}</span>
+      </span>
+    </article>
+  );
 }
 
-function relativeDate(value: string): string {
-  const date = new Date(value);
-  const now = new Date();
-  if (date.toDateString() === now.toDateString()) {
-    return new Intl.DateTimeFormat(undefined, {
-      hour: "numeric",
-      minute: "2-digit",
-    }).format(date);
+function relativeTime(iso: string): string {
+  const minutes = Math.max(0, Math.floor((Date.now() - Date.parse(iso)) / 60_000));
+  if (minutes < 60) {
+    return `${minutes} min ago`;
   }
-  return new Intl.DateTimeFormat(undefined, {
-    month: "short",
-    day: "numeric",
-  }).format(date);
-}
-
-function activityIcon(kind: StudyActivity["kind"]): DoodleIconName {
-  if (kind === "speaking") {
-    return "mic";
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) {
+    return `${hours} hr ago`;
   }
-  if (kind === "writing") {
-    return "pen";
-  }
-  return "doc";
+  const days = Math.floor(hours / 24);
+  return days === 1 ? "Yesterday" : `${days} days ago`;
 }
 
 export function ProgressPage({
@@ -84,344 +159,273 @@ export function ProgressPage({
   speakingAttempts,
   studyState,
 }: ProgressPageProps): React.JSX.Element {
-  const writingCount = writingSubmissions(studyState);
-  const week = recentWeek(studyState.activities);
-  const weeklyActivityCount = week.reduce(
-    (total, day) => total + day.vocabulary + day.speaking + day.writing,
-    0,
-  );
-  const maximumDailyCount = Math.max(
-    1,
-    ...week.flatMap((day) => [day.vocabulary, day.speaking, day.writing]),
-  );
-  const activeDays = new Set(
-    studyState.activities.map((activity) => activityDayKey(new Date(activity.createdAt))),
-  ).size;
-  const vocabularyRatio = vocabularyStats.totalWords
-    ? vocabularyStats.mastered / vocabularyStats.totalWords
-    : 0;
+  const days = useMemo(() => activityByDay(studyState.activities), [studyState.activities]);
+  const mastery = useMemo(() => masteryBreakdown(vocabularyStats), [vocabularyStats]);
+  const trend = useMemo(() => accuracyTrend(studyState), [studyState]);
+  const streak = useMemo(() => studyStreak(studyState.activities), [studyState.activities]);
+  const writingCount = writingSubmissionCount(studyState);
+  const started = hasAnyHistory(vocabularyStats, speakingAttempts, studyState);
+  const recent = [...studyState.activities].slice(0, 12);
 
   return (
-    <div className="page progress-page progress-page--refined">
-      <PageHeader
-        title="Progress & history"
-        description="See the practice behind your progress, without noisy scoring."
-        icon="analytics"
-      />
-
-      <section className="panel progress-summary" aria-labelledby="progress-summary-title">
-        <h2 id="progress-summary-title" className="sr-only">
-          Study summary
-        </h2>
-        <div className="progress-metrics progress-metrics--refined">
-          <Metric
-            icon="target"
-            tone="amber"
-            label="Active days"
-            value={String(activeDays)}
-            detail="on this device"
-          />
-          <Metric
-            icon="doc"
-            tone="green"
-            label="Words mastered"
-            value={String(vocabularyStats.mastered)}
-            detail={`${vocabularyStats.totalWords} in library`}
-          />
-          <Metric
-            icon="mic"
-            tone="blue"
-            label="Speaking attempts"
-            value={String(speakingAttempts)}
-            detail={`${studyState.listenRepeatAttempts.length} repeat attempts`}
-          />
-          <Metric
-            icon="pen"
-            tone="purple"
-            label="Writing submissions"
-            value={String(writingCount)}
-            detail={`${Object.values(studyState.writing).filter((record) => record.draft).length} drafts`}
-          />
-        </div>
-      </section>
-
-      <section className="panel progress-overview progress-overview--refined">
-        <div className="skill-overview">
-          <header className="progress-section-heading">
-            <div>
-              <p className="section-eyebrow">Practice goals</p>
-              <h2>Skill overview</h2>
-            </div>
-            <StatusBadge tone="neutral">Stored locally</StatusBadge>
-          </header>
-          <OverviewRow
-            label="Vocabulary"
-            tone="vocabulary"
-            value={vocabularyRatio}
-            detail={
-              vocabularyStats.totalWords
-                ? `${vocabularyStats.recallRate.toFixed(0)}% recall across reviewed words`
-                : "Add or import words to begin"
-            }
-          />
-          <OverviewRow
-            label="Speaking"
-            tone="speaking"
-            value={Math.min(1, speakingAttempts / 120)}
-            detail={`${speakingAttempts} of 120 interview-question attempts saved`}
-          />
-          <OverviewRow
-            label="Writing"
-            tone="writing"
-            value={Math.min(1, writingCount / 30)}
-            detail={`${writingCount} of 30 discussion submissions saved`}
-          />
-        </div>
-
-        <section className="weekly-chart" aria-labelledby="practice-rhythm-title">
-          <header className="progress-section-heading">
-            <div>
-              <p className="section-eyebrow">Last 7 days</p>
-              <h2 id="practice-rhythm-title">Practice rhythm</h2>
-            </div>
-            {weeklyActivityCount ? (
-              <StatusBadge tone="success">
-                {weeklyActivityCount} {weeklyActivityCount === 1 ? "activity" : "activities"}
-              </StatusBadge>
-            ) : null}
-          </header>
-
-          {weeklyActivityCount ? (
-            <>
-              <ul className="chart-legend" aria-label="Chart legend">
-                <li className="legend-vocabulary">Vocabulary</li>
-                <li className="legend-speaking">Speaking</li>
-                <li className="legend-writing">Writing</li>
-              </ul>
-              <div className="bar-chart" aria-hidden="true">
-                {week.map((day) => (
-                  <div key={day.id} className="bar-chart__day">
-                    <div>
-                      <i
-                        className="bar-vocabulary"
-                        style={{ height: `${(day.vocabulary / maximumDailyCount) * 72}px` }}
-                      />
-                      <i
-                        className="bar-speaking"
-                        style={{ height: `${(day.speaking / maximumDailyCount) * 72}px` }}
-                      />
-                      <i
-                        className="bar-writing"
-                        style={{ height: `${(day.writing / maximumDailyCount) * 72}px` }}
-                      />
-                    </div>
-                    <span>{day.label}</span>
-                  </div>
-                ))}
-              </div>
-            </>
-          ) : (
-            <EmptyState
-              compact
-              className="weekly-chart__empty"
-              icon="calendar"
-              title="No activity in the last 7 days"
-              description="Your next vocabulary review, recording, or writing submission will start this chart."
-            />
-          )}
-
-          <table className="sr-only">
-            <caption>Study activities for each of the last seven days</caption>
-            <thead>
-              <tr>
-                <th scope="col">Day</th>
-                <th scope="col">Vocabulary</th>
-                <th scope="col">Speaking</th>
-                <th scope="col">Writing</th>
-              </tr>
-            </thead>
-            <tbody>
-              {week.map((day) => (
-                <tr key={day.id}>
-                  <th scope="row">{day.fullLabel}</th>
-                  <td>{day.vocabulary}</td>
-                  <td>{day.speaking}</td>
-                  <td>{day.writing}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </section>
-      </section>
-
-      <div className="progress-history-grid">
-        <section className="panel history-panel">
-          <header className="section-header section-header--inline">
-            <div>
-              <h2>Recent study history</h2>
-              <p>Reviews, recordings, and submitted writing</p>
-            </div>
-            <StatusBadge tone="neutral">
-              {studyState.activities.length}{" "}
-              {studyState.activities.length === 1 ? "activity" : "activities"}
-            </StatusBadge>
-          </header>
-          {studyState.activities.length ? (
-            <ul className="history-list">
-              {studyState.activities.slice(0, 12).map((activity) => (
-                <li key={activity.id}>
-                  <span className={`activity-icon activity-icon--${activity.kind}`}>
-                    <DoodleIcon name={activityIcon(activity.kind)} size={18} />
-                  </span>
-                  <div>
-                    <strong>{activity.title}</strong>
-                    <small>{activity.detail}</small>
-                  </div>
-                  <time dateTime={activity.createdAt}>{relativeDate(activity.createdAt)}</time>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <EmptyState
-              compact
-              className="history-panel__empty"
-              icon="checklist"
-              title="No study history yet"
-              description="Completed reviews, recordings, and submissions will appear here."
-            />
-          )}
-        </section>
-
-        <section className="panel mastery-panel" aria-labelledby="mastery-title">
-          <header className="progress-section-heading">
-            <div>
-              <p className="section-eyebrow">Vocabulary</p>
-              <h2 id="mastery-title">Mastery stages</h2>
-            </div>
-            {vocabularyStats.totalWords ? (
-              <StatusBadge tone="vocabulary">{vocabularyStats.totalWords} words</StatusBadge>
-            ) : null}
-          </header>
-          {vocabularyStats.totalWords ? (
-            <div className="mastery-list">
-              <MasteryRow
-                label="New"
-                value={vocabularyStats.new}
-                total={vocabularyStats.totalWords}
-              />
-              <MasteryRow
-                label="Learning"
-                value={vocabularyStats.learning}
-                total={vocabularyStats.totalWords}
-              />
-              <MasteryRow
-                label="Familiar"
-                value={vocabularyStats.familiar}
-                total={vocabularyStats.totalWords}
-              />
-              <MasteryRow
-                label="Mastered"
-                value={vocabularyStats.mastered}
-                total={vocabularyStats.totalWords}
-              />
-            </div>
-          ) : (
-            <EmptyState
-              compact
-              className="mastery-panel__empty"
-              icon="doc"
-              title="No vocabulary to measure yet"
-              description="Add a word or import a library, then review it to build mastery history."
-            />
-          )}
-          <div className="mastery-note">
-            <DoodleIcon name="bulb" size={24} />
-            <p>
-              A word becomes mastered after repeated successful recall, not after a single
-              recognition.
-            </p>
+    <div className="page progress">
+      <header className="progress__head">
+        <div className="progress__title">
+          <span className="progress__title-icon">
+            <Icon8 name="binoculars" size={44} />
+          </span>
+          <div>
+            <h1>Progress</h1>
+            <p>The practice behind your score, without noisy grading.</p>
           </div>
-        </section>
-      </div>
-    </div>
-  );
-}
+        </div>
+        {streak > 0 ? (
+          <p className="progress__streak">
+            <DoodleIcon name="trophy" size={19} />
+            <strong>{streak}</strong>
+            <span>{streak === 1 ? "day in a row" : "days in a row"}</span>
+          </p>
+        ) : null}
+      </header>
 
-function Metric({
-  icon,
-  tone,
-  label,
-  value,
-  detail,
-}: {
-  icon: "target" | "doc" | "mic" | "pen";
-  tone: "amber" | "green" | "blue" | "purple";
-  label: string;
-  value: string;
-  detail: string;
-}): React.JSX.Element {
-  return (
-    <article className={`progress-metric progress-metric--${tone}`}>
-      <span className="progress-metric__icon">
-        <DoodleIcon name={icon} size={22} />
-      </span>
-      <div>
-        <span>{label}</span>
-        <strong>{value}</strong>
-        <small>{detail}</small>
-      </div>
-    </article>
-  );
-}
+      {!started ? (
+        <div className="progress__first-run">
+          <Icon8 name="scroll" size={64} />
+          <h2>Nothing to chart yet</h2>
+          <p>
+            Review a set of words, record one spoken answer, or submit a discussion response. This
+            page then fills in with your daily rhythm, how much of the wordlist you have mastered,
+            and how close your repetitions are landing.
+          </p>
+        </div>
+      ) : (
+        <>
+          <div className="progress__stats">
+            <StatTile
+              art="done"
+              value={vocabularyStats.mastered}
+              label="Words mastered"
+              note={`of ${vocabularyStats.totalWords} in the library`}
+            />
+            <StatTile
+              art="check-mark"
+              value={Math.round(vocabularyStats.recallRate)}
+              suffix="%"
+              label="Recall rate"
+              note={`across ${vocabularyStats.totalReviews} reviews`}
+            />
+            <StatTile
+              art="services"
+              value={speakingAttempts}
+              label="Spoken answers"
+              note={`${studyState.listenRepeatAttempts.length} repetitions saved`}
+            />
+            <StatTile
+              art="news"
+              value={writingCount}
+              label="Written responses"
+              note={`${vocabularyStats.activeDays} active days on this device`}
+            />
+          </div>
 
-function OverviewRow({
-  label,
-  tone,
-  value,
-  detail,
-}: {
-  label: string;
-  tone: "vocabulary" | "speaking" | "writing";
-  value: number;
-  detail: string;
-}): React.JSX.Element {
-  const percentage = Math.round(value * 100);
-  return (
-    <div className={`overview-row overview-row--${tone}`}>
-      <div className="overview-row__heading">
-        <strong>{label}</strong>
-        <span>{percentage ? `${percentage}%` : "Not started"}</span>
-      </div>
-      <ProgressBar
-        value={percentage}
-        tone={tone}
-        ariaLabel={`${label} practice goal progress`}
-        className="overview-row__progress"
-      />
-      <p>{detail}</p>
-    </div>
-  );
-}
+          <div className="progress__grid">
+            <section className="progress-card" aria-label="Daily practice">
+              <div className="progress-card__head">
+                <h2>
+                  <DoodleIcon name="analytics" size={18} />
+                  Daily practice
+                </h2>
+                <ul className="progress-legend">
+                  <li>
+                    <i style={{ background: SKILL_COLOR.vocabulary }} />
+                    Vocabulary
+                  </li>
+                  <li>
+                    <i style={{ background: SKILL_COLOR.speaking }} />
+                    Speaking
+                  </li>
+                  <li>
+                    <i style={{ background: SKILL_COLOR.writing }} />
+                    Writing
+                  </li>
+                </ul>
+              </div>
+              <div className="progress-card__body progress-chart">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={days} margin={{ top: 4, right: 4, bottom: 0, left: 0 }}>
+                    <XAxis
+                      dataKey="label"
+                      tickLine={false}
+                      axisLine={false}
+                      tick={{ fontSize: 11, fill: "#677183" }}
+                    />
+                    <YAxis
+                      allowDecimals={false}
+                      tickLine={false}
+                      axisLine={false}
+                      tick={{ fontSize: 11, fill: "#677183" }}
+                      width={34}
+                    />
+                    <Tooltip content={<ChartTip />} cursor={{ fill: "rgba(12,32,55,0.04)" }} />
+                    <Bar
+                      dataKey="vocabulary"
+                      stackId="a"
+                      fill={SKILL_COLOR.vocabulary}
+                      radius={[0, 0, 0, 0]}
+                      animationDuration={700}
+                    />
+                    <Bar
+                      dataKey="speaking"
+                      stackId="a"
+                      fill={SKILL_COLOR.speaking}
+                      animationDuration={700}
+                      animationBegin={90}
+                    />
+                    <Bar
+                      dataKey="writing"
+                      stackId="a"
+                      fill={SKILL_COLOR.writing}
+                      radius={[4, 4, 0, 0]}
+                      animationDuration={700}
+                      animationBegin={180}
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </section>
 
-function MasteryRow({
-  label,
-  value,
-  total,
-}: {
-  label: string;
-  value: number;
-  total: number;
-}): React.JSX.Element {
-  return (
-    <div className="mastery-row">
-      <ProgressBar
-        value={value}
-        max={total}
-        label={label}
-        showValue
-        valueFormatter={(current) => String(current)}
-        tone="vocabulary"
-      />
+            <section className="progress-card" aria-label="Wordlist mastery">
+              <div className="progress-card__head">
+                <h2>
+                  <DoodleIcon name="target" size={18} />
+                  Wordlist
+                </h2>
+                <span>{vocabularyStats.totalWords} words</span>
+              </div>
+              <div className="progress-card__body progress-chart">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={mastery}
+                      dataKey="value"
+                      nameKey="name"
+                      innerRadius="56%"
+                      outerRadius="82%"
+                      paddingAngle={2}
+                      stroke="none"
+                      animationDuration={750}
+                    >
+                      {mastery.map((slice) => (
+                        <Cell key={slice.tone} fill={MASTERY_COLOR[slice.tone]} />
+                      ))}
+                    </Pie>
+                    <Tooltip content={<ChartTip />} />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+              <ul className="progress-legend">
+                {mastery.map((slice) => (
+                  <li key={slice.tone}>
+                    <i style={{ background: MASTERY_COLOR[slice.tone] }} />
+                    {slice.name} {slice.value}
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <section className="progress-card" aria-label="Repetition accuracy">
+              <div className="progress-card__head">
+                <h2>
+                  <DoodleIcon name="headphone" size={18} />
+                  Repetition accuracy
+                </h2>
+                <span>{trend.length ? `last ${trend.length}` : "no attempts yet"}</span>
+              </div>
+              <div className="progress-card__body progress-chart">
+                {trend.length > 1 ? (
+                  <ResponsiveContainer width="100%" height="100%">
+                    <AreaChart data={trend} margin={{ top: 6, right: 6, bottom: 0, left: 0 }}>
+                      <defs>
+                        <linearGradient id="accuracyFill" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor={SKILL_COLOR.speaking} stopOpacity={0.28} />
+                          <stop offset="100%" stopColor={SKILL_COLOR.speaking} stopOpacity={0} />
+                        </linearGradient>
+                      </defs>
+                      <XAxis
+                        dataKey="label"
+                        tickLine={false}
+                        axisLine={false}
+                        tick={{ fontSize: 11, fill: "#677183" }}
+                      />
+                      <YAxis
+                        domain={[0, 100]}
+                        tickLine={false}
+                        axisLine={false}
+                        tick={{ fontSize: 11, fill: "#677183" }}
+                        width={34}
+                      />
+                      <Tooltip content={<ChartTip />} />
+                      <Area
+                        type="monotone"
+                        dataKey="accuracy"
+                        name="Match"
+                        stroke={SKILL_COLOR.speaking}
+                        strokeWidth={2}
+                        fill="url(#accuracyFill)"
+                        animationDuration={800}
+                      />
+                    </AreaChart>
+                  </ResponsiveContainer>
+                ) : (
+                  <div className="progress-empty">
+                    <Icon8 name="binoculars" size={40} />
+                    <strong>Not enough attempts</strong>
+                    <p>
+                      Finish two Listen &amp; Repeat prompts and the accuracy of each repetition
+                      appears here.
+                    </p>
+                  </div>
+                )}
+              </div>
+            </section>
+
+            <section className="progress-card" aria-label="Recent sessions">
+              <div className="progress-card__head">
+                <h2>
+                  <DoodleIcon name="checklist" size={18} />
+                  Recent sessions
+                </h2>
+                <span>{studyState.activities.length} total</span>
+              </div>
+              {recent.length ? (
+                <ul className="progress-sessions">
+                  {recent.map((activity) => (
+                    <li key={activity.id}>
+                      <span
+                        className="progress-sessions__mark"
+                        style={{ color: SKILL_COLOR[activity.kind] }}
+                      >
+                        <DoodleIcon name={ACTIVITY_ICON[activity.kind]} size={15} />
+                      </span>
+                      <span className="progress-sessions__copy">
+                        <strong>{activity.title}</strong>
+                        <small>{activity.detail}</small>
+                      </span>
+                      <time dateTime={activity.createdAt}>{relativeTime(activity.createdAt)}</time>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <div className="progress-empty">
+                  <Icon8 name="scroll" size={40} />
+                  <strong>No sessions recorded</strong>
+                  <p>Finished reviews, recordings, and submissions are listed here.</p>
+                </div>
+              )}
+            </section>
+          </div>
+        </>
+      )}
     </div>
   );
 }

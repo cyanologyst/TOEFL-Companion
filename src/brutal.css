@@ -1880,3 +1880,90 @@
   opacity: 0.7;
   text-transform: uppercase;
 }
+
+/* ===========================================================================
+   Containment
+   Every page-level body grid defined columns but left its single row at
+   `auto`, so the row sized to its content and the surplus was clipped by the
+   page's `overflow: hidden` instead of scrolling inside a panel. That is one
+   cause behind both reported symptoms: nothing scrolls, and things get cut.
+   Pinning the row to minmax(0, 1fr) hands the height back to the panels,
+   which already know how to scroll their own contents.
+   =========================================================================== */
+
+.brutal .speaking__body,
+.brutal .practice__body,
+.brutal .repeat__body,
+.brutal .w-body,
+.brutal .rev,
+.brutal .dash-b__body,
+.brutal .set-b__body,
+.brutal .progress__grid,
+.brutal .vocab__body {
+  grid-template-rows: minmax(0, 1fr);
+}
+
+/* The dashboard and progress grids carry two rows of their own. */
+.brutal .dash-b__body {
+  grid-template-rows: minmax(0, 1.35fr) minmax(0, 1fr);
+}
+
+.brutal .progress__grid {
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+/* This wrapper had no rules at all, so the grid inside it was never given a
+   height to work against and simply grew past the window. */
+.speaking__repeat-host {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.speaking__repeat-host > * {
+  min-height: 0;
+  flex: 1;
+}
+
+/* Any frame that hosts a scroller must be allowed to shrink below its
+   content, or the scroller never engages. */
+.brutal .b-frame,
+.brutal .rp-card,
+.brutal .sp-rail,
+.brutal .w-card {
+  min-height: 0;
+}
+
+/* ===========================================================================
+   Breathing room
+   Controls were sitting hard against frame edges because the frame carried
+   the padding and the action row did not clear it. Footers and action rows
+   inside a frame keep their own inset.
+   =========================================================================== */
+
+.brutal .b-frame > footer,
+.brutal .rp-card__foot,
+.brutal .repeat__foot,
+.brutal .practice__foot {
+  padding: 12px 16px;
+}
+
+/* A button flush against a rounded 3px border reads as a mistake. Anything
+   sitting last in a padded frame keeps clear of the corner radius. */
+.brutal .b-frame > .b-btn:last-child,
+.brutal .b-frame > *:last-child > .b-btn:only-child {
+  margin-bottom: 2px;
+}
+
+/* Scrollers get a little tail so a clipped row is visibly mid-list rather
+   than flush against the frame edge. */
+.brutal .b-scroll {
+  padding-bottom: 8px;
+}
+
+/* The fill is a rounded bar inside a rounded track; without clipping it
+   reported 7px of overflow at the cap. */
+.rev-progress__track {
+  overflow: hidden;
+}

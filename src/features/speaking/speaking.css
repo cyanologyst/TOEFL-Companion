@@ -936,3 +936,120 @@
 .pr-support p {
   margin: 0 0 8px;
 }
+
+/* The transcript card puts its content straight into the frame rather than
+   into a `__body` wrapper. `.rp-card` carries `padding: 0` on the assumption
+   that a body provides the inset, so here the label, field and Compare button
+   sat hard against a 3px border and the button was clipped off the bottom by
+   147px. Give the card its own inset and let the field take the slack. */
+.rp-card.transcript-result {
+  padding: 12px 14px 14px;
+  gap: 8px;
+}
+
+.rp-card.transcript-result > .b-head,
+.rp-card.transcript-result > label,
+.rp-card.transcript-result > small,
+.rp-card.transcript-result > .compare-button {
+  flex: 0 0 auto;
+}
+
+.rp-card.transcript-result > textarea {
+  min-height: 60px;
+  flex: 1;
+  resize: none;
+}
+
+.rp-card.transcript-result > .compare-button {
+  width: 100%;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+/* Same guard for the recorder card: actions stay reachable, the stage flexes. */
+.rp-card.repeat-recorder {
+  padding: 12px 14px 14px;
+  gap: 10px;
+}
+
+.rp-card.repeat-recorder > .b-head,
+.rp-card.repeat-recorder > .repeat-recorder__actions {
+  flex: 0 0 auto;
+}
+
+.rp-card.repeat-recorder > .repeat-recorder__stage {
+  min-height: 0;
+  flex: 1;
+}
+
+/* Nothing in a frame should touch its border. This catches any card whose
+   content was not wrapped in a body. */
+.rp-card > *:not(.rp-card__body):not(.b-head) {
+  margin-inline: 0;
+}
+
+/* Four cards in a 2x2 were each getting 169px while the transcript card needed
+   268. Two changes: reclaim the vertical overhead above the grid, and give the
+   two review cards the larger share, since the acting cards (a play button, a
+   record button) genuinely need less room than a text field and a diff. */
+.rp-steps li {
+  padding: 6px 10px;
+  font-size: 11.5px;
+}
+
+.rp-steps li span {
+  width: 19px;
+  height: 19px;
+  font-size: 10px;
+}
+
+.repeat__grid {
+  grid-template-rows: minmax(0, 0.82fr) minmax(0, 1.18fr);
+}
+
+/* Whatever height a card ends up with, its content adapts rather than being
+   cut: the field collapses first, then the body scrolls. */
+.rp-card.transcript-result > textarea {
+  min-height: 0;
+}
+
+.rp-card.transcript-result,
+.rp-card.repeat-recorder {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--ink) transparent;
+  scrollbar-width: thin;
+}
+
+.rp-card.comparison-result > .rp-card__body {
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--ink) transparent;
+  scrollbar-width: thin;
+}
+
+/* The placeholder is reassurance, not content; it should not set the height. */
+.rp-card.comparison-result .comparison-placeholder {
+  gap: 6px;
+}
+
+.rp-card.comparison-result .comparison-placeholder h3 {
+  font-size: 15px;
+}
+
+.rp-card.comparison-result .comparison-placeholder p {
+  font-size: 12.5px;
+  line-height: 1.35;
+}
+
+/* Last guard: whatever a card is given, it scrolls rather than losing content.
+   The comparison card's body did not sit as a direct child, so the earlier
+   rule missed it. */
+.rp-card {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--ink) transparent;
+  scrollbar-width: thin;
+}

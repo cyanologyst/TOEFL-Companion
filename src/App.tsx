@@ -263,6 +263,7 @@ export function App(): React.JSX.Element {
         activeArea={activeArea}
         learnerName={studyState.settings.learnerName}
         targetDate={studyState.settings.targetTestDate}
+        dueCount={vocabularyStats.dueNow}
         onSelect={(area) => navigate(area)}
       />
       <main id="main-content" className="app-content" tabIndex={-1}>

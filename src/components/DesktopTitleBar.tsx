@@ -109,7 +109,7 @@ export function DesktopTitleBar({
       data-window-active={windowActive}
     >
       <div className="desktop-titlebar-brand" data-tauri-drag-region="">
-        <img src="/app-icon.svg" alt="" width="24" height="24" />
+        <img src="/app-icon.webp" alt="" width="24" height="24" />
         <span>TOEFL Companion</span>
       </div>
 

@@ -1569,3 +1569,314 @@
   border-bottom: 3px solid var(--ink);
   margin-bottom: 14px;
 }
+
+/* ===========================================================================
+   Rail (main menu)
+   Rebuilt from zero. Six equal rows became two named groups plus a desk row,
+   because three of these are the work, two report on it, and one configures
+   it. The grouping carries that without a line of copy.
+   =========================================================================== */
+
+.shell-brutal .rail {
+  position: fixed;
+  z-index: var(--z-sidebar, 50);
+  top: var(--titlebar-height, 40px);
+  bottom: 0;
+  left: 0;
+  display: flex;
+  width: var(--sidebar-width, 232px);
+  flex-direction: column;
+  padding: 14px 12px 0;
+  border-right: 3px solid var(--b-ink);
+  background: var(--b-paper);
+  gap: 12px;
+}
+
+/* -- Brand ------------------------------------------------------------------ */
+
+.shell-brutal .rail__brand {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  padding: 8px;
+  border: 3px solid var(--b-ink);
+  border-radius: 12px;
+  background: var(--b-ground);
+  box-shadow: 4px 4px 0 var(--b-ink);
+  cursor: pointer;
+  gap: 10px;
+  text-align: left;
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out;
+}
+
+.shell-brutal .rail__brand:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0 var(--b-ink);
+}
+
+.shell-brutal .rail__brand:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--b-ink);
+}
+
+.shell-brutal .rail__brand img {
+  flex: 0 0 auto;
+  border-radius: 9px;
+}
+
+.shell-brutal .rail__brand span {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.shell-brutal .rail__brand strong {
+  color: var(--b-ink);
+  font-family: var(--b-display);
+  font-size: 17px;
+  letter-spacing: -0.02em;
+}
+
+.shell-brutal .rail__brand small {
+  color: var(--b-ink);
+  font-family: var(--b-flat);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* -- Countdown -------------------------------------------------------------- */
+
+.shell-brutal .rail__countdown {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: baseline;
+  justify-content: center;
+  padding: 8px 10px;
+  border: 3px solid var(--b-ink);
+  border-radius: 10px;
+  background: var(--b-lime);
+  box-shadow: 3px 3px 0 var(--b-ink);
+  gap: 7px;
+}
+
+.shell-brutal .rail__countdown strong {
+  color: var(--b-ink);
+  font-family: var(--b-display);
+  font-size: 26px;
+  line-height: 1;
+}
+
+.shell-brutal .rail__countdown span {
+  color: var(--b-ink);
+  font-family: var(--b-flat);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.shell-brutal .rail__countdown--empty {
+  align-items: center;
+  background: var(--b-paper);
+  cursor: pointer;
+}
+
+.shell-brutal .rail__countdown--empty:hover {
+  background: var(--b-sun);
+}
+
+/* -- Navigation ------------------------------------------------------------- */
+
+.shell-brutal .rail__nav {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+
+.shell-brutal .rail__nav::-webkit-scrollbar {
+  display: none;
+}
+
+.shell-brutal .rail__group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.shell-brutal .rail__group-label {
+  padding-left: 4px;
+  margin: 0;
+  color: var(--b-ink);
+  font-family: var(--b-flat);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  opacity: 0.55;
+  text-transform: uppercase;
+}
+
+.shell-brutal .rail__item {
+  display: flex;
+  align-items: center;
+  padding: 7px 9px;
+  border: 3px solid transparent;
+  border-radius: 11px;
+  background: transparent;
+  cursor: pointer;
+  gap: 10px;
+  text-align: left;
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out,
+    background-color 90ms ease-out,
+    border-color 90ms ease-out;
+}
+
+.shell-brutal .rail__item:hover {
+  border-color: var(--b-ink);
+  background: var(--b-paper);
+  box-shadow: 3px 3px 0 var(--b-ink);
+  transform: translate(-1px, -1px);
+}
+
+.shell-brutal .rail__item:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--b-ink);
+}
+
+/* The active area is a sticker pressed onto the rail. Its own colour fills
+   the row so the section you are in is legible from the edge of vision. */
+.shell-brutal .rail__item[data-active="true"] {
+  border-color: var(--b-ink);
+  box-shadow: 4px 4px 0 var(--b-ink);
+}
+
+.shell-brutal .rail__item--mint[data-active="true"] {
+  background: #7be495;
+}
+
+.shell-brutal .rail__item--sky[data-active="true"] {
+  background: #7cc6fe;
+}
+
+.shell-brutal .rail__item--grape[data-active="true"] {
+  background: #b197fc;
+}
+
+.shell-brutal .rail__item--sun[data-active="true"] {
+  background: var(--b-sun);
+}
+
+.shell-brutal .rail__item--rose[data-active="true"] {
+  background: #ff9bd2;
+}
+
+.shell-brutal .rail__item-mark {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  border: 2px solid var(--b-ink);
+  border-radius: 8px;
+  background: var(--b-paper);
+  place-items: center;
+}
+
+.shell-brutal .rail__item-label {
+  min-width: 0;
+  flex: 1;
+  color: var(--b-ink);
+  font-family: var(--b-display);
+  font-size: 14px;
+  letter-spacing: -0.01em;
+}
+
+.shell-brutal .rail__badge {
+  display: grid;
+  min-width: 24px;
+  height: 22px;
+  flex: 0 0 auto;
+  padding: 0 6px;
+  border: 2px solid var(--b-ink);
+  border-radius: 999px;
+  color: var(--b-ink);
+  background: #ff6b5e;
+  font-family: var(--b-display);
+  font-size: 11px;
+  place-items: center;
+}
+
+/* -- Profile ---------------------------------------------------------------- */
+
+.shell-brutal .rail__profile {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  padding: 10px;
+  border: 3px solid var(--b-ink);
+  border-top-width: 3px;
+  border-radius: 12px 12px 0 0;
+  border-bottom: 0;
+  background: var(--b-ground);
+  cursor: pointer;
+  gap: 10px;
+  margin-top: auto;
+  text-align: left;
+  transition: background-color 90ms ease-out;
+}
+
+.shell-brutal .rail__profile:hover,
+.shell-brutal .rail__profile[data-active="true"] {
+  background: var(--b-sun);
+}
+
+.shell-brutal .rail__avatar {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  border: 3px solid var(--b-ink);
+  border-radius: 50%;
+  color: var(--b-ink);
+  background: var(--b-lime);
+  font-family: var(--b-display);
+  font-size: 15px;
+  place-items: center;
+}
+
+.shell-brutal .rail__profile-copy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.shell-brutal .rail__profile-copy strong {
+  overflow: hidden;
+  color: var(--b-ink);
+  font-family: var(--b-display);
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.shell-brutal .rail__profile-copy small {
+  color: var(--b-ink);
+  font-family: var(--b-flat);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+  text-transform: uppercase;
+}

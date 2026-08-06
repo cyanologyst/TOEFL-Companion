@@ -1,91 +1,149 @@
-import type { AppArea } from "../types/study";
 import { DoodleIcon, type DoodleIconName } from "./DoodleIcon";
-import { Tooltip } from "./StudyUI";
 
-interface AppSidebarProps {
-  activeArea: AppArea;
+export interface AppSidebarProps {
+  activeArea: string;
   learnerName: string;
   targetDate: string;
-  onSelect: (area: AppArea) => void;
+  dueCount?: number;
+  onSelect: (
+    area: "dashboard" | "vocabulary" | "speaking" | "writing" | "progress" | "settings",
+  ) => void;
 }
 
-const navigation: Array<{
-  area: AppArea;
+type NavArea = Parameters<AppSidebarProps["onSelect"]>[0];
+
+/**
+ * Practice first, then review, then the desk.
+ *
+ * The old rail listed six equal rows in feature order. These are not equal:
+ * three of them are the actual work, two report on it, and one configures it.
+ * Grouping them says which is which without a word of copy.
+ */
+const GROUPS: ReadonlyArray<{
+  id: string;
   label: string;
-  icon: DoodleIconName;
+  items: ReadonlyArray<{ area: NavArea; label: string; icon: DoodleIconName; tone: string }>;
 }> = [
-  { area: "dashboard", label: "Dashboard", icon: "home" },
-  { area: "vocabulary", label: "Vocabulary", icon: "doc" },
-  { area: "speaking", label: "Speaking", icon: "mic" },
-  { area: "writing", label: "Writing", icon: "pen" },
-  { area: "progress", label: "Progress", icon: "analytics" },
-  { area: "settings", label: "Settings", icon: "setting" },
+  {
+    id: "practice",
+    label: "Practice",
+    items: [
+      { area: "vocabulary", label: "Vocabulary", icon: "doc", tone: "mint" },
+      { area: "speaking", label: "Speaking", icon: "mic", tone: "sky" },
+      { area: "writing", label: "Writing", icon: "pen", tone: "grape" },
+    ],
+  },
+  {
+    id: "review",
+    label: "Review",
+    items: [
+      { area: "dashboard", label: "Today", icon: "home", tone: "sun" },
+      { area: "progress", label: "Progress", icon: "analytics", tone: "rose" },
+    ],
+  },
 ];
 
-function formatTargetDate(value: string): string {
-  if (!value || !Number.isFinite(Date.parse(value))) {
-    return "Set your test date";
+function daysUntil(iso: string): number | null {
+  if (!iso) {
+    return null;
   }
-  return `Test ${new Intl.DateTimeFormat(undefined, {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  }).format(new Date(`${value}T12:00:00`))}`;
+  const target = new Date(`${iso}T00:00:00`);
+  if (Number.isNaN(target.getTime())) {
+    return null;
+  }
+  const now = new Date();
+  const start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  return Math.round((target.getTime() - start.getTime()) / 86_400_000);
 }
 
 export function AppSidebar({
   activeArea,
   learnerName,
   targetDate,
+  dueCount = 0,
   onSelect,
 }: AppSidebarProps): React.JSX.Element {
   const initial = learnerName.trim().charAt(0).toLocaleUpperCase() || "A";
+  const days = daysUntil(targetDate);
 
   return (
-    <aside className="app-sidebar">
-      <div className="app-sidebar__brand">
-        <img src="/app-icon.svg" alt="" width="44" height="44" />
-        <div>
-          <strong>TOEFL Companion</strong>
-          <span>Study with confidence.</span>
-        </div>
-      </div>
+    <aside className="rail" aria-label="Application">
+      <button
+        type="button"
+        className="rail__brand"
+        onClick={() => onSelect("dashboard")}
+        aria-label="TOEFL Companion, go to today"
+      >
+        <img src="/app-icon.webp" alt="" width={44} height={44} />
+        <span>
+          <strong>TOEFL</strong>
+          <small>Companion</small>
+        </span>
+      </button>
 
-      <nav className="app-sidebar__nav" aria-label="Main navigation">
-        {navigation.map((item) => (
-          <Tooltip key={item.area} content={item.label} side="right">
-            <button
-              type="button"
-              className="sidebar-nav-item"
-              data-active={activeArea === item.area}
-              aria-label={item.label}
-              aria-current={activeArea === item.area ? "page" : undefined}
-              onClick={() => onSelect(item.area)}
-            >
-              <DoodleIcon name={item.icon} size={24} />
-              <span>{item.label}</span>
-            </button>
-          </Tooltip>
+      {/* The countdown is the reason the app is open, so it sits above the
+          navigation rather than buried in settings. */}
+      {days !== null && days >= 0 ? (
+        /* The visible text already reads "42 days to test", so it is its own
+           accessible name; a label here would only duplicate it. */
+        <p className="rail__countdown">
+          <strong>{days}</strong>
+          <span>{days === 1 ? "day to test" : "days to test"}</span>
+        </p>
+      ) : (
+        <button
+          type="button"
+          className="rail__countdown rail__countdown--empty"
+          onClick={() => onSelect("settings")}
+        >
+          <DoodleIcon name="calendar" size={20} />
+          <span>Set test date</span>
+        </button>
+      )}
+
+      <nav className="rail__nav" aria-label="Main navigation">
+        {GROUPS.map((group) => (
+          <div key={group.id} className="rail__group">
+            <p className="rail__group-label">{group.label}</p>
+            {group.items.map((item) => {
+              const active = activeArea === item.area;
+              return (
+                <button
+                  key={item.area}
+                  type="button"
+                  className={`rail__item rail__item--${item.tone}`}
+                  data-active={active}
+                  aria-current={active ? "page" : undefined}
+                  onClick={() => onSelect(item.area)}
+                >
+                  <span className="rail__item-mark">
+                    <DoodleIcon name={item.icon} size={20} />
+                  </span>
+                  <span className="rail__item-label">{item.label}</span>
+                  {/* Work waiting is the only badge worth carrying here. */}
+                  {item.area === "vocabulary" && dueCount > 0 ? (
+                    <span className="rail__badge">{dueCount > 99 ? "99+" : dueCount}</span>
+                  ) : null}
+                </button>
+              );
+            })}
+          </div>
         ))}
       </nav>
 
-      <div className="app-sidebar__encouragement">
-        <DoodleIcon name="bulb" size={28} />
-        <p>Small, focused sessions build lasting fluency.</p>
-      </div>
-
       <button
         type="button"
-        className="app-sidebar__profile"
-        aria-label="Open learner settings"
+        className="rail__profile"
+        data-active={activeArea === "settings"}
+        aria-current={activeArea === "settings" ? "page" : undefined}
         onClick={() => onSelect("settings")}
       >
-        <span className="profile-avatar">{initial}</span>
-        <span className="profile-copy">
+        <span className="rail__avatar">{initial}</span>
+        <span className="rail__profile-copy">
           <strong>{learnerName || "Alex"}</strong>
-          <small>{formatTargetDate(targetDate)}</small>
+          <small>Settings</small>
         </span>
-        <span aria-hidden>›</span>
+        <DoodleIcon name="setting" size={18} />
       </button>
     </aside>
   );

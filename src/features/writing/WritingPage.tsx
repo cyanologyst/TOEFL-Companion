@@ -5,7 +5,6 @@ import { ConfirmDialog } from "../../components/StudyUI";
 import rawDiscussions from "../../data/academic-discussions.json";
 import { studyRepository } from "../../services/studyRepository";
 import type { AcademicDiscussionLibrary, StudyState } from "../../types/study";
-import "../../brutal.css";
 import "./writing.css";
 
 interface WritingPageProps {

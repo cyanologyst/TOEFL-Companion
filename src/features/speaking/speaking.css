@@ -1,723 +1,415 @@
-/* Speaking
+/* Speaking - neo-brutalism
  *
- * Built to the same rules as the rest of the app: separate rounded panels
- * sitting on the canvas with real gaps between them, no internal rules
- * dividing a slab into cells, sentence-case headings, and no uppercase
- * micro-labels.
+ * Three surfaces on the shared brutalist system: browsing the library,
+ * answering a question, and the listen-and-repeat loop. Each fills the
+ * viewport; only the topic rail, the preparation list, and the transcript
+ * scroll, inside their own frames.
  *
- * The page owns the viewport. `.app-content` is the app's scroller, but this
- * surface fills it exactly and never hands it anything to scroll - only the
- * topic rail and long prose scroll, inside their own panels.
+ * The authored moment is the recorder engaging - the one place where the
+ * interface has to be unmistakable about a live condition.
  */
 
-/* Scoped to these surfaces on purpose. The global stylesheet has no type or
-   weight scale yet, so these live here rather than being introduced app-wide
-   as a side effect of one feature. The three Speaking views are siblings, so
-   each needs the block; nothing outside them inherits it. */
-.speaking,
-.practice,
-.repeat {
-  --text-2xs: 12px;
-  --text-xs: 13px;
-  --text-sm: 14px;
-  --text-base: 15px;
-  --text-md: 16px;
-  --text-lg: 19px;
-  --text-xl: 24px;
-  --text-2xl: 30px;
-  --leading-tight: 1.2;
-  --leading-snug: 1.45;
-  --leading-normal: 1.6;
-  --weight-medium: 550;
-  --weight-semibold: 660;
-  /* Darker skill tones for text and borders on the soft speaking fill. */
-  --skill-speaking-ink: #1d5d9f;
-  --skill-speaking-border: #bfd8f2;
-  --skill-vocabulary-ink: #08715d;
-  --scrollbar-thumb: #b8c6ce;
+.speaking.brutal,
+.practice.brutal,
+.repeat.brutal {
+  padding: 20px 24px 18px;
+  gap: 14px;
 }
 
-/* Every Speaking view owns the viewport: it fills the shell exactly and hands
-   the app scroller nothing. Only inner panels scroll. */
-.speaking,
-.practice,
-.repeat {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.speaking {
-  padding: var(--space-6) var(--space-8);
-  gap: var(--space-5);
-}
-
-/* -- Header ---------------------------------------------------------------- */
-
-.speaking__head {
-  display: flex;
-  flex: 0 0 auto;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-4);
-}
-
-.speaking__title {
-  display: flex;
-  min-width: 0;
-  align-items: center;
-  gap: var(--space-4);
-}
-
-.speaking__title-icon {
-  display: grid;
-  width: 46px;
-  height: 46px;
-  flex: 0 0 auto;
-  border-radius: var(--radius-md);
-  color: var(--skill-speaking);
-  background: var(--skill-speaking-soft);
-  place-items: center;
-}
-
-.speaking__title h1 {
-  margin: 0;
-  color: var(--color-foreground);
-  font-family: var(--font-ui);
-  font-size: var(--text-2xl);
-  font-weight: var(--weight-semibold);
-  letter-spacing: -0.02em;
-  line-height: var(--leading-tight);
-}
-
-.speaking__title p {
-  margin: 2px 0 0;
-  color: var(--color-muted-foreground);
-  font-size: var(--text-sm);
-}
-
-/* -- Body shell ------------------------------------------------------------ */
+/* -- Browse ----------------------------------------------------------------- */
 
 .speaking__body {
   display: grid;
   min-height: 0;
   flex: 1;
-  gap: var(--space-4);
-  grid-template-columns: 312px minmax(0, 1fr);
+  gap: 14px;
+  grid-template-columns: 300px minmax(0, 1fr);
 }
 
-/* -- Topic rail ------------------------------------------------------------ */
-
-.speaking-rail {
-  display: flex;
+.sp-rail {
   min-height: 0;
-  flex-direction: column;
-  overflow: hidden;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
-  box-shadow: 0 1px 3px rgba(12, 32, 55, 0.04);
+  padding: 0;
+  gap: 0;
 }
 
-.speaking-rail__head {
+.sp-rail__head {
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
-  padding: var(--space-4) var(--space-4) var(--space-3);
-  border-bottom: 1px solid var(--color-border);
-  gap: var(--space-3);
+  padding: 14px;
+  border-bottom: var(--edge) solid var(--ink);
+  gap: 10px;
 }
 
-.speaking-rail__title {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-3);
-}
-
-.speaking-rail__title h2 {
-  margin: 0;
-  color: var(--color-foreground);
-  font-family: var(--font-ui);
-  font-size: var(--text-md);
-  font-weight: var(--weight-semibold);
-}
-
-.speaking-rail__count {
-  flex: 0 0 auto;
-  color: var(--color-subtle-foreground);
-  font-family: var(--font-ui);
-  font-size: var(--text-xs);
-}
-
-.speaking-rail__search {
-  display: flex;
-  align-items: center;
-  padding: 0 var(--space-3);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background: var(--color-surface-muted);
-  color: var(--color-subtle-foreground);
-  gap: var(--space-2);
-}
-
-.speaking-rail__search input {
-  width: 100%;
-  min-width: 0;
-  height: 36px;
-  border: 0;
-  background: transparent;
-  color: var(--color-foreground);
-  font-size: var(--text-sm);
-}
-
-.speaking-rail__search input::placeholder {
-  color: var(--color-subtle-foreground);
-}
-
-.speaking-rail__search:focus-within {
-  border-color: var(--skill-speaking);
-  background: var(--color-surface);
-}
-
-.speaking-rail__filters {
+.sp-rail__filters {
   display: grid;
-  gap: var(--space-2);
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 8px;
+  grid-template-columns: 1fr 1fr;
 }
 
-.speaking-rail__filters label {
+.sp-rail__filters label {
   display: flex;
   min-width: 0;
   flex-direction: column;
   gap: 3px;
 }
 
-.speaking-rail__filters span {
-  color: var(--color-subtle-foreground);
-  font-family: var(--font-ui);
-  font-size: var(--text-2xs);
+.sp-rail__filters > label > span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-.speaking-rail__filters select {
-  width: 100%;
-  min-width: 0;
-  height: 32px;
-  padding: 0 var(--space-2);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background: var(--color-surface);
-  color: var(--color-foreground);
-  font-size: var(--text-xs);
+.sp-rail__filters .b-field {
+  height: 36px;
+  padding: 0 8px;
 }
 
-.speaking-rail__scroll {
-  min-height: 0;
-  flex: 1;
-  padding: var(--space-2) var(--space-2) var(--space-3);
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-color: var(--scrollbar-thumb, #b8c6ce) transparent;
-  scrollbar-width: thin;
+.sp-rail__list {
+  padding: 8px;
 }
 
-.speaking-rail__group + .speaking-rail__group {
-  margin-top: var(--space-3);
+.sp-group + .sp-group {
+  margin-top: 10px;
 }
 
-.speaking-rail__group h3 {
+.sp-group h3 {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-2) var(--space-2) var(--space-1);
-  margin: 0;
-  color: var(--color-subtle-foreground);
-  font-family: var(--font-ui);
-  font-size: var(--text-2xs);
-  font-weight: var(--weight-semibold);
-  gap: var(--space-2);
+  padding: 6px 6px 4px;
+  font-family: var(--font-flat);
+  font-size: 10px;
+  font-weight: 700;
+  gap: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
-.speaking-topic {
+.sp-topic {
   display: flex;
   width: 100%;
+  flex-direction: row;
   align-items: center;
-  padding: var(--space-2) var(--space-3);
-  border: 1px solid transparent;
-  border-radius: var(--radius-sm);
-  gap: var(--space-3);
+  padding: 9px 10px;
+  border: 2px solid transparent;
+  border-radius: var(--round-sm);
+  background: transparent;
+  cursor: pointer;
+  gap: 10px;
   text-align: left;
-  transition: background-color var(--duration-fast) var(--ease-out);
+  transition:
+    transform 100ms var(--snap),
+    background-color 100ms var(--snap);
 }
 
-.speaking-topic:hover {
-  background: var(--color-surface-muted);
+.sp-topic:hover {
+  background: rgba(18, 16, 12, 0.06);
 }
 
-.speaking-topic[data-active="true"] {
-  border-color: var(--skill-speaking-border);
-  background: var(--skill-speaking-soft);
+.sp-topic[data-active="true"] {
+  border-color: var(--ink);
+  background: var(--pop-sun);
+  box-shadow: 3px 3px 0 var(--ink);
 }
 
-.speaking-topic__num {
+.sp-topic__num {
   flex: 0 0 auto;
-  color: var(--color-subtle-foreground);
-  font-family: var(--font-ui);
-  font-size: var(--text-2xs);
-  font-variant-numeric: tabular-nums;
+  font-family: var(--font-display);
+  font-size: 11px;
+  opacity: 0.6;
 }
 
-.speaking-topic[data-active="true"] .speaking-topic__num {
-  color: var(--skill-speaking-ink);
+.sp-topic[data-active="true"] .sp-topic__num {
+  opacity: 1;
 }
 
-.speaking-topic__copy {
+.sp-topic__copy {
   display: flex;
   min-width: 0;
   flex: 1;
   flex-direction: column;
 }
 
-/* Topic names are the content of this list; they wrap rather than ellipse. */
-.speaking-topic__copy strong {
-  color: var(--color-foreground);
-  font-family: var(--font-ui);
-  font-size: var(--text-sm);
-  font-weight: var(--weight-medium);
-  line-height: var(--leading-tight);
+.sp-topic__copy strong {
+  font-family: var(--font-flat);
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
-.speaking-topic__copy small {
-  margin-top: 2px;
-  color: var(--color-subtle-foreground);
-  font-size: var(--text-2xs);
+.sp-topic__copy small {
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0.65;
 }
 
-.speaking-topic[data-active="true"] .speaking-topic__copy small {
-  color: var(--color-muted-foreground);
-}
-
-.speaking-topic__pct {
+.sp-topic__pct {
   flex: 0 0 auto;
-  color: var(--color-subtle-foreground);
-  font-family: var(--font-ui);
-  font-size: var(--text-2xs);
-  font-variant-numeric: tabular-nums;
+  font-family: var(--font-display);
+  font-size: 11px;
 }
 
-.speaking-topic[data-status="complete"] .speaking-topic__pct {
-  color: var(--skill-vocabulary-ink);
-}
-
-.speaking-rail__foot {
+.sp-rail__foot {
   display: flex;
   flex: 0 0 auto;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-3) var(--space-4);
-  border-top: 1px solid var(--color-border);
-  color: var(--color-subtle-foreground);
-  font-size: var(--text-2xs);
-  gap: var(--space-2);
+  padding: 10px 14px;
+  border-top: var(--edge) solid var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+  gap: 8px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-/* -- Detail column --------------------------------------------------------- */
+/* -- Detail ----------------------------------------------------------------- */
 
-.speaking-detail {
+.sp-detail {
   display: flex;
   min-height: 0;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: 14px;
 }
 
-.speaking-card {
-  display: flex;
-  flex-direction: column;
-  padding: var(--space-5) var(--space-6);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
-  box-shadow: 0 1px 3px rgba(12, 32, 55, 0.04);
-  gap: var(--space-4);
-}
-
-.speaking-question {
+.sp-question {
   flex: 0 0 auto;
+  padding: 18px 20px;
+  gap: 12px;
 }
 
-.speaking-question__top {
+.sp-question__top {
   display: flex;
+  flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  gap: var(--space-4);
+  gap: 14px;
 }
 
-.speaking-question__meta {
+.sp-question__meta {
   display: flex;
   min-width: 0;
   flex-direction: column;
-  gap: 2px;
 }
 
-.speaking-question__meta strong {
-  color: var(--color-foreground);
-  font-family: var(--font-ui);
-  font-size: var(--text-md);
-  font-weight: var(--weight-semibold);
+.sp-question__meta strong {
+  font-family: var(--font-display);
+  font-size: 17px;
 }
 
-.speaking-question__meta span {
-  color: var(--color-subtle-foreground);
-  font-size: var(--text-xs);
+.sp-question__meta span {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.7;
 }
 
-.speaking-question__controls {
+.sp-qpick {
   display: flex;
   flex: 0 0 auto;
-  align-items: center;
-  gap: var(--space-2);
+  flex-direction: row;
+  gap: 6px;
 }
 
-/* Question selector: quiet pills, not a full-bleed tab bar. */
-.speaking-qpicker {
-  display: flex;
-  flex: 0 0 auto;
-  padding: 3px;
-  border-radius: 999px;
-  background: var(--color-surface-muted);
-  gap: 2px;
+.sp-qpick button {
+  width: 38px;
+  height: 38px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  box-shadow: 3px 3px 0 var(--ink);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 13px;
+  transition:
+    transform 100ms var(--snap),
+    box-shadow 100ms var(--snap);
 }
 
-.speaking-qpicker button {
-  min-width: 38px;
-  height: 30px;
-  padding: 0 var(--space-3);
-  border-radius: 999px;
-  color: var(--color-muted-foreground);
-  font-family: var(--font-ui);
-  font-size: var(--text-xs);
-  font-weight: var(--weight-medium);
-  transition: background-color var(--duration-fast) var(--ease-out);
+.sp-qpick button[data-active="true"] {
+  background: var(--pop-sky);
 }
 
-.speaking-qpicker button:hover {
-  color: var(--color-foreground);
+.sp-qpick button:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--ink);
 }
 
-.speaking-qpicker button[data-active="true"] {
-  color: var(--skill-speaking-ink);
-  background: var(--color-surface);
-  box-shadow: 0 1px 2px rgba(12, 32, 55, 0.08);
-}
-
-.speaking-question__prompt {
+.sp-question__prompt {
   margin: 0;
-  color: var(--color-foreground);
-  font-family: var(--font-ui);
-  font-size: var(--text-lg);
-  font-weight: var(--weight-medium);
-  letter-spacing: -0.01em;
-  line-height: 1.35;
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.25;
   text-wrap: balance;
 }
 
-.speaking-question__hint {
+.sp-question__plan {
   display: flex;
+  flex-direction: row;
   align-items: flex-start;
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--skill-speaking-border);
-  border-radius: var(--radius-sm);
+  padding: 11px 14px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
   margin: 0;
-  color: var(--color-muted-foreground);
-  background: var(--skill-speaking-soft);
-  font-size: var(--text-sm);
-  gap: var(--space-2);
-  line-height: var(--leading-snug);
+  background: var(--pop-lime);
+  font-size: 13.5px;
+  font-weight: 600;
+  gap: 9px;
+  line-height: 1.4;
 }
 
-/* -- Preparation ----------------------------------------------------------- */
+/* -- Preparation ------------------------------------------------------------ */
 
-.speaking-prep {
+.sp-prep {
   min-height: 0;
   flex: 1;
-  gap: var(--space-3);
+  padding: 0;
+  gap: 0;
 }
 
-/* The tab labels name this panel, so the heading is for assistive tech only
-   and the row stays on one line at the width this column actually gets. */
-.speaking-prep__head {
+.sp-tabs {
   display: flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
+  flex-direction: row;
+  gap: 6px;
 }
 
-.speaking-prep__actions {
-  display: flex;
-  min-width: 0;
-  flex: 1;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-}
-
-.speaking-tabs {
-  display: flex;
-  padding: 3px;
-  border-radius: var(--radius-sm);
-  background: var(--color-surface-muted);
-  gap: 2px;
-}
-
-.speaking-tabs button {
+.sp-tabs button {
   display: inline-flex;
   align-items: center;
-  height: 30px;
-  padding: 0 var(--space-3);
-  border-radius: 6px;
-  color: var(--color-muted-foreground);
-  font-family: var(--font-ui);
-  font-size: var(--text-xs);
-  font-weight: var(--weight-medium);
-  gap: var(--space-2);
+  height: 34px;
+  padding: 0 12px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  cursor: pointer;
+  font-family: var(--font-flat);
+  font-size: 12px;
+  font-weight: 700;
+  gap: 6px;
   white-space: nowrap;
 }
 
-.speaking-tabs button[data-active="true"] {
-  color: var(--skill-speaking-ink);
-  background: var(--color-surface);
-  box-shadow: 0 1px 2px rgba(12, 32, 55, 0.08);
+.sp-tabs button[data-active="true"] {
+  background: var(--pop-sun);
+  box-shadow: 2px 2px 0 var(--ink);
 }
 
-.speaking-tabs small {
-  color: var(--color-subtle-foreground);
-  font-size: var(--text-2xs);
-  font-variant-numeric: tabular-nums;
+.sp-tabs small {
+  font-family: var(--font-display);
+  font-size: 11px;
 }
 
-/* Both scrollers keep a little slack at the bottom so a clipped row is
-   visibly mid-list rather than flush against the panel edge. */
-.speaking-prep__body {
-  min-height: 0;
-  flex: 1;
-  padding-bottom: var(--space-2);
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-color: var(--scrollbar-thumb, #b8c6ce) transparent;
-  scrollbar-width: thin;
-}
-
-.speaking-prep__list {
+.sp-prep__list {
   display: flex;
   flex-direction: column;
   padding: 0;
   margin: 0;
-  gap: var(--space-2);
+  gap: 8px;
   list-style: none;
 }
 
-.speaking-prep__list li {
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  color: var(--color-muted-foreground);
-  background: var(--color-surface-muted);
-  font-size: var(--text-sm);
-  line-height: var(--leading-snug);
+.sp-prep__list li {
+  padding: 10px 13px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
-.speaking-prep__samples {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
+.sp-prep__sample {
+  padding: 12px 14px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  margin-bottom: 10px;
+  background: var(--paper);
 }
 
-.speaking-prep__samples section {
-  padding: var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background: var(--color-surface-muted);
+.sp-prep__sample h4 {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-size: 12px;
 }
 
-.speaking-prep__samples h3 {
-  margin: 0 0 var(--space-2);
-  color: var(--color-foreground);
-  font-family: var(--font-ui);
-  font-size: var(--text-xs);
-  font-weight: var(--weight-semibold);
-}
-
-.speaking-prep__samples p {
-  max-width: 68ch;
+.sp-prep__sample p {
   margin: 0;
-  color: var(--color-muted-foreground);
-  font-size: var(--text-sm);
-  line-height: var(--leading-normal);
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
-/* -- Start bar ------------------------------------------------------------- */
+/* -- Start bar -------------------------------------------------------------- */
 
-.speaking-start {
+.sp-start {
   display: flex;
   flex: 0 0 auto;
-  flex-wrap: wrap;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-4) var(--space-5);
-  border: 1px solid var(--skill-speaking-border);
-  border-radius: var(--radius-md);
-  background: var(--skill-speaking-soft);
-  gap: var(--space-4);
+  padding: 14px 18px;
+  background: var(--pop-lime);
+  gap: 14px;
 }
 
-.speaking-start__copy {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
+.sp-start strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 15px;
 }
 
-.speaking-start__copy strong {
-  color: var(--color-foreground);
-  font-family: var(--font-ui);
-  font-size: var(--text-sm);
-  font-weight: var(--weight-semibold);
+.sp-start span {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.75;
 }
 
-.speaking-start__copy span {
-  color: var(--color-muted-foreground);
-  font-size: var(--text-xs);
-}
+/* -- Empty ------------------------------------------------------------------ */
 
-/* -- Empty state ----------------------------------------------------------- */
-
-.speaking-empty-detail {
+.sp-empty {
   display: flex;
   min-height: 0;
   flex: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--space-8);
-  border: 1px dashed var(--color-border-strong);
-  border-radius: var(--radius-md);
-  color: var(--color-subtle-foreground);
-  gap: var(--space-2);
+  padding: 36px;
+  gap: 10px;
   text-align: center;
 }
 
-.speaking-empty-detail strong {
-  color: var(--color-foreground);
-  font-family: var(--font-ui);
-  font-size: var(--text-md);
+.sp-empty h2 {
+  font-size: 24px;
 }
 
-.speaking-empty-detail p {
-  max-width: 44ch;
+.sp-empty p {
+  max-width: 40ch;
   margin: 0;
-  font-size: var(--text-sm);
+  font-size: 14px;
+  font-weight: 500;
 }
 
 @media (max-width: 1120px) {
   .speaking__body {
-    grid-template-columns: 264px minmax(0, 1fr);
+    grid-template-columns: 252px minmax(0, 1fr);
   }
 }
 
 /* ===========================================================================
    Interview practice
-   The recorder is the only thing that matters while answering, so it holds
-   the right column at a fixed size and the question and transcript share the
-   left. Nothing here scrolls except the transcript and the support material.
+   The recorder holds a fixed right column; the question and transcript share
+   the left. The authored moment is the recorder going live.
    =========================================================================== */
-
-.practice {
-  padding: var(--space-5) var(--space-8) var(--space-4);
-  gap: var(--space-4);
-}
-
-.practice__head {
-  display: flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-4);
-}
-
-.practice__back {
-  display: inline-flex;
-  align-items: center;
-  height: 34px;
-  padding: 0 var(--space-3);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background: var(--color-surface);
-  color: var(--color-muted-foreground);
-  font-family: var(--font-ui);
-  font-size: var(--text-xs);
-  gap: var(--space-2);
-}
-
-.practice__back:hover:not(:disabled) {
-  border-color: var(--color-border-strong);
-  color: var(--color-foreground);
-}
-
-.practice__ident {
-  display: flex;
-  min-width: 0;
-  flex: 1;
-  flex-direction: column;
-}
-
-.practice__ident h1 {
-  margin: 0;
-  color: var(--color-foreground);
-  font-size: var(--text-lg);
-  font-weight: var(--weight-semibold);
-  line-height: var(--leading-tight);
-}
-
-.practice__ident span {
-  color: var(--color-subtle-foreground);
-  font-size: var(--text-xs);
-}
-
-.practice__modes {
-  display: flex;
-  flex: 0 0 auto;
-  padding: 3px;
-  border: 0;
-  border-radius: 999px;
-  margin: 0;
-  background: var(--color-surface-muted);
-  gap: 2px;
-}
-
-.practice__modes button {
-  height: 30px;
-  padding: 0 var(--space-4);
-  border-radius: 999px;
-  color: var(--color-muted-foreground);
-  font-family: var(--font-ui);
-  font-size: var(--text-xs);
-  font-weight: var(--weight-medium);
-}
-
-.practice__modes button[data-active="true"] {
-  color: var(--skill-speaking-ink);
-  background: var(--color-surface);
-  box-shadow: 0 1px 2px rgba(12, 32, 55, 0.08);
-}
 
 .practice__body {
   display: grid;
   min-height: 0;
   flex: 1;
-  gap: var(--space-4);
-  grid-template-columns: minmax(0, 1fr) 336px;
+  gap: 14px;
+  grid-template-columns: minmax(0, 1fr) 330px;
 }
 
 .practice__main,
@@ -725,513 +417,522 @@
   display: flex;
   min-height: 0;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: 14px;
 }
 
-/* -- Question --------------------------------------------------------------- */
-
-.practice-question {
+.pr-question {
   flex: 0 0 auto;
+  padding: 18px 20px;
+  gap: 10px;
 }
 
-.practice-question__head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-}
-
-.practice-question__head span {
-  color: var(--color-subtle-foreground);
-  font-family: var(--font-ui);
-  font-size: var(--text-xs);
-}
-
-.practice-question p {
+.pr-question p {
   margin: 0;
-  color: var(--color-foreground);
   font-family: var(--font-display);
-  font-size: var(--text-lg);
-  line-height: 1.35;
+  font-size: 21px;
+  line-height: 1.28;
   text-wrap: balance;
 }
 
-.practice-question small {
-  color: var(--color-subtle-foreground);
-  font-size: var(--text-xs);
+.pr-question small {
+  font-size: 12.5px;
+  font-weight: 600;
+  opacity: 0.72;
 }
 
-/* -- Transcript ------------------------------------------------------------- */
-
-.practice-transcript {
+.pr-transcript {
   min-height: 0;
   flex: 1;
+  padding: 0;
+  gap: 0;
 }
 
-.practice-transcript__canvas {
-  display: flex;
+.pr-transcript__canvas {
   min-height: 0;
   flex: 1;
-  flex-direction: column;
-  padding: var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background: var(--color-surface-muted);
-  gap: var(--space-3);
+  padding: 14px 16px;
   overflow-y: auto;
   overscroll-behavior: contain;
-  scrollbar-color: var(--scrollbar-thumb) transparent;
+  scrollbar-color: var(--ink) transparent;
   scrollbar-width: thin;
 }
 
-.practice-transcript__canvas p {
+.pr-transcript__canvas p {
   margin: 0;
-  color: var(--color-muted-foreground);
-  font-size: var(--text-sm);
-  line-height: var(--leading-normal);
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.55;
 }
 
-.practice-transcript__foot {
+.pr-transcript__foot {
   display: flex;
+  flex: 0 0 auto;
   flex-wrap: wrap;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-3);
+  padding: 11px 14px;
+  border-top: var(--edge) solid var(--ink);
+  gap: 10px;
 }
 
-.practice-transcript__foot audio {
-  height: 32px;
-  max-width: 260px;
+.pr-transcript__foot audio {
+  height: 34px;
+  max-width: 240px;
 }
 
-.practice-actions {
+.pr-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
+  gap: 8px;
 }
 
 /* -- Recorder --------------------------------------------------------------- */
 
-.practice-recorder {
+.pr-recorder {
   flex: 0 0 auto;
   align-items: center;
+  padding: 18px;
+  gap: 12px;
   text-align: center;
 }
 
-.practice-recorder__head {
+.pr-recorder__head {
   display: flex;
   width: 100%;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-3);
+  gap: 10px;
 }
 
-.practice-recorder__head h2 {
-  margin: 0;
-  font-size: var(--text-sm);
-  font-weight: var(--weight-semibold);
+/* The dial is the only round thing in this world, which is what makes the
+   countdown read as a clock rather than another panel. */
+.pr-dial {
+  display: grid;
+  width: 152px;
+  height: 152px;
+  border: var(--edge) solid var(--ink);
+  border-radius: 50%;
+  background:
+    conic-gradient(var(--pop-flame) var(--progress, 360deg), var(--paper) 0) content-box,
+    var(--paper);
+  box-shadow: var(--shadow-hard);
+  place-items: center;
 }
 
-.practice-recorder__status {
+.pr-dial__inner {
+  display: grid;
+  width: 104px;
+  height: 104px;
+  border: var(--edge) solid var(--ink);
+  border-radius: 50%;
+  background: var(--paper);
+  place-items: center;
+}
+
+.pr-dial strong {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.pr-dial span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.pr-recorder__status {
   min-height: 34px;
   margin: 0;
-  color: var(--color-muted-foreground);
-  font-size: var(--text-xs);
-  line-height: var(--leading-snug);
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.35;
 }
 
-.practice-recorder .button {
-  width: 100%;
-  justify-content: center;
-}
-
-/* -- Support ---------------------------------------------------------------- */
-
-.practice-support {
+.pr-support {
   min-height: 0;
   flex: 1;
-  overflow: hidden;
+  padding: 0;
+  gap: 0;
 }
 
-.practice-support__body {
+.pr-support__body {
   min-height: 0;
   flex: 1;
-  padding-bottom: var(--space-2);
+  padding: 12px 14px;
   overflow-y: auto;
   overscroll-behavior: contain;
-  scrollbar-color: var(--scrollbar-thumb) transparent;
+  scrollbar-color: var(--ink) transparent;
   scrollbar-width: thin;
 }
-
-/* -- Question navigation ---------------------------------------------------- */
 
 .practice__foot {
   display: flex;
   flex: 0 0 auto;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
-  gap: var(--space-4);
+  padding: 10px 14px;
+  gap: 14px;
 }
 
 .practice__dots {
   display: flex;
-  gap: var(--space-2);
+  flex-direction: row;
+  gap: 8px;
 }
 
 .practice__dots button {
-  width: 32px;
-  height: 32px;
-  border: 1px solid var(--color-border);
-  border-radius: 50%;
-  color: var(--color-muted-foreground);
-  background: var(--color-surface);
-  font-family: var(--font-ui);
-  font-size: var(--text-xs);
-}
-
-.practice__dots button:hover:not(:disabled) {
-  border-color: var(--color-border-strong);
+  width: 36px;
+  height: 36px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  box-shadow: 3px 3px 0 var(--ink);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 13px;
 }
 
 .practice__dots button[data-active="true"] {
-  border-color: var(--skill-speaking);
-  color: var(--color-surface);
-  background: var(--skill-speaking);
-}
-
-@media (max-width: 1120px) {
-  .practice__body {
-    grid-template-columns: minmax(0, 1fr) 292px;
-  }
-}
-
-/* Directional glyph helpers: the doodle arrow points north-east, so it is
-   rotated into place rather than swapped for a different drawing. */
-.doodle-icon--forward {
-  transform: rotate(45deg);
-}
-
-.doodle-icon--back {
-  transform: rotate(-135deg);
+  background: var(--pop-sky);
 }
 
 /* ===========================================================================
    Listen & Repeat
-   A four-step loop. The two acting steps sit on top at a fixed height; the
-   two reviewing steps share the remaining space and scroll inside themselves.
+   Four steps, two rows, every card clipped to its cell.
    =========================================================================== */
-
-.repeat {
-  padding: var(--space-5) var(--space-8) var(--space-4);
-  gap: var(--space-4);
-}
 
 .repeat__body {
   display: grid;
   min-height: 0;
   flex: 1;
-  gap: var(--space-4);
-  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 14px;
+  grid-template-columns: 288px minmax(0, 1fr);
 }
 
 .repeat__main {
   display: flex;
   min-height: 0;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: 12px;
 }
 
-/* -- Step strip ------------------------------------------------------------- */
-
-.repeat__steps {
+.rp-steps {
   display: flex;
   flex: 0 0 auto;
+  flex-direction: row;
   padding: 0;
   margin: 0;
-  gap: var(--space-2);
+  gap: 8px;
   list-style: none;
 }
 
-.repeat__steps li {
+.rp-steps li {
   display: flex;
   flex: 1;
+  flex-direction: row;
   align-items: center;
-  padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  color: var(--color-subtle-foreground);
-  background: var(--color-surface);
-  font-family: var(--font-ui);
-  font-size: var(--text-xs);
-  gap: var(--space-2);
+  padding: 8px 11px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  font-family: var(--font-flat);
+  font-size: 12px;
+  font-weight: 700;
+  gap: 8px;
 }
 
-.repeat__steps li span {
+.rp-steps li span {
   display: grid;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   flex: 0 0 auto;
+  border: 2px solid var(--ink);
   border-radius: 50%;
-  color: var(--color-subtle-foreground);
-  background: var(--color-surface-muted);
-  font-size: var(--text-2xs);
+  background: var(--paper);
+  font-family: var(--font-display);
+  font-size: 11px;
   place-items: center;
 }
 
-.repeat__steps li[data-state="current"] {
-  border-color: var(--skill-speaking-border);
-  color: var(--skill-speaking-ink);
-  background: var(--skill-speaking-soft);
+.rp-steps li[data-state="current"] {
+  background: var(--pop-sun);
+  box-shadow: 3px 3px 0 var(--ink);
 }
 
-.repeat__steps li[data-state="current"] span {
-  color: var(--color-surface);
-  background: var(--skill-speaking);
+.rp-steps li[data-state="complete"] span {
+  background: var(--pop-mint);
 }
 
-.repeat__steps li[data-state="complete"] {
-  color: var(--skill-vocabulary-ink);
-}
-
-.repeat__steps li[data-state="complete"] span {
-  color: var(--color-surface);
-  background: var(--skill-vocabulary);
-}
-
-/* -- Practice grid ---------------------------------------------------------- */
-
-/* Both rows are constrained. An `auto` first row let the listen and record
-   cards take the height they wanted, which pushed the review row past the
-   bottom of the window and under the footer. */
 .repeat__grid {
   display: grid;
   min-height: 0;
   flex: 1;
-  gap: var(--space-3);
+  gap: 12px;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
 }
 
-/* Each card is clipped to its grid cell and scrolls its own body. Without
-   this the taller top row spilled over the review row beneath it. */
-.repeat-card {
-  display: flex;
+.rp-card {
   min-height: 0;
-  flex-direction: column;
-  padding: var(--space-4) var(--space-5);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
-  box-shadow: 0 1px 3px rgba(12, 32, 55, 0.04);
-  gap: var(--space-3);
+  padding: 0;
+  gap: 0;
   overflow: hidden;
 }
 
-/* Everything after the card heading shares the remaining height and scrolls. */
-.repeat-card > *:not(.repeat-card__head) {
-  flex: 0 0 auto;
-}
-
-.repeat-card > .repeat-card__body {
+.rp-card__body {
   min-height: 0;
   flex: 1;
-  padding-bottom: var(--space-2);
+  padding: 12px 14px;
   overflow-y: auto;
   overscroll-behavior: contain;
-  scrollbar-color: var(--scrollbar-thumb) transparent;
+  scrollbar-color: var(--ink) transparent;
   scrollbar-width: thin;
 }
 
-.repeat-card[data-step-state="current"] {
-  border-color: var(--skill-speaking-border);
-}
-
-.repeat-card__head {
+.rp-player {
   display: flex;
-  flex: 0 0 auto;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-3);
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
 }
 
-.repeat-card__head h2 {
-  margin: 0;
-  color: var(--color-foreground);
-  font-size: var(--text-sm);
-  font-weight: var(--weight-semibold);
+/* Bars flex so the waveform always fills its track, whatever the width. */
+.rp-wave {
+  display: flex;
+  min-width: 0;
+  height: 40px;
+  flex: 1;
+  align-items: center;
+  padding: 0 8px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  gap: 2px;
 }
 
-.repeat-card__head span,
-.repeat-card__head small {
-  color: var(--color-subtle-foreground);
-  font-size: var(--text-2xs);
+.rp-wave i {
+  width: auto;
+  min-width: 2px;
+  max-width: 7px;
+  flex: 1 1 3px;
+  border-radius: 2px;
+  background: var(--ink);
 }
 
-.repeat-card__scroll {
+.rp-card textarea {
+  width: 100%;
   min-height: 0;
   flex: 1;
-  padding-bottom: var(--space-2);
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-color: var(--scrollbar-thumb) transparent;
-  scrollbar-width: thin;
+  padding: 10px 12px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-flat);
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.5;
+  resize: none;
 }
 
-/* -- Footer ----------------------------------------------------------------- */
+.rp-accuracy {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.rp-accuracy__track {
+  position: relative;
+  min-width: 0;
+  height: 18px;
+  flex: 1;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+}
+
+.rp-accuracy__fill {
+  height: 100%;
+  border-right: 2px solid var(--ink);
+  background: var(--pop-mint);
+  transition: width 320ms var(--snap);
+}
 
 .repeat__foot {
   display: flex;
   flex: 0 0 auto;
+  flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
-  gap: var(--space-3);
+  padding: 10px 14px;
+  gap: 10px;
 }
 
 @media (max-width: 1120px) {
+  .practice__body {
+    grid-template-columns: minmax(0, 1fr) 288px;
+  }
+
   .repeat__body {
-    grid-template-columns: 258px minmax(0, 1fr);
+    grid-template-columns: 244px minmax(0, 1fr);
+  }
+
+  .pr-dial {
+    width: 128px;
+    height: 128px;
   }
 }
 
-/* Listen & Repeat renders inside the shared Speaking shell, so its host just
-   needs to fill the remaining height. */
-.speaking__repeat-host {
-  display: flex;
-  min-height: 0;
-  flex: 1;
-}
-
-.speaking__repeat-host > .repeat__body {
-  flex: 1;
-}
-
-/* Prompt rail: the scenario picker label matches the other rail filters
-   rather than shouting in uppercase. */
-.repeat__body .listen-scenario-picker {
+/* The dial's inner disc stacks its own two lines. */
+.pr-dial__inner {
   display: flex;
   flex-direction: column;
-  padding: 0 var(--space-4) var(--space-3);
-  gap: 3px;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
 }
 
-.repeat__body .listen-scenario-picker span {
-  color: var(--color-subtle-foreground);
-  font-family: var(--font-ui);
-  font-size: var(--text-2xs);
-  font-weight: var(--weight-medium);
-  letter-spacing: 0;
-  text-transform: none;
+/* Recording is the authored moment: the phase badge blinks hard while live. */
+.pr-recorder .recorder-phase-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 11px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  font-family: var(--font-flat);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.repeat__body .listen-scenario-picker select {
-  width: 100%;
-  height: 32px;
-  padding: 0 var(--space-2);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background: var(--color-surface);
-  font-size: var(--text-xs);
+.pr-recorder .recorder-phase-badge[data-tone="recording"] {
+  animation: b-live 900ms steps(1, end) infinite;
 }
 
-/* The queue is the rail's scroller. */
-.repeat__body .prompt-queue > ol {
-  min-height: 0;
-  flex: 1;
-  padding: var(--space-2);
-  margin: 0;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  list-style: none;
-  scrollbar-color: var(--scrollbar-thumb) transparent;
-  scrollbar-width: thin;
+.pr-recorder .recorder-phase-badge[data-tone="saved"] {
+  background: var(--pop-mint);
 }
 
-.repeat__body .prompt-queue > header,
-.repeat__body .prompt-queue > .prompt-queue__context,
-.repeat__body .prompt-queue > .prompt-queue__progress {
-  flex: 0 0 auto;
+.pr-transcript .transcription-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 11px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  font-family: var(--font-flat);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.repeat__body .prompt-queue > header {
-  padding: var(--space-4) var(--space-4) var(--space-2);
+.pr-transcript .transcription-status[data-live="true"] {
+  animation: b-live 900ms steps(1, end) infinite;
 }
 
-.repeat__body .prompt-queue > .prompt-queue__context {
-  padding: 0 var(--space-4);
-  margin: 0 0 var(--space-2);
+/* -- Practice header --------------------------------------------------------
+   Back, identity, and the mode switch on one line. The generic brutal head
+   wraps by default, which stacked the switch under the back button and left
+   the title floating in the middle. */
+.brutal.practice > .brutal__head {
+  flex-wrap: nowrap;
+  gap: 16px;
 }
 
-.repeat__body .prompt-queue > .prompt-queue__progress {
-  margin: 0 var(--space-4) var(--space-2);
-}
-
-/* -- Waveform ---------------------------------------------------------------
-   The bars were a fixed 3px each, so a wider window left a growing empty gap
-   to the right of them. They flex now and the row always fills its track. */
-.repeat__body .waveform-placeholder {
+.brutal.practice > .brutal__head > .brutal__title {
   min-width: 0;
-  height: 38px;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 2px;
 }
 
-.repeat__body .waveform-placeholder i {
-  width: auto;
-  min-width: 2px;
-  max-width: 6px;
-  flex: 1 1 3px;
+.brutal.practice .brutal__title h1 {
+  overflow: hidden;
+  font-size: 24px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.repeat__body .prompt-player {
-  display: flex;
-  min-width: 0;
-  align-items: center;
-  gap: var(--space-3);
+.brutal.practice .brutal__title span {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  opacity: 0.72;
+  text-transform: uppercase;
 }
 
-/* -- Transcript card --------------------------------------------------------
-   Head and actions are fixed; the field takes the remaining height. Without
-   this the Compare control was pushed under the card's clipped edge. */
-.repeat-card.transcript-result > label,
-.repeat-card.transcript-result > small,
-.repeat-card.transcript-result > .compare-button {
-  flex: 0 0 auto;
+/* The footer is a frame, and frames are columns; this one is a row. */
+.b-frame.practice__foot,
+.b-frame.repeat__foot {
+  flex-direction: row;
 }
 
-.repeat-card.transcript-result > textarea {
-  min-height: 0;
-  flex: 1;
-  resize: none;
+/* -- Support accordion ------------------------------------------------------
+   The shared accordion carries its own calm styling; inside a brutalist frame
+   it has to be re-skinned or it reads as three broken white bars. */
+.pr-support .study-accordion__item {
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  margin-bottom: 8px;
+  background: var(--paper);
+  box-shadow: 2px 2px 0 var(--ink);
 }
 
-.repeat-card.transcript-result > .compare-button {
-  align-self: flex-start;
-  margin-top: auto;
+.pr-support .study-accordion__trigger {
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: var(--font-flat);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: left;
 }
 
-/* -- Recorder card ----------------------------------------------------------
-   Same treatment: the stage breathes, the actions stay reachable. */
-.repeat-card.repeat-recorder > .repeat-recorder__stage {
-  min-height: 0;
-  flex: 1;
+.pr-support .study-accordion__item[data-state="open"] .study-accordion__trigger {
+  border-bottom: 2px solid var(--ink);
+  background: var(--pop-sun);
 }
 
-.repeat-card.repeat-recorder > .repeat-recorder__actions {
-  flex: 0 0 auto;
-  flex-wrap: wrap;
+.pr-support .study-accordion__content,
+.pr-support .study-accordion__panel {
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
 }
 
-/* -- Listen card ------------------------------------------------------------ */
+.pr-support .study-accordion__content ul,
+.pr-support .study-accordion__panel ul {
+  padding-left: 18px;
+  margin: 0;
+}
 
-.repeat-card.listen-prompt-card > .repeat-card__body {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
+.pr-support .study-accordion__content li,
+.pr-support .study-accordion__panel li {
+  margin-bottom: 5px;
+}
+
+.pr-support h4 {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-size: 12px;
+}
+
+.pr-support p {
+  margin: 0 0 8px;
 }

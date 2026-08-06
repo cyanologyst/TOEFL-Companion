@@ -15,7 +15,6 @@ import {
 import { studyRepository } from "../../services/studyRepository";
 import { speakVocabulary } from "../../services/vocabularyBrowser";
 import type { ReviewAction } from "../../types/vocabulary";
-import "../../brutal.css";
 
 type VocabularyView = "library" | "review";
 const WORDS_PER_PAGE = 20;

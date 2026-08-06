@@ -9,6 +9,9 @@ import { App } from "./App";
 import { AppErrorBoundary } from "./components/AppErrorBoundary";
 import { TooltipProvider } from "./components/StudyUI";
 import "./styles.css";
+// Base layer for the brutalist surfaces. Loaded here, before any feature
+// stylesheet, so a feature rule always wins over a shared primitive.
+import "./brutal.css";
 // After styles.css so motion can layer on top of the base rules.
 import "./motion.css";
 

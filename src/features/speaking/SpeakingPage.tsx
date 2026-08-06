@@ -473,12 +473,14 @@ export function SpeakingPage({
   };
 
   return (
-    <div className={`speaking${!activeTopic && mode === "repeat" ? " speaking--repeat" : ""}`}>
+    <div
+      className={`brutal speaking${!activeTopic && mode === "repeat" ? " speaking--repeat" : ""}`}
+    >
       {!activeTopic ? (
         <>
-          <header className="speaking__head">
-            <div className="speaking__title">
-              <span className="speaking__title-icon">
+          <header className="brutal__head">
+            <div className="brutal__title">
+              <span className="brutal__title-mark">
                 <DoodleIcon name="mic" size={24} />
               </span>
               <div>
@@ -543,16 +545,16 @@ export function SpeakingPage({
             >
               {/* Search and filters live inside the rail they act on, rather
                   than as a full-width toolbar above the whole page. */}
-              <aside className="speaking-rail" aria-label="Interview topics">
-                <div className="speaking-rail__head">
-                  <div className="speaking-rail__title">
+              <aside className="b-frame sp-rail" aria-label="Interview topics">
+                <div className="sp-rail__head">
+                  <div className="b-row b-row--between">
                     <h2>NEO interview library</h2>
-                    <span className="speaking-rail__count" aria-live="polite">
+                    <span className="b-tag" aria-live="polite">
                       {filteredTopics.length}/{topics.length}
                     </span>
                   </div>
 
-                  <label className="speaking-rail__search">
+                  <label className="b-field">
                     <DoodleIcon name="search" size={16} />
                     <span className="visually-hidden">Search speaking sets</span>
                     <input
@@ -562,7 +564,7 @@ export function SpeakingPage({
                     />
                   </label>
 
-                  <div className="speaking-rail__filters">
+                  <div className="sp-rail__filters">
                     <label>
                       <span>Group</span>
                       <select
@@ -593,7 +595,7 @@ export function SpeakingPage({
 
                 <nav
                   ref={topicNavigatorScrollRef}
-                  className="speaking-rail__scroll"
+                  className="b-scroll sp-rail__list"
                   aria-label="Interview topics"
                 >
                   {topicGroups.map((group) => {
@@ -601,11 +603,7 @@ export function SpeakingPage({
                       .toLocaleLowerCase()
                       .replace(/[^a-z0-9]+/gu, "-")}`;
                     return (
-                      <section
-                        key={group.category}
-                        className="speaking-rail__group"
-                        aria-labelledby={groupId}
-                      >
+                      <section key={group.category} className="sp-group" aria-labelledby={groupId}>
                         <h3 id={groupId}>
                           {formatCategory(group.category)}
                           <span>{group.topics.length}</span>
@@ -624,7 +622,7 @@ export function SpeakingPage({
                                 }
                               }}
                               type="button"
-                              className="speaking-topic"
+                              className="sp-topic"
                               data-active={selected}
                               data-status={progress.status}
                               aria-current={selected ? "page" : undefined}
@@ -637,16 +635,16 @@ export function SpeakingPage({
                               onClick={() => selectTopicForPreview(topic.id)}
                               onKeyDown={(event) => handleTopicNavigatorKeyDown(event, topic.id)}
                             >
-                              <span className="speaking-topic__num">
+                              <span className="sp-topic__num">
                                 {String(topic.id).padStart(2, "0")}
                               </span>
-                              <span className="speaking-topic__copy">
+                              <span className="sp-topic__copy">
                                 <strong>{topic.title}</strong>
                                 <small>
                                   {progress.completedQuestions}/{topic.questions.length} complete
                                 </small>
                               </span>
-                              <span className="speaking-topic__pct">{progress.percent}%</span>
+                              <span className="sp-topic__pct">{progress.percent}%</span>
                             </button>
                           );
                         })}
@@ -655,7 +653,7 @@ export function SpeakingPage({
                   })}
                 </nav>
 
-                <footer className="speaking-rail__foot">
+                <footer className="sp-rail__foot">
                   <span>{filteredTopics.length * 4} questions shown</span>
                   <span>{savedKeys.length} saved</span>
                 </footer>
@@ -678,13 +676,13 @@ export function SpeakingPage({
                   }}
                 />
               ) : (
-                <div className="speaking-empty-detail">
+                <div className="b-frame sp-empty">
                   <DoodleIcon name="search" size={30} />
                   <strong>No matching speaking sets</strong>
                   <p>Try another search phrase or clear the active topic filter.</p>
                   <button
                     type="button"
-                    className="button button--outline"
+                    className="b-btn"
                     onClick={() => {
                       setQuery("");
                       setCategory("All topics");
@@ -829,10 +827,10 @@ function SelectedTopicOverview({
   ];
 
   return (
-    <div className="speaking-detail" data-status={progress.status}>
-      <section className="speaking-card speaking-question" aria-label="Question preview">
-        <div className="speaking-question__top">
-          <div className="speaking-question__meta">
+    <div className="sp-detail" data-status={progress.status}>
+      <section className="b-frame sp-question b-stamp" aria-label="Question preview">
+        <div className="sp-question__top">
+          <div className="sp-question__meta">
             <strong>{topic.title}</strong>
             <span>
               {formatCategory(topic.category)} · {progress.completedQuestions}/
@@ -840,12 +838,12 @@ function SelectedTopicOverview({
             </span>
           </div>
 
-          <div className="speaking-question__controls">
+          <div className="b-row">
             {/* One panel, four tabs: the questions share a single region that
                 swaps content, so roving tabindex moves focus while only the
                 selected tab owns the panel. */}
             <div
-              className="speaking-qpicker"
+              className="sp-qpick"
               role="tablist"
               aria-label={`${topic.title} questions`}
               onKeyDown={(event) => {
@@ -896,7 +894,7 @@ function SelectedTopicOverview({
             </div>
             <button
               type="button"
-              className="icon-button"
+              className="b-icon-btn"
               aria-label={bookmarked ? "Remove question bookmark" : "Bookmark this question"}
               aria-pressed={bookmarked}
               title={bookmarked ? "Remove bookmark" : "Save question"}
@@ -908,14 +906,14 @@ function SelectedTopicOverview({
         </div>
 
         <div
-          className="speaking-question__panel"
+          className="sp-question__panel"
           id={`${questionTabBaseId}-panel`}
           role="tabpanel"
           aria-labelledby={`${questionTabBaseId}-tab-${questionIndex}`}
         >
-          <p className="speaking-question__prompt">{activeQuestion.prompt}</p>
+          <p className="sp-question__prompt">{activeQuestion.prompt}</p>
 
-          <p className="speaking-question__hint">
+          <p className="sp-question__plan">
             <DoodleIcon name="bulb" size={17} />
             {activeQuestion.plan}
           </p>
@@ -924,11 +922,11 @@ function SelectedTopicOverview({
 
       {/* One preparation panel rather than three side-by-side cells: the cells
           were narrow enough that every idea, phrase, and sample was truncated. */}
-      <section className="speaking-card speaking-prep" aria-label="Preparation material">
-        <div className="speaking-prep__head">
+      <section className="b-frame sp-prep" aria-label="Preparation material">
+        <div className="b-head">
           <h2 className="visually-hidden">Preparation</h2>
-          <div className="speaking-prep__actions">
-            <div className="speaking-tabs" role="tablist" aria-label="Preparation material">
+          <div className="b-row">
+            <div className="sp-tabs" role="tablist" aria-label="Preparation material">
               {prepTabs.map((tab) => (
                 <button
                   key={tab.value}
@@ -963,21 +961,21 @@ function SelectedTopicOverview({
           </div>
         </div>
 
-        <div className="speaking-prep__body">
+        <div className="b-scroll sp-prep__body">
           {prepTab === "ideas" ? (
-            <ul className="speaking-prep__list">
+            <ul className="sp-prep__list">
               {activeQuestion.ideas.map((idea) => (
                 <li key={idea}>{idea}</li>
               ))}
             </ul>
           ) : prepTab === "collocations" ? (
-            <ul className="speaking-prep__list">
+            <ul className="sp-prep__list">
               {activeQuestion.collocations.map((collocation) => (
                 <li key={collocation}>{collocation}</li>
               ))}
             </ul>
           ) : (
-            <div className="speaking-prep__samples">
+            <div className="sp-prep__samples">
               <section>
                 <h3>Sample 1</h3>
                 <p>{activeQuestion.answer}</p>
@@ -991,12 +989,12 @@ function SelectedTopicOverview({
         </div>
       </section>
 
-      <div className="speaking-start">
-        <div className="speaking-start__copy">
+      <div className="b-frame sp-start">
+        <div className="sp-start__copy">
           <strong>Ready for question {questionIndex + 1}?</strong>
           <span>The recorder opens only when you start practice.</span>
         </div>
-        <button type="button" className="button button--primary" onClick={onStart}>
+        <button type="button" className="b-btn b-btn--lime" onClick={onStart}>
           <DoodleIcon name="mic" size={18} />
           {actionLabel}
         </button>
@@ -1135,11 +1133,11 @@ function InterviewPractice({
 
   const recorderPanel = (
     <section
-      className="speaking-card practice-recorder"
+      className="b-frame pr-recorder"
       aria-busy={activelyRecording || recorder.phase === "saving"}
       aria-label="Response recorder"
     >
-      <div className="practice-recorder__head">
+      <div className="pr-recorder__head">
         <h2>Response timer</h2>
         <span className="recorder-phase-badge" data-tone={statusTone}>
           {recorder.phase === "recording"
@@ -1157,7 +1155,7 @@ function InterviewPractice({
       </div>
 
       <div
-        className="countdown-ring"
+        className="pr-dial"
         role="timer"
         aria-label={`${
           recorder.phase === "preparing" ? recorder.countdown : recorder.secondsLeft
@@ -1170,20 +1168,23 @@ function InterviewPractice({
           } as React.CSSProperties
         }
       >
-        <strong>
-          {recorder.phase === "preparing" ? recorder.countdown : recorder.secondsLeft}
-        </strong>
-        <span>{recorder.phase === "preparing" ? "get ready" : "seconds"}</span>
+        {/* Inner disc so the conic fill reads as a ring rather than a pie. */}
+        <span className="pr-dial__inner">
+          <strong>
+            {recorder.phase === "preparing" ? recorder.countdown : recorder.secondsLeft}
+          </strong>
+          <span>{recorder.phase === "preparing" ? "ready" : "sec"}</span>
+        </span>
       </div>
 
-      <p className="practice-recorder__status" role="status" aria-live="polite">
+      <p className="pr-recorder__status" role="status" aria-live="polite">
         {recorder.statusMessage}
       </p>
 
       {recorder.phase === "idle" || recorder.phase === "failed" ? (
         <button
           type="button"
-          className="button button--primary"
+          className="b-btn b-btn--lime"
           disabled={!recorder.isSupported}
           onClick={() => void (recorder.phase === "failed" ? recorder.retry() : recorder.start())}
         >
@@ -1193,7 +1194,7 @@ function InterviewPractice({
       ) : recorder.phase === "recording" ? (
         <button
           type="button"
-          className="button button--danger"
+          className="b-btn b-btn--flame"
           disabled={recorder.isStopping}
           onClick={recorder.stop}
         >
@@ -1204,27 +1205,27 @@ function InterviewPractice({
   );
 
   return (
-    <div className="practice" data-practice-mode={interviewMode}>
+    <div className="brutal practice" data-practice-mode={interviewMode}>
       {/* Defined above the tree so the recorder can sit in the side column
           while the question and transcript share the main one. */}
-      <header className="practice__head">
+      <header className="brutal__head">
         <button
           type="button"
-          className="practice__back"
+          className="b-btn"
           disabled={navigationLocked}
           onClick={() => navigateSafely(onBack)}
         >
           <DoodleIcon name="arrow" size={13} className="doodle-icon--back" />
           Speaking
         </button>
-        <div className="practice__ident">
+        <div className="brutal__title">
           <h1>{topic.title}</h1>
           <span>
             NEO {topic.id} · {formatCategory(topic.category)} · Question {questionIndex + 1} of{" "}
             {topic.questions.length}
           </span>
         </div>
-        <fieldset className="practice__modes">
+        <fieldset className="b-switch">
           <legend className="visually-hidden">Interview mode</legend>
           <button
             type="button"
@@ -1247,12 +1248,12 @@ function InterviewPractice({
 
       <div className="practice__body" data-mode={interviewMode}>
         <div className="practice__main">
-          <section className="speaking-card practice-question" aria-label="Current question">
-            <div className="practice-question__head">
+          <section className="b-frame pr-question b-stamp" aria-label="Current question">
+            <div className="b-row b-row--between">
               <span>Question {questionIndex + 1}</span>
               <button
                 type="button"
-                className="icon-button"
+                className="b-icon-btn"
                 aria-label={bookmarked ? "Remove question bookmark" : "Bookmark this question"}
                 aria-pressed={bookmarked}
                 title={bookmarked ? "Remove bookmark" : "Save question"}
@@ -1269,8 +1270,8 @@ function InterviewPractice({
             )}
           </section>
 
-          <section className="speaking-card practice-transcript" aria-label="Live transcription">
-            <div className="practice-question__head">
+          <section className="b-frame pr-transcript" aria-label="Live transcription">
+            <div className="b-row b-row--between">
               <h2>Live transcription</h2>
               <span
                 className="transcription-status"
@@ -1287,13 +1288,13 @@ function InterviewPractice({
                       : "Waiting"}
               </span>
             </div>
-            <div className="practice-transcript__canvas">
+            <div className="pr-transcript__canvas">
               {recorder.phase === "recording" ? (
                 <AudioWaveform analyserRef={recorder.analyserRef} active />
               ) : null}
               <p>{recorder.transcript || "Your spoken words will appear here while you record."}</p>
             </div>
-            <div className="practice-transcript__foot">
+            <div className="pr-transcript__foot">
               <span>
                 Spoken words <strong>{countWords(recorder.transcript)}</strong>
               </span>
@@ -1304,10 +1305,10 @@ function InterviewPractice({
               ) : null}
             </div>
             {recorder.result && recorder.phase !== "saved" ? (
-              <div className="practice-actions">
+              <div className="pr-actions">
                 <button
                   type="button"
-                  className="button button--outline"
+                  className="b-btn"
                   disabled={recorder.pendingAction !== null}
                   onClick={() => void recorder.recordAgain()}
                 >
@@ -1316,7 +1317,7 @@ function InterviewPractice({
                 </button>
                 <button
                   type="button"
-                  className="button button--quiet"
+                  className="b-btn"
                   disabled={recorder.pendingAction !== null}
                   onClick={() => void recorder.discard()}
                 >
@@ -1324,7 +1325,7 @@ function InterviewPractice({
                 </button>
                 <button
                   type="button"
-                  className="button button--primary"
+                  className="b-btn b-btn--lime"
                   disabled={recorder.phase === "saving"}
                   onClick={() => void recorder.save()}
                 >
@@ -1345,9 +1346,9 @@ function InterviewPractice({
           {recorderPanel}
 
           {interviewMode === "practice" ? (
-            <aside className="speaking-card practice-support" aria-label="Practice support">
+            <aside className="b-frame pr-support" aria-label="Practice support">
               <StudyAccordion
-                className="practice-support__body"
+                className="b-scroll pr-support__body"
                 defaultValue="ideas"
                 items={[
                   {
@@ -1401,10 +1402,10 @@ function InterviewPractice({
         </div>
       </div>
 
-      <footer className="practice__foot">
+      <footer className="b-frame practice__foot">
         <button
           type="button"
-          className="button button--quiet"
+          className="b-btn"
           disabled={questionIndex === 0 || navigationLocked}
           onClick={() => navigateSafely(() => onQuestionChange(questionIndex - 1))}
         >
@@ -1432,7 +1433,7 @@ function InterviewPractice({
         </nav>
         <button
           type="button"
-          className="button button--primary"
+          className="b-btn b-btn--lime"
           disabled={navigationLocked}
           onClick={() =>
             navigateSafely(() =>
@@ -1708,8 +1709,8 @@ function ListenRepeatWorkspace({
       : "Review from the start";
 
   return (
-    <div className="repeat__body">
-      <aside className="speaking-rail prompt-queue" aria-label="Listen and Repeat prompt queue">
+    <div className="brutal repeat repeat__body">
+      <aside className="b-frame sp-rail prompt-queue" aria-label="Listen and Repeat prompt queue">
         <header>
           <div>
             <p>Scenario {collection.sequence ?? collectionIndex + 1}</p>
@@ -1787,7 +1788,7 @@ function ListenRepeatWorkspace({
       </aside>
 
       <div className="repeat__main">
-        <ol className="repeat__steps" aria-label="Listen and repeat workflow">
+        <ol className="rp-steps" aria-label="Listen and repeat workflow">
           {["Listen", "Record", "Compare", "Continue"].map((label, index) => (
             <li
               key={label}
@@ -1801,13 +1802,13 @@ function ListenRepeatWorkspace({
         </ol>
 
         <div className="repeat__grid">
-          <section className="repeat-card listen-prompt-card" data-step-state={stepStates[0]}>
-            <div className="repeat-card__head">
+          <section className="b-frame rp-card listen-prompt-card" data-step-state={stepStates[0]}>
+            <div className="b-head">
               <h2>1. Listen to the prompt</h2>
               <span>{prompt.audioFile ? "Original source clip" : "Text-to-speech preview"}</span>
             </div>
-            <div className="repeat-card__body">
-              <div className="prompt-player">
+            <div className="b-scroll rp-card__body">
+              <div className="rp-player">
                 <button
                   type="button"
                   className="prompt-play"
@@ -1817,7 +1818,7 @@ function ListenRepeatWorkspace({
                 >
                   <DoodleIcon name={playing ? "pause" : "play"} size={20} />
                 </button>
-                <div className="waveform-placeholder" aria-hidden>
+                <div className="rp-wave" aria-hidden>
                   {WAVEFORM_BARS.map((bar) => (
                     <i
                       key={bar.id}
@@ -1877,7 +1878,7 @@ function ListenRepeatWorkspace({
           </section>
 
           <section
-            className="repeat-card repeat-recorder"
+            className="b-frame rp-card repeat-recorder"
             data-step-state={stepStates[1]}
             aria-busy={
               recorder.phase === "requesting" ||
@@ -1886,7 +1887,7 @@ function ListenRepeatWorkspace({
               recorder.phase === "saving"
             }
           >
-            <div className="repeat-card__head">
+            <div className="b-head">
               <h2>2. Record your response</h2>
               <small>{responseSeconds}-second response, no preparation time.</small>
             </div>
@@ -1910,7 +1911,7 @@ function ListenRepeatWorkspace({
               {recorder.phase === "recording" ? (
                 <button
                   type="button"
-                  className="button button--danger"
+                  className="b-btn b-btn--flame"
                   disabled={recorder.isStopping}
                   onClick={recorder.stop}
                 >
@@ -1919,7 +1920,7 @@ function ListenRepeatWorkspace({
               ) : (
                 <button
                   type="button"
-                  className="button button--primary"
+                  className="b-btn b-btn--lime"
                   onClick={() =>
                     void (recorder.phase === "failed" ? recorder.retry() : recorder.start())
                   }
@@ -1937,7 +1938,7 @@ function ListenRepeatWorkspace({
                   </audio>
                   <button
                     type="button"
-                    className="button button--quiet"
+                    className="b-btn"
                     disabled={recorder.pendingAction !== null}
                     onClick={() => {
                       setHasCompared(false);
@@ -1959,8 +1960,8 @@ function ListenRepeatWorkspace({
           {/* The two review steps are direct children of the grid so they
                 share the remaining height instead of being nested inside a
                 wrapper that would collapse them. */}
-          <section className="repeat-card transcript-result" data-step-state={stepStates[2]}>
-            <div className="repeat-card__head">
+          <section className="b-frame rp-card transcript-result" data-step-state={stepStates[2]}>
+            <div className="b-head">
               <h2>3. Your transcription</h2>
               <span>{countWords(transcript)} words</span>
             </div>
@@ -1992,11 +1993,11 @@ function ListenRepeatWorkspace({
           </section>
 
           <section
-            className="repeat-card comparison-result"
+            className="b-frame rp-card comparison-result"
             data-step-state={stepStates[3]}
             aria-live="polite"
           >
-            <div className="repeat-card__head">
+            <div className="b-head">
               <h2>4. Comparison &amp; feedback</h2>
               {accuracy !== null ? (
                 <span data-score={accuracy >= 80 ? "good" : "practice"}>
@@ -2005,7 +2006,7 @@ function ListenRepeatWorkspace({
               ) : null}
             </div>
             {accuracy !== null ? (
-              <div className="repeat-card__scroll">
+              <div className="rp-card__body">
                 <div className="accuracy-row">
                   <span>Transcript match</span>
                   <i
@@ -2055,10 +2056,10 @@ function ListenRepeatWorkspace({
           </section>
         </div>
 
-        <footer className="repeat__foot">
+        <footer className="b-frame repeat__foot">
           <button
             type="button"
-            className="button button--outline"
+            className="b-btn"
             disabled={
               !recorder.result ||
               !hasCompared ||
@@ -2076,7 +2077,7 @@ function ListenRepeatWorkspace({
           </button>
           <button
             type="button"
-            className="button button--primary"
+            className="b-btn b-btn--lime"
             disabled={!hasCompared}
             onClick={() => requestNavigation(nextCollectionIndex, nextPromptIndex)}
           >

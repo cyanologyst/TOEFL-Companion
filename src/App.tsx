@@ -254,7 +254,7 @@ export function App(): React.JSX.Element {
   );
 
   return (
-    <div className="desktop-app" data-area={activeArea}>
+    <div className="desktop-app shell-brutal" data-area={activeArea}>
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>

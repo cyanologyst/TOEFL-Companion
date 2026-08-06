@@ -926,3 +926,646 @@
   flex: 1;
   padding: 14px 16px;
 }
+
+/* ===========================================================================
+   App shell
+   The rail and title bar carry the same world as the pages, so switching
+   area no longer crosses a seam between two visual languages.
+   =========================================================================== */
+
+.desktop-app:has(.brutal) .app-sidebar,
+.app-sidebar.is-brutal {
+  border-right: 3px solid var(--b-ink, #12100c);
+  background: #fffdf3;
+}
+
+/* Applied to the shell root so the rail and bar can be styled without every
+   page having to opt in individually. */
+.shell-brutal {
+  --b-ink: #12100c;
+  --b-paper: #fffdf3;
+  --b-ground: #ffe01b;
+  --b-lime: #c6f24e;
+  --b-sun: #ffd93d;
+  --b-sky: #7cc6fe;
+  --b-display: "Archivo Black", "Arial Black", sans-serif;
+  --b-flat: "Space Grotesk Variable", "Segoe UI", sans-serif;
+}
+
+.shell-brutal .native-titlebar {
+  border-bottom: 3px solid var(--b-ink);
+  background: var(--b-sun);
+}
+
+.shell-brutal .native-titlebar__title,
+.shell-brutal .native-titlebar strong {
+  font-family: var(--b-display);
+  letter-spacing: -0.01em;
+}
+
+.shell-brutal .native-titlebar__search {
+  height: 32px;
+  border: 2px solid var(--b-ink);
+  border-radius: 999px;
+  background: var(--b-paper);
+  box-shadow: 2px 2px 0 var(--b-ink);
+  color: var(--b-ink);
+  font-family: var(--b-flat);
+  font-weight: 600;
+}
+
+.shell-brutal .native-titlebar__search:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--b-ink);
+}
+
+.shell-brutal .native-titlebar__search kbd {
+  border: 1px solid var(--b-ink);
+  border-radius: 5px;
+  background: var(--b-lime);
+  font-family: var(--b-flat);
+  font-weight: 700;
+}
+
+/* -- Rail ------------------------------------------------------------------- */
+
+.shell-brutal .app-sidebar {
+  border-right: 3px solid var(--b-ink);
+  background: var(--b-paper);
+}
+
+.shell-brutal .app-sidebar__brand {
+  padding-bottom: 14px;
+  border-bottom: 3px solid var(--b-ink);
+}
+
+.shell-brutal .app-sidebar__brand strong {
+  font-family: var(--b-display);
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+
+.shell-brutal .app-sidebar__brand span {
+  font-family: var(--b-flat);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.shell-brutal .sidebar-nav-item {
+  border: 3px solid transparent;
+  border-radius: 10px;
+  color: var(--b-ink);
+  font-family: var(--b-display);
+  font-size: 14px;
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out,
+    background-color 90ms ease-out;
+}
+
+.shell-brutal .sidebar-nav-item:hover {
+  border-color: var(--b-ink);
+  background: var(--b-paper);
+  box-shadow: 3px 3px 0 var(--b-ink);
+  transform: translate(-1px, -1px);
+}
+
+/* The active area is a stuck-on sticker, not a soft tint. */
+.shell-brutal .sidebar-nav-item[data-active="true"] {
+  border-color: var(--b-ink);
+  background: var(--b-lime);
+  box-shadow: 4px 4px 0 var(--b-ink);
+}
+
+.shell-brutal .sidebar-nav-item[data-active="true"] .doodle-icon {
+  color: var(--b-ink);
+}
+
+.shell-brutal .app-sidebar__encouragement {
+  border: 3px solid var(--b-ink);
+  border-radius: 12px;
+  background: var(--b-sky);
+  box-shadow: 4px 4px 0 var(--b-ink);
+}
+
+.shell-brutal .app-sidebar__encouragement p {
+  color: var(--b-ink);
+  font-family: var(--b-flat);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.shell-brutal .app-sidebar__profile {
+  border: 0;
+  border-top: 3px solid var(--b-ink);
+  background: var(--b-ground);
+  font-family: var(--b-flat);
+}
+
+.shell-brutal .app-sidebar__profile:hover {
+  background: var(--b-sun);
+}
+
+.shell-brutal .app-sidebar__profile strong {
+  font-family: var(--b-display);
+  font-size: 14px;
+}
+
+.shell-brutal .profile-avatar {
+  border: 3px solid var(--b-ink);
+  border-radius: 50%;
+  color: var(--b-ink);
+  background: var(--b-lime);
+  box-shadow: 2px 2px 0 var(--b-ink);
+  font-family: var(--b-display);
+}
+
+/* ===========================================================================
+   Dashboard
+   One question answered once: what do I do now. A hero slab carries the
+   recommendation, three sticker tiles carry the skills, and the rest is a
+   compact strip. Fills the window exactly.
+   =========================================================================== */
+
+.dash-b__body {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1.35fr) minmax(0, 1fr);
+}
+
+/* -- Hero ------------------------------------------------------------------- */
+
+.dash-b__hero {
+  position: relative;
+  overflow: hidden;
+  padding: 26px 30px;
+  background: var(--pop-lime);
+  gap: 12px;
+  grid-row: span 2;
+  justify-content: center;
+}
+
+.dash-b__hero h2 {
+  font-size: clamp(30px, 3.4vw, 44px);
+  text-wrap: balance;
+}
+
+.dash-b__hero-why {
+  max-width: 34ch;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.dash-b__hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.dash-b__hero-cta {
+  align-self: flex-start;
+  min-height: 52px;
+  margin-top: 6px;
+  font-size: 17px;
+}
+
+/* A hard sticker in the corner: the countdown that actually matters. */
+.dash-b__stamp {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 16px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  box-shadow: var(--shadow-hard);
+  transform: rotate(4deg);
+}
+
+.dash-b__stamp strong {
+  font-family: var(--font-display);
+  font-size: 30px;
+  line-height: 1;
+}
+
+.dash-b__stamp span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* -- Skill tiles ------------------------------------------------------------ */
+
+.dash-b__skills {
+  display: grid;
+  min-height: 0;
+  gap: 12px;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+}
+
+.dash-b-skill {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round);
+  background: var(--paper);
+  box-shadow: var(--shadow-hard);
+  cursor: pointer;
+  gap: 14px;
+  text-align: left;
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out;
+}
+
+.dash-b-skill:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-deep);
+}
+
+.dash-b-skill:active {
+  transform: translate(var(--drop), var(--drop));
+  box-shadow: 0 0 0 var(--ink);
+}
+
+.dash-b-skill__mark {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  place-items: center;
+}
+
+.dash-b-skill--vocabulary .dash-b-skill__mark {
+  background: var(--pop-mint);
+}
+
+.dash-b-skill--speaking .dash-b-skill__mark {
+  background: var(--pop-sky);
+}
+
+.dash-b-skill--writing .dash-b-skill__mark {
+  background: var(--pop-grape);
+}
+
+.dash-b-skill__copy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.dash-b-skill__copy strong {
+  font-family: var(--font-display);
+  font-size: 16px;
+}
+
+.dash-b-skill__copy small {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.75;
+}
+
+.dash-b-skill__num {
+  flex: 0 0 auto;
+  font-family: var(--font-display);
+  font-size: 24px;
+}
+
+/* -- Week strip ------------------------------------------------------------- */
+
+.dash-b__week {
+  padding: 16px 18px;
+  gap: 12px;
+}
+
+.dash-b__week-row {
+  display: flex;
+  flex: 1;
+  align-items: stretch;
+  padding: 0;
+  margin: 0;
+  gap: 8px;
+  list-style: none;
+}
+
+.dash-b__week-row li {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  gap: 4px;
+}
+
+.dash-b__week-row li[data-done="true"] {
+  background: var(--pop-lime);
+}
+
+.dash-b__week-row li[data-today="true"] {
+  box-shadow: inset 0 0 0 3px var(--ink);
+}
+
+.dash-b__week-row b {
+  font-family: var(--font-display);
+  font-size: 13px;
+}
+
+.dash-b__week-row i {
+  font-size: 15px;
+  font-style: normal;
+}
+
+/* ===========================================================================
+   Settings
+   A sticker rail of sections beside one panel. The panel scrolls; the page
+   does not.
+   =========================================================================== */
+
+.set-b__body {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  gap: 16px;
+  grid-template-columns: 268px minmax(0, 1fr);
+}
+
+.set-b__nav {
+  padding: 12px;
+  gap: 8px;
+}
+
+.set-b__nav-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border: 3px solid transparent;
+  border-radius: var(--round-sm);
+  background: transparent;
+  cursor: pointer;
+  gap: 11px;
+  text-align: left;
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out,
+    background-color 90ms ease-out;
+}
+
+.set-b__nav-item:hover {
+  border-color: var(--ink);
+  background: var(--paper);
+  box-shadow: 3px 3px 0 var(--ink);
+  transform: translate(-1px, -1px);
+}
+
+.set-b__nav-item[data-active="true"] {
+  border-color: var(--ink);
+  background: var(--pop-sun);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.set-b__nav-item span {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.set-b__nav-item strong {
+  font-family: var(--font-display);
+  font-size: 14px;
+}
+
+.set-b__nav-item small {
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0.75;
+}
+
+.set-b__panel {
+  min-height: 0;
+  padding: 22px 26px;
+  gap: 18px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--ink) transparent;
+  scrollbar-width: thin;
+}
+
+.set-b__panel .settings-section {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.set-b__panel h2 {
+  font-size: 22px;
+}
+
+/* -- Forms in this world ---------------------------------------------------- */
+
+.brutal label {
+  font-family: var(--font-flat);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.brutal input[type="text"],
+.brutal input[type="number"],
+.brutal input[type="date"],
+.brutal input[type="search"],
+.brutal select,
+.brutal textarea {
+  padding: 10px 13px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-flat);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.brutal input:focus-visible,
+.brutal select:focus-visible,
+.brutal textarea:focus-visible {
+  box-shadow: 3px 3px 0 var(--ink);
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* Existing buttons inside converted pages inherit the world rather than
+   needing every call site rewritten. */
+.brutal .button {
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  box-shadow: var(--shadow-hard);
+  color: var(--ink);
+  font-family: var(--font-display);
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out;
+}
+
+.brutal .button:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-deep);
+}
+
+.brutal .button:active:not(:disabled) {
+  transform: translate(var(--drop), var(--drop));
+  box-shadow: 0 0 0 var(--ink);
+}
+
+.brutal .button--primary {
+  background: var(--pop-lime);
+}
+
+.brutal .button--outline,
+.brutal .button--quiet {
+  background: var(--paper);
+}
+
+.brutal .button--danger {
+  background: var(--pop-flame);
+}
+
+.brutal .panel {
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round);
+  background: var(--paper);
+  box-shadow: var(--shadow-hard);
+}
+
+.brutal .status-badge,
+.brutal .study-status-badge {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--pop-sun);
+  font-family: var(--font-flat);
+  font-weight: 700;
+}
+
+/* ===========================================================================
+   Progress in this world
+   The charts keep their shapes; the frames, type and palette change.
+   =========================================================================== */
+
+.brutal.progress {
+  padding: 22px 26px;
+  gap: 14px;
+}
+
+.brutal .progress-stat,
+.brutal .progress-card {
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round);
+  background: var(--paper);
+  box-shadow: var(--shadow-hard);
+}
+
+.brutal .progress-stat__value,
+.brutal .progress-card__head h2,
+.brutal .progress__title h1 {
+  font-family: var(--font-display);
+  color: var(--ink);
+}
+
+.brutal .progress-stat__label,
+.brutal .progress-stat__note,
+.brutal .progress-card__head span,
+.brutal .progress-legend li {
+  color: var(--ink);
+  font-family: var(--font-flat);
+  font-weight: 600;
+}
+
+.brutal .progress-stat__art {
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--pop-sun);
+}
+
+.brutal .progress__streak {
+  border: var(--edge) solid var(--ink);
+  border-radius: 999px;
+  background: var(--pop-lime);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.brutal .progress__streak strong {
+  font-family: var(--font-display);
+}
+
+.brutal .progress-legend i {
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+}
+
+.brutal .progress-sessions li {
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+}
+
+.brutal .progress-sessions__mark {
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  background: var(--pop-sky);
+}
+
+.brutal .progress-tip {
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  box-shadow: var(--shadow-hard);
+  font-family: var(--font-flat);
+  font-weight: 700;
+}
+
+.brutal .progress__first-run {
+  border: var(--edge) dashed var(--ink);
+  border-radius: var(--round);
+  background: var(--paper);
+}
+
+/* Recharts draws its own text; pull it into the world. */
+.brutal .recharts-text {
+  font-family: var(--font-flat);
+  font-weight: 600;
+}
+
+/* Frames do not nest in this world - an outlined box inside an outlined box
+   reads as a mistake, not as depth. Inner sections sit flat on their panel. */
+.set-b__panel .panel,
+.set-b__panel .settings-section > header,
+.set-b__panel .settings-fields {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.set-b__panel .settings-section > header {
+  padding: 0 0 4px;
+  border-bottom: 3px solid var(--ink);
+  margin-bottom: 14px;
+}

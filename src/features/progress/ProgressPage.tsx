@@ -26,6 +26,7 @@ import {
   writingSubmissionCount,
 } from "./progressModel";
 import "./progress.css";
+import "../../brutal.css";
 
 interface ProgressPageProps {
   vocabularyStats: VocabularyStats;
@@ -168,7 +169,7 @@ export function ProgressPage({
   const recent = [...studyState.activities].slice(0, 12);
 
   return (
-    <div className="page progress">
+    <div className="brutal progress">
       <header className="progress__head">
         <div className="progress__title">
           <span className="progress__title-icon">

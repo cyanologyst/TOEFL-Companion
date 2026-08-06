@@ -10,6 +10,7 @@ import {
 import { studyRepository } from "../../services/studyRepository";
 import { vocabularyRepository } from "../../services/vocabularyRepository";
 import type { StudySettings } from "../../types/study";
+import "../../brutal.css";
 import type { NotificationMode, VocabularySettings } from "../../types/vocabulary";
 
 interface SettingsPageProps {
@@ -259,24 +260,24 @@ export function SettingsPage({
       : "No pending changes";
 
   return (
-    <div className="page settings-page">
-      <header className="page-heading settings-heading">
-        <div className="page-heading__title">
-          <span className="page-heading__icon page-heading__icon--settings">
+    <div className="brutal settings-page">
+      <header className="brutal__head">
+        <div className="brutal__title">
+          <span className="brutal__title-mark">
             <DoodleIcon name="setting" size={28} />
           </span>
           <div>
             <h1>Settings</h1>
-            <p>Configure practice, reminders, audio, and local storage.</p>
+            <p className="b-eyebrow">Practice, reminders, audio, storage</p>
           </div>
         </div>
-        <div className="settings-heading__actions">
+        <div className="brutal__head-actions">
           <span className="settings-save-summary" data-dirty={isDirty} aria-live="polite">
             {saveMessage}
           </span>
           <button
             type="button"
-            className="button button--primary"
+            className="b-btn b-btn--lime"
             onClick={save}
             disabled={!isDirty || saveStatus === "loading"}
           >
@@ -285,13 +286,13 @@ export function SettingsPage({
         </div>
       </header>
 
-      <div className="settings-layout settings-layout--focused">
-        <nav className="settings-nav settings-nav--buttons" aria-label="Settings sections">
+      <div className="set-b__body">
+        <nav className="b-frame set-b__nav" aria-label="Settings sections">
           {SETTINGS_SECTIONS.map((section) => (
             <button
               type="button"
               key={section.id}
-              className="settings-nav__button"
+              className="set-b__nav-item"
               data-active={activeSection === section.id}
               aria-current={activeSection === section.id ? "page" : undefined}
               onClick={() => setActiveSection(section.id)}
@@ -305,7 +306,7 @@ export function SettingsPage({
           ))}
         </nav>
 
-        <div className="settings-sections settings-sections--single">
+        <div className="b-frame set-b__panel">
           {activeSection === "profile" ? (
             <section className="panel settings-section" id="profile-settings">
               <header>

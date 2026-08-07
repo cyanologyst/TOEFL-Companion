@@ -42,7 +42,7 @@
 }
 
 .vlib__collection {
-  width: 208px;
+  width: 178px;
   flex: 0 0 auto;
 }
 
@@ -216,6 +216,16 @@
   overflow: hidden;
   font-size: 13.5px;
   line-height: 1.35;
+}
+
+/* Two lines keeps the rows an even height so the column can be scanned; the
+   full definition is one click away in the inspector. The clamp lives on an
+   inner span because `display: -webkit-box` on a `td` stops it being a cell. */
+.vlib__meaning span {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .vlib__meaning[data-empty="true"] {
@@ -467,8 +477,10 @@
 
 .vlib__inspector-foot .b-btn {
   min-height: 40px;
-  padding: 0 10px;
+  padding: 0 8px;
   font-size: 13px;
+  gap: 6px;
+  white-space: nowrap;
 }
 
 /* In the narrow layout the same word opens in a dialog, where the head band
@@ -575,6 +587,18 @@
   font-size: 12px;
   font-weight: 600;
   opacity: 0.72;
+}
+
+/* A green toggle with nothing beside it does not say what it governs. */
+.vlib-collections__review {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 /* A switch you can read from across the row: the knob moves and the track

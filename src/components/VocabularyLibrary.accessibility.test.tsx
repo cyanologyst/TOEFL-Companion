@@ -38,13 +38,16 @@ describe("VocabularyLibrary accessibility", () => {
     const { container } = renderLibrary();
 
     expect(container.querySelectorAll(".vlib__row")).toHaveLength(WORDS_PER_PAGE);
-    expect(screen.getByText(`Page 1 of ${pageCount}`)).toBeInTheDocument();
+    expect(
+      screen.getByText(`Showing 1–${WORDS_PER_PAGE} of ${total.toLocaleString()}`),
+    ).toBeInTheDocument();
+    expect(screen.getByText(`1 / ${pageCount}`)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Previous" })).toBeDisabled();
 
     const firstTerm = container.querySelector<HTMLButtonElement>(".vlib__word")?.textContent;
     await user.click(screen.getByRole("button", { name: "Next" }));
 
-    expect(screen.getByText(`Page 2 of ${pageCount}`)).toBeInTheDocument();
+    expect(screen.getByText(`2 / ${pageCount}`)).toBeInTheDocument();
     expect(container.querySelector<HTMLButtonElement>(".vlib__word")?.textContent).not.toBe(
       firstTerm,
     );
@@ -88,7 +91,7 @@ describe("VocabularyLibrary accessibility", () => {
     await user.keyboard("{End}");
 
     await waitFor(() => {
-      expect(screen.getByText(`Page ${pageCount} of ${pageCount}`)).toBeInTheDocument();
+      expect(screen.getByText(`${pageCount} / ${pageCount}`)).toBeInTheDocument();
     });
     const focused = document.activeElement as HTMLElement | null;
     expect(focused?.className).toContain("vlib__word");

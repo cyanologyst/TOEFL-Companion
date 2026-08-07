@@ -3766,56 +3766,6 @@ textarea {
   font-style: normal;
 }
 
-.app-toast {
-  position: fixed;
-  z-index: 400;
-  right: 22px;
-  bottom: 22px;
-  display: flex;
-  max-width: 390px;
-  min-height: 48px;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 10px 9px 12px;
-  border: 1px solid #b9ddd7;
-  border-radius: 10px;
-  background: #f2fbf8;
-  box-shadow: var(--shadow-raised);
-}
-
-.app-toast[data-error="true"] {
-  border-color: #f0baba;
-  background: #fff5f5;
-}
-
-.app-toast > span {
-  display: grid;
-  width: 23px;
-  height: 23px;
-  place-items: center;
-  border-radius: 50%;
-  color: #fff;
-  background: var(--teal-600);
-  font-size: 10px;
-}
-
-.app-toast[data-error="true"] > span {
-  background: var(--red-600);
-}
-
-.app-toast p {
-  flex: 1;
-  margin: 0;
-  font-size: 10px;
-}
-
-.app-toast button {
-  width: 24px;
-  height: 24px;
-  color: var(--navy-500);
-  font-size: 16px;
-}
-
 /* Existing reminder workflow, visually integrated with the new shell */
 
 .vocab-reminder-countdown,
@@ -5516,29 +5466,6 @@ textarea {
   padding-top: 18px;
 }
 
-.app-toast {
-  z-index: var(--z-toast);
-  min-height: 50px;
-  border-color: var(--color-border-strong);
-  box-shadow: 0 14px 34px rgba(7, 22, 56, 0.16);
-}
-
-.app-toast > span:first-child {
-  display: grid;
-  width: 26px;
-  height: 26px;
-  place-items: center;
-  border-radius: 50%;
-  color: #fff;
-  background: var(--color-primary);
-  font-size: 9px;
-  font-weight: 700;
-}
-
-.app-toast[data-error="true"] > span:first-child {
-  background: var(--color-destructive);
-}
-
 .app-sidebar__brand strong {
   font-size: 15px;
 }
@@ -6815,92 +6742,6 @@ textarea {
   margin-bottom: 2px;
   color: var(--color-foreground);
   font-size: 11px;
-}
-
-.speaking-support-dialog {
-  padding: 18px 20px 22px;
-}
-
-.speaking-support-dialog__ideas,
-.speaking-support-dialog__collocations {
-  display: grid;
-  gap: 9px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.speaking-support-dialog__ideas li {
-  display: grid;
-  grid-template-columns: 28px minmax(0, 1fr);
-  gap: 10px;
-  align-items: start;
-  padding: 11px 12px;
-  border: 1px solid #deeaef;
-  border-radius: 9px;
-  background: #f8fbfc;
-}
-
-.speaking-support-dialog__ideas li > span {
-  display: grid;
-  width: 26px;
-  height: 26px;
-  place-items: center;
-  border-radius: 8px;
-  color: #1d5d9f;
-  background: #eaf4fa;
-  font-family: var(--font-ui);
-  font-size: 11px;
-  font-weight: 700;
-}
-
-.speaking-support-dialog__ideas p,
-.speaking-support-dialog__answers p {
-  margin: 0;
-  color: var(--color-muted-foreground);
-  font-size: 13px;
-  line-height: 1.55;
-}
-
-.speaking-support-dialog__collocations li {
-  display: grid;
-  gap: 3px;
-  padding: 10px 12px;
-  border: 1px solid #dce7ee;
-  border-radius: 9px;
-  background: #f6f9fb;
-}
-
-.speaking-support-dialog__collocations strong {
-  color: #244961;
-  font-size: 13px;
-}
-
-.speaking-support-dialog__collocations span {
-  color: var(--color-muted-foreground);
-  font-size: 12px;
-}
-
-.speaking-support-dialog__answers {
-  display: grid;
-  gap: 16px;
-}
-
-.speaking-support-dialog__answers article {
-  padding: 15px 16px;
-  border: 1px solid #deeaef;
-  border-radius: 10px;
-  background: #fbfcfd;
-}
-
-.speaking-support-dialog__answers h3 {
-  display: block;
-  margin: 0 0 8px;
-  color: #1d5d9f;
-  font-family: var(--font-ui);
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
 }
 
 .speaking-topic-preview__actions {

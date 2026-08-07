@@ -435,7 +435,11 @@
   background: var(--paper);
 }
 
+/* A span is inline by default, so `height` did nothing and the bar sized to
+   its line box - 19px inside a 16px track. The clip on the track was hiding
+   that rather than the rounded cap it was added for. */
 .rev-progress__fill {
+  display: block;
   height: 100%;
   border-right: 2px solid var(--ink);
   border-radius: 0 999px 999px 0;
@@ -2006,15 +2010,26 @@
   place-items: center;
 }
 
+/* Flex rather than a fixed row template: a dialog may have a body, a footer,
+   or both, and each combination has to keep the scroller in the middle. */
 .b-modal {
-  display: grid;
+  display: flex;
   width: min(100%, 560px);
   max-height: min(84vh, 720px);
+  flex-direction: column;
   border: var(--edge) solid var(--ink);
   border-radius: var(--round);
   background: var(--paper);
   box-shadow: var(--shadow-deep);
-  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.b-modal__head,
+.b-modal__foot {
+  flex: 0 0 auto;
+}
+
+.b-modal__body {
+  flex: 1 1 auto;
 }
 
 .b-modal--wide {
@@ -2065,6 +2080,20 @@
   background: var(--pop-sun);
 }
 
+/* Pinned below the scroller: a seven-field form used to push its own confirm
+   button past the bottom of the window. */
+.b-modal__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 13px 18px;
+  border-top: var(--edge) solid var(--ink);
+  border-radius: 0 0 11px 11px;
+  background: var(--pop-sun);
+  gap: 10px;
+}
+
 /* -- Forms inside a dialog -------------------------------------------------- */
 
 .b-modal .modal-form,
@@ -2092,10 +2121,21 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.b-modal input,
+/* Radios and checkboxes are not text fields; the base rule would stretch them
+   to the width of the dialog. */
+.b-modal input:not([type="radio"], [type="checkbox"]),
 .b-modal select,
 .b-modal textarea {
   width: 100%;
+}
+
+.b-modal input[type="radio"],
+.b-modal input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  flex: 0 0 auto;
+  accent-color: var(--ink);
 }
 
 .b-modal textarea {
@@ -2496,4 +2536,190 @@
 .vocab-reminder :disabled {
   cursor: not-allowed;
   opacity: 0.6;
+}
+
+/* -- Speaking support dialog -------------------------------------------------
+   Ideas, collocations, and sample answers used to keep the pre-redesign card
+   styling because they render through a portal, where the page's rules never
+   reached them. They are the same objects as the rest of this world.
+   --------------------------------------------------------------------------- */
+
+.speaking-support-dialog__ideas,
+.speaking-support-dialog__collocations {
+  display: grid;
+  padding: 0;
+  margin: 0;
+  gap: 9px;
+  list-style: none;
+}
+
+.speaking-support-dialog__ideas li {
+  display: grid;
+  align-items: start;
+  padding: 11px 13px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  gap: 11px;
+  grid-template-columns: 30px minmax(0, 1fr);
+}
+
+.speaking-support-dialog__ideas li > span {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background: var(--pop-sun);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 12px;
+  place-items: center;
+}
+
+.speaking-support-dialog__ideas p,
+.speaking-support-dialog__answers p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.speaking-support-dialog__collocations li {
+  display: grid;
+  padding: 10px 13px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--pop-sky);
+  gap: 3px;
+}
+
+.speaking-support-dialog__collocations strong {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 13.5px;
+}
+
+.speaking-support-dialog__collocations span {
+  color: var(--ink);
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.speaking-support-dialog__answers {
+  display: grid;
+  gap: 14px;
+}
+
+.speaking-support-dialog__answers article {
+  padding: 14px 16px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+}
+
+.speaking-support-dialog__answers h3 {
+  display: block;
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-family: var(--font-flat);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ===========================================================================
+   Overlays outside the page root
+   The toast and the tooltips are attached to the body, so no page rule ever
+   reached them and both kept the pre-redesign styling while sitting on top of
+   every brutalist screen. They carry literal values because they render
+   outside every token root.
+   =========================================================================== */
+
+.app-toast {
+  position: fixed;
+  z-index: var(--z-toast, 400);
+  right: 22px;
+  bottom: 22px;
+  display: flex;
+  max-width: 400px;
+  min-height: 52px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 3px solid #12100c;
+  border-radius: 14px;
+  background: #c6f24e;
+  box-shadow: 6px 6px 0 #12100c;
+  color: #12100c;
+  font-family: "Space Grotesk Variable", "Segoe UI", sans-serif;
+  gap: 11px;
+}
+
+.app-toast[data-error="true"] {
+  background: #ff6b5e;
+}
+
+.app-toast > span:first-child {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  border: 2px solid #12100c;
+  border-radius: 50%;
+  background: #fffdf3;
+  color: #12100c;
+  font-family: "Archivo Black", "Arial Black", sans-serif;
+  font-size: 11px;
+  place-items: center;
+}
+
+.app-toast p {
+  min-width: 0;
+  flex: 1;
+  margin: 0;
+  color: #12100c;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.app-toast button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  border: 2px solid #12100c;
+  border-radius: 8px;
+  background: #fffdf3;
+  color: #12100c;
+  cursor: pointer;
+  font-size: 15px;
+  place-items: center;
+}
+
+.app-toast button:hover {
+  background: #ffd93d;
+}
+
+.study-tooltip,
+.app-tooltip {
+  max-width: 230px;
+  padding: 7px 11px;
+  border: 2px solid #12100c;
+  border-radius: 8px;
+  background: #12100c;
+  box-shadow: 3px 3px 0 rgba(18, 16, 12, 0.35);
+  color: #fffdf3;
+  font-family: "Space Grotesk Variable", "Segoe UI", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.study-tooltip__arrow,
+.app-tooltip-arrow {
+  fill: #12100c;
 }

@@ -246,6 +246,7 @@ export function VocabularyLibrary({
   const searchId = useId();
   const collectionId = useId();
   const policyName = useId();
+  const wordFormId = useId();
   const searchInputRef = useRef<HTMLInputElement>(null);
   const termInputRef = useRef<HTMLInputElement>(null);
   const newCollectionRef = useRef<HTMLInputElement>(null);
@@ -756,7 +757,7 @@ export function VocabularyLibrary({
                     setQuery(event.target.value);
                     resetPaging();
                   }}
-                  placeholder="Search words, meanings, or tags…"
+                  placeholder="Search this library"
                 />
               </label>
               <label className="b-field vlib__collection" htmlFor={collectionId}>
@@ -785,7 +786,7 @@ export function VocabularyLibrary({
                   setCollectionsOpen(true);
                 }}
               >
-                <DoodleIcon name="filter" size={16} />
+                <DoodleIcon name="menu" size={16} />
                 Collections
               </button>
             </div>
@@ -809,9 +810,13 @@ export function VocabularyLibrary({
                   </button>
                 ))}
               </fieldset>
+              {/* The one live region on this screen: it answers "how many did
+                  that filter leave", and the pager answers "where am I". */}
               <p className="vlib__result-count" role="status">
                 {filtered.length
-                  ? `${rangeStart}–${rangeEnd} of ${formatCount(filtered.length, "word")}`
+                  ? query.trim()
+                    ? formatCount(filtered.length, "match", "matches")
+                    : formatCount(filtered.length, "word")
                   : "No matches"}
               </p>
             </div>
@@ -892,7 +897,7 @@ export function VocabularyLibrary({
                             data-empty={!location.word.shortMeaning}
                             dir={meaningIsPersian ? "rtl" : "ltr"}
                           >
-                            {location.word.shortMeaning || "No meaning yet"}
+                            <span>{location.word.shortMeaning || "No meaning yet"}</span>
                           </td>
                           <td className="vlib__status-cell">
                             <StatusTag status={getStudyStatus(progress)} />
@@ -907,7 +912,7 @@ export function VocabularyLibrary({
 
               <footer className="vlib__pager">
                 <p>
-                  Page {safePage + 1} of {pageCount}
+                  Showing {rangeStart}–{rangeEnd} of {filtered.length.toLocaleString()}
                 </p>
                 <div className="vlib__pager-controls">
                   <button
@@ -988,8 +993,25 @@ export function VocabularyLibrary({
         onClose={() => setWordModalOpen(false)}
         initialFocusRef={termInputRef}
         size="wide"
+        footer={
+          <>
+            <button type="button" className="b-btn" onClick={() => setWordModalOpen(false)}>
+              Cancel
+            </button>
+            {/* The submit lives outside the form element, so it names the form
+                it belongs to rather than relying on containment. */}
+            <button
+              type="submit"
+              form={wordFormId}
+              className="b-btn b-btn--lime"
+              disabled={saving || !draft.term.trim()}
+            >
+              {saving ? "Saving…" : editing ? "Save changes" : "Add to library"}
+            </button>
+          </>
+        }
       >
-        <form className="modal-form" onSubmit={(event) => void saveWord(event)}>
+        <form id={wordFormId} className="modal-form" onSubmit={(event) => void saveWord(event)}>
           {editing ? null : (
             <label>
               Collection
@@ -1096,18 +1118,6 @@ export function VocabularyLibrary({
               {wordError}
             </p>
           ) : null}
-          <footer className="modal-actions">
-            <button type="button" className="b-btn" onClick={() => setWordModalOpen(false)}>
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="b-btn b-btn--lime"
-              disabled={saving || !draft.term.trim()}
-            >
-              {saving ? "Saving…" : editing ? "Save changes" : "Add to library"}
-            </button>
-          </footer>
         </form>
       </Modal>
 
@@ -1152,16 +1162,19 @@ export function VocabularyLibrary({
                     {list.isBuiltIn ? "Built in" : "Yours"}
                   </small>
                 </span>
-                <button
-                  type="button"
-                  role="switch"
-                  className="vlib-collections__switch"
-                  aria-checked={list.isEnabled}
-                  aria-label={`Review enabled for ${list.title}`}
-                  onClick={() => toggleCollection(list, !list.isEnabled)}
-                >
-                  <span />
-                </button>
+                <span className="vlib-collections__review">
+                  <span aria-hidden>In review</span>
+                  <button
+                    type="button"
+                    role="switch"
+                    className="vlib-collections__switch"
+                    aria-checked={list.isEnabled}
+                    aria-label={`Review enabled for ${list.title}`}
+                    onClick={() => toggleCollection(list, !list.isEnabled)}
+                  >
+                    <span />
+                  </button>
+                </span>
                 <span className="vlib-collections__actions">
                   <button
                     type="button"
@@ -1202,6 +1215,37 @@ export function VocabularyLibrary({
           resetImport();
         }}
         size="wide"
+        footer={
+          <>
+            <button
+              type="button"
+              className="b-btn"
+              onClick={() => {
+                setImportOpen(false);
+                resetImport();
+              }}
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              className="b-btn b-btn--lime"
+              onClick={runImport}
+              disabled={
+                importSaving ||
+                !importAnalysis ||
+                importAnalysis.blockingIssues.length > 0 ||
+                importableCount < 1
+              }
+            >
+              {importSaving
+                ? "Importing…"
+                : importAnalysis
+                  ? `Import ${formatCount(Math.max(0, importableCount), "word")}`
+                  : "Choose a file first"}
+            </button>
+          </>
+        }
       >
         <div className="vlib-import">
           <label className="vlib-import__picker">
@@ -1339,36 +1383,6 @@ export function VocabularyLibrary({
               ) : null}
             </>
           ) : null}
-
-          <footer className="modal-actions">
-            <button
-              type="button"
-              className="b-btn"
-              onClick={() => {
-                setImportOpen(false);
-                resetImport();
-              }}
-            >
-              Cancel
-            </button>
-            <button
-              type="button"
-              className="b-btn b-btn--lime"
-              onClick={runImport}
-              disabled={
-                importSaving ||
-                !importAnalysis ||
-                importAnalysis.blockingIssues.length > 0 ||
-                importableCount < 1
-              }
-            >
-              {importSaving
-                ? "Importing…"
-                : importAnalysis
-                  ? `Import ${formatCount(Math.max(0, importableCount), "word")}`
-                  : "Choose a file first"}
-            </button>
-          </footer>
         </div>
       </Modal>
 

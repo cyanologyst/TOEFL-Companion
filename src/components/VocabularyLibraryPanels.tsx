@@ -223,11 +223,11 @@ export function WordInspector({
   const actions = (
     <>
       <button type="button" className="b-btn b-btn--mint" onClick={onMarkLearned}>
-        <DoodleIcon name="checklist" size={16} />
+        <DoodleIcon name="checklist" size={14} />
         Mark learned
       </button>
       <button type="button" className="b-btn b-btn--rose" onClick={onMarkDifficult}>
-        <DoodleIcon name="bookmark" size={16} />
+        <DoodleIcon name="bookmark" size={14} />
         Mark difficult
       </button>
       <button

@@ -10,6 +10,9 @@ export interface ModalProps {
   initialFocusRef?: React.RefObject<HTMLElement | null>;
   /** `wide` is for dialogs carrying a two-column form or a preview table. */
   size?: "default" | "wide";
+  /** Actions pinned below the scrolling body, so a long form never pushes the
+   *  confirm button out of reach. */
+  footer?: React.ReactNode;
 }
 
 export function Modal({
@@ -20,6 +23,7 @@ export function Modal({
   onClose,
   initialFocusRef,
   size = "default",
+  footer,
 }: ModalProps): React.JSX.Element {
   return (
     <Dialog.Root
@@ -60,7 +64,8 @@ export function Modal({
             </header>
             {/* Everything a caller passes gets the frame's inset here, so no
                 call site can end up flush against the border. */}
-            <div className="b-modal__body">{children}</div>
+            {children ? <div className="b-modal__body">{children}</div> : null}
+            {footer ? <footer className="b-modal__foot">{footer}</footer> : null}
           </Dialog.Content>
         </Dialog.Overlay>
       </Dialog.Portal>

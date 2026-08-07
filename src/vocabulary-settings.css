@@ -173,8 +173,10 @@
   text-transform: uppercase;
 }
 
+/* Without a cap the value drifts 900px from the label it belongs to. */
 .settings-workspace-label-row {
   display: flex;
+  max-width: 420px;
   align-items: baseline;
   justify-content: space-between;
   gap: 10px;
@@ -278,7 +280,13 @@
   box-shadow: 3px 3px 0 var(--ink);
 }
 
+/* The app's base input rule stretches every input to full width and a 40px
+   minimum; a radio has to opt out of both. */
 .settings-workspace-choice-input {
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  flex: 0 0 auto;
   margin: 2px 0 0;
   accent-color: var(--ink);
 }
@@ -286,6 +294,7 @@
 .settings-workspace-choice-content {
   display: flex;
   min-width: 0;
+  flex: 1;
   flex-direction: column;
   gap: 2px;
 }
@@ -503,18 +512,21 @@
 
 .settings-workspace-range {
   width: 100%;
+  max-width: 420px;
   height: 22px;
+  min-height: 0;
   accent-color: var(--ink);
 }
 
 .settings-workspace-range-scale {
   display: flex;
+  max-width: 420px;
   justify-content: space-between;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
   opacity: 0.72;
+  text-transform: uppercase;
 }
 
 /* -- Data cards -------------------------------------------------------------- */

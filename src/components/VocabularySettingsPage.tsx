@@ -30,11 +30,7 @@ export function VocabularySettingsPage({
   const [permission, setPermission] = useState(getNotificationPermission);
 
   return (
-    <main
-      className="workspace-main workspace-main--wide settings-page-main"
-      id="main-content"
-      tabIndex={-1}
-    >
+    <div className="settings-page-host">
       <VocabularySettingsForm
         settings={snapshot.settings}
         notificationPermission={permission}
@@ -55,6 +51,6 @@ export function VocabularySettingsPage({
         }}
         onNotice={onNotice}
       />
-    </main>
+    </div>
   );
 }

@@ -11,7 +11,11 @@
  * Every screen fills the viewport. Only lists scroll, inside their frames.
  */
 
-.brutal {
+/* Dialogs and the reminder card render through a portal, outside the page
+   root, so the world's tokens have to be reachable from a second root. Only
+   the tokens are shared; `.brutal` alone carries the page layout. */
+.brutal,
+.b-portal {
   --ink: #12100c;
   --paper: #fffdf3;
   --ground: #ffe01b;
@@ -37,6 +41,11 @@
   --font-display: "Archivo Black", "Arial Black", sans-serif;
   --font-flat: "Space Grotesk Variable", "Segoe UI", sans-serif;
 
+  color: var(--ink);
+  font-family: var(--font-flat);
+}
+
+.brutal {
   display: flex;
   height: 100%;
   flex-direction: column;
@@ -48,11 +57,9 @@
      than decoration because nothing else in this world has a gradient. */
   background-image: radial-gradient(var(--ground-deep) 1.7px, transparent 1.8px);
   background-size: 22px 22px;
-  color: var(--ink);
-  font-family: var(--font-flat);
 }
 
-.brutal *::selection {
+:is(.brutal, .b-portal) *::selection {
   color: var(--ink);
   background: var(--pop-lime);
 }
@@ -83,9 +90,9 @@
 
 /* -- Type ------------------------------------------------------------------- */
 
-.brutal h1,
-.brutal h2,
-.brutal h3 {
+:is(.brutal, .b-portal) h1,
+:is(.brutal, .b-portal) h2,
+:is(.brutal, .b-portal) h3 {
   margin: 0;
   font-family: var(--font-display);
   font-weight: 400;
@@ -279,7 +286,7 @@
 }
 
 /* Keyboard focus has to survive in a world with no soft edges. */
-.brutal :focus-visible {
+:is(.brutal, .b-portal) :focus-visible {
   outline: 3px solid var(--ink);
   outline-offset: 3px;
 }
@@ -729,7 +736,8 @@
    a sticker-drop - and everything else is feedback measured in 90-160ms.
    =========================================================================== */
 
-.brutal {
+.brutal,
+.b-portal {
   --snap: cubic-bezier(0.2, 0.9, 0.25, 1);
   --stamp: cubic-bezier(0.34, 1.4, 0.5, 1);
 }
@@ -1382,18 +1390,19 @@
 
 /* -- Forms in this world ---------------------------------------------------- */
 
-.brutal label {
+:is(.brutal, .b-portal) label {
   font-family: var(--font-flat);
   font-size: 13px;
   font-weight: 700;
 }
 
-.brutal input[type="text"],
-.brutal input[type="number"],
-.brutal input[type="date"],
-.brutal input[type="search"],
-.brutal select,
-.brutal textarea {
+:is(.brutal, .b-portal) input[type="text"],
+:is(.brutal, .b-portal) input[type="number"],
+:is(.brutal, .b-portal) input[type="date"],
+:is(.brutal, .b-portal) input[type="time"],
+:is(.brutal, .b-portal) input[type="search"],
+:is(.brutal, .b-portal) select,
+:is(.brutal, .b-portal) textarea {
   padding: 10px 13px;
   border: var(--edge) solid var(--ink);
   border-radius: var(--round-sm);
@@ -1404,9 +1413,9 @@
   font-weight: 500;
 }
 
-.brutal input:focus-visible,
-.brutal select:focus-visible,
-.brutal textarea:focus-visible {
+:is(.brutal, .b-portal) input:focus-visible,
+:is(.brutal, .b-portal) select:focus-visible,
+:is(.brutal, .b-portal) textarea:focus-visible {
   box-shadow: 3px 3px 0 var(--ink);
   outline: 3px solid var(--ink);
   outline-offset: 2px;
@@ -1414,7 +1423,7 @@
 
 /* Existing buttons inside converted pages inherit the world rather than
    needing every call site rewritten. */
-.brutal .button {
+:is(.brutal, .b-portal) .button {
   border: var(--edge) solid var(--ink);
   border-radius: var(--round-sm);
   box-shadow: var(--shadow-hard);
@@ -1425,26 +1434,26 @@
     box-shadow 90ms ease-out;
 }
 
-.brutal .button:hover:not(:disabled) {
+:is(.brutal, .b-portal) .button:hover:not(:disabled) {
   transform: translate(-1px, -1px);
   box-shadow: var(--shadow-deep);
 }
 
-.brutal .button:active:not(:disabled) {
+:is(.brutal, .b-portal) .button:active:not(:disabled) {
   transform: translate(var(--drop), var(--drop));
   box-shadow: 0 0 0 var(--ink);
 }
 
-.brutal .button--primary {
+:is(.brutal, .b-portal) .button--primary {
   background: var(--pop-lime);
 }
 
-.brutal .button--outline,
-.brutal .button--quiet {
+:is(.brutal, .b-portal) .button--outline,
+:is(.brutal, .b-portal) .button--quiet {
   background: var(--paper);
 }
 
-.brutal .button--danger {
+:is(.brutal, .b-portal) .button--danger {
   background: var(--pop-flame);
 }
 
@@ -1455,8 +1464,8 @@
   box-shadow: var(--shadow-hard);
 }
 
-.brutal .status-badge,
-.brutal .study-status-badge {
+:is(.brutal, .b-portal) .status-badge,
+:is(.brutal, .b-portal) .study-status-badge {
   border: 2px solid var(--ink);
   border-radius: 999px;
   background: var(--pop-sun);
@@ -1978,4 +1987,513 @@
 
 .shell-brutal .rail__brand span {
   align-items: center;
+}
+
+/* ===========================================================================
+   Dialogs
+   A dialog is the same object as a frame, lifted: the deep shadow, a coloured
+   header band, and a body that scrolls on its own so a long form never pushes
+   its actions off the bottom of the window.
+   =========================================================================== */
+
+.b-modal__scrim {
+  position: fixed;
+  z-index: var(--z-modal, 200);
+  display: grid;
+  padding: 26px;
+  background: rgba(18, 16, 12, 0.55);
+  inset: 0;
+  place-items: center;
+}
+
+.b-modal {
+  display: grid;
+  width: min(100%, 560px);
+  max-height: min(84vh, 720px);
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round);
+  background: var(--paper);
+  box-shadow: var(--shadow-deep);
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.b-modal--wide {
+  width: min(100%, 740px);
+}
+
+.b-modal__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: var(--edge) solid var(--ink);
+  border-radius: 11px 11px 0 0;
+  background: var(--pop-sun);
+  gap: 14px;
+}
+
+.b-modal__head h2 {
+  font-size: 19px;
+}
+
+.b-modal__head p {
+  max-width: 56ch;
+  margin: 5px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Rule of the world: nothing sits flush against a frame border, so the body
+   carries the inset rather than trusting every caller to remember it. */
+.b-modal__body {
+  min-height: 0;
+  padding: 18px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--ink) transparent;
+  scrollbar-width: thin;
+}
+
+.b-modal__body::-webkit-scrollbar {
+  width: 12px;
+}
+
+.b-modal__body::-webkit-scrollbar-thumb {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--pop-sun);
+}
+
+/* -- Forms inside a dialog -------------------------------------------------- */
+
+.b-modal .modal-form,
+.b-modal .confirm-dialog,
+.b-modal .study-confirm-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.b-modal .modal-form > label,
+.b-modal .form-grid label {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.b-modal .form-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.b-modal .form-grid--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.b-modal input,
+.b-modal select,
+.b-modal textarea {
+  width: 100%;
+}
+
+.b-modal textarea {
+  min-height: 62px;
+  resize: vertical;
+}
+
+.b-modal .modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding: 14px 0 2px;
+  border-top: var(--edge) solid var(--ink);
+  margin-top: 4px;
+  gap: 10px;
+}
+
+.b-modal .confirm-dialog p,
+.b-modal .study-confirm-dialog p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* -- Global search ---------------------------------------------------------- */
+
+.b-modal .global-search {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.b-modal .search-field {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 14px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  gap: 10px;
+}
+
+.b-modal .search-field input {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.b-modal .search-field:focus-within {
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.b-modal .global-search__results {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.b-modal .global-search__results button {
+  display: flex;
+  align-items: center;
+  padding: 10px 13px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  box-shadow: 3px 3px 0 var(--ink);
+  cursor: pointer;
+  gap: 12px;
+  text-align: left;
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out,
+    background-color 90ms ease-out;
+}
+
+.b-modal .global-search__results button:hover {
+  background: var(--pop-lime);
+  box-shadow: 5px 5px 0 var(--ink);
+  transform: translate(-1px, -1px);
+}
+
+.b-modal .global-search__results button > div {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.b-modal .global-search__results strong {
+  font-family: var(--font-display);
+  font-size: 15px;
+}
+
+.b-modal .global-search__results small {
+  overflow: hidden;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.75;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.b-modal .global-search__results em {
+  flex: 0 0 auto;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.b-modal .compact-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 26px 18px;
+  border: var(--edge) dashed var(--ink);
+  border-radius: var(--round-sm);
+  gap: 8px;
+  text-align: center;
+}
+
+.b-modal .compact-empty strong {
+  font-family: var(--font-display);
+  font-size: 16px;
+}
+
+.b-modal .compact-empty span {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ===========================================================================
+   Reminder card
+   An interruption that arrives unasked has to say what it is and how long it
+   will stay. The bar is the timer; hovering or focusing inside pauses it.
+   =========================================================================== */
+
+.vocab-reminder-layer {
+  position: fixed;
+  z-index: 250;
+  right: 20px;
+  bottom: 20px;
+}
+
+.vocab-reminder {
+  position: relative;
+  display: flex;
+  width: 372px;
+  flex-direction: column;
+  overflow: hidden;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round);
+  background: var(--paper);
+  box-shadow: var(--shadow-deep);
+}
+
+.vocab-reminder--compact {
+  width: 322px;
+}
+
+/* The bar drains left to right. `appearance: none` is what lets the track and
+   the value carry this world's flat fills instead of the platform's. */
+.vocab-reminder-progress {
+  display: block;
+  width: 100%;
+  height: 10px;
+  flex: 0 0 auto;
+  border: 0;
+  border-bottom: var(--edge) solid var(--ink);
+  appearance: none;
+  background: var(--paper);
+}
+
+.vocab-reminder-progress::-webkit-progress-bar {
+  background: var(--paper);
+}
+
+.vocab-reminder-progress::-webkit-progress-value {
+  background: var(--pop-lime);
+}
+
+.vocab-reminder-bar {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  border-bottom: var(--edge) solid var(--ink);
+  background: var(--pop-sun);
+  gap: 10px;
+}
+
+.vocab-reminder-bar .b-tag {
+  background: var(--paper);
+}
+
+.vocab-reminder-header {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 14px 15px 0;
+  gap: 10px;
+}
+
+.vocab-reminder-header-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 7px;
+}
+
+.vocab-reminder-icon-button {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: 2px 2px 0 var(--ink);
+  color: var(--ink);
+  cursor: pointer;
+  place-items: center;
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out;
+}
+
+.vocab-reminder-icon-button:hover:not(:disabled) {
+  box-shadow: 4px 4px 0 var(--ink);
+  transform: translate(-1px, -1px);
+}
+
+.vocab-reminder-icon-button:active:not(:disabled) {
+  box-shadow: 0 0 0 var(--ink);
+  transform: translate(2px, 2px);
+}
+
+.vocab-reminder-term {
+  margin: 0;
+  font-size: 27px;
+  word-break: break-word;
+}
+
+.vocab-reminder-meta {
+  margin: 3px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.72;
+}
+
+.vocab-reminder-content {
+  flex: 0 0 auto;
+  padding: 12px 15px 14px;
+}
+
+.vocab-reminder-meaning {
+  padding: 11px 13px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  margin: 0;
+  background: var(--pop-sun);
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.vocab-reminder-example {
+  padding: 9px 0 0 12px;
+  border-left: 5px solid var(--ink);
+  margin: 11px 0 0;
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.45;
+}
+
+.vocab-reminder-example-label {
+  display: block;
+  font-family: var(--font-flat);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.vocab-reminder-review-actions {
+  display: grid;
+  padding: 0 15px 13px;
+  border: 0;
+  margin: 0;
+  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.vocab-reminder-action {
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 8px;
+  font-size: 13px;
+  gap: 6px;
+}
+
+/* The compact card gives up the shortcut hints before it gives up a label. */
+.vocab-reminder--compact .vocab-reminder-action kbd {
+  display: none;
+}
+
+.vocab-reminder-action kbd {
+  padding: 0 4px;
+  border: 2px solid var(--ink);
+  border-radius: 5px;
+  background: var(--paper);
+  font-family: var(--font-flat);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.vocab-reminder-secondary-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  padding: 11px 15px;
+  border-top: var(--edge) solid var(--ink);
+  background: var(--ground);
+  gap: 10px;
+}
+
+.vocab-reminder-snooze {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  gap: 6px;
+}
+
+.vocab-reminder-snooze-label {
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  gap: 5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.vocab-reminder-snooze-label kbd,
+.vocab-reminder-snooze-button {
+  min-height: 28px;
+  padding: 0 9px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-flat);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.vocab-reminder-snooze-button {
+  cursor: pointer;
+}
+
+.vocab-reminder-snooze-button:hover:not(:disabled) {
+  background: var(--pop-sun);
+}
+
+.vocab-reminder-details-button {
+  display: inline-flex;
+  min-height: 34px;
+  flex: 0 0 auto;
+  align-items: center;
+  padding: 0 13px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  box-shadow: 2px 2px 0 var(--ink);
+  color: var(--ink);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 13px;
+  gap: 7px;
+}
+
+.vocab-reminder-details-button:hover:not(:disabled) {
+  box-shadow: 4px 4px 0 var(--ink);
+  transform: translate(-1px, -1px);
+}
+
+.vocab-reminder :disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
 }

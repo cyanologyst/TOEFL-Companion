@@ -204,7 +204,7 @@ export function VocabularyReminderHost({
   }
 
   return (
-    <div className="vocab-reminder-layer">
+    <div className="vocab-reminder-layer b-portal">
       <VocabularyReminder
         word={activeWord}
         durationSeconds={snapshot.settings.popupDurationSeconds}

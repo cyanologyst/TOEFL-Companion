@@ -4,6 +4,18 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { vocabularyRepository } from "../services/vocabularyRepository";
 import { VocabularyLibrary } from "./VocabularyLibrary";
 
+const WORDS_PER_PAGE = 20;
+
+function renderLibrary() {
+  return render(
+    <VocabularyLibrary
+      snapshot={vocabularyRepository.getSnapshot()}
+      onNotice={vi.fn()}
+      onOpenSettings={vi.fn()}
+    />,
+  );
+}
+
 describe("VocabularyLibrary accessibility", () => {
   beforeEach(() => {
     Object.defineProperty(window, "requestAnimationFrame", {
@@ -19,78 +31,67 @@ describe("VocabularyLibrary accessibility", () => {
     });
   });
 
-  it("starts with only the two supplied built-in libraries visible", () => {
-    render(
-      <VocabularyLibrary
-        snapshot={vocabularyRepository.getSnapshot()}
-        onNotice={vi.fn()}
-        onOpenSettings={vi.fn()}
-      />,
-    );
+  it("pages the table twenty words at a time", async () => {
+    const user = userEvent.setup();
+    const total = vocabularyRepository.getAllWords(vocabularyRepository.getSnapshot()).length;
+    const pageCount = Math.ceil(total / WORDS_PER_PAGE);
+    const { container } = renderLibrary();
 
-    expect(screen.getByRole("button", { name: /TOEFL 550 Essential Words/ })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /NEO 1–10 Vocabulary/ })).toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: /Personal words/ })).not.toBeInTheDocument();
-    expect(screen.getByText("2 libraries")).toBeInTheDocument();
+    expect(container.querySelectorAll(".vlib__row")).toHaveLength(WORDS_PER_PAGE);
+    expect(screen.getByText(`Page 1 of ${pageCount}`)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Previous" })).toBeDisabled();
+
+    const firstTerm = container.querySelector<HTMLButtonElement>(".vlib__word")?.textContent;
+    await user.click(screen.getByRole("button", { name: "Next" }));
+
+    expect(screen.getByText(`Page 2 of ${pageCount}`)).toBeInTheDocument();
+    expect(container.querySelector<HTMLButtonElement>(".vlib__word")?.textContent).not.toBe(
+      firstTerm,
+    );
+    expect(screen.getByRole("button", { name: "Previous" })).toBeEnabled();
   });
 
-  it("uses one live region and returns focus after clearing a final search", async () => {
+  it("uses one live region and returns focus after clearing an empty search", async () => {
     const user = userEvent.setup();
-    const onNotice = vi.fn();
-    const { container } = render(
-      <VocabularyLibrary
-        snapshot={vocabularyRepository.getSnapshot()}
-        onNotice={onNotice}
-        onOpenSettings={vi.fn()}
-      />,
-    );
+    const { container } = renderLibrary();
 
     expect(
       container.querySelectorAll('[role="status"], [aria-live="polite"], [aria-live="assertive"]'),
     ).toHaveLength(1);
 
-    const reviewToggle = screen.getAllByRole("switch", {
-      name: /Review enabled for/,
-    })[0];
-    expect(reviewToggle).toBeDefined();
-    await user.click(reviewToggle as HTMLInputElement);
-
-    expect(onNotice).toHaveBeenCalledTimes(1);
-    expect(
-      container.querySelectorAll('[role="status"], [aria-live="polite"], [aria-live="assertive"]'),
-    ).toHaveLength(1);
-
-    const search = screen.getByRole("searchbox", { name: "Search" });
+    const search = screen.getByRole("searchbox", { name: "Search vocabulary" });
     await user.type(search, "not-a-word-in-this-library");
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Clear search" })).toBeInTheDocument();
+    });
+    expect(
+      container.querySelectorAll('[role="status"], [aria-live="polite"], [aria-live="assertive"]'),
+    ).toHaveLength(1);
+
     await user.click(screen.getByRole("button", { name: "Clear search" }));
 
     expect(search).toHaveFocus();
     expect(search).toHaveValue("");
   });
 
-  it("keeps a useful focus target when the final Load More button disappears", async () => {
+  it("walks the keyboard past the end of a page onto the next one", async () => {
     const user = userEvent.setup();
-    const snapshot = vocabularyRepository.getSnapshot();
-    const firstList = snapshot.wordLists[0];
-    const words = firstList.words.slice(0, 101);
-    const focusedWord = words[100];
-    const focusedSnapshot = {
-      ...snapshot,
-      wordLists: [{ ...firstList, words }],
-    };
-    const { container } = render(
-      <VocabularyLibrary snapshot={focusedSnapshot} onNotice={vi.fn()} onOpenSettings={vi.fn()} />,
-    );
+    const locations = vocabularyRepository.getAllWords(vocabularyRepository.getSnapshot());
+    const pageCount = Math.ceil(locations.length / WORDS_PER_PAGE);
+    const lastTerm = locations[locations.length - 1]?.word.term;
+    const { container } = renderLibrary();
 
-    await user.click(screen.getByRole("button", { name: "Load 1 more" }));
+    const firstWord = container.querySelector<HTMLButtonElement>(".vlib__word");
+    expect(firstWord).not.toBeNull();
+    firstWord?.focus();
+    await user.keyboard("{End}");
 
     await waitFor(() => {
-      expect(screen.queryByRole("button", { name: "Load 1 more" })).not.toBeInTheDocument();
+      expect(screen.getByText(`Page ${pageCount} of ${pageCount}`)).toBeInTheDocument();
     });
-    const lastRowButton = Array.from(
-      container.querySelectorAll<HTMLButtonElement>(".tc-library__word-button"),
-    ).at(-1);
-    expect(lastRowButton).toHaveTextContent(focusedWord.term);
-    expect(lastRowButton).toHaveFocus();
+    const focused = document.activeElement as HTMLElement | null;
+    expect(focused?.className).toContain("vlib__word");
+    expect(focused?.textContent).toBe(lastTerm);
   });
 });

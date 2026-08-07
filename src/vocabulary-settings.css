@@ -1,0 +1,699 @@
+/* Vocabulary reminder settings - neo-brutalism
+ *
+ * This surface shipped with class names and no stylesheet at all, so it fell
+ * back to raw browser defaults. It is written here in the same world as the
+ * rest of the app: one frame holding a search band and a scrolling stack of
+ * sections, with the save bar pinned below the frame as its own slab.
+ */
+
+.settings-page-host {
+  display: flex;
+  min-height: 0;
+  height: 100%;
+  flex-direction: column;
+}
+
+.settings-page-host > .settings-workspace {
+  min-height: 0;
+  flex: 1;
+}
+
+.settings-workspace {
+  gap: 14px;
+}
+
+.settings-workspace-title {
+  font-size: 30px;
+}
+
+.settings-workspace-change-state {
+  flex: 0 0 auto;
+  align-self: center;
+}
+
+.settings-workspace-change-state--dirty {
+  background: var(--pop-sun);
+}
+
+.settings-workspace-change-state--error {
+  background: var(--pop-flame);
+}
+
+.settings-workspace-body {
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.settings-workspace-panel {
+  min-height: 0;
+}
+
+/* -- Search band ------------------------------------------------------------- */
+
+.settings-workspace-search {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 13px 16px;
+  border-bottom: var(--edge) solid var(--ink);
+  gap: 12px;
+}
+
+.settings-workspace-search-field {
+  min-width: 220px;
+  flex: 1;
+}
+
+.settings-workspace-search-clear {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  flex: 0 0 auto;
+  border: 2px solid var(--ink);
+  border-radius: 7px;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  place-items: center;
+}
+
+.settings-workspace-search-clear:hover {
+  background: var(--pop-flame);
+}
+
+.settings-workspace-search-status {
+  flex: 0 0 auto;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* -- Sections ---------------------------------------------------------------- */
+
+.settings-workspace-section-list {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  padding: 18px;
+  gap: 22px;
+}
+
+/* Frames do not nest here, so a section is a rule and a heading, not a box. */
+.settings-workspace-section + .settings-workspace-section {
+  padding-top: 20px;
+  border-top: var(--edge) solid var(--ink);
+}
+
+.settings-workspace-section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+  gap: 12px;
+}
+
+.settings-workspace-section-icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--pop-sun);
+  box-shadow: 3px 3px 0 var(--ink);
+  place-items: center;
+}
+
+.settings-workspace-section-title {
+  font-size: 21px;
+}
+
+.settings-workspace-section-description {
+  max-width: 62ch;
+  margin: 3px 0 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.settings-workspace-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.settings-workspace-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.settings-workspace-field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  gap: 8px;
+}
+
+.settings-workspace-field--wide {
+  grid-column: 1 / -1;
+}
+
+.settings-workspace-label {
+  font-family: var(--font-flat);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.settings-workspace-label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.settings-workspace-value {
+  font-family: var(--font-display);
+  font-size: 16px;
+}
+
+.settings-workspace-helper {
+  max-width: 60ch;
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  opacity: 0.78;
+}
+
+.settings-workspace-number-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+}
+
+.settings-workspace-input {
+  min-width: 0;
+}
+
+.settings-workspace-input--number {
+  width: 96px;
+}
+
+.settings-workspace-input-suffix {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.settings-workspace-select {
+  width: 100%;
+}
+
+.settings-workspace-preset-group {
+  display: flex;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  gap: 7px;
+}
+
+.settings-workspace-preset {
+  min-height: 32px;
+  padding: 0 12px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  font-family: var(--font-flat);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.settings-workspace-preset[aria-pressed="true"] {
+  background: var(--pop-lime);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+/* -- Choices ----------------------------------------------------------------- */
+
+.settings-workspace-choice-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.settings-workspace-choice-grid--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.settings-workspace-choice {
+  display: flex;
+  align-items: flex-start;
+  padding: 11px 13px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  cursor: pointer;
+  gap: 10px;
+  transition:
+    background-color 90ms ease-out,
+    box-shadow 90ms ease-out;
+}
+
+/* The chosen option fills, so a glance at the block answers "which one". */
+.settings-workspace-choice:has(.settings-workspace-choice-input:checked) {
+  background: var(--pop-lime);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.settings-workspace-choice-input {
+  margin: 2px 0 0;
+  accent-color: var(--ink);
+}
+
+.settings-workspace-choice-content {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.settings-workspace-choice-label {
+  font-family: var(--font-display);
+  font-size: 14px;
+}
+
+.settings-workspace-choice-description {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.35;
+  opacity: 0.8;
+}
+
+/* -- Toggles ----------------------------------------------------------------- */
+
+.settings-workspace-toggle-row {
+  display: flex;
+  align-items: center;
+  padding: 11px 13px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  gap: 14px;
+}
+
+.settings-workspace-toggle-row--disabled {
+  opacity: 0.6;
+}
+
+.settings-workspace-toggle-copy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.settings-workspace-toggle-label {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.settings-workspace-toggle-description {
+  max-width: 68ch;
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  opacity: 0.8;
+}
+
+.settings-workspace-switch {
+  position: relative;
+  display: inline-flex;
+  width: 62px;
+  height: 30px;
+  flex: 0 0 auto;
+  align-items: center;
+  padding: 3px;
+  border: var(--edge) solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  cursor: pointer;
+}
+
+.settings-workspace-switch:has(.settings-workspace-switch-input:checked) {
+  background: var(--pop-mint);
+}
+
+.settings-workspace-switch:has(.settings-workspace-switch-input:focus-visible) {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* The real control stays in the layout so it keeps its own hit area and focus
+   ring; only its paint is replaced. */
+.settings-workspace-switch-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.settings-workspace-switch-track {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--paper);
+  transition: transform 120ms var(--snap);
+}
+
+.settings-workspace-switch:has(.settings-workspace-switch-input:checked)
+  .settings-workspace-switch-track {
+  transform: translateX(32px);
+}
+
+/* -- Quiet hours ------------------------------------------------------------- */
+
+.settings-workspace-time-range {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  gap: 11px;
+}
+
+.settings-workspace-time-range[data-disabled="true"] {
+  opacity: 0.55;
+}
+
+.settings-workspace-time-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.settings-workspace-time-separator {
+  padding-bottom: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* -- Permission and feature rows --------------------------------------------- */
+
+.settings-workspace-permission {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  gap: 12px;
+}
+
+.settings-workspace-permission--attention {
+  background: var(--pop-sun);
+}
+
+.settings-workspace-permission-copy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  gap: 11px;
+}
+
+.settings-workspace-permission-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 14px;
+}
+
+.settings-workspace-permission-description {
+  margin: 2px 0 0;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.settings-workspace-feature-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.settings-workspace-feature-icon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--pop-sky);
+  place-items: center;
+}
+
+.settings-workspace-feature-body {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.settings-workspace-shortcut {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  padding: 5px 11px;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background: var(--pop-lime);
+  box-shadow: 2px 2px 0 var(--ink);
+  font-family: var(--font-display);
+  font-size: 12px;
+  gap: 5px;
+  letter-spacing: 0.04em;
+}
+
+/* -- Speech rate ------------------------------------------------------------- */
+
+.settings-workspace-range {
+  width: 100%;
+  height: 22px;
+  accent-color: var(--ink);
+}
+
+.settings-workspace-range-scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+/* -- Data cards -------------------------------------------------------------- */
+
+.settings-workspace-data-actions {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.settings-workspace-data-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 14px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  gap: 10px;
+}
+
+.settings-workspace-data-card--danger {
+  background: var(--pop-rose);
+}
+
+.settings-workspace-data-icon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--pop-sun);
+  place-items: center;
+}
+
+.settings-workspace-data-copy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.settings-workspace-data-title {
+  font-size: 15px;
+}
+
+.settings-workspace-data-description {
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.settings-workspace-file-input {
+  display: none;
+}
+
+/* -- Buttons ----------------------------------------------------------------- */
+
+.settings-workspace-button {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  box-shadow: var(--shadow-hard);
+  color: var(--ink);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 13px;
+  gap: 8px;
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out;
+}
+
+.settings-workspace-button:hover:not(:disabled) {
+  box-shadow: var(--shadow-deep);
+  transform: translate(-1px, -1px);
+}
+
+.settings-workspace-button:active:not(:disabled) {
+  box-shadow: 0 0 0 var(--ink);
+  transform: translate(var(--drop), var(--drop));
+}
+
+.settings-workspace-button:disabled {
+  box-shadow: 2px 2px 0 var(--ink);
+  color: rgba(18, 16, 12, 0.55);
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.settings-workspace-button--primary {
+  background: var(--pop-lime);
+}
+
+.settings-workspace-button--danger {
+  background: var(--pop-flame);
+}
+
+.settings-workspace-button--test {
+  align-self: flex-start;
+}
+
+/* -- Empty search ------------------------------------------------------------ */
+
+.settings-workspace-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 24px;
+  border: var(--edge) dashed var(--ink);
+  border-radius: var(--round-sm);
+  gap: 10px;
+  text-align: center;
+}
+
+.settings-workspace-empty-title {
+  font-size: 21px;
+}
+
+.settings-workspace-empty-description {
+  max-width: 44ch;
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+/* -- Errors and save bar ------------------------------------------------------ */
+
+.settings-workspace-inline-error {
+  display: flex;
+  align-items: center;
+  padding: 10px 13px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  margin: 14px 0 0;
+  background: var(--pop-flame);
+  font-size: 13px;
+  font-weight: 600;
+  gap: 9px;
+}
+
+.settings-workspace-save-bar {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 16px;
+  background: var(--pop-sun);
+  gap: 12px;
+}
+
+.settings-workspace-save-copy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  gap: 10px;
+}
+
+.settings-workspace-save-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+}
+
+@media (max-width: 1080px) {
+  .settings-workspace-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

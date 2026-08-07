@@ -1,14 +1,24 @@
-import { PencilSimpleIcon } from "@phosphor-icons/react/PencilSimple";
-import { PlusIcon } from "@phosphor-icons/react/Plus";
-import { SpeakerHighIcon } from "@phosphor-icons/react/SpeakerHigh";
-import { TrashIcon } from "@phosphor-icons/react/Trash";
-import { XIcon } from "@phosphor-icons/react/X";
-import * as Tooltip from "@radix-ui/react-tooltip";
 import type { ReviewProgressEntry, WordEntry, WordList } from "../types/vocabulary";
-import { formatCount } from "../lib/format";
+import type { WordLocation } from "../services/vocabularyRepository";
 import { DoodleIcon } from "./DoodleIcon";
 
-export type StudyStatus = "new" | "learning" | "reviewing" | "mastered";
+export type StudyStatus = "learning" | "due" | "learned" | "difficult";
+
+const STATUS_LABEL: Record<StudyStatus, string> = {
+  learning: "Learning",
+  due: "Due",
+  learned: "Learned",
+  difficult: "Difficult",
+};
+
+/* Each status gets one fill and keeps it everywhere: the filter, the row, and
+   the inspector all say "difficult" in the same colour. */
+const STATUS_TAG: Record<StudyStatus, string> = {
+  learning: "b-tag",
+  due: "b-tag b-tag--sun",
+  learned: "b-tag b-tag--mint",
+  difficult: "b-tag b-tag--rose",
+};
 
 export function getLibraryDisplayTitle(list: WordList): string {
   if (list.id === "toefl-550-march-2026") {
@@ -20,146 +30,43 @@ export function getLibraryDisplayTitle(list: WordList): string {
   return list.title;
 }
 
-export function getStudyStatus(progress: ReviewProgressEntry | undefined): {
-  key: StudyStatus;
-  label: string;
-} {
+export function getStudyStatus(progress: ReviewProgressEntry | undefined): StudyStatus {
   if (!progress || progress.timesSeen === 0) {
-    return { key: "new", label: "New" };
+    return "learning";
   }
-  if (progress.timesKnown < 2) {
-    return { key: "learning", label: "Learning" };
+  if (progress.memoryDifficulty >= 7 || progress.lapses >= 2) {
+    return "difficult";
   }
-  if (progress.timesKnown < 5) {
-    return { key: "reviewing", label: "Reviewing" };
+  if (progress.timesKnown >= 5) {
+    return "learned";
   }
-  return { key: "mastered", label: "Mastered" };
+  if (Date.parse(progress.dueAt) <= Date.now()) {
+    return "due";
+  }
+  return "learning";
 }
 
 export function isPersianText(value: string | null | undefined): boolean {
-  return Boolean(value && /[\u0600-\u06ff]/u.test(value));
+  return Boolean(value && /[؀-ۿ]/u.test(value));
 }
 
-function IconAction({
-  label,
-  disabled = false,
-  children,
-  onClick,
-  tone,
-}: {
-  label: string;
-  disabled?: boolean;
-  children: React.ReactNode;
-  onClick?: () => void;
-  tone?: "danger";
-}): React.JSX.Element {
-  return (
-    <Tooltip.Provider delayDuration={350}>
-      <Tooltip.Root>
-        <Tooltip.Trigger asChild>
-          <button
-            type="button"
-            className="tc-library__detail-action"
-            data-tone={tone}
-            aria-label={label}
-            disabled={disabled}
-            onClick={onClick}
-          >
-            {children}
-          </button>
-        </Tooltip.Trigger>
-        <Tooltip.Portal>
-          <Tooltip.Content className="app-tooltip" sideOffset={7}>
-            {label}
-            <Tooltip.Arrow className="app-tooltip-arrow" />
-          </Tooltip.Content>
-        </Tooltip.Portal>
-      </Tooltip.Root>
-    </Tooltip.Provider>
-  );
+export function formatDue(iso: string | null | undefined): string {
+  if (!iso || !Number.isFinite(Date.parse(iso))) {
+    return "Not started";
+  }
+
+  const due = new Date(iso);
+  if (due.getTime() <= Date.now()) {
+    return "Due now";
+  }
+  if (due.toDateString() === new Date().toDateString()) {
+    return "Later today";
+  }
+  return new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric" }).format(due);
 }
 
-export function ReviewStatusBadge({
-  progress,
-}: {
-  progress: ReviewProgressEntry | undefined;
-}): React.JSX.Element {
-  const status = getStudyStatus(progress);
-  return (
-    <span className="tc-library__status-badge" data-status={status.key}>
-      {status.label}
-    </span>
-  );
-}
-
-export function WordlistPanel({
-  lists,
-  selectedListId,
-  onSelect,
-  onToggleReview,
-  onCreateList,
-  onClose,
-}: {
-  lists: WordList[];
-  selectedListId: string;
-  onSelect: (list: WordList) => void;
-  onToggleReview: (list: WordList, enabled: boolean) => void;
-  onCreateList: () => void;
-  onClose?: () => void;
-}): React.JSX.Element {
-  return (
-    <nav className="tc-library__navigator" aria-labelledby="tc-library-lists-heading">
-      <div className="tc-library__navigator-heading">
-        <div>
-          <h3 id="tc-library-lists-heading">Libraries</h3>
-          <span>{lists.length}</span>
-        </div>
-        {onClose ? (
-          <IconAction label="Close wordlists" onClick={onClose}>
-            <XIcon size={18} aria-hidden />
-          </IconAction>
-        ) : null}
-      </div>
-      <button type="button" className="tc-library__new-list" onClick={onCreateList}>
-        <PlusIcon size={16} weight="bold" aria-hidden />
-        New library
-      </button>
-      <ul className="tc-library__list-selector">
-        {lists.map((list) => {
-          const active = list.id === selectedListId;
-          const displayTitle = getLibraryDisplayTitle(list);
-          return (
-            <li className="tc-library__list-item" data-active={active} key={list.id}>
-              <button
-                type="button"
-                className="tc-library__list-button"
-                onClick={() => onSelect(list)}
-                aria-current={active ? "page" : undefined}
-                title={list.title}
-              >
-                <span>{displayTitle}</span>
-                <small>{formatCount(list.words.length, "word")}</small>
-              </button>
-              <button
-                type="button"
-                role="switch"
-                className="tc-library__review-switch"
-                aria-checked={list.isEnabled}
-                aria-label={`Review enabled for ${list.title}`}
-                title={`${list.isEnabled ? "Disable" : "Enable"} review for ${list.title}`}
-                onClick={() => onToggleReview(list, !list.isEnabled)}
-              >
-                <span className="tc-library__switch-track" aria-hidden>
-                  <span />
-                </span>
-                <small>{list.isEnabled ? "On" : "Off"}</small>
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
-  );
+export function StatusTag({ status }: { status: StudyStatus }): React.JSX.Element {
+  return <span className={STATUS_TAG[status]}>{STATUS_LABEL[status]}</span>;
 }
 
 function HighlightedExample({
@@ -171,14 +78,15 @@ function HighlightedExample({
 }): React.JSX.Element {
   const escaped = term.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&");
   const parts = sentence.split(new RegExp(`(${escaped})`, "giu"));
-  let characterOffset = 0;
+  let offset = 0;
   const segments = parts.map((text) => {
-    const segment = { text, key: `${characterOffset}-${text}` };
-    characterOffset += text.length;
+    const segment = { text, key: `${offset}-${text}` };
+    offset += text.length;
     return segment;
   });
+  const rtl = isPersianText(sentence);
   return (
-    <p dir={isPersianText(sentence) ? "rtl" : "ltr"} data-rtl={isPersianText(sentence)}>
+    <p className="vlib__example" dir={rtl ? "rtl" : "ltr"}>
       {segments.map((segment) =>
         segment.text.localeCompare(term, undefined, { sensitivity: "base" }) === 0 ? (
           <mark key={segment.key}>{segment.text}</mark>
@@ -190,126 +98,54 @@ function HighlightedExample({
   );
 }
 
-export function WordDetailsPanel({
+function WordSections({
   word,
   progress,
-  canEdit,
-  scheduleLabel,
-  onSpeak,
-  onEdit,
-  onDelete,
-  onMarkLearned,
-  onMarkDifficult,
-  onClose,
 }: {
-  word: WordEntry | undefined;
+  word: WordEntry;
   progress: ReviewProgressEntry | undefined;
-  canEdit: boolean;
-  scheduleLabel: string;
-  onSpeak: () => void;
-  onEdit: () => void;
-  onDelete: () => void;
-  onMarkLearned: () => void;
-  onMarkDifficult: () => void;
-  onClose?: () => void;
 }): React.JSX.Element {
-  if (!word) {
-    return (
-      <aside className="tc-library__inspector" aria-labelledby="tc-library-inspector-heading">
-        <div className="tc-library__inspector-empty">
-          <h3 id="tc-library-inspector-heading">No word selected</h3>
-          <p>Select a term to see its meaning and review history.</p>
-        </div>
-      </aside>
-    );
-  }
-
-  const hasPronunciation = Boolean(word.pronunciation?.trim());
-  const status = getStudyStatus(progress);
   const meaningIsPersian = isPersianText(word.shortMeaning);
-
   return (
-    <aside className="tc-library__inspector" aria-labelledby="tc-library-inspector-heading">
-      <header className="tc-library__inspector-header">
-        <div className="tc-library__inspector-eyebrow">
-          <ReviewStatusBadge progress={progress} />
-          {onClose ? (
-            <IconAction label="Close word details" onClick={onClose}>
-              <XIcon size={18} aria-hidden />
-            </IconAction>
-          ) : null}
-        </div>
-        <div className="tc-library__inspector-title-row">
-          <div>
-            <h3 id="tc-library-inspector-heading">{word.term}</h3>
-            {[word.partOfSpeech, word.pronunciation].filter(Boolean).length ? (
-              <p>{[word.partOfSpeech, word.pronunciation].filter(Boolean).join(" · ")}</p>
-            ) : null}
-          </div>
-          <div className="tc-library__detail-actions">
-            <IconAction
-              label={
-                hasPronunciation
-                  ? `Play pronunciation for ${word.term}`
-                  : "Pronunciation unavailable"
-              }
-              disabled={!hasPronunciation}
-              onClick={onSpeak}
-            >
-              <SpeakerHighIcon size={18} aria-hidden />
-            </IconAction>
-            <IconAction
-              label={canEdit ? `Edit ${word.term}` : "Built-in words cannot be edited"}
-              disabled={!canEdit}
-              onClick={onEdit}
-            >
-              <PencilSimpleIcon size={18} aria-hidden />
-            </IconAction>
-            {canEdit ? (
-              <IconAction label={`Delete ${word.term}`} tone="danger" onClick={onDelete}>
-                <TrashIcon size={18} aria-hidden />
-              </IconAction>
-            ) : null}
-          </div>
-        </div>
-      </header>
-
-      <section className="tc-library__definition" aria-labelledby="tc-library-definition-heading">
-        <h4 id="tc-library-definition-heading">Meaning</h4>
-        <p dir={meaningIsPersian ? "rtl" : "ltr"} data-rtl={meaningIsPersian}>
-          {word.shortMeaning || "No meaning added."}
+    <>
+      <section className="vlib__section">
+        <h3>Meaning</h3>
+        <p
+          className="vlib__meaning-block"
+          data-empty={!word.shortMeaning}
+          dir={meaningIsPersian ? "rtl" : "ltr"}
+        >
+          {word.shortMeaning || "No meaning has been added yet."}
         </p>
       </section>
 
       {word.exampleSentences[0] ? (
-        <section className="tc-library__detail-section">
-          <h4>Example</h4>
+        <section className="vlib__section">
+          <h3>Example</h3>
           <HighlightedExample sentence={word.exampleSentences[0]} term={word.term} />
         </section>
       ) : null}
 
       {word.collocations?.length ? (
-        <section className="tc-library__detail-section">
-          <h4>Collocations</h4>
-          <div className="tc-library__collocations">
+        <section className="vlib__section">
+          <h3>Collocations</h3>
+          <ul className="vlib__chips">
             {word.collocations.map((collocation) => (
-              <span key={collocation}>{collocation}</span>
+              <li key={collocation}>{collocation}</li>
             ))}
-          </div>
+          </ul>
         </section>
       ) : null}
 
-      <section className="tc-library__detail-section">
-        <div className="tc-library__detail-section-heading">
-          <h4>Review summary</h4>
-        </div>
-        <dl className="tc-library__review-details">
+      <section className="vlib__section">
+        <h3>Review summary</h3>
+        <dl className="vlib__tally">
           <div>
             <dt>Seen</dt>
             <dd>{(progress?.timesSeen ?? 0).toLocaleString()}</dd>
           </div>
           <div>
-            <dt>Correct</dt>
+            <dt>Recalled</dt>
             <dd>{(progress?.timesKnown ?? 0).toLocaleString()}</dd>
           </div>
           <div>
@@ -322,42 +158,142 @@ export function WordDetailsPanel({
           </div>
           <div>
             <dt>Next</dt>
-            <dd>{scheduleLabel}</dd>
+            <dd>{formatDue(progress?.dueAt)}</dd>
           </div>
         </dl>
-        {status.key !== "new" && word.chapter !== null ? (
-          <p className="tc-library__chapter">Chapter {word.chapter}</p>
-        ) : null}
       </section>
 
       {word.tags.length ? (
-        <section className="tc-library__detail-section">
-          <h4>Tags</h4>
-          <div className="tc-library__tags">
+        <section className="vlib__section">
+          <h3>Tags</h3>
+          <ul className="vlib__chips vlib__chips--tags">
             {word.tags.map((tag) => (
-              <span key={tag}>{tag}</span>
+              <li key={tag}>{tag}</li>
             ))}
+          </ul>
+        </section>
+      ) : null}
+
+      <section className="vlib__section">
+        <h3>Notes</h3>
+        <p className="vlib__notes">{word.notes || "No note yet. Use Edit to add a memory cue."}</p>
+      </section>
+    </>
+  );
+}
+
+export interface WordInspectorProps {
+  location: WordLocation | null;
+  progress: ReviewProgressEntry | undefined;
+  onSpeak: () => void;
+  onEdit: () => void;
+  onDelete: () => void;
+  onMarkLearned: () => void;
+  onMarkDifficult: () => void;
+  /** Inside a dialog the title bar is already the dialog's, so the head is dropped. */
+  embedded?: boolean;
+}
+
+export function WordInspector({
+  location,
+  progress,
+  onSpeak,
+  onEdit,
+  onDelete,
+  onMarkLearned,
+  onMarkDifficult,
+  embedded = false,
+}: WordInspectorProps): React.JSX.Element {
+  if (!location) {
+    return (
+      <aside className="b-frame vlib__inspector" aria-labelledby="vlib-inspector-empty">
+        <div className="vlib__inspector-empty">
+          <DoodleIcon name="doc" size={34} />
+          <h2 id="vlib-inspector-empty">No word selected</h2>
+          <p>Choose a row to see its meaning, example, and review history.</p>
+        </div>
+      </aside>
+    );
+  }
+
+  const { word, list } = location;
+  const status = getStudyStatus(progress);
+  const editable = !list.isBuiltIn;
+  const meta = [word.partOfSpeech, word.pronunciation].filter(Boolean).join(" · ");
+  const actions = (
+    <>
+      <button type="button" className="b-btn b-btn--mint" onClick={onMarkLearned}>
+        <DoodleIcon name="checklist" size={16} />
+        Mark learned
+      </button>
+      <button type="button" className="b-btn b-btn--rose" onClick={onMarkDifficult}>
+        <DoodleIcon name="bookmark" size={16} />
+        Mark difficult
+      </button>
+      <button
+        type="button"
+        className="b-btn"
+        onClick={onEdit}
+        disabled={!editable}
+        title={editable ? undefined : "Built-in words cannot be edited"}
+      >
+        <DoodleIcon name="pencil" size={16} />
+        Edit
+      </button>
+      <button
+        type="button"
+        className="b-btn b-btn--flame"
+        onClick={onDelete}
+        disabled={!editable}
+        title={editable ? undefined : "Built-in words cannot be deleted"}
+      >
+        <DoodleIcon name="delete" size={16} />
+        Delete
+      </button>
+    </>
+  );
+
+  if (embedded) {
+    return (
+      <div className="vlib__inspector-embedded">
+        <div className="vlib__inspector-tags">
+          <StatusTag status={status} />
+          <span className="b-tag">{getLibraryDisplayTitle(list)}</span>
+        </div>
+        <WordSections word={word} progress={progress} />
+        <div className="vlib__inspector-foot">{actions}</div>
+      </div>
+    );
+  }
+
+  return (
+    <aside className="b-frame vlib__inspector" aria-labelledby="vlib-inspector-heading">
+      <header className="vlib__inspector-head">
+        <div className="vlib__inspector-tags">
+          <StatusTag status={status} />
+          <span className="b-tag">{getLibraryDisplayTitle(list)}</span>
+        </div>
+        <div className="vlib__inspector-title">
+          <div>
+            <h2 id="vlib-inspector-heading">{word.term}</h2>
+            {meta ? <p>{meta}</p> : null}
           </div>
-        </section>
-      ) : null}
+          <button
+            type="button"
+            className="b-icon-btn"
+            onClick={onSpeak}
+            aria-label={`Pronounce ${word.term}`}
+          >
+            <DoodleIcon name="speaker" size={20} />
+          </button>
+        </div>
+      </header>
 
-      {word.notes ? (
-        <section className="tc-library__detail-section">
-          <h4>Notes</h4>
-          <p>{word.notes}</p>
-        </section>
-      ) : null}
+      <div className="b-scroll vlib__inspector-body">
+        <WordSections word={word} progress={progress} />
+      </div>
 
-      <footer className="tc-library__inspector-footer">
-        <button type="button" className="tc-library__mastery-action" onClick={onMarkLearned}>
-          <DoodleIcon name="checklist" size={17} />
-          Mark learned
-        </button>
-        <button type="button" className="tc-library__mastery-action" onClick={onMarkDifficult}>
-          <DoodleIcon name="bookmark" size={17} />
-          Mark difficult
-        </button>
-      </footer>
+      <footer className="vlib__inspector-foot">{actions}</footer>
     </aside>
   );
 }

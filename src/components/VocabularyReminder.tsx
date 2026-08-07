@@ -1,3 +1,4 @@
+import { BellIcon } from "@phosphor-icons/react/Bell";
 import { CheckIcon } from "@phosphor-icons/react/Check";
 import { ClockCounterClockwiseIcon } from "@phosphor-icons/react/ClockCounterClockwise";
 import { InfoIcon } from "@phosphor-icons/react/Info";
@@ -263,15 +264,13 @@ export function VocabularyReminder({
         aria-label={`Reminder closes in ${formatCount(remainingSeconds, "second")}`}
       />
 
-      <header className="vocab-reminder-header">
-        <div className="vocab-reminder-heading">
-          <span className="vocab-reminder-eyebrow">Vocabulary reminder</span>
-          <h2 className="vocab-reminder-term" id={titleId}>
-            {word.term}
-          </h2>
-          {meta ? <p className="vocab-reminder-meta">{meta}</p> : null}
-        </div>
-
+      {/* What this interruption is belongs in the card's own chrome, beside
+          its controls — not stacked above the word as a label. */}
+      <div className="vocab-reminder-bar">
+        <span className="b-tag">
+          <BellIcon size={14} weight="bold" aria-hidden />
+          Vocabulary reminder
+        </span>
         <div className="vocab-reminder-header-actions">
           <button
             type="button"
@@ -281,7 +280,7 @@ export function VocabularyReminder({
             aria-keyshortcuts="L"
             disabled={isActing}
           >
-            <SpeakerHighIcon size={20} weight="regular" aria-hidden />
+            <SpeakerHighIcon size={19} weight="regular" aria-hidden />
           </button>
           <button
             type="button"
@@ -291,8 +290,17 @@ export function VocabularyReminder({
             aria-keyshortcuts="Escape"
             disabled={isActing}
           >
-            <XIcon size={20} weight="regular" aria-hidden />
+            <XIcon size={19} weight="regular" aria-hidden />
           </button>
+        </div>
+      </div>
+
+      <header className="vocab-reminder-header">
+        <div className="vocab-reminder-heading">
+          <h2 className="vocab-reminder-term" id={titleId}>
+            {word.term}
+          </h2>
+          {meta ? <p className="vocab-reminder-meta">{meta}</p> : null}
         </div>
       </header>
 
@@ -312,34 +320,34 @@ export function VocabularyReminder({
         <legend className="sr-only">Rate your recall</legend>
         <button
           type="button"
-          className="vocab-reminder-action vocab-reminder-action--known"
+          className="b-btn b-btn--mint vocab-reminder-action"
           onClick={() => void submitReview("known")}
           aria-keyshortcuts="1"
           disabled={isActing}
         >
-          <CheckIcon size={18} weight="bold" aria-hidden />
+          <CheckIcon size={17} weight="bold" aria-hidden />
           <span>Known</span>
           <kbd aria-hidden>1</kbd>
         </button>
         <button
           type="button"
-          className="vocab-reminder-action"
+          className="b-btn b-btn--sky vocab-reminder-action"
           onClick={() => void submitReview("later")}
           aria-keyshortcuts="2"
           disabled={isActing}
         >
-          <ClockCounterClockwiseIcon size={18} weight="regular" aria-hidden />
+          <ClockCounterClockwiseIcon size={17} weight="regular" aria-hidden />
           <span>Later</span>
           <kbd aria-hidden>2</kbd>
         </button>
         <button
           type="button"
-          className="vocab-reminder-action"
+          className="b-btn b-btn--rose vocab-reminder-action"
           onClick={() => void submitReview("skipped")}
           aria-keyshortcuts="3"
           disabled={isActing}
         >
-          <XIcon size={18} weight="regular" aria-hidden />
+          <XIcon size={17} weight="regular" aria-hidden />
           <span>Skip</span>
           <kbd aria-hidden>3</kbd>
         </button>

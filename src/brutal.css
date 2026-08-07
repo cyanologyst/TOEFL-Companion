@@ -1967,3 +1967,15 @@
 .rev-progress__track {
   overflow: hidden;
 }
+
+/* The brand block lost its icon to the title bar, so it centres its wordmark
+   rather than leaving a gap where the mark used to sit. */
+.shell-brutal .rail__brand {
+  justify-content: center;
+  padding: 12px 10px;
+  text-align: center;
+}
+
+.shell-brutal .rail__brand span {
+  align-items: center;
+}

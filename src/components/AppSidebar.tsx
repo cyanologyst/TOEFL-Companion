@@ -74,7 +74,8 @@ export function AppSidebar({
         onClick={() => onSelect("dashboard")}
         aria-label="TOEFL Companion, go to today"
       >
-        <img src="/app-icon.webp" alt="" width={44} height={44} />
+        {/* No mark here: the title bar already carries the app icon, and
+            showing it twice within a few hundred pixels reads as a mistake. */}
         <span>
           <strong>TOEFL</strong>
           <small>Companion</small>

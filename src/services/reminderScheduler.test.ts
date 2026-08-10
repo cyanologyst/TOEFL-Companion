@@ -97,6 +97,25 @@ describe("reminder scheduling", () => {
     }
   });
 
+  it("holds the card back while the window is hidden", () => {
+    const decision = decideReminder({ ...base, snapshot: snapshot(), visible: false });
+    expect(decision.kind).toBe("defer");
+    if (decision.kind === "defer") {
+      expect(decision.reason).toBe("hidden");
+    }
+  });
+
+  it("still fires when hidden if only system notifications are used", () => {
+    const systemOnly = snapshot({
+      settings: {
+        ...DEFAULT_VOCABULARY_SETTINGS,
+        notificationMode: "system",
+        quietHoursEnabled: false,
+      } as VocabularySettings,
+    });
+    expect(decideReminder({ ...base, snapshot: systemOnly, visible: false }).kind).toBe("fire");
+  });
+
   it("waits while a card is already on screen", () => {
     expect(decideReminder({ ...base, snapshot: snapshot(), showing: true })).toEqual({
       kind: "wait",

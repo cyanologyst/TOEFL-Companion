@@ -261,6 +261,39 @@ export function SettingsPage({
     }
   };
 
+  /* Bringing the next reminder forward to now is all this needs: the host's
+     heartbeat picks it up within a second, through exactly the same path a
+     scheduled reminder takes. */
+  const showReminderNow = () => {
+    try {
+      vocabularyRepository.pauseReminders(null);
+      vocabularyRepository.setNextReminderAt(new Date().toISOString());
+      setReminderStatus("A word is on its way to the bottom left.");
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "A reminder could not be shown right now.";
+      setReminderStatus(message);
+      onNotice(message);
+    }
+  };
+
+  const nextReminderLabel = (() => {
+    if (notificationMode === "off") {
+      return "Reminders are off.";
+    }
+    const paused = vocabulary.pausedUntil ? Date.parse(vocabulary.pausedUntil) : Number.NaN;
+    if (Number.isFinite(paused) && paused > Date.now()) {
+      return `Paused until ${new Date(paused).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}.`;
+    }
+    const next = vocabulary.nextReminderAt ? Date.parse(vocabulary.nextReminderAt) : Number.NaN;
+    if (!Number.isFinite(next)) {
+      return "The next reminder is being scheduled.";
+    }
+    const minutes = Math.max(0, Math.round((next - Date.now()) / 60_000));
+    const clock = new Date(next).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    return minutes <= 1 ? "Next reminder: any moment." : `Next reminder around ${clock}.`;
+  })();
+
   const saveMessage = isDirty
     ? "Unsaved changes"
     : saveStatus === "success"
@@ -513,7 +546,15 @@ export function SettingsPage({
                   </label>
                 </div>
               ) : null}
+              {/* Reminders arrive on their own schedule, so without this there
+                  is no way to see one on purpose - and no way to tell the
+                  feature is working at all until an interval happens to pass
+                  while you are looking. */}
               <div className="settings-inline-actions">
+                <button type="button" className="button button--outline" onClick={showReminderNow}>
+                  <DoodleIcon name="bell" size={17} />
+                  Show a word now
+                </button>
                 <button
                   type="button"
                   className="button button--quiet"
@@ -529,7 +570,7 @@ export function SettingsPage({
                   Resume
                 </button>
                 <span className="settings-inline-status" role="status" aria-live="polite">
-                  {reminderStatus}
+                  {reminderStatus || nextReminderLabel}
                 </span>
               </div>
             </section>

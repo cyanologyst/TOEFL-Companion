@@ -14,6 +14,9 @@ import type { VocabularySnapshot, WordLocation } from "./vocabularyRepository";
 /** A slot that arrives at a bad moment is pushed back, never skipped. */
 export const DEFER_SECONDS = 90;
 
+/** Short, so the card appears almost at once when the window comes back. */
+export const HIDDEN_RETRY_SECONDS = 5;
+
 export type ReminderBlock =
   | "off"
   | "paused"
@@ -21,6 +24,7 @@ export type ReminderBlock =
   | "no-enabled-words"
   | "already-showing"
   | "busy"
+  | "hidden"
   | "not-due";
 
 export type ReminderDecision =
@@ -38,7 +42,14 @@ export interface ReminderContext {
   interruptible: boolean;
   /** The word shown last, so the same one is not offered twice in a row. */
   lastWordId: string | null;
+  /** False when the window is minimised or behind another. */
+  visible?: boolean;
   random?: () => number;
+}
+
+/** The in-app card is only worth spending a slot on if it can be seen. */
+export function usesInAppCard(mode: string): boolean {
+  return mode === "popup" || mode === "both";
 }
 
 /**
@@ -169,6 +180,16 @@ export function decideReminder(context: ReminderContext): ReminderDecision {
   }
   if (showing) {
     return { kind: "wait" };
+  }
+  /* A card that appears while the window is minimised expires unseen and
+     spends the slot for nothing. Hold it until the app is back in front; the
+     system notification is what covers the background case. */
+  if (context.visible === false && usesInAppCard(settings.notificationMode)) {
+    return {
+      kind: "defer",
+      at: new Date(nowMs + HIDDEN_RETRY_SECONDS * 1_000).toISOString(),
+      reason: "hidden",
+    };
   }
   if (!interruptible) {
     return {

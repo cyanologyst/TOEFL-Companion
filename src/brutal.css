@@ -2424,10 +2424,16 @@
 }
 
 .vocab-reminder-bar .b-tag {
-  overflow: hidden;
-  max-width: 210px;
+  min-width: 0;
+  max-width: 232px;
   background: var(--paper);
+}
+
+.vocab-reminder-source > span {
+  overflow: hidden;
+  min-width: 0;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .vocab-reminder-header {

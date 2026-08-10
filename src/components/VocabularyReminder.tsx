@@ -288,9 +288,12 @@ export function VocabularyReminder({
       />
 
       <div className="vocab-reminder-bar">
-        <span className="b-tag">
+        {/* The title needs its own element: `text-overflow` does nothing on a
+            flex container, so a long collection name was cut mid-letter with
+            no ellipsis to show it had been. */}
+        <span className="b-tag vocab-reminder-source">
           <BellIcon size={14} weight="bold" aria-hidden />
-          {collectionTitle ?? "Vocabulary"}
+          <span>{collectionTitle ?? "Vocabulary"}</span>
         </span>
         <div className="vocab-reminder-header-actions">
           <button

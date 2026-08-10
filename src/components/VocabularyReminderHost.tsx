@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { applyReviewAction } from "../features/vocabulary/vocabularyEngine";
 import { useVocabularySnapshot } from "../hooks/useVocabularySnapshot";
 import { isEditableTarget } from "../lib/keyboard";
-import { decideReminder, isInterruptible } from "../services/reminderScheduler";
+import { decideReminder, isInterruptible, usesInAppCard } from "../services/reminderScheduler";
 import { createReviewEvent, vocabularyRepository } from "../services/vocabularyRepository";
 import type { WordLocation } from "../services/vocabularyRepository";
 import {
@@ -22,10 +22,6 @@ const TICK_MS = 1_000;
 
 function usesSystemNotifications(mode: string): boolean {
   return mode === "system" || mode === "toast" || mode === "both";
-}
-
-function usesInAppCard(mode: string): boolean {
-  return mode === "popup" || mode === "both";
 }
 
 function navigateToVocabulary(section: string, wordId?: string): void {
@@ -73,6 +69,7 @@ export function VocabularyReminderHost({
         showing: activeRef.current !== null,
         interruptible: isInterruptible(),
         lastWordId: lastWordIdRef.current,
+        visible: document.visibilityState === "visible",
       });
 
       try {

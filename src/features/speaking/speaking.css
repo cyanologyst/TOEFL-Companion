@@ -41,10 +41,13 @@
   gap: 10px;
 }
 
+/* One filter per row. Side by side in a 230px rail left about 105px each,
+   which is narrower than every option these two offer, so all of them
+   truncated. */
 .sp-rail__filters {
   display: grid;
   gap: 8px;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .sp-rail__filters label {
@@ -1111,4 +1114,26 @@
 .pr-transcript__foot strong {
   font-family: var(--font-display);
   font-size: 13px;
+}
+
+/* -- Insets for frames that zero their own padding ---------------------------
+   A frame with `padding: 0` hands the inset to each band inside it. These
+   bands never got theirs, so the tab row, the prompt list, and the action row
+   sat directly on the frame's border.
+   ---------------------------------------------------------------------------- */
+
+.sp-prep__body {
+  padding: 12px 14px;
+}
+
+.pr-transcript > .b-row {
+  flex: 0 0 auto;
+  padding: 12px 15px;
+  border-bottom: var(--edge) solid var(--ink);
+}
+
+.pr-actions {
+  flex: 0 0 auto;
+  padding: 12px 15px;
+  border-top: var(--edge) solid var(--ink);
 }

@@ -12,6 +12,7 @@ import { vocabularyRepository } from "../../services/vocabularyRepository";
 import { SpeechModels } from "./SpeechModels";
 import type { StudySettings } from "../../types/study";
 import "../../brutal.css";
+import "./settings.css";
 import type { NotificationMode, VocabularySettings } from "../../types/vocabulary";
 
 interface SettingsPageProps {

@@ -23,11 +23,15 @@
 
 /* -- Source column ---------------------------------------------------------- */
 
+/* Scrolling one axis makes the browser clip the other, which cut the offset
+   shadow off every card. The scroller is widened by the shadow's reach and
+   pulled back by the same amount. */
 .writing__source {
   display: flex;
   min-height: 0;
   flex-direction: column;
-  padding-right: 4px;
+  padding: 2px 8px 8px 2px;
+  margin: -2px -8px 0 -2px;
   gap: 12px;
   overflow-y: auto;
   overscroll-behavior: contain;

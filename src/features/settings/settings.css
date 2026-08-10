@@ -1,0 +1,302 @@
+/* Settings sections - neo-brutalism
+ *
+ * The panel and its rail were converted, but the fields inside kept the old
+ * shapes: thin-bordered inputs, a pale pill toggle, a hairline range track. A
+ * section here is a rule and a heading with its fields laid flat beneath - no
+ * box inside a box, because frames do not nest in this world.
+ */
+
+.set-b__panel .settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.set-b__panel .settings-section > header {
+  display: flex;
+  align-items: center;
+  padding: 0 0 12px;
+  border-bottom: var(--edge) solid var(--ink);
+  margin: 0;
+  gap: 13px;
+}
+
+.set-b__panel .settings-section > header h2 {
+  font-size: 21px;
+}
+
+.set-b__panel .settings-section > header p {
+  max-width: 62ch;
+  margin: 3px 0 0;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* -- Field grid --------------------------------------------------------------- */
+
+.set-b__panel .settings-fields {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.set-b__panel .settings-fields--two {
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.set-b__panel .settings-fields > label {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  color: var(--ink);
+  font-family: var(--font-flat);
+  font-size: 12px;
+  font-weight: 700;
+  gap: 7px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* The label is small caps; the value it governs is not. */
+.set-b__panel .settings-fields > label :is(input, select, textarea) {
+  width: 100%;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.set-b__panel .compact-time-fields {
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+/* -- Toggle rows ---------------------------------------------------------------
+   The switch is a hard-edged track with a knob that travels, matching the one
+   in the collections dialog rather than the old soft pill.
+   ------------------------------------------------------------------------------ */
+
+.set-b__panel .setting-toggle {
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  cursor: pointer;
+  gap: 14px;
+}
+
+.set-b__panel .setting-toggle:has(input:checked) {
+  background: var(--pop-lime);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.set-b__panel .setting-toggle:has(input:focus-visible) {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.set-b__panel .setting-toggle > span {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+  order: 1;
+}
+
+.set-b__panel .setting-toggle strong {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.set-b__panel .setting-toggle small {
+  max-width: 68ch;
+  color: var(--ink);
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  opacity: 0.8;
+}
+
+/* The real control keeps its own hit area and focus; only its paint changes. */
+.set-b__panel .setting-toggle input[type="checkbox"] {
+  position: relative;
+  width: 62px;
+  height: 30px;
+  flex: 0 0 auto;
+  padding: 0;
+  border: var(--edge) solid var(--ink);
+  border-radius: 999px;
+  appearance: none;
+  background: var(--paper);
+  cursor: pointer;
+  order: 2;
+  transition: background-color 120ms var(--snap);
+}
+
+.set-b__panel .setting-toggle input[type="checkbox"]:checked {
+  background: var(--pop-mint);
+}
+
+.set-b__panel .setting-toggle input[type="checkbox"]::after {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--paper);
+  content: "";
+  transition: transform 120ms var(--snap);
+}
+
+.set-b__panel .setting-toggle input[type="checkbox"]:checked::after {
+  transform: translateX(32px);
+}
+
+/* -- Range ---------------------------------------------------------------------
+   Chrome will not style a range track and thumb from one rule, so the two are
+   written out per engine. The result is the same flat track and hard knob used
+   everywhere else.
+   ------------------------------------------------------------------------------ */
+
+.set-b__panel .range-field {
+  display: flex;
+  max-width: 460px;
+  flex-direction: column;
+  color: var(--ink);
+  font-family: var(--font-flat);
+  font-size: 12px;
+  font-weight: 700;
+  gap: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.set-b__panel .range-field > span {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.set-b__panel .range-field strong {
+  font-family: var(--font-display);
+  font-size: 17px;
+  letter-spacing: normal;
+}
+
+.set-b__panel input[type="range"] {
+  width: 100%;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.set-b__panel input[type="range"]::-webkit-slider-runnable-track {
+  height: 14px;
+  border: var(--edge) solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+}
+
+.set-b__panel input[type="range"]::-webkit-slider-thumb {
+  width: 24px;
+  height: 24px;
+  margin-top: -8px;
+  border: var(--edge) solid var(--ink);
+  border-radius: 50%;
+  appearance: none;
+  background: var(--pop-lime);
+}
+
+.set-b__panel input[type="range"]:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* -- Inline action rows --------------------------------------------------------- */
+
+.set-b__panel .settings-inline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.set-b__panel .settings-inline-status {
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+/* Existing `.button` call sites already inherit the world's outline and press;
+   these only settle their size so a row of them lines up with the fields. */
+.set-b__panel .button {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 13px;
+  gap: 8px;
+}
+
+/* -- Storage summary ------------------------------------------------------------ */
+
+.set-b__panel .storage-summary {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.set-b__panel .storage-summary > div {
+  padding: 13px 15px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--pop-sun);
+}
+
+.set-b__panel .storage-summary strong {
+  display: block;
+  margin-bottom: 5px;
+  font-family: var(--font-display);
+  font-size: 15px;
+}
+
+.set-b__panel .storage-summary p {
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+/* -- Header status --------------------------------------------------------------- */
+
+.settings-save-summary {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 13px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.settings-save-summary[data-dirty="true"] {
+  background: var(--pop-sun);
+}
+
+.set-b__panel .settings-save-status {
+  font-size: 12.5px;
+  font-weight: 600;
+}

@@ -1,5 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { recordingRepository, RecordingStorageError } from "../services/recordingRepository";
+import {
+  isTranscriptionSupported,
+  transcribeRecording,
+  type TranscriptResult,
+} from "../services/transcription";
 import { formatCount } from "../lib/format";
 import type { RecorderPhase, RecordingCompletion, SavedRecordingMetadata } from "../types/toefl";
 
@@ -15,6 +20,9 @@ export type RecorderFailureKind =
   | "history"
   | "discard";
 
+/** `live` is the webview's own speech API, used only where whisper.cpp is not. */
+export type TranscriptionPhase = "idle" | "live" | "running" | "done" | "failed";
+
 interface UseSpeakingRecorderOptions {
   maxSeconds?: number;
   preparationSeconds?: number;
@@ -27,6 +35,9 @@ export interface SpeakingRecorderController {
   countdown: number;
   secondsLeft: number;
   transcript: string;
+  transcriptionPhase: TranscriptionPhase;
+  transcriptionError: string;
+  analysis: TranscriptResult | null;
   result: RecordingCompletion | null;
   error: string;
   statusMessage: string;
@@ -113,6 +124,14 @@ export function useSpeakingRecorder({
   );
   const [pendingAction, setPendingAction] = useState<"save" | "discard" | null>(null);
   const [isStopping, setIsStopping] = useState(false);
+  const [transcriptionPhase, setTranscriptionPhase] = useState<TranscriptionPhase>("idle");
+  const [transcriptionError, setTranscriptionError] = useState("");
+  const [analysis, setAnalysis] = useState<TranscriptResult | null>(null);
+
+  /* On the desktop the response is transcribed here, by whisper.cpp, after the
+     take finishes. The webview's own speech API is a network service, so it is
+     used only in the browser build where there is no local engine. */
+  const localTranscription = isTranscriptionSupported();
 
   const analyserRef = useRef<AnalyserNode | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
@@ -248,6 +267,9 @@ export function useSpeakingRecorder({
     setError("");
     setPendingAction(null);
     setIsStopping(false);
+    setTranscriptionPhase("idle");
+    setTranscriptionError("");
+    setAnalysis(null);
     setStatusMessage(`Ready to record a ${maxSeconds}-second response.`);
   }, [maxSeconds, preparationSeconds]);
 
@@ -295,6 +317,61 @@ export function useSpeakingRecorder({
       );
     }
   }, [clearTimers, failCapture, stopRecognition]);
+
+  /* Runs after the take is already playable, so the learner is never kept
+     waiting on the model to see that their recording worked. */
+  const runTranscription = useCallback(
+    async (blob: Blob, completion: RecordingCompletion, generation: number) => {
+      setTranscriptionPhase("running");
+      setTranscriptionError("");
+      setAnalysis(null);
+      setStatusMessage("Transcribing your response on this device.");
+
+      try {
+        const transcription = await transcribeRecording(blob);
+        if (generation !== generationRef.current || !mountedRef.current) {
+          return;
+        }
+
+        transcriptRef.current = transcription.text;
+        setTranscript(transcription.text);
+        setAnalysis(transcription);
+        setTranscriptionPhase("done");
+
+        // save() reads the transcript off the staged draft, so the draft has to
+        // be replaced with the text the local model produced.
+        const updated: RecordingCompletion = {
+          ...completion,
+          transcript: transcription.text,
+        };
+        resultRef.current = updated;
+        setResult(updated);
+        try {
+          recordingRepository.stageDraft({ ...updated, blob });
+        } catch {
+          // The take is still playable and savable; only the improved
+          // transcript would be lost, and it is already on screen.
+        }
+        setStatusMessage(
+          `Transcribed in ${(transcription.elapsedMs / 1_000).toFixed(
+            1,
+          )} seconds. Save or discard this response.`,
+        );
+      } catch (transcriptionError_) {
+        if (generation !== generationRef.current || !mountedRef.current) {
+          return;
+        }
+        setTranscriptionPhase("failed");
+        setTranscriptionError(
+          transcriptionError_ instanceof Error
+            ? transcriptionError_.message
+            : "The response could not be transcribed.",
+        );
+        setStatusMessage("The response was recorded, but it could not be transcribed.");
+      }
+    },
+    [],
+  );
 
   const beginRecording = useCallback(
     (stream: MediaStream, generation: number) => {
@@ -420,10 +497,18 @@ export function useSpeakingRecorder({
             "second",
           )} recorded. Save or discard this response.`,
         );
+
+        if (localTranscription) {
+          void runTranscription(blob, completion, generation);
+        }
         // History is intentionally not updated here. Only save() emits onSave.
       };
 
-      const Recognition = window.SpeechRecognition ?? window.webkitSpeechRecognition;
+      /* Only in the browser build. In the desktop app this API would ship the
+         learner's audio to a speech service, which whisper.cpp makes needless. */
+      const Recognition = localTranscription
+        ? undefined
+        : (window.SpeechRecognition ?? window.webkitSpeechRecognition);
       if (Recognition) {
         const recognition = new Recognition();
         recognition.continuous = true;
@@ -452,6 +537,7 @@ export function useSpeakingRecorder({
         recognitionRef.current = recognition;
         try {
           recognition.start();
+          setTranscriptionPhase("live");
         } catch {
           recognitionRef.current = null;
         }
@@ -493,7 +579,15 @@ export function useSpeakingRecorder({
         }
       }, 200);
     },
-    [clearTimers, failCapture, maxSeconds, releaseCapture, stop],
+    [
+      clearTimers,
+      failCapture,
+      localTranscription,
+      maxSeconds,
+      releaseCapture,
+      runTranscription,
+      stop,
+    ],
   );
 
   const requestCapture = useCallback(
@@ -800,6 +894,9 @@ export function useSpeakingRecorder({
     countdown,
     secondsLeft,
     transcript,
+    transcriptionPhase,
+    transcriptionError,
+    analysis,
     result,
     error,
     statusMessage,

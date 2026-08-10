@@ -1270,34 +1270,79 @@ function InterviewPractice({
             )}
           </section>
 
-          <section className="b-frame pr-transcript" aria-label="Live transcription">
+          <section className="b-frame pr-transcript" aria-label="Transcription">
             <div className="b-row b-row--between">
-              <h2>Live transcription</h2>
+              <h2>Transcription</h2>
               <span
                 className="transcription-status"
-                data-live={activelyRecording}
+                data-live={activelyRecording || recorder.transcriptionPhase === "running"}
                 role="status"
                 aria-live="polite"
               >
                 {activelyRecording
-                  ? "Live"
-                  : recorder.phase === "completed"
-                    ? "Draft"
-                    : recorder.phase === "saved"
-                      ? "Saved"
-                      : "Waiting"}
+                  ? "Recording"
+                  : recorder.transcriptionPhase === "running"
+                    ? "Transcribing"
+                    : recorder.transcriptionPhase === "failed"
+                      ? "Unavailable"
+                      : recorder.phase === "saved"
+                        ? "Saved"
+                        : recorder.transcript
+                          ? "Ready"
+                          : "Waiting"}
               </span>
             </div>
             <div className="pr-transcript__canvas">
               {recorder.phase === "recording" ? (
                 <AudioWaveform analyserRef={recorder.analyserRef} active />
               ) : null}
-              <p>{recorder.transcript || "Your spoken words will appear here while you record."}</p>
+              <p>
+                {recorder.transcript ||
+                  (recorder.transcriptionPhase === "running"
+                    ? "Transcribing your response on this device…"
+                    : recorder.phase === "recording"
+                      ? "Your words appear here once the take is finished."
+                      : "Record a response and its transcript will appear here.")}
+              </p>
             </div>
+
+            {recorder.transcriptionError ? (
+              <p className="pr-transcript__notice" role="alert">
+                {recorder.transcriptionError}
+              </p>
+            ) : null}
+
+            {/* Whisper reports a probability per word. The ones it was least
+                sure of are the closest free stand-in for "an examiner would
+                have had to guess here". */}
+            {recorder.analysis?.lowConfidence.length ? (
+              <div className="pr-transcript__flagged">
+                <h3>Least clear words</h3>
+                <ul>
+                  {recorder.analysis.lowConfidence.slice(0, 8).map((word) => (
+                    <li key={word}>{word}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
             <div className="pr-transcript__foot">
               <span>
                 Spoken words <strong>{countWords(recorder.transcript)}</strong>
               </span>
+              {recorder.analysis ? (
+                <>
+                  <span>
+                    Pace <strong>{Math.round(recorder.analysis.speakingRate)} wpm</strong>
+                  </span>
+                  <span>
+                    Pauses <strong>{recorder.analysis.pauses.length}</strong>
+                  </span>
+                  <span>
+                    Silence <strong>{Math.round(recorder.analysis.silenceRatio * 100)}%</strong>
+                  </span>
+                </>
+              ) : null}
               {recorder.result ? (
                 <audio controls src={recorder.result.url} aria-label="Recorded response playback">
                   <track kind="captions" />

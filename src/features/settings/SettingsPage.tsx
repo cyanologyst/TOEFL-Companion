@@ -9,6 +9,7 @@ import {
 } from "../../services/desktopBackup";
 import { studyRepository } from "../../services/studyRepository";
 import { vocabularyRepository } from "../../services/vocabularyRepository";
+import { SpeechModels } from "./SpeechModels";
 import type { StudySettings } from "../../types/study";
 import "../../brutal.css";
 import type { NotificationMode, VocabularySettings } from "../../types/vocabulary";
@@ -19,7 +20,7 @@ interface SettingsPageProps {
   onChanged: () => void;
 }
 
-type SettingsSection = "profile" | "practice" | "reminders" | "audio" | "storage";
+type SettingsSection = "profile" | "practice" | "reminders" | "audio" | "speech" | "storage";
 type AsyncPhase = "idle" | "loading" | "success" | "error";
 
 interface LocalSettingsDraft {
@@ -47,6 +48,12 @@ const SETTINGS_SECTIONS: ReadonlyArray<{
   { id: "practice", label: "Practice", description: "Timers and draft saving", icon: "stopwatch" },
   { id: "reminders", label: "Reminders", description: "Vocabulary recall cards", icon: "bell" },
   { id: "audio", label: "Audio", description: "Speech and sound cues", icon: "speaker" },
+  {
+    id: "speech",
+    label: "Speech to text",
+    description: "Offline transcription model",
+    icon: "mic",
+  },
   { id: "storage", label: "Storage", description: "Local backup and restore", icon: "floppy" },
 ];
 
@@ -268,7 +275,7 @@ export function SettingsPage({
           </span>
           <div>
             <h1>Settings</h1>
-            <p className="b-eyebrow">Practice, reminders, audio, storage</p>
+            <p className="b-eyebrow">Practice, reminders, audio, speech, storage</p>
           </div>
         </div>
         <div className="brutal__head-actions">
@@ -569,6 +576,21 @@ export function SettingsPage({
                   <small>Off by default for low-distraction study sessions.</small>
                 </span>
               </label>
+            </section>
+          ) : null}
+
+          {activeSection === "speech" ? (
+            <section className="panel settings-section" id="speech-settings">
+              <header>
+                <span>
+                  <DoodleIcon name="mic" size={22} />
+                </span>
+                <div>
+                  <h2>Speech recognition</h2>
+                  <p>The model that turns your recorded answers into text, offline.</p>
+                </div>
+              </header>
+              <SpeechModels onNotice={onNotice} />
             </section>
           ) : null}
 

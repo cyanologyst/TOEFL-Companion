@@ -1053,3 +1053,62 @@
   scrollbar-color: var(--ink) transparent;
   scrollbar-width: thin;
 }
+
+/* -- Transcription panel additions -------------------------------------------
+   Transcription now happens on this device after the take, so the panel has to
+   carry a working state and the measurements the local model makes possible.
+   ---------------------------------------------------------------------------- */
+
+.pr-transcript__notice {
+  flex: 0 0 auto;
+  padding: 10px 14px;
+  border-top: var(--edge) solid var(--ink);
+  margin: 0;
+  background: var(--pop-sun);
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.pr-transcript__flagged {
+  flex: 0 0 auto;
+  padding: 11px 14px;
+  border-top: var(--edge) solid var(--ink);
+}
+
+.pr-transcript__flagged h3 {
+  margin-bottom: 7px;
+  font-family: var(--font-flat);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.pr-transcript__flagged ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  gap: 6px;
+  list-style: none;
+}
+
+.pr-transcript__flagged li {
+  padding: 3px 9px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--pop-rose);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pr-transcript__foot span {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pr-transcript__foot strong {
+  font-family: var(--font-display);
+  font-size: 13px;
+}

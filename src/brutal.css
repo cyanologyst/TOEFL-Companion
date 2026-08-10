@@ -281,14 +281,21 @@
   outline: none;
 }
 
+/* The shell owns focus for the control inside it, and shows it the same way
+   a bare control does: a lit edge, not a second ring. */
 .b-field:focus-within {
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow:
+    0 0 0 3px var(--pop-sky),
+    3px 3px 0 var(--ink);
 }
 
-/* Keyboard focus has to survive in a world with no soft edges. */
+/* Keyboard focus has to survive in a world with no soft edges - and it has to
+   be distinguishable from one. An ink ring around an ink border is a box
+   inside a box, and has no contrast against the very edge it sits beside. The
+   ring takes a colour that no border uses. */
 :is(.brutal, .b-portal) :focus-visible {
-  outline: 3px solid var(--ink);
-  outline-offset: 3px;
+  outline: 3px solid var(--pop-sky);
+  outline-offset: 2px;
 }
 
 /* -- Segmented switch ------------------------------------------------------- */
@@ -1470,12 +1477,17 @@
   outline: none;
 }
 
+/* A control already carries a 3px ink border. A second ink ring two pixels
+   outside it is not read as focus - it is read as a box inside a box. The
+   focus band hugs the border instead and takes a colour the border never
+   uses, so it is one object with a lit edge. */
 :is(.brutal, .b-portal) input:focus-visible,
 :is(.brutal, .b-portal) select:focus-visible,
 :is(.brutal, .b-portal) textarea:focus-visible {
-  box-shadow: 3px 3px 0 var(--ink);
-  outline: 3px solid var(--ink);
-  outline-offset: 2px;
+  outline: none;
+  box-shadow:
+    0 0 0 3px var(--pop-sky),
+    3px 3px 0 var(--ink);
 }
 
 /* The shell owns the focus ring, so the control inside must not draw a second
@@ -2254,7 +2266,9 @@
 }
 
 .b-modal .search-field:focus-within {
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow:
+    0 0 0 3px var(--pop-sky),
+    3px 3px 0 var(--ink);
 }
 
 .b-modal .global-search__results {

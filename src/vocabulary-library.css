@@ -531,13 +531,14 @@
   gap: 16px;
 }
 
+/* A bordered box holding a bordered input is a box inside a box. The create
+   row is a band separated by a rule instead, so the field is the only thing
+   here that draws an edge. */
 .vlib-collections__create {
   display: flex;
   align-items: flex-end;
-  padding: 13px 14px;
-  border: var(--edge) solid var(--ink);
-  border-radius: var(--round-sm);
-  background: var(--pop-sun);
+  padding: 0 0 16px;
+  border-bottom: var(--edge) solid var(--ink);
   gap: 10px;
 }
 

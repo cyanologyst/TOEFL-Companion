@@ -1,3 +1,4 @@
+import { invoke, isTauri } from "@tauri-apps/api/core";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { applyReviewAction } from "../features/vocabulary/vocabularyEngine";
 import { useVocabularySnapshot } from "../hooks/useVocabularySnapshot";
@@ -19,6 +20,12 @@ interface VocabularyReminderHostProps {
 
 /** One steady heartbeat instead of a timer rebuilt on every state change. */
 const TICK_MS = 1_000;
+
+/* On the desktop the reminder is its own always-on-top window at the corner of
+   the screen, which is the only place it can do its job: a card drawn inside
+   the app is visible only to someone already looking at the app. The in-app
+   card remains for the browser build, where no such window exists. */
+const useDesktopPopup = isTauri();
 
 function usesSystemNotifications(mode: string): boolean {
   return mode === "system" || mode === "toast" || mode === "both";
@@ -69,7 +76,9 @@ export function VocabularyReminderHost({
         showing: activeRef.current !== null,
         interruptible: isInterruptible(),
         lastWordId: lastWordIdRef.current,
-        visible: document.visibilityState === "visible",
+        // A popup window shows whatever the main window is doing, so only the
+        // in-app card has to wait for the app to be on screen.
+        visible: useDesktopPopup || document.visibilityState === "visible",
       });
 
       try {
@@ -91,7 +100,17 @@ export function VocabularyReminderHost({
               showSystemWordNotification(decision.location.word);
             }
             if (usesInAppCard(current.settings.notificationMode)) {
-              setActive(decision.location);
+              if (useDesktopPopup) {
+                void invoke("show_reminder_popup", {
+                  wordId: decision.location.word.id,
+                }).catch(() => {
+                  // If the window cannot open, fall back to the in-app card
+                  // rather than losing the reminder entirely.
+                  setActive(decision.location);
+                });
+              } else {
+                setActive(decision.location);
+              }
               playVocabularyCue(current.settings.soundEnabled, "reminder");
             }
             return;
@@ -109,6 +128,28 @@ export function VocabularyReminderHost({
     tick();
     const timer = window.setInterval(tick, TICK_MS);
     return () => window.clearInterval(timer);
+  }, []);
+
+  /* "Details" on the popup cannot navigate this window directly, so it leaves
+     a marker in the storage both windows already share. */
+  useEffect(() => {
+    const OPEN_WORD_KEY = "toefl-companion:open-word";
+    const openRequested = (event: StorageEvent) => {
+      if (event.key !== OPEN_WORD_KEY || !event.newValue) {
+        return;
+      }
+      try {
+        const request = JSON.parse(event.newValue) as { id?: string };
+        if (request.id) {
+          window.localStorage.removeItem(OPEN_WORD_KEY);
+          navigateToVocabulary("library", request.id);
+        }
+      } catch {
+        // A malformed marker is not worth surfacing.
+      }
+    };
+    window.addEventListener("storage", openRequested);
+    return () => window.removeEventListener("storage", openRequested);
   }, []);
 
   useEffect(() => {

@@ -5,6 +5,12 @@ export default defineConfig({
   build: {
     outDir: "dist/client",
     rollupOptions: {
+      // The reminder popup is its own window, so it gets its own entry rather
+      // than booting the whole workspace behind a notification.
+      input: {
+        main: "index.html",
+        reminder: "reminder.html",
+      },
       output: {
         manualChunks(id) {
           if (id.includes("toefl-data.json")) return "speaking-content";

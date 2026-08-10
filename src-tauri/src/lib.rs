@@ -1,3 +1,4 @@
+mod reminder_popup;
 mod transcription;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -13,6 +14,9 @@ pub fn run() {
             transcription::download_transcription_model,
             transcription::delete_transcription_model,
             transcription::transcribe_speech,
+            reminder_popup::show_reminder_popup,
+            reminder_popup::resize_reminder_popup,
+            reminder_popup::close_reminder_popup,
         ])
         .plugin(
             tauri_plugin_window_state::Builder::default()

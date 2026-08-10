@@ -2283,13 +2283,17 @@
    will stay. The bar is the timer; hovering or focusing inside pauses it.
    =========================================================================== */
 
+/* Bottom left, but clear of the navigation rail: the card is a companion to
+   the page, not something dropped on top of the app's own furniture. */
 .vocab-reminder-layer {
   position: fixed;
   z-index: 250;
-  right: 20px;
   bottom: 20px;
+  left: calc(var(--sidebar-width, 232px) + 20px);
 }
 
+/* Bottom left, clear of the toast at bottom right: an interruption and a
+   confirmation must never land on top of each other. */
 .vocab-reminder {
   position: relative;
   display: flex;
@@ -2300,10 +2304,11 @@
   border-radius: var(--round);
   background: var(--paper);
   box-shadow: var(--shadow-deep);
+  animation: b-stamp 320ms var(--stamp) both;
 }
 
 .vocab-reminder--compact {
-  width: 322px;
+  width: 320px;
 }
 
 /* The bar drains left to right. `appearance: none` is what lets the track and
@@ -2327,6 +2332,12 @@
   background: var(--pop-lime);
 }
 
+/* Once the answer is showing the countdown has stopped, so the bar stops
+   looking like something that is still running out. */
+.vocab-reminder[data-revealed="true"] .vocab-reminder-progress::-webkit-progress-value {
+  background: var(--pop-mint);
+}
+
 .vocab-reminder-bar {
   display: flex;
   flex: 0 0 auto;
@@ -2339,7 +2350,10 @@
 }
 
 .vocab-reminder-bar .b-tag {
+  overflow: hidden;
+  max-width: 210px;
   background: var(--paper);
+  text-overflow: ellipsis;
 }
 
 .vocab-reminder-header {
@@ -2359,8 +2373,8 @@
 
 .vocab-reminder-icon-button {
   display: grid;
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   flex: 0 0 auto;
   border: 2px solid var(--ink);
   border-radius: 8px;
@@ -2386,7 +2400,7 @@
 
 .vocab-reminder-term {
   margin: 0;
-  font-size: 27px;
+  font-size: 28px;
   word-break: break-word;
 }
 
@@ -2399,7 +2413,44 @@
 
 .vocab-reminder-content {
   flex: 0 0 auto;
-  padding: 12px 15px 14px;
+  padding: 12px 15px 0;
+}
+
+/* The hidden answer is a target you hit, not an empty space. Same device as
+   the review screen, so the two read as one practice. */
+.vocab-reminder-recall {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 12px;
+  border: var(--edge) dashed var(--ink);
+  border-radius: var(--round-sm);
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 9px,
+    rgba(18, 16, 12, 0.045) 9px,
+    rgba(18, 16, 12, 0.045) 18px
+  );
+  cursor: pointer;
+  gap: 3px;
+  text-align: center;
+}
+
+.vocab-reminder-recall:hover {
+  background-color: rgba(198, 242, 78, 0.35);
+}
+
+.vocab-reminder-recall strong {
+  font-family: var(--font-display);
+  font-size: 15px;
+}
+
+.vocab-reminder-recall small {
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0.75;
 }
 
 .vocab-reminder-meaning {
@@ -2414,7 +2465,7 @@
 }
 
 .vocab-reminder-example {
-  padding: 9px 0 0 12px;
+  padding: 0 0 0 12px;
   border-left: 5px solid var(--ink);
   margin: 11px 0 0;
   font-size: 13px;
@@ -2422,19 +2473,14 @@
   line-height: 1.45;
 }
 
-.vocab-reminder-example-label {
-  display: block;
-  font-family: var(--font-flat);
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+.vocab-reminder-reveal-row {
+  flex: 0 0 auto;
+  padding: 12px 15px 13px;
 }
 
 .vocab-reminder-review-actions {
   display: grid;
-  padding: 0 15px 13px;
+  padding: 12px 15px 13px;
   border: 0;
   margin: 0;
   gap: 8px;
@@ -2518,10 +2564,10 @@
 
 .vocab-reminder-details-button {
   display: inline-flex;
-  min-height: 34px;
+  min-height: 32px;
   flex: 0 0 auto;
   align-items: center;
-  padding: 0 13px;
+  padding: 0 12px;
   border: 2px solid var(--ink);
   border-radius: var(--round-sm);
   background: var(--paper);
@@ -2529,8 +2575,8 @@
   color: var(--ink);
   cursor: pointer;
   font-family: var(--font-display);
-  font-size: 13px;
-  gap: 7px;
+  font-size: 12.5px;
+  gap: 6px;
 }
 
 .vocab-reminder-details-button:hover:not(:disabled) {

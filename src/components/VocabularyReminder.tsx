@@ -12,6 +12,7 @@ interface VocabularyReminderProps {
   word: WordEntry;
   durationSeconds: number;
   compact: boolean;
+  collectionTitle?: string;
   onReview: (action: ReviewAction) => void | Promise<void>;
   onSnooze: (minutes: number) => void | Promise<void>;
   onListen: () => void | Promise<void>;
@@ -26,6 +27,7 @@ const REVIEW_FEEDBACK: Record<ReviewAction, string> = {
 };
 
 const FEEDBACK_DURATION_MS = 360;
+const SNOOZE_CHOICES = [5, 15, 30] as const;
 
 function isEditableTarget(target: EventTarget | null): boolean {
   return (
@@ -37,10 +39,24 @@ function isEditableTarget(target: EventTarget | null): boolean {
   );
 }
 
+/**
+ * The vocabulary reminder.
+ *
+ * It asks before it tells. The old card printed the word and its meaning
+ * together, which makes it a poster rather than practice: there is nothing to
+ * retrieve if the answer is already on screen. Here the term arrives alone, the
+ * learner recalls it, and only then does the meaning appear with the ratings
+ * that feed the review schedule.
+ *
+ * The countdown runs only while the answer is still hidden. Once someone has
+ * engaged with the card, taking it away mid-thought would be the rudest thing
+ * it could do.
+ */
 export function VocabularyReminder({
   word,
   durationSeconds,
   compact,
+  collectionTitle,
   onReview,
   onSnooze,
   onListen,
@@ -51,22 +67,25 @@ export function VocabularyReminder({
     ? Math.max(5, Math.trunc(durationSeconds))
     : 5;
   const durationMs = safeDurationSeconds * 1000;
+
+  const [revealed, setRevealed] = useState(false);
   const [remainingMs, setRemainingMs] = useState(durationMs);
   const [feedback, setFeedback] = useState<string | null>(null);
   const [isActing, setIsActing] = useState(false);
-  const [countdownRestartToken, setCountdownRestartToken] = useState(0);
-  const dialogRef = useRef<HTMLElement>(null);
-  const intervalRef = useRef<number | null>(null);
-  const remainingMsRef = useRef(durationMs);
-  const lastTickRef = useRef(performance.now());
-  const countdownPausedRef = useRef(false);
-  const actionLockedRef = useRef(false);
-  const onDismissRef = useRef(onDismiss);
-  const reminderId = useId();
+  const [restartToken, setRestartToken] = useState(0);
 
-  useEffect(() => {
-    onDismissRef.current = onDismiss;
-  }, [onDismiss]);
+  const intervalRef = useRef<number | null>(null);
+  const remainingRef = useRef(durationMs);
+  const lastTickRef = useRef(performance.now());
+  const pausedRef = useRef(false);
+  const lockedRef = useRef(false);
+  const revealedRef = useRef(false);
+  const onDismissRef = useRef(onDismiss);
+  onDismissRef.current = onDismiss;
+
+  const reminderId = useId();
+  const titleId = `${reminderId}-title`;
+  const bodyId = `${reminderId}-body`;
 
   const clearCountdown = useCallback(() => {
     if (intervalRef.current !== null) {
@@ -75,44 +94,52 @@ export function VocabularyReminder({
     }
   }, []);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: A new word or restart token intentionally starts a fresh countdown.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: a new word or a retry restarts the countdown on purpose.
   useEffect(() => {
-    actionLockedRef.current = false;
+    lockedRef.current = false;
+    revealedRef.current = false;
+    pausedRef.current = false;
     setIsActing(false);
     setFeedback(null);
+    setRevealed(false);
     setRemainingMs(durationMs);
-
-    remainingMsRef.current = durationMs;
+    remainingRef.current = durationMs;
     lastTickRef.current = performance.now();
-    countdownPausedRef.current = false;
+
     intervalRef.current = window.setInterval(() => {
       const now = performance.now();
-      if (countdownPausedRef.current) {
+      // Paused while hovered, focused, or once the answer is showing.
+      if (pausedRef.current || revealedRef.current) {
         lastTickRef.current = now;
         return;
       }
-
-      remainingMsRef.current = Math.max(0, remainingMsRef.current - (now - lastTickRef.current));
+      remainingRef.current = Math.max(0, remainingRef.current - (now - lastTickRef.current));
       lastTickRef.current = now;
-      setRemainingMs(remainingMsRef.current);
-
-      if (remainingMsRef.current <= 0 && !actionLockedRef.current) {
-        actionLockedRef.current = true;
+      setRemainingMs(remainingRef.current);
+      if (remainingRef.current <= 0 && !lockedRef.current) {
+        lockedRef.current = true;
         clearCountdown();
         onDismissRef.current();
       }
     }, 200);
 
     return clearCountdown;
-  }, [clearCountdown, countdownRestartToken, durationMs, word.id]);
+  }, [clearCountdown, durationMs, restartToken, word.id]);
+
+  const reveal = useCallback(() => {
+    if (lockedRef.current || revealedRef.current) {
+      return;
+    }
+    revealedRef.current = true;
+    setRevealed(true);
+  }, []);
 
   const submitReview = useCallback(
     async (action: ReviewAction) => {
-      if (actionLockedRef.current) {
+      if (lockedRef.current) {
         return;
       }
-
-      actionLockedRef.current = true;
+      lockedRef.current = true;
       clearCountdown();
       setIsActing(true);
       setFeedback(REVIEW_FEEDBACK[action]);
@@ -122,10 +149,10 @@ export function VocabularyReminder({
       try {
         await onReview(action);
       } catch {
-        actionLockedRef.current = false;
+        lockedRef.current = false;
         setIsActing(false);
         setFeedback("Could not save");
-        setCountdownRestartToken((current) => current + 1);
+        setRestartToken((value) => value + 1);
       }
     },
     [clearCountdown, onReview],
@@ -133,50 +160,47 @@ export function VocabularyReminder({
 
   const snooze = useCallback(
     async (minutes: number) => {
-      if (actionLockedRef.current) {
+      if (lockedRef.current) {
         return;
       }
-
-      actionLockedRef.current = true;
+      lockedRef.current = true;
       clearCountdown();
       setIsActing(true);
       try {
         await onSnooze(minutes);
       } catch {
-        actionLockedRef.current = false;
+        lockedRef.current = false;
         setIsActing(false);
         setFeedback("Could not snooze");
-        setCountdownRestartToken((current) => current + 1);
+        setRestartToken((value) => value + 1);
       }
     },
     [clearCountdown, onSnooze],
   );
 
   const dismiss = useCallback(() => {
-    if (actionLockedRef.current) {
+    if (lockedRef.current) {
       return;
     }
-
-    actionLockedRef.current = true;
+    lockedRef.current = true;
     clearCountdown();
     onDismiss();
   }, [clearCountdown, onDismiss]);
 
   const showDetails = useCallback(async () => {
-    if (actionLockedRef.current) {
+    if (lockedRef.current) {
       return;
     }
-
-    actionLockedRef.current = true;
+    lockedRef.current = true;
     clearCountdown();
     setIsActing(true);
     try {
       await onDetails();
     } catch {
-      actionLockedRef.current = false;
+      lockedRef.current = false;
       setIsActing(false);
       setFeedback("Could not open details");
-      setCountdownRestartToken((current) => current + 1);
+      setRestartToken((value) => value + 1);
     }
   }, [clearCountdown, onDetails]);
 
@@ -184,13 +208,11 @@ export function VocabularyReminder({
     () =>
       [word.partOfSpeech, word.pronunciation]
         .filter((value): value is string => Boolean(value?.trim()))
-        .join("  "),
+        .join(" · "),
     [word.partOfSpeech, word.pronunciation],
   );
-  const firstExample = word.exampleSentences.find((example) => Boolean(example.trim()));
+  const example = word.exampleSentences.find((sentence) => Boolean(sentence.trim()));
   const remainingSeconds = Math.max(0, Math.ceil(remainingMs / 1000));
-  const titleId = `${reminderId}-title`;
-  const descriptionId = `${reminderId}-description`;
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     if (
@@ -203,73 +225,72 @@ export function VocabularyReminder({
       return;
     }
 
-    switch (event.key.toLowerCase()) {
-      case "1":
-        event.preventDefault();
-        void submitReview("known");
-        break;
-      case "2":
-        event.preventDefault();
-        void submitReview("later");
-        break;
-      case "3":
-        event.preventDefault();
-        void submitReview("skipped");
-        break;
-      case "s":
-        event.preventDefault();
-        void snooze(15);
-        break;
-      case "l":
-        event.preventDefault();
-        void onListen();
-        break;
-      case "escape":
-        event.preventDefault();
-        dismiss();
-        break;
+    const key = event.key.toLowerCase();
+    if (!revealed && (key === " " || key === "enter")) {
+      event.preventDefault();
+      reveal();
+      return;
+    }
+    if (revealed && (key === "1" || key === "2" || key === "3")) {
+      event.preventDefault();
+      void submitReview(key === "1" ? "known" : key === "2" ? "later" : "skipped");
+      return;
+    }
+    if (key === "s") {
+      event.preventDefault();
+      void snooze(15);
+      return;
+    }
+    if (key === "l") {
+      event.preventDefault();
+      void onListen();
+      return;
+    }
+    if (key === "escape") {
+      event.preventDefault();
+      dismiss();
     }
   };
 
   return (
     <section
-      ref={dialogRef}
       className={`vocab-reminder${compact ? " vocab-reminder--compact" : ""}`}
       aria-live="polite"
       aria-labelledby={titleId}
-      aria-describedby={descriptionId}
+      aria-describedby={bodyId}
+      data-revealed={revealed}
       tabIndex={-1}
       onKeyDown={handleKeyDown}
       onPointerEnter={() => {
-        countdownPausedRef.current = true;
+        pausedRef.current = true;
       }}
       onPointerLeave={() => {
-        countdownPausedRef.current = false;
+        pausedRef.current = false;
         lastTickRef.current = performance.now();
       }}
       onFocusCapture={() => {
-        countdownPausedRef.current = true;
+        pausedRef.current = true;
       }}
       onBlurCapture={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget)) {
-          countdownPausedRef.current = false;
+          pausedRef.current = false;
           lastTickRef.current = performance.now();
         }
       }}
     >
+      {/* The bar is the timer. It stops when the answer is showing, so the card
+          never disappears out from under someone who is thinking. */}
       <progress
         className="vocab-reminder-progress"
         max={durationMs}
-        value={remainingMs}
+        value={revealed ? durationMs : remainingMs}
         aria-label={`Reminder closes in ${formatCount(remainingSeconds, "second")}`}
       />
 
-      {/* What this interruption is belongs in the card's own chrome, beside
-          its controls — not stacked above the word as a label. */}
       <div className="vocab-reminder-bar">
         <span className="b-tag">
           <BellIcon size={14} weight="bold" aria-hidden />
-          Vocabulary reminder
+          {collectionTitle ?? "Vocabulary"}
         </span>
         <div className="vocab-reminder-header-actions">
           <button
@@ -280,7 +301,7 @@ export function VocabularyReminder({
             aria-keyshortcuts="L"
             disabled={isActing}
           >
-            <SpeakerHighIcon size={19} weight="regular" aria-hidden />
+            <SpeakerHighIcon size={18} weight="regular" aria-hidden />
           </button>
           <button
             type="button"
@@ -290,7 +311,7 @@ export function VocabularyReminder({
             aria-keyshortcuts="Escape"
             disabled={isActing}
           >
-            <XIcon size={19} weight="regular" aria-hidden />
+            <XIcon size={18} weight="regular" aria-hidden />
           </button>
         </div>
       </div>
@@ -304,54 +325,73 @@ export function VocabularyReminder({
         </div>
       </header>
 
-      <div className="vocab-reminder-content" id={descriptionId}>
-        <p className="vocab-reminder-meaning" dir="auto">
-          {word.shortMeaning?.trim() || "No meaning has been added yet."}
-        </p>
-        {!compact && firstExample ? (
-          <p className="vocab-reminder-example">
-            <span className="vocab-reminder-example-label">Example</span>
-            {firstExample}
-          </p>
-        ) : null}
+      <div className="vocab-reminder-content" id={bodyId}>
+        {revealed ? (
+          <>
+            <p className="vocab-reminder-meaning" dir="auto">
+              {word.shortMeaning?.trim() || "No meaning has been added yet."}
+            </p>
+            {!compact && example ? <p className="vocab-reminder-example">“{example}”</p> : null}
+          </>
+        ) : (
+          /* Retrieval is the practice. Nothing here gives the answer away. */
+          <button type="button" className="vocab-reminder-recall" onClick={reveal}>
+            <strong>Do you remember it?</strong>
+            <small>Say the meaning, then check.</small>
+          </button>
+        )}
       </div>
 
-      <fieldset className="vocab-reminder-review-actions">
-        <legend className="sr-only">Rate your recall</legend>
-        <button
-          type="button"
-          className="b-btn b-btn--mint vocab-reminder-action"
-          onClick={() => void submitReview("known")}
-          aria-keyshortcuts="1"
-          disabled={isActing}
-        >
-          <CheckIcon size={17} weight="bold" aria-hidden />
-          <span>Known</span>
-          <kbd aria-hidden>1</kbd>
-        </button>
-        <button
-          type="button"
-          className="b-btn b-btn--sky vocab-reminder-action"
-          onClick={() => void submitReview("later")}
-          aria-keyshortcuts="2"
-          disabled={isActing}
-        >
-          <ClockCounterClockwiseIcon size={17} weight="regular" aria-hidden />
-          <span>Later</span>
-          <kbd aria-hidden>2</kbd>
-        </button>
-        <button
-          type="button"
-          className="b-btn b-btn--rose vocab-reminder-action"
-          onClick={() => void submitReview("skipped")}
-          aria-keyshortcuts="3"
-          disabled={isActing}
-        >
-          <XIcon size={17} weight="regular" aria-hidden />
-          <span>Skip</span>
-          <kbd aria-hidden>3</kbd>
-        </button>
-      </fieldset>
+      {revealed ? (
+        <fieldset className="vocab-reminder-review-actions">
+          <legend className="sr-only">Rate your recall</legend>
+          <button
+            type="button"
+            className="b-btn b-btn--mint vocab-reminder-action"
+            onClick={() => void submitReview("known")}
+            aria-keyshortcuts="1"
+            disabled={isActing}
+          >
+            <CheckIcon size={16} weight="bold" aria-hidden />
+            <span>Known</span>
+            <kbd aria-hidden>1</kbd>
+          </button>
+          <button
+            type="button"
+            className="b-btn b-btn--sky vocab-reminder-action"
+            onClick={() => void submitReview("later")}
+            aria-keyshortcuts="2"
+            disabled={isActing}
+          >
+            <ClockCounterClockwiseIcon size={16} weight="regular" aria-hidden />
+            <span>Later</span>
+            <kbd aria-hidden>2</kbd>
+          </button>
+          <button
+            type="button"
+            className="b-btn b-btn--rose vocab-reminder-action"
+            onClick={() => void submitReview("skipped")}
+            aria-keyshortcuts="3"
+            disabled={isActing}
+          >
+            <XIcon size={16} weight="regular" aria-hidden />
+            <span>Forgot</span>
+            <kbd aria-hidden>3</kbd>
+          </button>
+        </fieldset>
+      ) : (
+        <div className="vocab-reminder-reveal-row">
+          <button
+            type="button"
+            className="b-btn b-btn--lime b-btn--block"
+            onClick={reveal}
+            aria-keyshortcuts="Enter"
+            disabled={isActing}
+          >
+            Show meaning
+          </button>
+        </div>
+      )}
 
       <div className="vocab-reminder-secondary-actions">
         <fieldset className="vocab-reminder-snooze">
@@ -360,7 +400,7 @@ export function VocabularyReminder({
             Snooze
             <kbd aria-hidden>S</kbd>
           </span>
-          {[5, 15, 30].map((minutes) => (
+          {SNOOZE_CHOICES.map((minutes) => (
             <button
               key={minutes}
               type="button"
@@ -370,7 +410,7 @@ export function VocabularyReminder({
               aria-keyshortcuts={minutes === 15 ? "S" : undefined}
               disabled={isActing}
             >
-              {minutes} min
+              {minutes}m
             </button>
           ))}
         </fieldset>
@@ -381,18 +421,18 @@ export function VocabularyReminder({
           onClick={() => void showDetails()}
           disabled={isActing}
         >
-          <InfoIcon size={18} weight="regular" aria-hidden />
+          <InfoIcon size={17} weight="regular" aria-hidden />
           Details
         </button>
       </div>
 
-      <p className="vocab-reminder-countdown" aria-hidden>{`${remainingSeconds}s`}</p>
       <span className="vocab-reminder-feedback" role="status" aria-live="polite">
         {feedback}
       </span>
       <span className="vocab-reminder-sr-only">
-        This reminder closes automatically after {safeDurationSeconds} seconds of inactivity.
-        Hovering over it or moving keyboard focus inside pauses the timer.
+        This reminder closes automatically after {safeDurationSeconds} seconds while the meaning is
+        hidden. Hovering over it, moving keyboard focus inside, or showing the meaning pauses the
+        timer.
       </span>
     </section>
   );

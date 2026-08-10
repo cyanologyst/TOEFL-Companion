@@ -971,9 +971,23 @@
   --b-flat: "Space Grotesk Variable", "Segoe UI", sans-serif;
 }
 
+/* The bar was 40px tall with a 3px rule, leaving 37px of content, while the
+   search pill's margin box came to 44px. A fixed-height grid does not grow, so
+   every child stretched past the bottom rule and the pill sat on top of it.
+   The bar is sized to hold its tallest control, and the pill centres itself
+   rather than spacing itself with margins it does not have room for. */
+.desktop-app.shell-brutal {
+  --titlebar-height: 44px;
+}
+
 .shell-brutal .native-titlebar {
   border-bottom: 3px solid var(--b-ink);
   background: var(--b-sun);
+}
+
+.shell-brutal .native-titlebar__brand {
+  padding: 0 16px;
+  gap: 10px;
 }
 
 .shell-brutal .native-titlebar__title,
@@ -984,6 +998,10 @@
 
 .shell-brutal .native-titlebar__search {
   height: 32px;
+  align-self: center;
+  /* Clear of the window controls by more than its own offset shadow. */
+  margin: 0 16px 0 0;
+  padding: 0 12px;
   border: 2px solid var(--b-ink);
   border-radius: 999px;
   background: var(--b-paper);
@@ -1002,8 +1020,28 @@
   border: 1px solid var(--b-ink);
   border-radius: 5px;
   background: var(--b-lime);
+  color: var(--b-ink);
   font-family: var(--b-flat);
   font-weight: 700;
+}
+
+/* The window controls kept the old navy glyph and a pale grey hover, which on
+   a sun-yellow bar read as a patch of another interface. */
+.shell-brutal .window-control {
+  color: var(--b-ink);
+}
+
+.shell-brutal .window-control:hover {
+  background: rgba(18, 16, 12, 0.14);
+}
+
+.shell-brutal .window-control--close:hover {
+  color: var(--b-paper);
+  background: #d6343a;
+}
+
+.shell-brutal .window-control svg {
+  stroke-width: 1.4;
 }
 
 /* -- Rail ------------------------------------------------------------------- */

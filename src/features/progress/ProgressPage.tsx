@@ -34,18 +34,27 @@ interface ProgressPageProps {
   studyState: StudyState;
 }
 
+/* The charts are drawn by recharts in SVG, so they take the world's palette as
+   literal values rather than through CSS. Flat fills with a hard black edge:
+   the same rule every other mark on these pages follows. */
+const INK = "#12100c";
+const PAPER = "#fffdf3";
+
 const SKILL_COLOR = {
-  vocabulary: "#0d7c6a",
-  speaking: "#2b6cbd",
-  writing: "#6b4fb0",
+  vocabulary: "#7be495",
+  speaking: "#7cc6fe",
+  writing: "#b197fc",
 } as const;
 
 const MASTERY_COLOR = {
-  mastered: "#0d7c6a",
-  familiar: "#3fa88f",
-  learning: "#e9a13b",
-  new: "#d7dfe3",
+  mastered: "#7be495",
+  familiar: "#c6f24e",
+  learning: "#ffd93d",
+  new: PAPER,
 } as const;
+
+/** Axis labels are ink at full strength; there is no grey in this world. */
+const AXIS_TICK = { fontSize: 11, fill: INK, fontWeight: 600 } as const;
 
 const ACTIVITY_ICON: Record<StudyActivity["kind"], DoodleIconName> = {
   vocabulary: "doc",
@@ -254,24 +263,21 @@ export function ProgressPage({
               <div className="progress-card__body progress-chart">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={days} margin={{ top: 4, right: 4, bottom: 0, left: 0 }}>
-                    <XAxis
-                      dataKey="label"
-                      tickLine={false}
-                      axisLine={false}
-                      tick={{ fontSize: 11, fill: "#677183" }}
-                    />
+                    <XAxis dataKey="label" tickLine={false} axisLine={false} tick={AXIS_TICK} />
                     <YAxis
                       allowDecimals={false}
                       tickLine={false}
                       axisLine={false}
-                      tick={{ fontSize: 11, fill: "#677183" }}
+                      tick={AXIS_TICK}
                       width={34}
                     />
-                    <Tooltip content={<ChartTip />} cursor={{ fill: "rgba(12,32,55,0.04)" }} />
+                    <Tooltip content={<ChartTip />} cursor={{ fill: "rgba(18,16,12,0.09)" }} />
                     <Bar
                       dataKey="vocabulary"
                       stackId="a"
                       fill={SKILL_COLOR.vocabulary}
+                      stroke={INK}
+                      strokeWidth={2}
                       radius={[0, 0, 0, 0]}
                       animationDuration={700}
                     />
@@ -279,6 +285,8 @@ export function ProgressPage({
                       dataKey="speaking"
                       stackId="a"
                       fill={SKILL_COLOR.speaking}
+                      stroke={INK}
+                      strokeWidth={2}
                       animationDuration={700}
                       animationBegin={90}
                     />
@@ -286,6 +294,8 @@ export function ProgressPage({
                       dataKey="writing"
                       stackId="a"
                       fill={SKILL_COLOR.writing}
+                      stroke={INK}
+                      strokeWidth={2}
                       radius={[4, 4, 0, 0]}
                       animationDuration={700}
                       animationBegin={180}
@@ -310,10 +320,11 @@ export function ProgressPage({
                       data={mastery}
                       dataKey="value"
                       nameKey="name"
-                      innerRadius="56%"
-                      outerRadius="82%"
+                      innerRadius="54%"
+                      outerRadius="84%"
                       paddingAngle={2}
-                      stroke="none"
+                      stroke={INK}
+                      strokeWidth={3}
                       animationDuration={750}
                     >
                       {mastery.map((slice) => (
@@ -346,33 +357,26 @@ export function ProgressPage({
                 {trend.length > 1 ? (
                   <ResponsiveContainer width="100%" height="100%">
                     <AreaChart data={trend} margin={{ top: 6, right: 6, bottom: 0, left: 0 }}>
-                      <defs>
-                        <linearGradient id="accuracyFill" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor={SKILL_COLOR.speaking} stopOpacity={0.28} />
-                          <stop offset="100%" stopColor={SKILL_COLOR.speaking} stopOpacity={0} />
-                        </linearGradient>
-                      </defs>
-                      <XAxis
-                        dataKey="label"
-                        tickLine={false}
-                        axisLine={false}
-                        tick={{ fontSize: 11, fill: "#677183" }}
-                      />
+                      <XAxis dataKey="label" tickLine={false} axisLine={false} tick={AXIS_TICK} />
                       <YAxis
                         domain={[0, 100]}
                         tickLine={false}
                         axisLine={false}
-                        tick={{ fontSize: 11, fill: "#677183" }}
+                        tick={AXIS_TICK}
                         width={34}
                       />
                       <Tooltip content={<ChartTip />} />
+                      {/* A flat fill under a hard black line. The gradient this
+                          replaces was the last soft edge on the page. */}
                       <Area
-                        type="monotone"
+                        type="linear"
                         dataKey="accuracy"
                         name="Match"
-                        stroke={SKILL_COLOR.speaking}
-                        strokeWidth={2}
-                        fill="url(#accuracyFill)"
+                        stroke={INK}
+                        strokeWidth={3}
+                        fill={SKILL_COLOR.speaking}
+                        fillOpacity={1}
+                        dot={{ fill: PAPER, stroke: INK, strokeWidth: 2, r: 4 }}
                         animationDuration={800}
                       />
                     </AreaChart>
@@ -402,10 +406,7 @@ export function ProgressPage({
                 <ul className="progress-sessions">
                   {recent.map((activity) => (
                     <li key={activity.id}>
-                      <span
-                        className="progress-sessions__mark"
-                        style={{ color: SKILL_COLOR[activity.kind] }}
-                      >
+                      <span className="progress-sessions__mark" data-kind={activity.kind}>
                         <DoodleIcon name={ACTIVITY_ICON[activity.kind]} size={15} />
                       </span>
                       <span className="progress-sessions__copy">

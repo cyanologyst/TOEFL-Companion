@@ -1,3 +1,4 @@
+import { XIcon } from "@phosphor-icons/react/X";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { DoodleIcon } from "../../components/DoodleIcon";
 import { assignFaces, Icon8 } from "../../components/Icon8";
@@ -291,7 +292,7 @@ export function WritingPage({
       </header>
 
       {browserOpen ? (
-        <section className="panel writing-browser">
+        <section className="b-frame writing-browser b-stamp">
           <header>
             <div>
               <h2>Choose a discussion</h2>
@@ -299,11 +300,11 @@ export function WritingPage({
             </div>
             <button
               type="button"
-              className="icon-button"
+              className="b-icon-btn"
               onClick={() => setBrowserOpen(false)}
               aria-label="Close question browser"
             >
-              ×
+              <XIcon size={19} aria-hidden />
             </button>
           </header>
           <div className="writing-browser__filters">
@@ -357,7 +358,10 @@ export function WritingPage({
         </section>
       ) : null}
 
-      <div className="writing__body">
+      {/* The picker takes the body rather than squeezing it. Sharing the height
+          left the editor too short for its own footer, and this page may not
+          scroll. */}
+      <div className="writing__body" hidden={browserOpen}>
         {/* The authored moment: the discussion deals itself out, professor
             first, then each classmate. Capped so the last card lands fast. */}
         <section className="writing__source b-stagger" aria-label="The discussion">

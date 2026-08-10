@@ -1400,10 +1400,15 @@
   font-weight: 700;
 }
 
+/* `input:not([type])` matters: an input with no type attribute is a text field,
+   but `input[type="text"]` does not select it, so those were keeping the old
+   1px border. */
+:is(.brutal, .b-portal) input:not([type]),
 :is(.brutal, .b-portal) input[type="text"],
 :is(.brutal, .b-portal) input[type="number"],
 :is(.brutal, .b-portal) input[type="date"],
 :is(.brutal, .b-portal) input[type="time"],
+:is(.brutal, .b-portal) input[type="email"],
 :is(.brutal, .b-portal) input[type="search"],
 :is(.brutal, .b-portal) select,
 :is(.brutal, .b-portal) textarea {
@@ -2722,4 +2727,140 @@
 .study-tooltip__arrow,
 .app-tooltip-arrow {
   fill: #12100c;
+}
+
+/* ===========================================================================
+   Segmented control
+   The shared control keeps its roving tabindex and arrow-key handling; only
+   its paint changes, so it reads as the same object as `.b-switch`.
+   =========================================================================== */
+
+:is(.brutal, .b-portal) .study-segmented-control__list {
+  display: inline-flex;
+  padding: 4px;
+  border: var(--edge) solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  box-shadow: 3px 3px 0 var(--ink);
+  gap: 4px;
+}
+
+:is(.brutal, .b-portal) .study-segmented-control__tab {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  padding: 0 15px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 13px;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+:is(.brutal, .b-portal) .study-segmented-control__tab:hover:not([data-state="active"]) {
+  background: rgba(18, 16, 12, 0.07);
+}
+
+:is(.brutal, .b-portal) .study-segmented-control__tab[data-state="active"] {
+  border-color: var(--ink);
+  background: var(--pop-sun);
+  color: var(--ink);
+}
+
+:is(.brutal, .b-portal) .study-segmented-control__icon {
+  flex: 0 0 auto;
+}
+
+/* Session marks take the colour of the skill they belong to, matching the
+   legend on the chart above them. */
+.brutal .progress-sessions__mark[data-kind="vocabulary"] {
+  background: var(--pop-mint);
+}
+
+.brutal .progress-sessions__mark[data-kind="speaking"] {
+  background: var(--pop-sky);
+}
+
+.brutal .progress-sessions__mark[data-kind="writing"] {
+  background: var(--pop-grape);
+}
+
+.brutal .progress-sessions__mark .doodle-icon {
+  color: var(--ink);
+}
+
+/* The section marker in the settings panel kept its pale disc. */
+.brutal .settings-section > header > span {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--pop-sun);
+  box-shadow: 3px 3px 0 var(--ink);
+  place-items: center;
+}
+
+/* The shell beneath every page. Nothing shows it once a page paints, but a
+   pale grey flash between routes is the old design surfacing for a frame. */
+.desktop-app.shell-brutal,
+.shell-brutal .app-content {
+  background: var(--b-ground);
+}
+
+/* The empty states kept the old ink: near-navy headings over a blue-grey body.
+   In this world every word is the same black. */
+.brutal .progress-empty strong,
+.brutal .progress-empty p,
+.brutal .progress__first-run h2,
+.brutal .progress__first-run p {
+  color: var(--ink);
+}
+
+.brutal .progress-empty strong,
+.brutal .progress__first-run h2 {
+  font-family: var(--font-display);
+}
+
+.brutal .progress-empty p,
+.brutal .progress__first-run p {
+  font-weight: 500;
+}
+
+/* ===========================================================================
+   Token bridge
+   Hundreds of pre-redesign rules still resolve their colour through the old
+   semantic tokens. Rather than hunt each rule down, the tokens themselves are
+   remapped inside this world, so anything not yet rewritten still lands in the
+   right palette. Chasing individual selectors is what kept leaving one grey
+   caption or one pale border behind on every screen.
+   =========================================================================== */
+
+.brutal,
+.b-portal,
+.shell-brutal {
+  --navy-950: #12100c;
+  --navy-700: #12100c;
+  --navy-500: rgba(18, 16, 12, 0.72);
+  --color-foreground: #12100c;
+  --color-muted-foreground: rgba(18, 16, 12, 0.78);
+  --color-subtle-foreground: rgba(18, 16, 12, 0.72);
+  --color-surface: #fffdf3;
+  --color-surface-muted: #fffdf3;
+  --color-border: #12100c;
+  --color-border-strong: #12100c;
+  --surface-soft: #fffdf3;
+  --border: #12100c;
+}
+
+/* The title bar sits outside every page, so it inherits its ink from `body`
+   where the remapped tokens never reach. */
+.shell-brutal .native-titlebar,
+.shell-brutal .rail {
+  color: var(--b-ink);
 }

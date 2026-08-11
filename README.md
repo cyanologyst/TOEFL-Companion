@@ -1,195 +1,248 @@
 # TOEFL Companion
 
-TOEFL Companion is a local-first Windows study application for the updated
-TOEFL. It combines vocabulary memorization, interview speaking, Listen &
-Repeat, and Academic Discussion writing in one focused Tauri 2 desktop
-experience.
+A Windows desktop app for preparing for the TOEFL: vocabulary you actually
+remember, speaking answers you can hear back, and writing tasks with a timer.
 
-The implementation evolves the existing project rather than replacing it. It
-preserves the original 30 NEO speaking sets, 120 interview questions, 550-word
-TOEFL library, personal vocabulary storage, spaced-repetition engine,
-recording repository, reminders, backup migration, and custom Windows shell.
+Everything runs on your own machine. There is no account, no server, and no
+network call in normal use — including the speech-to-text, which runs offline on
+your CPU. The only time the app reaches the internet is when you choose to
+download a transcription model.
 
-![Dashboard implementation](qa/dashboard-implementation.png)
+![The dashboard, showing one recommended session and the week's practice](docs/screenshots/dashboard.png)
 
-## What is included
+---
 
-### Vocabulary
+## Install
 
-- 614 built-in words across the supplied TOEFL and NEO libraries
-- Versioned JSON import and per-collection export
-- Custom collections and add, edit, delete, search, filter, pagination, notes,
-  examples, tags, and collocations
-- Active-recall review with Again, Hard, Good, and Easy scheduling
-- Learned, difficult, due, and mastery states
-- Optional in-app or Windows reminder cards with interval, quiet-hours,
-  pause, resume, snooze, and pronunciation controls
+Download `TOEFL-Companion-1.0.0-x64-setup.exe` from the
+[latest release](https://github.com/cyanologyst/TOEFL-Companion/releases/latest)
+and run it. It installs for the current user only, so it needs no administrator
+rights, and lands in `%LOCALAPPDATA%\TOEFL Companion`.
 
-### Speaking
+There is also a portable `.exe` in the same release if you would rather not
+install anything — it is the same app, just not registered with Windows.
 
-- All 30 existing NEO sets and 120 questions, grouped and searchable
-- Persistent grouped topic navigator with independent scrolling, direct
-  topic search, progress states, Q1–Q4 previews, and previous/next navigation
-- Existing ideas, collocations, two sample answers, 40-second timer,
-  microphone recording, live transcription, spoken word count, replay, retry,
-  and on-device attempt history
-- A data-driven Listen & Repeat workflow with prompt queue, audio/TTS playback,
-  recording, expected and recognized transcripts, edit-distance comparison,
-  and saved attempts
-- A starter prompt pack whose audio fields can be replaced with the user's
-  segmented source media later
+**Windows will warn you.** The installer is not code-signed, so SmartScreen
+shows "Windows protected your PC" and hides the Run button behind **More info →
+Run anyway**. That warning means the publisher is unverified, not that anything
+is wrong with the file; signing requires a purchased certificate. Verify the
+download against `SHA256SUMS.txt` in the release if you want to be sure:
 
-### Academic Discussion
+```powershell
+Get-FileHash .\TOEFL-Companion-1.0.0-x64-setup.exe -Algorithm SHA256
+```
 
-- 30 exercises extracted from the supplied image archive with Windows OCR,
-  then normalized into editable JSON
-- Professor question, two student responses, practice timer, live word count,
-  autosave, explicit save, submit, retry, and revision history
-- A completed feedback-interface shell covering all requested rubric areas
-- Automated feedback is intentionally not enabled yet, as requested; the UI
-  clearly labels rubric results as not evaluated
+Requires Windows 10 or 11 with the WebView2 runtime, which is already present on
+any up-to-date Windows install.
 
-### Shared desktop experience
+On first launch the app asks what to call you, and nothing else.
 
-- Calm unified dashboard, native sidebar navigation, progress/history, global
-  search, empty/error states, and 960×650 responsive minimum layout
-- Custom frameless Tauri window with minimize, maximize/restore, close,
-  remembered bounds, and Windows keyboard snapping
-- Versioned local persistence and complete JSON backup/restore
-- Bundled doodle icons and a generated study illustration; no remote asset
-  dependency
+![The first-run dialog asking for a name](docs/screenshots/welcome.png)
 
-### Focused desktop UI refinement
+---
 
-- Data-derived “Today’s focus” replaces the previous mock schedule and keeps
-  one clear next study action prominent
-- Shared Radix-based dialog, tooltip, accordion, progress, segmented-control,
-  status, confirmation, empty-state, and async-feedback primitives
-- Keyboard-selectable vocabulary rows, deep-linked global search results,
-  non-interruptive reminder cards, and responsive detail dialogs
-- Explicit Listen → Record → Compare → Continue sequencing, plus Practice and
-  Exam modes for speaking and writing
-- Unsaved-work protection for recordings and writing drafts, compact settings
-  sections, accessible progress semantics, and a top-level error boundary
+## What it does
 
-## Run locally
+### Vocabulary — 614 words, and the ones you keep forgetting
 
-Prerequisites:
+Two built-in libraries (550 TOEFL words, 64 NEO words) plus anything you add.
+Search, filter by due/learned/difficult, page through 20 at a time, and open any
+word for its meaning, pronunciation, collocations, example, notes, and review
+history.
 
-- Node.js 20 or newer
-- Rust 1.85 or newer
-- Windows prerequisites for Tauri 2, including WebView2 and the Microsoft C++
-  build tools
+![The vocabulary library with a word open in the inspector](docs/screenshots/vocabulary-library.png)
 
-Install dependencies:
+Review is recall-first: the word appears alone, you say the meaning out loud,
+then reveal and grade yourself. Grading feeds a spaced-repetition schedule, so
+words you find hard come back sooner.
+
+![A review card with the meaning still hidden](docs/screenshots/vocabulary-review.png)
+
+You can import and export collections as JSON, and build your own collections
+alongside the built-in ones.
+
+### Reminders that leave the app alone
+
+A word can surface as a small window in the corner of your screen while you work
+— not a card buried inside the app you would have to open to see.
+
+![The reminder window showing a word with its meaning hidden](docs/screenshots/reminder.png)
+
+It asks before it tells: term first, meaning on request, then Known / Later /
+Forgot. It only draws from the collections you have switched on, holds off while
+you are typing or recording, and respects an interval, quiet hours, snooze, and
+pause.
+
+![The reminder settings](docs/screenshots/settings-reminders.png)
+
+### Speaking — 120 interview questions, transcribed offline
+
+All 30 NEO topic sets, grouped and searchable, each with four questions, ideas,
+collocations, and two sample answers. Record a 40-second answer, play it back,
+and read what you actually said.
+
+![The speaking practice screen with a question and its idea list](docs/screenshots/speaking.png)
+
+Listen & Repeat is a separate mode: hear a prompt, repeat it, and see your
+version compared word by word against the expected transcript.
+
+### Writing — 30 Academic Discussion tasks
+
+A professor's question and two student responses, a countdown, a live word
+count, autosave, and revision history for every task.
+
+![The Academic Discussion editor](docs/screenshots/writing.png)
+
+The rubric panel is a shell — it lays out the criteria but does not score you.
+Nothing in the app pretends to grade your writing.
+
+### Progress
+
+What you have actually done: mastery split, recall rate, daily practice, and the
+last sessions. No projected scores.
+
+![The progress screen with practice charts](docs/screenshots/progress.png)
+
+---
+
+## Speech to text runs on your machine
+
+Speaking answers are transcribed by [whisper.cpp](https://github.com/ggerganov/whisper.cpp)
+running locally on your CPU. Your voice never leaves the computer.
+
+Pick a model once from **Settings → Speech to text**. Larger models handle
+accented English better and take longer:
+
+| Model  | Size   | Notes                                                    |
+| ------ | ------ | -------------------------------------------------------- |
+| Tiny   | 32 MB  | Fastest, weakest on accents. Only for an old machine.     |
+| Base   | 60 MB  | Roughly level with typical browser transcription.         |
+| Small  | 190 MB | **Recommended.** Best accented-English accuracy on a CPU. |
+| Medium | 539 MB | Most accurate, needs a fast processor.                    |
+
+![The speech model picker](docs/screenshots/settings-speech.png)
+
+Downloading a model is the one action that uses the network. Downloads resume if
+interrupted and are size-checked before use. Recording works without a model —
+the attempt is just saved without a transcript, and the recorder says so.
+
+---
+
+## Your data
+
+Everything lives on your machine: study progress and settings in the app's local
+storage, recorded audio in IndexedDB. **Settings → Storage** exports the whole
+lot to a single JSON file and restores it again. Audio recordings stay on the
+device that made them and are not part of a backup.
+
+None of it sits in the install folder, so it survives an uninstall:
+
+```text
+%LOCALAPPDATA%\com.toeflcompanion.app\   study data, recordings, logs
+%APPDATA%\com.toeflcompanion.app\        downloaded speech models, window size
+```
+
+Delete those two folders to remove every trace.
+
+---
+
+## Build from source
+
+Prerequisites: Node.js 20+, Rust 1.85+, and the Tauri 2 Windows prerequisites
+(WebView2 and the Microsoft C++ build tools).
 
 ```powershell
 npm install
-```
-
-Run the native desktop app:
-
-```powershell
 npm run desktop:dev
 ```
 
-Run the frontend alone for UI development:
-
-```powershell
-npm run dev -- --host 127.0.0.1
-```
-
-Build the Windows NSIS installer:
+To build the installer:
 
 ```powershell
 npm run desktop:build
 ```
 
-Fresh builds are written to:
+The bundle is written to `~/.toefl-companion-build/release/bundle/nsis/`.
+`scripts/tauri.mjs` moves the Cargo target directory there whenever the checkout
+path is longer than 90 characters, because the native whisper.cpp build hits the
+Windows `MAX_PATH` limit otherwise and reports it as a confusing C compiler
+error. [docs/RELEASE.md](docs/RELEASE.md) has the full release procedure,
+including what code signing would take.
 
-```text
-~/.toefl-companion-build/release/bundle/nsis/
+To work on the interface alone, without the Rust shell:
+
+```powershell
+npm run dev
 ```
 
-`scripts/tauri.mjs` moves the Cargo target directory there whenever the checkout
-sits deeper than 90 characters, because the native whisper.cpp build fails on
-`MAX_PATH` otherwise. See [docs/RELEASE.md](docs/RELEASE.md).
-
-This delivered copy also includes ready-to-run artifacts in `releases/`:
-
-- `TOEFL-Companion-1.0.0-x64-setup.exe`
-- `TOEFL-Companion-1.0.0-portable.exe`
-
-Both are unsigned, so SmartScreen warns on a machine that did not build them.
-The release runbook explains what signing would take.
-
-## Verification
-
-Frontend checks:
+### Checks
 
 ```powershell
 npm run quality
-npm run build
 ```
 
-Desktop-shell checks:
+Formatting, linting, both TypeScript projects, and 107 unit tests. The Rust side
+has its own:
 
 ```powershell
 cd src-tauri
 cargo fmt --check
-cargo check
-cargo test
 cargo clippy -- -D warnings
+cargo test
 ```
 
-The current test suite contains 107 passing tests. Rendered before/after QA
-captures are in `qa/refinement-audit/` and
-`qa/speaking-navigation-refinement/`.
+---
 
-## Content maintenance
+## How it is put together
 
-The three content libraries live in `src/data/`:
+| Layer     | Choice                                                          |
+| --------- | --------------------------------------------------------------- |
+| Shell     | Tauri 2 — a frameless window with custom title bar and controls  |
+| Interface | React 19 + TypeScript, Vite                                     |
+| Speech    | whisper.cpp via `whisper-rs`, CPU only, quantized GGML models    |
+| Storage   | `localStorage` for study data, IndexedDB for audio               |
+| Style     | A neo-brutalist system in `src/brutal.css` — hard 3px outlines, unblurred offset shadows, flat colour |
 
-- `toefl-data.json` — existing interview sets and questions
-- `listen-repeat.json` — replaceable prompt/audio segmentation manifest
-- `academic-discussions.json` — 30 extracted writing exercises
-- `toefl-550.wordlist.json` and `toefl-neo-1-10.wordlist.json` — vocabulary
-
-To rerun writing OCR:
-
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass `
-  -File .\scripts\extract-writing-ocr.ps1 `
-  -SourceDirectory "C:\path\to\Writing" `
-  -OutputPath .\work\writing-ocr.json
-
-node .\scripts\normalize-writing-content.mjs `
-  .\work\writing-ocr.json `
-  .\src\data\academic-discussions.json
-```
-
-See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md),
+More detail in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md),
 [docs/DATA_FORMATS.md](docs/DATA_FORMATS.md), and
-[design-system/toefl-companion/MASTER.md](design-system/toefl-companion/MASTER.md)
-for module boundaries, persistence, schemas, and the refined desktop design
-system.
+[docs/DESIGN.md](docs/DESIGN.md) — the last covers the visual system, the two
+layout rules the app is held to, and how the interface is verified by
+measurement rather than by eye.
 
-## Current limitations
+Content libraries are editable JSON in `src/data/`:
 
-- The supplied three-to-four hours of source audio/video and transcripts are
-  not available yet. Listen & Repeat therefore uses browser speech synthesis
-  for the starter pack until real `audioFile` values are added.
-- In the desktop app, transcription runs on-device through whisper.cpp and
-  needs a model downloaded once from Settings → Speech. Recording still works
-  without one, but the attempt is saved untranscribed and the recorder reports
-  why. The browser build uses the WebView's own speech recognition instead; the
-  desktop app deliberately does not, since that would send the learner's audio
-  to a remote service.
-- Writing feedback is a deliberately non-scoring UI shell. Connecting an
-  offline or API-backed evaluator is future work.
-- Recording audio blobs stay in IndexedDB on the original device. Structured
-  attempt metadata and transcripts are included in backups, but audio blobs
-  are not.
-- The OCR result was normalized and validated structurally, but editorial
-  proofreading against every source image is still advisable before a public
-  content release.
+- `toefl-data.json` — 30 interview sets, 120 questions
+- `academic-discussions.json` — 30 writing tasks
+- `listen-repeat.json` — repeat prompts and their audio manifest
+- `toefl-550.wordlist.json`, `toefl-neo-1-10.wordlist.json` — vocabulary
+
+---
+
+## Known limits
+
+- **Writing is not graded.** The rubric panel is a layout, not an evaluator.
+- **Listen & Repeat uses synthesised speech** for its starter prompts until real
+  recordings are dropped into the audio manifest.
+- **No auto-update.** A new version means downloading and running the installer
+  again.
+- **Windows only.** The shell is cross-platform in principle, but nothing else
+  has been built or tested.
+- **The writing tasks came from OCR** and were checked structurally rather than
+  proofread line by line against the source images.
+
+---
+
+## About the content
+
+The bundled word lists, interview questions, and writing tasks were assembled
+from TOEFL study material for personal use. If you intend to redistribute this
+app or its data, check that you have the right to redistribute that material —
+the code being open does not make the content free to republish.
+
+Interface icons are from [Icons8](https://icons8.com), whose free tier requires
+attribution.
+
+## Licence
+
+No licence has been granted, so all rights are reserved. If you want others to
+be able to use, modify, or redistribute this, add a `LICENSE` file saying so.

@@ -1,0 +1,16 @@
+# Git on Windows defaults to core.autocrlf=true, which hands the working tree
+# CRLF on every checkout. Biome formats to LF, so a plain `git checkout` was
+# enough to fail `npm run quality` on 51 files without a single edit. Pinning
+# eol=lf keeps the tree matching what the formatter expects.
+* text=auto eol=lf
+
+# Binary, never touched.
+*.png binary
+*.webp binary
+*.ico binary
+*.icns binary
+*.mp3 binary
+*.wav binary
+*.exe binary
+*.woff binary
+*.woff2 binary

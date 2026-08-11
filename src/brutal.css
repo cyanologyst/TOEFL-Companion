@@ -2219,12 +2219,35 @@
   gap: 14px;
 }
 
+/* The font properties are not decoration here. styles.css loads after this
+   file and carries `.settings-fields label, .modal-form label { font-size: 9px }`
+   at equal specificity to the base label rule, so dialog labels were rendering
+   at 9px in the old UI font. Naming the dialog outranks it, and matches the
+   small caps the settings panel already uses for the same job. */
 .b-modal .modal-form > label,
 .b-modal .form-grid label {
   display: flex;
   min-width: 0;
   flex-direction: column;
-  gap: 6px;
+  color: var(--ink);
+  font-family: var(--font-flat);
+  font-size: 12px;
+  font-weight: 700;
+  gap: 7px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* The form is a flex column with its own gap; the paragraph's default bottom
+   margin would stack on top of it and open a hole under the intro line. */
+.b-modal .modal-form > p {
+  margin: 0;
+}
+
+/* Small caps label, ordinary value. */
+.b-modal :is(.modal-form, .form-grid) label :is(input, select, textarea) {
+  letter-spacing: normal;
+  text-transform: none;
 }
 
 .b-modal .form-grid {
@@ -3020,6 +3043,20 @@
   --color-border-strong: #12100c;
   --surface-soft: #fffdf3;
   --border: #12100c;
+
+  /* Typefaces travel by token the same way colours do, and the leftovers were
+     the same shape: a `small` here, a caption there, still set in Lexend or
+     Source Sans because some legacy rule asked for `--font-ui`. Remapping the
+     tokens catches every one of those; the declaration below catches the rest,
+     which inherit their face from `body` rather than naming a token at all. */
+  /* `--font-flat` is repeated here because the shell is not `.brutal`; without
+     it the declaration below would resolve to nothing on the app frame. */
+  --font-flat: "Space Grotesk Variable", "Segoe UI", sans-serif;
+  --font-ui: "Space Grotesk Variable", "Segoe UI", sans-serif;
+  --font-body: "Space Grotesk Variable", "Segoe UI", sans-serif;
+  --font-display: "Archivo Black", "Arial Black", sans-serif;
+
+  font-family: var(--font-flat);
 }
 
 /* The title bar sits outside every page, so it inherits its ink from `body`

@@ -73,7 +73,7 @@ export function DashboardPage({
           </span>
           <div>
             <h1>
-              {model.greeting}, {settings.learnerName}
+              {settings.learnerName ? `${model.greeting}, ${settings.learnerName}` : model.greeting}
             </h1>
             <p className="b-eyebrow">
               {model.hasHistory ? "Pick up where you left off" : "Everything is ready to begin"}

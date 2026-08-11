@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { studyRepository } from "../../services/studyRepository";
 import { WritingPage } from "./WritingPage";

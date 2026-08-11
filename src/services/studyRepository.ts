@@ -14,8 +14,14 @@ export const STUDY_CHANGE_EVENT = "toefl-companion:study-change";
 const MAX_ACTIVITIES = 250;
 const MAX_LISTEN_ATTEMPTS = 500;
 
+/** The name every install used to start with, before the app asked. Anyone
+ *  still carrying it never chose it, so they get the welcome dialog. */
+const PLACEHOLDER_NAME = "Alex";
+const MAX_NAME_LENGTH = 40;
+
 const DEFAULT_SETTINGS: StudySettings = {
-  learnerName: "Alex",
+  learnerName: "",
+  onboarded: false,
   targetTestDate: "",
   interviewSeconds: 40,
   writingSeconds: 600,
@@ -145,7 +151,14 @@ function hydrateState(value: unknown): StudyState {
           .slice(0, MAX_ACTIVITIES)
       : [],
     settings: {
-      learnerName: cleanText(settings.learnerName, DEFAULT_SETTINGS.learnerName),
+      learnerName: cleanText(settings.learnerName).slice(0, MAX_NAME_LENGTH),
+      // A saved file from before the welcome dialog has no flag, so infer it:
+      // a name the learner actually typed counts as already answered.
+      onboarded:
+        typeof settings.onboarded === "boolean"
+          ? settings.onboarded
+          : cleanText(settings.learnerName) !== "" &&
+            cleanText(settings.learnerName) !== PLACEHOLDER_NAME,
       targetTestDate: cleanText(settings.targetTestDate),
       interviewSeconds: finiteInteger(
         settings.interviewSeconds,
@@ -296,6 +309,15 @@ export const studyRepository = {
   saveSettings(settings: StudySettings): StudyState {
     return mutate((state) => {
       state.settings = { ...settings };
+    });
+  },
+
+  /** Records the answer to the welcome dialog. Marks the question asked even
+   *  when the name comes back empty, so nobody is asked twice. */
+  completeOnboarding(name: string): StudyState {
+    return mutate((state) => {
+      state.settings.learnerName = name.trim().slice(0, MAX_NAME_LENGTH);
+      state.settings.onboarded = true;
     });
   },
 

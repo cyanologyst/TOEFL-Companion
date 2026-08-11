@@ -363,6 +363,8 @@ export function SettingsPage({
                 <label>
                   Display name
                   <input
+                    maxLength={40}
+                    placeholder="Your first name"
                     value={settings.learnerName}
                     onChange={(event) =>
                       setSettings((current) => ({

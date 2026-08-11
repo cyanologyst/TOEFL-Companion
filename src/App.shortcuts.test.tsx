@@ -7,6 +7,7 @@ vi.mock("./components/VocabularyReminderHost", () => ({
 
 import { App } from "./App";
 import { TooltipProvider } from "./components/StudyUI";
+import { studyRepository } from "./services/studyRepository";
 
 function renderApp() {
   return render(
@@ -18,6 +19,8 @@ function renderApp() {
 
 beforeEach(() => {
   window.localStorage.clear();
+  // These cover a returning learner; the welcome dialog has its own test.
+  studyRepository.completeOnboarding("Mohammad");
   window.history.replaceState(null, "", "#view=dashboard");
 });
 

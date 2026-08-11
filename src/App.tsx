@@ -4,6 +4,7 @@ import { DoodleIcon, type DoodleIconName } from "./components/DoodleIcon";
 import { Modal } from "./components/Modal";
 import { NativeTitleBar } from "./components/NativeTitleBar";
 import { VocabularyReminderHost } from "./components/VocabularyReminderHost";
+import { WelcomeDialog } from "./components/WelcomeDialog";
 import rawDiscussions from "./data/academic-discussions.json";
 import rawTopics from "./data/toefl-data.json";
 import { DashboardPage } from "./features/dashboard/DashboardPage";
@@ -98,6 +99,7 @@ export function App(): React.JSX.Element {
   const [writingDirty, setWritingDirty] = useState(false);
   const [speakingDirty, setSpeakingDirty] = useState(false);
   const [pendingRoute, setPendingRoute] = useState<AppRoute | null>(null);
+  const [welcomeDismissed, setWelcomeDismissed] = useState(false);
   const noticeTimerRef = useRef<number | null>(null);
   const vocabulary = useVocabularySnapshot();
 
@@ -353,6 +355,19 @@ export function App(): React.JSX.Element {
         }}
       />
       <VocabularyReminderHost onNotice={showNotice} />
+
+      {/* Asked once, on the first launch. Answering writes the name to study
+          settings, which flows straight back through refreshStudy and closes
+          this dialog. */}
+      <WelcomeDialog
+        open={!welcomeDismissed && !studyState.settings.onboarded}
+        onSubmit={(name) => {
+          studyRepository.completeOnboarding(name);
+          refreshStudy();
+          showNotice(`Welcome, ${name}. Your name is saved in Settings.`);
+        }}
+        onDismiss={() => setWelcomeDismissed(true)}
+      />
 
       {notice ? (
         <div

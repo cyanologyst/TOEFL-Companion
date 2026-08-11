@@ -29,6 +29,7 @@ const vocabularyStats: VocabularyStats = {
 
 const settings: StudySettings = {
   learnerName: "Alex",
+  onboarded: true,
   targetTestDate: "",
   interviewSeconds: 40,
   writingSeconds: 600,

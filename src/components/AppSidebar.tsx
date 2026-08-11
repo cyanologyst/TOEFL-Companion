@@ -63,7 +63,7 @@ export function AppSidebar({
   dueCount = 0,
   onSelect,
 }: AppSidebarProps): React.JSX.Element {
-  const initial = learnerName.trim().charAt(0).toLocaleUpperCase() || "A";
+  const initial = learnerName.trim().charAt(0).toLocaleUpperCase();
   const days = daysUntil(targetDate);
 
   return (
@@ -139,9 +139,11 @@ export function AppSidebar({
         aria-current={activeArea === "settings" ? "page" : undefined}
         onClick={() => onSelect("settings")}
       >
-        <span className="rail__avatar">{initial}</span>
+        {/* No name yet only happens if someone clears it in Settings, so the
+            row invites them to put it back rather than inventing an identity. */}
+        <span className="rail__avatar">{initial || "+"}</span>
         <span className="rail__profile-copy">
-          <strong>{learnerName || "Alex"}</strong>
+          <strong>{learnerName || "Set your name"}</strong>
           <small>Settings</small>
         </span>
         <DoodleIcon name="setting" size={18} />

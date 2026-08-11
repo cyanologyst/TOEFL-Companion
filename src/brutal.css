@@ -1,0 +1,3067 @@
+/* Vocabulary - neo-brutalism
+ *
+ * A deliberately different world from the rest of the app, pinned by the
+ * reference boards: hard 3px black outlines, solid offset shadows with no
+ * blur, flat saturated fills, heavy display type, and a yellow ground.
+ *
+ * The offset block shadow is normally a costume. Here it is the committed
+ * style, so it is used consistently and pressing a control actually moves it
+ * into its own shadow rather than faking depth.
+ *
+ * Every screen fills the viewport. Only lists scroll, inside their frames.
+ */
+
+/* Dialogs and the reminder card render through a portal, outside the page
+   root, so the world's tokens have to be reachable from a second root. Only
+   the tokens are shared; `.brutal` alone carries the page layout. */
+.brutal,
+.b-portal {
+  --ink: #12100c;
+  --paper: #fffdf3;
+  --ground: #ffe01b;
+  --ground-deep: #f5c800;
+
+  --pop-lime: #c6f24e;
+  --pop-mint: #7be495;
+  --pop-sky: #7cc6fe;
+  --pop-grape: #b197fc;
+  --pop-rose: #ff9bd2;
+  --pop-flame: #ff6b5e;
+  --pop-sun: #ffd93d;
+
+  --edge: 3px;
+  --drop: 5px;
+  --drop-deep: 7px;
+  --round: 14px;
+  --round-sm: 10px;
+
+  --shadow-hard: var(--drop) var(--drop) 0 var(--ink);
+  --shadow-deep: var(--drop-deep) var(--drop-deep) 0 var(--ink);
+
+  --font-display: "Archivo Black", "Arial Black", sans-serif;
+  --font-flat: "Space Grotesk Variable", "Segoe UI", sans-serif;
+
+  color: var(--ink);
+  font-family: var(--font-flat);
+}
+
+.brutal {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  padding: 22px 26px;
+  gap: 16px;
+  overflow: hidden;
+  background-color: var(--ground);
+  /* The reference boards sit on a dotted ground; it reads as texture rather
+     than decoration because nothing else in this world has a gradient. */
+  background-image: radial-gradient(var(--ground-deep) 1.7px, transparent 1.8px);
+  background-size: 22px 22px;
+}
+
+:is(.brutal, .b-portal) *::selection {
+  color: var(--ink);
+  background: var(--pop-lime);
+}
+
+/* -- Frame: the one container primitive ------------------------------------- */
+
+.b-frame {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round);
+  background: var(--paper);
+  box-shadow: var(--shadow-hard);
+}
+
+.b-frame--flat {
+  box-shadow: none;
+}
+
+.b-frame--sun {
+  background: var(--pop-sun);
+}
+
+.b-frame--lime {
+  background: var(--pop-lime);
+}
+
+/* -- Type ------------------------------------------------------------------- */
+
+:is(.brutal, .b-portal) h1,
+:is(.brutal, .b-portal) h2,
+:is(.brutal, .b-portal) h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.b-eyebrow {
+  display: inline-block;
+  color: var(--ink);
+  font-family: var(--font-flat);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* -- Tag / chip ------------------------------------------------------------- */
+
+.b-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 11px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  font-family: var(--font-flat);
+  font-size: 12px;
+  font-weight: 700;
+  gap: 6px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.b-tag--sun {
+  background: var(--pop-sun);
+}
+
+.b-tag--mint {
+  background: var(--pop-mint);
+}
+
+.b-tag--sky {
+  background: var(--pop-sky);
+}
+
+.b-tag--rose {
+  background: var(--pop-rose);
+}
+
+/* -- Button ----------------------------------------------------------------- */
+
+.b-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 18px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  box-shadow: var(--shadow-hard);
+  color: var(--ink);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 14px;
+  gap: 9px;
+  letter-spacing: 0.01em;
+  text-align: center;
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out,
+    background-color 90ms ease-out;
+}
+
+/* Pressing moves the control into its own shadow. That is the whole idea of
+   the style, so it is real rather than a hover tint. */
+.b-btn:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-deep);
+}
+
+.b-btn:active:not(:disabled) {
+  transform: translate(var(--drop), var(--drop));
+  box-shadow: 0 0 0 var(--ink);
+}
+
+/* Waiting, not broken. A flat 45% opacity washed the fills out until the
+   ratings looked like a rendering fault; this keeps the colour and says
+   "not yet" with a flattened shadow and dimmed ink instead. */
+.b-btn:disabled {
+  box-shadow: 2px 2px 0 var(--ink);
+  color: rgba(18, 16, 12, 0.55);
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.b-btn--sun {
+  background: var(--pop-sun);
+}
+
+.b-btn--lime {
+  background: var(--pop-lime);
+}
+
+.b-btn--sky {
+  background: var(--pop-sky);
+}
+
+.b-btn--mint {
+  background: var(--pop-mint);
+}
+
+.b-btn--rose {
+  background: var(--pop-rose);
+}
+
+.b-btn--flame {
+  background: var(--pop-flame);
+}
+
+.b-btn--grape {
+  background: var(--pop-grape);
+}
+
+.b-btn--block {
+  width: 100%;
+}
+
+/* Square icon control. */
+.b-icon-btn {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  box-shadow: 3px 3px 0 var(--ink);
+  cursor: pointer;
+  place-items: center;
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out;
+}
+
+.b-icon-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.b-icon-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+/* -- Fields ----------------------------------------------------------------- */
+
+.b-field {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  height: 44px;
+  padding: 0 14px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  gap: 9px;
+}
+
+.b-field input,
+.b-field select {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-flat);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.b-field input:focus,
+.b-field select:focus {
+  outline: none;
+}
+
+/* The shell owns focus for the control inside it, and shows it the same way
+   a bare control does: a lit edge, not a second ring. */
+.b-field:focus-within {
+  box-shadow:
+    0 0 0 3px var(--pop-sky),
+    3px 3px 0 var(--ink);
+}
+
+/* Keyboard focus has to survive in a world with no soft edges - and it has to
+   be distinguishable from one. An ink ring around an ink border is a box
+   inside a box, and has no contrast against the very edge it sits beside. The
+   ring takes a colour that no border uses. */
+:is(.brutal, .b-portal) :focus-visible {
+  outline: 3px solid var(--pop-sky);
+  outline-offset: 2px;
+}
+
+/* -- Segmented switch ------------------------------------------------------- */
+
+.b-switch {
+  display: inline-flex;
+  flex: 0 0 auto;
+  padding: 4px;
+  border: var(--edge) solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  box-shadow: 3px 3px 0 var(--ink);
+  gap: 4px;
+}
+
+.b-switch button {
+  min-height: 34px;
+  padding: 0 16px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 13px;
+}
+
+.b-switch button[data-active="true"] {
+  border-color: var(--ink);
+  background: var(--pop-sun);
+}
+
+/* -- Scroll areas ----------------------------------------------------------- */
+
+.b-scroll {
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--ink) transparent;
+  scrollbar-width: thin;
+}
+
+.b-scroll::-webkit-scrollbar {
+  width: 12px;
+}
+
+.b-scroll::-webkit-scrollbar-thumb {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--pop-sun);
+}
+
+/* ===========================================================================
+   Review screen
+   Header, card, and ratings fill the window exactly; nothing here scrolls
+   except the meaning block when a word carries a long example.
+   =========================================================================== */
+
+.brutal__head {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.brutal__title {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 14px;
+}
+
+.brutal__title h1 {
+  font-size: 32px;
+}
+
+.brutal__title-mark {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  flex: 0 0 auto;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--pop-lime);
+  box-shadow: 4px 4px 0 var(--ink);
+  place-items: center;
+}
+
+.brutal__head-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+/* -- Review body ------------------------------------------------------------ */
+
+.rev {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1fr) 268px;
+}
+
+.rev__main {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* -- Progress rail ---------------------------------------------------------- */
+
+/* `.b-frame` is a column; this row has to override that or the track
+   collapses to a sliver between the count and the tag. */
+.rev-progress {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 16px;
+  gap: 14px;
+}
+
+.rev-progress__count {
+  flex: 0 0 auto;
+  font-family: var(--font-display);
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.rev-progress__track {
+  position: relative;
+  min-width: 0;
+  height: 20px;
+  flex: 1;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+}
+
+/* A span is inline by default, so `height` did nothing and the bar sized to
+   its line box - 19px inside a 16px track. The clip on the track was hiding
+   that rather than the rounded cap it was added for. */
+.rev-progress__fill {
+  display: block;
+  height: 100%;
+  border-right: 2px solid var(--ink);
+  border-radius: 0 999px 999px 0;
+  background: var(--pop-lime);
+  transition: width 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* -- Flashcard -------------------------------------------------------------- */
+
+.rev-card {
+  min-height: 0;
+  flex: 1;
+  padding: 24px 28px;
+  gap: 16px;
+}
+
+.rev-card__top {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.rev-card__term {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rev-card__term h2 {
+  font-size: clamp(34px, 4.4vw, 56px);
+  word-break: break-word;
+}
+
+.rev-card__phonetic {
+  color: var(--ink);
+  font-family: var(--font-flat);
+  font-size: 15px;
+  font-weight: 500;
+  opacity: 0.72;
+}
+
+/* -- Reveal ----------------------------------------------------------------- */
+
+.rev-reveal {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: var(--edge) dashed var(--ink);
+  border-radius: var(--round-sm);
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 9px,
+    rgba(18, 16, 12, 0.045) 9px,
+    rgba(18, 16, 12, 0.045) 18px
+  );
+  cursor: pointer;
+  gap: 10px;
+  text-align: center;
+}
+
+.rev-reveal:hover {
+  background-color: rgba(198, 242, 78, 0.35);
+}
+
+.rev-reveal strong {
+  font-family: var(--font-display);
+  font-size: 20px;
+}
+
+.rev-reveal small {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.rev-answer {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rev-answer__meaning {
+  flex: 0 0 auto;
+  padding: 14px 16px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--pop-sun);
+  font-family: var(--font-display);
+  font-size: 19px;
+  line-height: 1.3;
+}
+
+.rev-answer__example {
+  flex: 0 0 auto;
+  padding: 12px 16px;
+  border-left: 6px solid var(--ink);
+  margin: 0;
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.rev-answer__chips {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  gap: 8px;
+  list-style: none;
+}
+
+.rev-answer__chips li {
+  padding: 5px 11px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--pop-sky);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* -- Ratings ---------------------------------------------------------------- */
+
+.rev-ratings {
+  display: grid;
+  flex: 0 0 auto;
+  gap: 12px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.rev-rating {
+  display: flex;
+  min-height: 74px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 8px;
+  gap: 2px;
+}
+
+.rev-rating strong {
+  font-family: var(--font-display);
+  font-size: 17px;
+}
+
+.rev-rating small {
+  font-family: var(--font-flat);
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.75;
+}
+
+/* -- Side rail -------------------------------------------------------------- */
+
+.rev__side {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.rev-stat {
+  flex: 0 0 auto;
+  padding: 18px;
+  gap: 12px;
+}
+
+.rev-stat h3 {
+  font-size: 15px;
+}
+
+.rev-dial {
+  display: grid;
+  width: 128px;
+  height: 128px;
+  align-self: center;
+  border: var(--edge) solid var(--ink);
+  border-radius: 50%;
+  background:
+    conic-gradient(var(--pop-lime) var(--dial, 0deg), var(--paper) 0) content-box,
+    var(--paper);
+  box-shadow: 4px 4px 0 var(--ink);
+  place-items: center;
+}
+
+.rev-dial span {
+  display: grid;
+  width: 82px;
+  height: 82px;
+  border: var(--edge) solid var(--ink);
+  border-radius: 50%;
+  background: var(--paper);
+  font-family: var(--font-display);
+  font-size: 22px;
+  place-items: center;
+}
+
+.rev-tally {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.rev-tally div {
+  padding: 9px 10px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  text-align: center;
+}
+
+.rev-tally dt {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.rev-tally dd {
+  margin: 2px 0 0;
+  font-family: var(--font-display);
+  font-size: 22px;
+}
+
+.rev-reminder {
+  flex: 0 0 auto;
+  padding: 16px;
+  gap: 10px;
+}
+
+.rev-reminder h3 {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  gap: 8px;
+}
+
+.rev-reminder p {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* -- Finished --------------------------------------------------------------- */
+
+.rev-done {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  gap: 14px;
+  text-align: center;
+}
+
+.rev-done h2 {
+  font-size: 40px;
+}
+
+.rev-done p {
+  max-width: 46ch;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+@media (max-width: 1120px) {
+  .rev {
+    grid-template-columns: minmax(0, 1fr) 232px;
+  }
+
+  .rev-dial {
+    width: 104px;
+    height: 104px;
+  }
+}
+
+/* ===========================================================================
+   Motion
+   This world moves mechanically, not fluidly. Things snap, stamp, and press
+   into their own shadow; nothing floats or eases softly, because soft easing
+   contradicts a style built on hard edges and flat fills.
+
+   Per surface there is one authored moment - the card or panel arriving with
+   a sticker-drop - and everything else is feedback measured in 90-160ms.
+   =========================================================================== */
+
+.brutal,
+.b-portal {
+  --snap: cubic-bezier(0.2, 0.9, 0.25, 1);
+  --stamp: cubic-bezier(0.34, 1.4, 0.5, 1);
+}
+
+/* The authored moment: a frame lands like a sticker being pressed down. The
+   slight rotation is what separates this from a generic fade-and-rise. */
+@keyframes b-stamp {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.965) rotate(-0.8deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes b-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.b-stamp {
+  animation: b-stamp 320ms var(--stamp) both;
+}
+
+/* A list arrives as a list. The cap keeps the last item under ~250ms. */
+.b-stagger > * {
+  animation: b-stamp 280ms var(--stamp) both;
+}
+
+.b-stagger > *:nth-child(1) {
+  animation-delay: 0ms;
+}
+.b-stagger > *:nth-child(2) {
+  animation-delay: 45ms;
+}
+.b-stagger > *:nth-child(3) {
+  animation-delay: 90ms;
+}
+.b-stagger > *:nth-child(4) {
+  animation-delay: 135ms;
+}
+.b-stagger > *:nth-child(5) {
+  animation-delay: 170ms;
+}
+.b-stagger > *:nth-child(n + 6) {
+  animation-delay: 200ms;
+}
+
+/* Recording is a live condition: a hard two-step blink, not a soft pulse. */
+@keyframes b-live {
+  0%,
+  49% {
+    background: var(--pop-flame);
+    box-shadow: var(--shadow-hard);
+  }
+  50%,
+  100% {
+    background: var(--paper);
+    box-shadow: 2px 2px 0 var(--ink);
+  }
+}
+
+.b-live {
+  animation: b-live 900ms steps(1, end) infinite;
+}
+
+/* Something completed. One stamp, no repeat. */
+@keyframes b-thump {
+  0% {
+    transform: scale(0.82) rotate(-3deg);
+  }
+  60% {
+    transform: scale(1.06) rotate(1.5deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+.b-thump {
+  animation: b-thump 300ms var(--stamp) both;
+}
+
+/* Tiles tilt very slightly under the cursor - the style's tactility. */
+.b-tilt {
+  transition:
+    transform 120ms var(--snap),
+    box-shadow 120ms var(--snap);
+}
+
+.b-tilt:hover {
+  transform: translate(-2px, -2px) rotate(-0.5deg);
+  box-shadow: var(--shadow-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .b-stamp,
+  .b-stagger > *,
+  .b-thump {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .b-live {
+    animation: none;
+    background: var(--pop-flame);
+  }
+
+  .b-tilt:hover {
+    transform: none;
+  }
+
+  .b-btn:hover:not(:disabled),
+  .b-icon-btn:hover {
+    transform: none;
+  }
+}
+
+/* ===========================================================================
+   Shared page shell
+   Every brutalist surface fills the viewport and hands the app scroller
+   nothing. Only lists and prose scroll, inside their own frames.
+   =========================================================================== */
+
+.brutal__body {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  gap: 16px;
+}
+
+.brutal__col {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.brutal__lede {
+  margin: 2px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* A row inside a frame has to opt out of the frame's column direction. */
+.b-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.b-row--between {
+  justify-content: space-between;
+}
+
+.b-pad {
+  padding: 16px 18px;
+}
+
+.b-pad--tight {
+  padding: 12px 14px;
+}
+
+.b-head {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: var(--edge) solid var(--ink);
+  gap: 12px;
+}
+
+.b-head h2,
+.b-head h3 {
+  font-size: 15px;
+}
+
+.b-body {
+  min-height: 0;
+  flex: 1;
+  padding: 14px 16px;
+}
+
+/* ===========================================================================
+   App shell
+   The rail and title bar carry the same world as the pages, so switching
+   area no longer crosses a seam between two visual languages.
+   =========================================================================== */
+
+.desktop-app:has(.brutal) .app-sidebar,
+.app-sidebar.is-brutal {
+  border-right: 3px solid var(--b-ink, #12100c);
+  background: #fffdf3;
+}
+
+/* Applied to the shell root so the rail and bar can be styled without every
+   page having to opt in individually. */
+.shell-brutal {
+  --b-ink: #12100c;
+  --b-paper: #fffdf3;
+  --b-ground: #ffe01b;
+  --b-lime: #c6f24e;
+  --b-sun: #ffd93d;
+  --b-sky: #7cc6fe;
+  --b-display: "Archivo Black", "Arial Black", sans-serif;
+  --b-flat: "Space Grotesk Variable", "Segoe UI", sans-serif;
+}
+
+/* The bar was 40px tall with a 3px rule, leaving 37px of content, while the
+   search pill's margin box came to 44px. A fixed-height grid does not grow, so
+   every child stretched past the bottom rule and the pill sat on top of it.
+   The bar is sized to hold its tallest control, and the pill centres itself
+   rather than spacing itself with margins it does not have room for. */
+.desktop-app.shell-brutal {
+  --titlebar-height: 44px;
+}
+
+.shell-brutal .native-titlebar {
+  border-bottom: 3px solid var(--b-ink);
+  background: var(--b-sun);
+}
+
+.shell-brutal .native-titlebar__brand {
+  padding: 0 16px;
+  gap: 10px;
+}
+
+.shell-brutal .native-titlebar__title,
+.shell-brutal .native-titlebar strong {
+  font-family: var(--b-display);
+  letter-spacing: -0.01em;
+}
+
+.shell-brutal .native-titlebar__search {
+  height: 32px;
+  align-self: center;
+  /* Clear of the window controls by more than its own offset shadow. */
+  margin: 0 16px 0 0;
+  padding: 0 12px;
+  border: 2px solid var(--b-ink);
+  border-radius: 999px;
+  background: var(--b-paper);
+  box-shadow: 2px 2px 0 var(--b-ink);
+  color: var(--b-ink);
+  font-family: var(--b-flat);
+  font-weight: 600;
+}
+
+.shell-brutal .native-titlebar__search:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--b-ink);
+}
+
+.shell-brutal .native-titlebar__search kbd {
+  border: 1px solid var(--b-ink);
+  border-radius: 5px;
+  background: var(--b-lime);
+  color: var(--b-ink);
+  font-family: var(--b-flat);
+  font-weight: 700;
+}
+
+/* The window controls kept the old navy glyph and a pale grey hover, which on
+   a sun-yellow bar read as a patch of another interface. */
+.shell-brutal .window-control {
+  color: var(--b-ink);
+}
+
+.shell-brutal .window-control:hover {
+  background: rgba(18, 16, 12, 0.14);
+}
+
+.shell-brutal .window-control--close:hover {
+  color: var(--b-paper);
+  background: #d6343a;
+}
+
+.shell-brutal .window-control svg {
+  stroke-width: 1.4;
+}
+
+/* -- Rail ------------------------------------------------------------------- */
+
+.shell-brutal .app-sidebar {
+  border-right: 3px solid var(--b-ink);
+  background: var(--b-paper);
+}
+
+.shell-brutal .app-sidebar__brand {
+  padding-bottom: 14px;
+  border-bottom: 3px solid var(--b-ink);
+}
+
+.shell-brutal .app-sidebar__brand strong {
+  font-family: var(--b-display);
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+
+.shell-brutal .app-sidebar__brand span {
+  font-family: var(--b-flat);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.shell-brutal .sidebar-nav-item {
+  border: 3px solid transparent;
+  border-radius: 10px;
+  color: var(--b-ink);
+  font-family: var(--b-display);
+  font-size: 14px;
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out,
+    background-color 90ms ease-out;
+}
+
+.shell-brutal .sidebar-nav-item:hover {
+  border-color: var(--b-ink);
+  background: var(--b-paper);
+  box-shadow: 3px 3px 0 var(--b-ink);
+  transform: translate(-1px, -1px);
+}
+
+/* The active area is a stuck-on sticker, not a soft tint. */
+.shell-brutal .sidebar-nav-item[data-active="true"] {
+  border-color: var(--b-ink);
+  background: var(--b-lime);
+  box-shadow: 4px 4px 0 var(--b-ink);
+}
+
+.shell-brutal .sidebar-nav-item[data-active="true"] .doodle-icon {
+  color: var(--b-ink);
+}
+
+.shell-brutal .app-sidebar__encouragement {
+  border: 3px solid var(--b-ink);
+  border-radius: 12px;
+  background: var(--b-sky);
+  box-shadow: 4px 4px 0 var(--b-ink);
+}
+
+.shell-brutal .app-sidebar__encouragement p {
+  color: var(--b-ink);
+  font-family: var(--b-flat);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.shell-brutal .app-sidebar__profile {
+  border: 0;
+  border-top: 3px solid var(--b-ink);
+  background: var(--b-ground);
+  font-family: var(--b-flat);
+}
+
+.shell-brutal .app-sidebar__profile:hover {
+  background: var(--b-sun);
+}
+
+.shell-brutal .app-sidebar__profile strong {
+  font-family: var(--b-display);
+  font-size: 14px;
+}
+
+.shell-brutal .profile-avatar {
+  border: 3px solid var(--b-ink);
+  border-radius: 50%;
+  color: var(--b-ink);
+  background: var(--b-lime);
+  box-shadow: 2px 2px 0 var(--b-ink);
+  font-family: var(--b-display);
+}
+
+/* ===========================================================================
+   Dashboard
+   One question answered once: what do I do now. A hero slab carries the
+   recommendation, three sticker tiles carry the skills, and the rest is a
+   compact strip. Fills the window exactly.
+   =========================================================================== */
+
+.dash-b__body {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1.35fr) minmax(0, 1fr);
+}
+
+/* -- Hero ------------------------------------------------------------------- */
+
+.dash-b__hero {
+  position: relative;
+  overflow: hidden;
+  padding: 26px 30px;
+  background: var(--pop-lime);
+  gap: 12px;
+  grid-row: span 2;
+  justify-content: center;
+}
+
+.dash-b__hero h2 {
+  font-size: clamp(30px, 3.4vw, 44px);
+  text-wrap: balance;
+}
+
+.dash-b__hero-why {
+  max-width: 34ch;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.dash-b__hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.dash-b__hero-cta {
+  align-self: flex-start;
+  min-height: 52px;
+  margin-top: 6px;
+  font-size: 17px;
+}
+
+/* A hard sticker in the corner: the countdown that actually matters. */
+.dash-b__stamp {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 16px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  box-shadow: var(--shadow-hard);
+  transform: rotate(4deg);
+}
+
+.dash-b__stamp strong {
+  font-family: var(--font-display);
+  font-size: 30px;
+  line-height: 1;
+}
+
+.dash-b__stamp span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* -- Skill tiles ------------------------------------------------------------ */
+
+.dash-b__skills {
+  display: grid;
+  min-height: 0;
+  gap: 12px;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+}
+
+.dash-b-skill {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round);
+  background: var(--paper);
+  box-shadow: var(--shadow-hard);
+  cursor: pointer;
+  gap: 14px;
+  text-align: left;
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out;
+}
+
+.dash-b-skill:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-deep);
+}
+
+.dash-b-skill:active {
+  transform: translate(var(--drop), var(--drop));
+  box-shadow: 0 0 0 var(--ink);
+}
+
+.dash-b-skill__mark {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  place-items: center;
+}
+
+.dash-b-skill--vocabulary .dash-b-skill__mark {
+  background: var(--pop-mint);
+}
+
+.dash-b-skill--speaking .dash-b-skill__mark {
+  background: var(--pop-sky);
+}
+
+.dash-b-skill--writing .dash-b-skill__mark {
+  background: var(--pop-grape);
+}
+
+.dash-b-skill__copy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.dash-b-skill__copy strong {
+  font-family: var(--font-display);
+  font-size: 16px;
+}
+
+.dash-b-skill__copy small {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.75;
+}
+
+.dash-b-skill__num {
+  flex: 0 0 auto;
+  font-family: var(--font-display);
+  font-size: 24px;
+}
+
+/* -- Week strip ------------------------------------------------------------- */
+
+.dash-b__week {
+  padding: 16px 18px;
+  gap: 12px;
+}
+
+.dash-b__week-row {
+  display: flex;
+  flex: 1;
+  align-items: stretch;
+  padding: 0;
+  margin: 0;
+  gap: 8px;
+  list-style: none;
+}
+
+.dash-b__week-row li {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  gap: 4px;
+}
+
+.dash-b__week-row li[data-done="true"] {
+  background: var(--pop-lime);
+}
+
+.dash-b__week-row li[data-today="true"] {
+  box-shadow: inset 0 0 0 3px var(--ink);
+}
+
+.dash-b__week-row b {
+  font-family: var(--font-display);
+  font-size: 13px;
+}
+
+.dash-b__week-row i {
+  font-size: 15px;
+  font-style: normal;
+}
+
+/* ===========================================================================
+   Settings
+   A sticker rail of sections beside one panel. The panel scrolls; the page
+   does not.
+   =========================================================================== */
+
+.set-b__body {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  gap: 16px;
+  grid-template-columns: 268px minmax(0, 1fr);
+}
+
+.set-b__nav {
+  padding: 12px;
+  gap: 8px;
+}
+
+.set-b__nav-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border: 3px solid transparent;
+  border-radius: var(--round-sm);
+  background: transparent;
+  cursor: pointer;
+  gap: 11px;
+  text-align: left;
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out,
+    background-color 90ms ease-out;
+}
+
+.set-b__nav-item:hover {
+  border-color: var(--ink);
+  background: var(--paper);
+  box-shadow: 3px 3px 0 var(--ink);
+  transform: translate(-1px, -1px);
+}
+
+.set-b__nav-item[data-active="true"] {
+  border-color: var(--ink);
+  background: var(--pop-sun);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.set-b__nav-item span {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.set-b__nav-item strong {
+  font-family: var(--font-display);
+  font-size: 14px;
+}
+
+.set-b__nav-item small {
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0.75;
+}
+
+.set-b__panel {
+  min-height: 0;
+  padding: 22px 26px;
+  gap: 18px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--ink) transparent;
+  scrollbar-width: thin;
+}
+
+.set-b__panel .settings-section {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.set-b__panel h2 {
+  font-size: 22px;
+}
+
+/* -- Forms in this world ---------------------------------------------------- */
+
+:is(.brutal, .b-portal) label {
+  font-family: var(--font-flat);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* `input:not([type])` matters: an input with no type attribute is a text field,
+   but `input[type="text"]` does not select it, so those were keeping the old
+   1px border. */
+:is(.brutal, .b-portal) input:not([type]),
+:is(.brutal, .b-portal) input[type="text"],
+:is(.brutal, .b-portal) input[type="number"],
+:is(.brutal, .b-portal) input[type="date"],
+:is(.brutal, .b-portal) input[type="time"],
+:is(.brutal, .b-portal) input[type="email"],
+:is(.brutal, .b-portal) input[type="search"],
+:is(.brutal, .b-portal) select,
+:is(.brutal, .b-portal) textarea {
+  padding: 10px 13px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-flat);
+  font-size: 14px;
+  font-weight: 500;
+  /* Room for descenders. Without it the tail of every "y" and "g" was cut,
+     which turned "Library order" into "Libraru order". */
+  line-height: 1.35;
+}
+
+/* A select has to leave room for its own caret, or the last word of a long
+   option runs underneath it. The caret is drawn here rather than left to the
+   platform so it matches the rest of the world. */
+:is(.brutal, .b-portal) select {
+  padding-right: 30px;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><path d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%2312100c' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+  background-size: 12px 8px;
+  text-overflow: ellipsis;
+}
+
+/* Controls inside a field shell are the shell's contents, not controls of
+   their own. This has to sit after the standalone rule above: the two carry
+   equal specificity, and without it every search box and dropdown paints a
+   second border inside the first. */
+:is(.brutal, .b-portal) :is(.b-field, .search-field) :is(input, select, textarea) {
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--ink);
+  font-family: var(--font-flat);
+  font-size: 14px;
+  font-weight: 500;
+  /* Room for descenders: a 44px shell with a tight line box was clipping the
+     tail of every "y" and "g". */
+  line-height: 1.35;
+}
+
+:is(.brutal, .b-portal) :is(.b-field, .search-field) select {
+  padding-right: 22px;
+  background-position: right center;
+  cursor: pointer;
+}
+
+:is(.brutal, .b-portal) :is(.b-field, .search-field) :is(input, select, textarea):focus {
+  outline: none;
+}
+
+/* A control already carries a 3px ink border. A second ink ring two pixels
+   outside it is not read as focus - it is read as a box inside a box. The
+   focus band hugs the border instead and takes a colour the border never
+   uses, so it is one object with a lit edge. */
+:is(.brutal, .b-portal) input:focus-visible,
+:is(.brutal, .b-portal) select:focus-visible,
+:is(.brutal, .b-portal) textarea:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px var(--pop-sky),
+    3px 3px 0 var(--ink);
+}
+
+/* The shell owns the focus ring, so the control inside must not draw a second
+   one just inside it. */
+:is(.brutal, .b-portal) :is(.b-field, .search-field) :is(input, select, textarea):focus-visible {
+  box-shadow: none;
+  outline: none;
+}
+
+/* Existing buttons inside converted pages inherit the world rather than
+   needing every call site rewritten. */
+:is(.brutal, .b-portal) .button {
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  box-shadow: var(--shadow-hard);
+  color: var(--ink);
+  font-family: var(--font-display);
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out;
+}
+
+:is(.brutal, .b-portal) .button:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-deep);
+}
+
+:is(.brutal, .b-portal) .button:active:not(:disabled) {
+  transform: translate(var(--drop), var(--drop));
+  box-shadow: 0 0 0 var(--ink);
+}
+
+:is(.brutal, .b-portal) .button--primary {
+  background: var(--pop-lime);
+}
+
+:is(.brutal, .b-portal) .button--outline,
+:is(.brutal, .b-portal) .button--quiet {
+  background: var(--paper);
+}
+
+:is(.brutal, .b-portal) .button--danger {
+  background: var(--pop-flame);
+}
+
+.brutal .panel {
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round);
+  background: var(--paper);
+  box-shadow: var(--shadow-hard);
+}
+
+:is(.brutal, .b-portal) .status-badge,
+:is(.brutal, .b-portal) .study-status-badge {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--pop-sun);
+  font-family: var(--font-flat);
+  font-weight: 700;
+}
+
+/* ===========================================================================
+   Progress in this world
+   The charts keep their shapes; the frames, type and palette change.
+   =========================================================================== */
+
+.brutal.progress {
+  padding: 22px 26px;
+  gap: 14px;
+}
+
+.brutal .progress-stat,
+.brutal .progress-card {
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round);
+  background: var(--paper);
+  box-shadow: var(--shadow-hard);
+}
+
+.brutal .progress-stat__value,
+.brutal .progress-card__head h2,
+.brutal .progress__title h1 {
+  font-family: var(--font-display);
+  color: var(--ink);
+}
+
+.brutal .progress-stat__label,
+.brutal .progress-stat__note,
+.brutal .progress-card__head span,
+.brutal .progress-legend li {
+  color: var(--ink);
+  font-family: var(--font-flat);
+  font-weight: 600;
+}
+
+.brutal .progress-stat__art {
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--pop-sun);
+}
+
+.brutal .progress__streak {
+  border: var(--edge) solid var(--ink);
+  border-radius: 999px;
+  background: var(--pop-lime);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.brutal .progress__streak strong {
+  font-family: var(--font-display);
+}
+
+.brutal .progress-legend i {
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+}
+
+.brutal .progress-sessions li {
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+}
+
+.brutal .progress-sessions__mark {
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  background: var(--pop-sky);
+}
+
+.brutal .progress-tip {
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  box-shadow: var(--shadow-hard);
+  font-family: var(--font-flat);
+  font-weight: 700;
+}
+
+.brutal .progress__first-run {
+  border: var(--edge) dashed var(--ink);
+  border-radius: var(--round);
+  background: var(--paper);
+}
+
+/* Recharts draws its own text; pull it into the world. */
+.brutal .recharts-text {
+  font-family: var(--font-flat);
+  font-weight: 600;
+}
+
+/* Frames do not nest in this world - an outlined box inside an outlined box
+   reads as a mistake, not as depth. Inner sections sit flat on their panel. */
+.set-b__panel .panel,
+.set-b__panel .settings-section > header,
+.set-b__panel .settings-fields {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.set-b__panel .settings-section > header {
+  padding: 0 0 4px;
+  border-bottom: 3px solid var(--ink);
+  margin-bottom: 14px;
+}
+
+/* ===========================================================================
+   Rail (main menu)
+   Rebuilt from zero. Six equal rows became two named groups plus a desk row,
+   because three of these are the work, two report on it, and one configures
+   it. The grouping carries that without a line of copy.
+   =========================================================================== */
+
+.shell-brutal .rail {
+  position: fixed;
+  z-index: var(--z-sidebar, 50);
+  top: var(--titlebar-height, 40px);
+  bottom: 0;
+  left: 0;
+  display: flex;
+  width: var(--sidebar-width, 232px);
+  flex-direction: column;
+  padding: 14px 12px 0;
+  border-right: 3px solid var(--b-ink);
+  background: var(--b-paper);
+  gap: 12px;
+}
+
+/* -- Brand ------------------------------------------------------------------ */
+
+.shell-brutal .rail__brand {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  padding: 8px;
+  border: 3px solid var(--b-ink);
+  border-radius: 12px;
+  background: var(--b-ground);
+  box-shadow: 4px 4px 0 var(--b-ink);
+  cursor: pointer;
+  gap: 10px;
+  text-align: left;
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out;
+}
+
+.shell-brutal .rail__brand:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0 var(--b-ink);
+}
+
+.shell-brutal .rail__brand:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--b-ink);
+}
+
+.shell-brutal .rail__brand img {
+  flex: 0 0 auto;
+  border-radius: 9px;
+}
+
+.shell-brutal .rail__brand span {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.shell-brutal .rail__brand strong {
+  color: var(--b-ink);
+  font-family: var(--b-display);
+  font-size: 17px;
+  letter-spacing: -0.02em;
+}
+
+.shell-brutal .rail__brand small {
+  color: var(--b-ink);
+  font-family: var(--b-flat);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* -- Countdown -------------------------------------------------------------- */
+
+.shell-brutal .rail__countdown {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: baseline;
+  justify-content: center;
+  padding: 8px 10px;
+  border: 3px solid var(--b-ink);
+  border-radius: 10px;
+  background: var(--b-lime);
+  box-shadow: 3px 3px 0 var(--b-ink);
+  gap: 7px;
+}
+
+.shell-brutal .rail__countdown strong {
+  color: var(--b-ink);
+  font-family: var(--b-display);
+  font-size: 26px;
+  line-height: 1;
+}
+
+.shell-brutal .rail__countdown span {
+  color: var(--b-ink);
+  font-family: var(--b-flat);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.shell-brutal .rail__countdown--empty {
+  align-items: center;
+  background: var(--b-paper);
+  cursor: pointer;
+}
+
+.shell-brutal .rail__countdown--empty:hover {
+  background: var(--b-sun);
+}
+
+/* -- Navigation ------------------------------------------------------------- */
+
+/* Scrolling one axis makes the browser clip the other, which cut the offset
+   shadow off every nav item. The scroller is widened by the shadow's reach and
+   pulled back by the same amount, so the shadows have somewhere to land. */
+.shell-brutal .rail__nav {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  padding: 2px 6px 8px;
+  margin: -2px -6px 0;
+  gap: 14px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+
+.shell-brutal .rail__nav::-webkit-scrollbar {
+  display: none;
+}
+
+.shell-brutal .rail__group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.shell-brutal .rail__group-label {
+  padding-left: 4px;
+  margin: 0;
+  color: var(--b-ink);
+  font-family: var(--b-flat);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  opacity: 0.55;
+  text-transform: uppercase;
+}
+
+.shell-brutal .rail__item {
+  display: flex;
+  align-items: center;
+  padding: 7px 9px;
+  border: 3px solid transparent;
+  border-radius: 11px;
+  background: transparent;
+  cursor: pointer;
+  gap: 10px;
+  text-align: left;
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out,
+    background-color 90ms ease-out,
+    border-color 90ms ease-out;
+}
+
+.shell-brutal .rail__item:hover {
+  border-color: var(--b-ink);
+  background: var(--b-paper);
+  box-shadow: 3px 3px 0 var(--b-ink);
+  transform: translate(-1px, -1px);
+}
+
+.shell-brutal .rail__item:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--b-ink);
+}
+
+/* The active area is a sticker pressed onto the rail. Its own colour fills
+   the row so the section you are in is legible from the edge of vision. */
+.shell-brutal .rail__item[data-active="true"] {
+  border-color: var(--b-ink);
+  box-shadow: 4px 4px 0 var(--b-ink);
+}
+
+.shell-brutal .rail__item--mint[data-active="true"] {
+  background: #7be495;
+}
+
+.shell-brutal .rail__item--sky[data-active="true"] {
+  background: #7cc6fe;
+}
+
+.shell-brutal .rail__item--grape[data-active="true"] {
+  background: #b197fc;
+}
+
+.shell-brutal .rail__item--sun[data-active="true"] {
+  background: var(--b-sun);
+}
+
+.shell-brutal .rail__item--rose[data-active="true"] {
+  background: #ff9bd2;
+}
+
+.shell-brutal .rail__item-mark {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  border: 2px solid var(--b-ink);
+  border-radius: 8px;
+  background: var(--b-paper);
+  place-items: center;
+}
+
+.shell-brutal .rail__item-label {
+  min-width: 0;
+  flex: 1;
+  color: var(--b-ink);
+  font-family: var(--b-display);
+  font-size: 14px;
+  letter-spacing: -0.01em;
+}
+
+.shell-brutal .rail__badge {
+  display: grid;
+  min-width: 24px;
+  height: 22px;
+  flex: 0 0 auto;
+  padding: 0 6px;
+  border: 2px solid var(--b-ink);
+  border-radius: 999px;
+  color: var(--b-ink);
+  background: #ff6b5e;
+  font-family: var(--b-display);
+  font-size: 11px;
+  place-items: center;
+}
+
+/* -- Profile ---------------------------------------------------------------- */
+
+.shell-brutal .rail__profile {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  padding: 10px;
+  border: 3px solid var(--b-ink);
+  border-top-width: 3px;
+  border-radius: 12px 12px 0 0;
+  border-bottom: 0;
+  background: var(--b-ground);
+  cursor: pointer;
+  gap: 10px;
+  margin-top: auto;
+  text-align: left;
+  transition: background-color 90ms ease-out;
+}
+
+.shell-brutal .rail__profile:hover,
+.shell-brutal .rail__profile[data-active="true"] {
+  background: var(--b-sun);
+}
+
+.shell-brutal .rail__avatar {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  border: 3px solid var(--b-ink);
+  border-radius: 50%;
+  color: var(--b-ink);
+  background: var(--b-lime);
+  font-family: var(--b-display);
+  font-size: 15px;
+  place-items: center;
+}
+
+.shell-brutal .rail__profile-copy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.shell-brutal .rail__profile-copy strong {
+  overflow: hidden;
+  color: var(--b-ink);
+  font-family: var(--b-display);
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.shell-brutal .rail__profile-copy small {
+  color: var(--b-ink);
+  font-family: var(--b-flat);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+
+/* ===========================================================================
+   Containment
+   Every page-level body grid defined columns but left its single row at
+   `auto`, so the row sized to its content and the surplus was clipped by the
+   page's `overflow: hidden` instead of scrolling inside a panel. That is one
+   cause behind both reported symptoms: nothing scrolls, and things get cut.
+   Pinning the row to minmax(0, 1fr) hands the height back to the panels,
+   which already know how to scroll their own contents.
+   =========================================================================== */
+
+.brutal .speaking__body,
+.brutal .practice__body,
+.brutal .repeat__body,
+.brutal .w-body,
+.brutal .rev,
+.brutal .dash-b__body,
+.brutal .set-b__body,
+.brutal .progress__grid,
+.brutal .vocab__body {
+  grid-template-rows: minmax(0, 1fr);
+}
+
+/* The dashboard and progress grids carry two rows of their own. */
+.brutal .dash-b__body {
+  grid-template-rows: minmax(0, 1.35fr) minmax(0, 1fr);
+}
+
+.brutal .progress__grid {
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+/* This wrapper had no rules at all, so the grid inside it was never given a
+   height to work against and simply grew past the window. */
+.speaking__repeat-host {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.speaking__repeat-host > * {
+  min-height: 0;
+  flex: 1;
+}
+
+/* Any frame that hosts a scroller must be allowed to shrink below its
+   content, or the scroller never engages. */
+.brutal .b-frame,
+.brutal .rp-card,
+.brutal .sp-rail,
+.brutal .w-card {
+  min-height: 0;
+}
+
+/* ===========================================================================
+   Breathing room
+   Controls were sitting hard against frame edges because the frame carried
+   the padding and the action row did not clear it. Footers and action rows
+   inside a frame keep their own inset.
+   =========================================================================== */
+
+.brutal .b-frame > footer,
+.brutal .rp-card__foot,
+.brutal .repeat__foot,
+.brutal .practice__foot {
+  padding: 12px 16px;
+}
+
+/* A button flush against a rounded 3px border reads as a mistake. Anything
+   sitting last in a padded frame keeps clear of the corner radius. */
+.brutal .b-frame > .b-btn:last-child,
+.brutal .b-frame > *:last-child > .b-btn:only-child {
+  margin-bottom: 2px;
+}
+
+/* Scrollers get a little tail so a clipped row is visibly mid-list rather
+   than flush against the frame edge. */
+.brutal .b-scroll {
+  padding-bottom: 8px;
+}
+
+/* The fill is a rounded bar inside a rounded track; without clipping it
+   reported 7px of overflow at the cap. */
+.rev-progress__track {
+  overflow: hidden;
+}
+
+/* The brand block lost its icon to the title bar, so it centres its wordmark
+   rather than leaving a gap where the mark used to sit. */
+.shell-brutal .rail__brand {
+  justify-content: center;
+  padding: 12px 10px;
+  text-align: center;
+}
+
+.shell-brutal .rail__brand span {
+  align-items: center;
+}
+
+/* ===========================================================================
+   Dialogs
+   A dialog is the same object as a frame, lifted: the deep shadow, a coloured
+   header band, and a body that scrolls on its own so a long form never pushes
+   its actions off the bottom of the window.
+   =========================================================================== */
+
+.b-modal__scrim {
+  position: fixed;
+  z-index: var(--z-modal, 200);
+  display: grid;
+  padding: 26px;
+  background: rgba(18, 16, 12, 0.55);
+  inset: 0;
+  place-items: center;
+}
+
+/* Flex rather than a fixed row template: a dialog may have a body, a footer,
+   or both, and each combination has to keep the scroller in the middle. */
+.b-modal {
+  display: flex;
+  width: min(100%, 560px);
+  max-height: min(84vh, 720px);
+  flex-direction: column;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round);
+  background: var(--paper);
+  box-shadow: var(--shadow-deep);
+}
+
+.b-modal__head,
+.b-modal__foot {
+  flex: 0 0 auto;
+}
+
+.b-modal__body {
+  flex: 1 1 auto;
+}
+
+.b-modal--wide {
+  width: min(100%, 740px);
+}
+
+.b-modal__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: var(--edge) solid var(--ink);
+  border-radius: 11px 11px 0 0;
+  background: var(--pop-sun);
+  gap: 14px;
+}
+
+.b-modal__head h2 {
+  font-size: 19px;
+}
+
+.b-modal__head p {
+  max-width: 56ch;
+  margin: 5px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Rule of the world: nothing sits flush against a frame border, so the body
+   carries the inset rather than trusting every caller to remember it. */
+.b-modal__body {
+  min-height: 0;
+  padding: 18px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--ink) transparent;
+  scrollbar-width: thin;
+}
+
+.b-modal__body::-webkit-scrollbar {
+  width: 12px;
+}
+
+.b-modal__body::-webkit-scrollbar-thumb {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--pop-sun);
+}
+
+/* Pinned below the scroller: a seven-field form used to push its own confirm
+   button past the bottom of the window. */
+.b-modal__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 13px 18px;
+  border-top: var(--edge) solid var(--ink);
+  border-radius: 0 0 11px 11px;
+  background: var(--pop-sun);
+  gap: 10px;
+}
+
+/* -- Forms inside a dialog -------------------------------------------------- */
+
+.b-modal .modal-form,
+.b-modal .confirm-dialog,
+.b-modal .study-confirm-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* The font properties are not decoration here. styles.css loads after this
+   file and carries `.settings-fields label, .modal-form label { font-size: 9px }`
+   at equal specificity to the base label rule, so dialog labels were rendering
+   at 9px in the old UI font. Naming the dialog outranks it, and matches the
+   small caps the settings panel already uses for the same job. */
+.b-modal .modal-form > label,
+.b-modal .form-grid label {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  color: var(--ink);
+  font-family: var(--font-flat);
+  font-size: 12px;
+  font-weight: 700;
+  gap: 7px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* The form is a flex column with its own gap; the paragraph's default bottom
+   margin would stack on top of it and open a hole under the intro line. */
+.b-modal .modal-form > p {
+  margin: 0;
+}
+
+/* Small caps label, ordinary value. */
+.b-modal :is(.modal-form, .form-grid) label :is(input, select, textarea) {
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.b-modal .form-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.b-modal .form-grid--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Radios and checkboxes are not text fields; the base rule would stretch them
+   to the width of the dialog. */
+.b-modal input:not([type="radio"], [type="checkbox"]),
+.b-modal select,
+.b-modal textarea {
+  width: 100%;
+}
+
+.b-modal input[type="radio"],
+.b-modal input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  flex: 0 0 auto;
+  accent-color: var(--ink);
+}
+
+.b-modal textarea {
+  min-height: 62px;
+  resize: vertical;
+}
+
+.b-modal .modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding: 14px 0 2px;
+  border-top: var(--edge) solid var(--ink);
+  margin-top: 4px;
+  gap: 10px;
+}
+
+.b-modal .confirm-dialog p,
+.b-modal .study-confirm-dialog p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* -- Global search ---------------------------------------------------------- */
+
+.b-modal .global-search {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.b-modal .search-field {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 14px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  gap: 10px;
+}
+
+.b-modal .search-field input {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.b-modal .search-field:focus-within {
+  box-shadow:
+    0 0 0 3px var(--pop-sky),
+    3px 3px 0 var(--ink);
+}
+
+.b-modal .global-search__results {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.b-modal .global-search__results button {
+  display: flex;
+  align-items: center;
+  padding: 10px 13px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  box-shadow: 3px 3px 0 var(--ink);
+  cursor: pointer;
+  gap: 12px;
+  text-align: left;
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out,
+    background-color 90ms ease-out;
+}
+
+.b-modal .global-search__results button:hover {
+  background: var(--pop-lime);
+  box-shadow: 5px 5px 0 var(--ink);
+  transform: translate(-1px, -1px);
+}
+
+.b-modal .global-search__results button > div {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.b-modal .global-search__results strong {
+  font-family: var(--font-display);
+  font-size: 15px;
+}
+
+.b-modal .global-search__results small {
+  overflow: hidden;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.75;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.b-modal .global-search__results em {
+  flex: 0 0 auto;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.b-modal .compact-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 26px 18px;
+  border: var(--edge) dashed var(--ink);
+  border-radius: var(--round-sm);
+  gap: 8px;
+  text-align: center;
+}
+
+.b-modal .compact-empty strong {
+  font-family: var(--font-display);
+  font-size: 16px;
+}
+
+.b-modal .compact-empty span {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ===========================================================================
+   Reminder card
+   An interruption that arrives unasked has to say what it is and how long it
+   will stay. The bar is the timer; hovering or focusing inside pauses it.
+   =========================================================================== */
+
+/* Bottom left, but clear of the navigation rail: the card is a companion to
+   the page, not something dropped on top of the app's own furniture. */
+.vocab-reminder-layer {
+  position: fixed;
+  z-index: 250;
+  bottom: 20px;
+  left: calc(var(--sidebar-width, 232px) + 20px);
+}
+
+/* Bottom left, clear of the toast at bottom right: an interruption and a
+   confirmation must never land on top of each other. */
+.vocab-reminder {
+  position: relative;
+  display: flex;
+  width: 372px;
+  flex-direction: column;
+  overflow: hidden;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round);
+  background: var(--paper);
+  box-shadow: var(--shadow-deep);
+  animation: b-stamp 320ms var(--stamp) both;
+}
+
+.vocab-reminder--compact {
+  width: 320px;
+}
+
+/* The bar drains left to right. `appearance: none` is what lets the track and
+   the value carry this world's flat fills instead of the platform's. */
+.vocab-reminder-progress {
+  display: block;
+  width: 100%;
+  height: 10px;
+  flex: 0 0 auto;
+  border: 0;
+  border-bottom: var(--edge) solid var(--ink);
+  appearance: none;
+  background: var(--paper);
+}
+
+.vocab-reminder-progress::-webkit-progress-bar {
+  background: var(--paper);
+}
+
+.vocab-reminder-progress::-webkit-progress-value {
+  background: var(--pop-lime);
+}
+
+/* Once the answer is showing the countdown has stopped, so the bar stops
+   looking like something that is still running out. */
+.vocab-reminder[data-revealed="true"] .vocab-reminder-progress::-webkit-progress-value {
+  background: var(--pop-mint);
+}
+
+.vocab-reminder-bar {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  border-bottom: var(--edge) solid var(--ink);
+  background: var(--pop-sun);
+  gap: 10px;
+}
+
+.vocab-reminder-bar .b-tag {
+  min-width: 0;
+  max-width: 232px;
+  background: var(--paper);
+}
+
+.vocab-reminder-source > span {
+  overflow: hidden;
+  min-width: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vocab-reminder-header {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 14px 15px 0;
+  gap: 10px;
+}
+
+.vocab-reminder-header-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 7px;
+}
+
+.vocab-reminder-icon-button {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: 2px 2px 0 var(--ink);
+  color: var(--ink);
+  cursor: pointer;
+  place-items: center;
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out;
+}
+
+.vocab-reminder-icon-button:hover:not(:disabled) {
+  box-shadow: 4px 4px 0 var(--ink);
+  transform: translate(-1px, -1px);
+}
+
+.vocab-reminder-icon-button:active:not(:disabled) {
+  box-shadow: 0 0 0 var(--ink);
+  transform: translate(2px, 2px);
+}
+
+.vocab-reminder-term {
+  margin: 0;
+  font-size: 28px;
+  word-break: break-word;
+}
+
+.vocab-reminder-meta {
+  margin: 3px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.72;
+}
+
+.vocab-reminder-content {
+  flex: 0 0 auto;
+  padding: 12px 15px 0;
+}
+
+/* The hidden answer is a target you hit, not an empty space. Same device as
+   the review screen, so the two read as one practice. */
+.vocab-reminder-recall {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 12px;
+  border: var(--edge) dashed var(--ink);
+  border-radius: var(--round-sm);
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 9px,
+    rgba(18, 16, 12, 0.045) 9px,
+    rgba(18, 16, 12, 0.045) 18px
+  );
+  cursor: pointer;
+  gap: 3px;
+  text-align: center;
+}
+
+.vocab-reminder-recall:hover {
+  background-color: rgba(198, 242, 78, 0.35);
+}
+
+.vocab-reminder-recall strong {
+  font-family: var(--font-display);
+  font-size: 15px;
+}
+
+.vocab-reminder-recall small {
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0.75;
+}
+
+.vocab-reminder-meaning {
+  padding: 11px 13px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  margin: 0;
+  background: var(--pop-sun);
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.vocab-reminder-example {
+  padding: 0 0 0 12px;
+  border-left: 5px solid var(--ink);
+  margin: 11px 0 0;
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.45;
+}
+
+.vocab-reminder-reveal-row {
+  flex: 0 0 auto;
+  padding: 12px 15px 13px;
+}
+
+.vocab-reminder-review-actions {
+  display: grid;
+  padding: 12px 15px 13px;
+  border: 0;
+  margin: 0;
+  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.vocab-reminder-action {
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 8px;
+  font-size: 13px;
+  gap: 6px;
+}
+
+/* The compact card gives up the shortcut hints before it gives up a label. */
+.vocab-reminder--compact .vocab-reminder-action kbd {
+  display: none;
+}
+
+.vocab-reminder-action kbd {
+  padding: 0 4px;
+  border: 2px solid var(--ink);
+  border-radius: 5px;
+  background: var(--paper);
+  font-family: var(--font-flat);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.vocab-reminder-secondary-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  padding: 11px 15px;
+  border-top: var(--edge) solid var(--ink);
+  background: var(--ground);
+  gap: 10px;
+}
+
+.vocab-reminder-snooze {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  gap: 6px;
+}
+
+.vocab-reminder-snooze-label {
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  gap: 5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.vocab-reminder-snooze-label kbd,
+.vocab-reminder-snooze-button {
+  min-height: 28px;
+  padding: 0 9px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-flat);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.vocab-reminder-snooze-button {
+  cursor: pointer;
+}
+
+.vocab-reminder-snooze-button:hover:not(:disabled) {
+  background: var(--pop-sun);
+}
+
+.vocab-reminder-details-button {
+  display: inline-flex;
+  min-height: 32px;
+  flex: 0 0 auto;
+  align-items: center;
+  padding: 0 12px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  box-shadow: 2px 2px 0 var(--ink);
+  color: var(--ink);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  gap: 6px;
+}
+
+.vocab-reminder-details-button:hover:not(:disabled) {
+  box-shadow: 4px 4px 0 var(--ink);
+  transform: translate(-1px, -1px);
+}
+
+.vocab-reminder :disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* -- Speaking support dialog -------------------------------------------------
+   Ideas, collocations, and sample answers used to keep the pre-redesign card
+   styling because they render through a portal, where the page's rules never
+   reached them. They are the same objects as the rest of this world.
+   --------------------------------------------------------------------------- */
+
+.speaking-support-dialog__ideas,
+.speaking-support-dialog__collocations {
+  display: grid;
+  padding: 0;
+  margin: 0;
+  gap: 9px;
+  list-style: none;
+}
+
+.speaking-support-dialog__ideas li {
+  display: grid;
+  align-items: start;
+  padding: 11px 13px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  gap: 11px;
+  grid-template-columns: 30px minmax(0, 1fr);
+}
+
+.speaking-support-dialog__ideas li > span {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background: var(--pop-sun);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 12px;
+  place-items: center;
+}
+
+.speaking-support-dialog__ideas p,
+.speaking-support-dialog__answers p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.speaking-support-dialog__collocations li {
+  display: grid;
+  padding: 10px 13px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--pop-sky);
+  gap: 3px;
+}
+
+.speaking-support-dialog__collocations strong {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 13.5px;
+}
+
+.speaking-support-dialog__collocations span {
+  color: var(--ink);
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.speaking-support-dialog__answers {
+  display: grid;
+  gap: 14px;
+}
+
+.speaking-support-dialog__answers article {
+  padding: 14px 16px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+}
+
+.speaking-support-dialog__answers h3 {
+  display: block;
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-family: var(--font-flat);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ===========================================================================
+   Overlays outside the page root
+   The toast and the tooltips are attached to the body, so no page rule ever
+   reached them and both kept the pre-redesign styling while sitting on top of
+   every brutalist screen. They carry literal values because they render
+   outside every token root.
+   =========================================================================== */
+
+.app-toast {
+  position: fixed;
+  z-index: var(--z-toast, 400);
+  right: 22px;
+  bottom: 22px;
+  display: flex;
+  max-width: 400px;
+  min-height: 52px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 3px solid #12100c;
+  border-radius: 14px;
+  background: #c6f24e;
+  box-shadow: 6px 6px 0 #12100c;
+  color: #12100c;
+  font-family: "Space Grotesk Variable", "Segoe UI", sans-serif;
+  gap: 11px;
+}
+
+.app-toast[data-error="true"] {
+  background: #ff6b5e;
+}
+
+.app-toast > span:first-child {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  border: 2px solid #12100c;
+  border-radius: 50%;
+  background: #fffdf3;
+  color: #12100c;
+  font-family: "Archivo Black", "Arial Black", sans-serif;
+  font-size: 11px;
+  place-items: center;
+}
+
+.app-toast p {
+  min-width: 0;
+  flex: 1;
+  margin: 0;
+  color: #12100c;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.app-toast button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  border: 2px solid #12100c;
+  border-radius: 8px;
+  background: #fffdf3;
+  color: #12100c;
+  cursor: pointer;
+  font-size: 15px;
+  place-items: center;
+}
+
+.app-toast button:hover {
+  background: #ffd93d;
+}
+
+.study-tooltip,
+.app-tooltip {
+  max-width: 230px;
+  padding: 7px 11px;
+  border: 2px solid #12100c;
+  border-radius: 8px;
+  background: #12100c;
+  box-shadow: 3px 3px 0 rgba(18, 16, 12, 0.35);
+  color: #fffdf3;
+  font-family: "Space Grotesk Variable", "Segoe UI", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.study-tooltip__arrow,
+.app-tooltip-arrow {
+  fill: #12100c;
+}
+
+/* ===========================================================================
+   Segmented control
+   The shared control keeps its roving tabindex and arrow-key handling; only
+   its paint changes, so it reads as the same object as `.b-switch`.
+   =========================================================================== */
+
+:is(.brutal, .b-portal) .study-segmented-control__list {
+  display: inline-flex;
+  padding: 4px;
+  border: var(--edge) solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  box-shadow: 3px 3px 0 var(--ink);
+  gap: 4px;
+}
+
+:is(.brutal, .b-portal) .study-segmented-control__tab {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  padding: 0 15px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 13px;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+:is(.brutal, .b-portal) .study-segmented-control__tab:hover:not([data-state="active"]) {
+  background: rgba(18, 16, 12, 0.07);
+}
+
+:is(.brutal, .b-portal) .study-segmented-control__tab[data-state="active"] {
+  border-color: var(--ink);
+  background: var(--pop-sun);
+  color: var(--ink);
+}
+
+:is(.brutal, .b-portal) .study-segmented-control__icon {
+  flex: 0 0 auto;
+}
+
+/* Session marks take the colour of the skill they belong to, matching the
+   legend on the chart above them. */
+.brutal .progress-sessions__mark[data-kind="vocabulary"] {
+  background: var(--pop-mint);
+}
+
+.brutal .progress-sessions__mark[data-kind="speaking"] {
+  background: var(--pop-sky);
+}
+
+.brutal .progress-sessions__mark[data-kind="writing"] {
+  background: var(--pop-grape);
+}
+
+.brutal .progress-sessions__mark .doodle-icon {
+  color: var(--ink);
+}
+
+/* The section marker in the settings panel kept its pale disc. */
+.brutal .settings-section > header > span {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--pop-sun);
+  box-shadow: 3px 3px 0 var(--ink);
+  place-items: center;
+}
+
+/* The shell beneath every page. Nothing shows it once a page paints, but a
+   pale grey flash between routes is the old design surfacing for a frame. */
+.desktop-app.shell-brutal,
+.shell-brutal .app-content {
+  background: var(--b-ground);
+}
+
+/* The empty states kept the old ink: near-navy headings over a blue-grey body.
+   In this world every word is the same black. */
+.brutal .progress-empty strong,
+.brutal .progress-empty p,
+.brutal .progress__first-run h2,
+.brutal .progress__first-run p {
+  color: var(--ink);
+}
+
+.brutal .progress-empty strong,
+.brutal .progress__first-run h2 {
+  font-family: var(--font-display);
+}
+
+.brutal .progress-empty p,
+.brutal .progress__first-run p {
+  font-weight: 500;
+}
+
+/* ===========================================================================
+   Token bridge
+   Hundreds of pre-redesign rules still resolve their colour through the old
+   semantic tokens. Rather than hunt each rule down, the tokens themselves are
+   remapped inside this world, so anything not yet rewritten still lands in the
+   right palette. Chasing individual selectors is what kept leaving one grey
+   caption or one pale border behind on every screen.
+   =========================================================================== */
+
+.brutal,
+.b-portal,
+.shell-brutal {
+  --navy-950: #12100c;
+  --navy-700: #12100c;
+  --navy-500: rgba(18, 16, 12, 0.72);
+  --color-foreground: #12100c;
+  --color-muted-foreground: rgba(18, 16, 12, 0.78);
+  --color-subtle-foreground: rgba(18, 16, 12, 0.72);
+  --color-surface: #fffdf3;
+  --color-surface-muted: #fffdf3;
+  --color-border: #12100c;
+  --color-border-strong: #12100c;
+  --surface-soft: #fffdf3;
+  --border: #12100c;
+
+  /* Typefaces travel by token the same way colours do, and the leftovers were
+     the same shape: a `small` here, a caption there, still set in Lexend or
+     Source Sans because some legacy rule asked for `--font-ui`. Remapping the
+     tokens catches every one of those; the declaration below catches the rest,
+     which inherit their face from `body` rather than naming a token at all. */
+  /* `--font-flat` is repeated here because the shell is not `.brutal`; without
+     it the declaration below would resolve to nothing on the app frame. */
+  --font-flat: "Space Grotesk Variable", "Segoe UI", sans-serif;
+  --font-ui: "Space Grotesk Variable", "Segoe UI", sans-serif;
+  --font-body: "Space Grotesk Variable", "Segoe UI", sans-serif;
+  --font-display: "Archivo Black", "Arial Black", sans-serif;
+
+  font-family: var(--font-flat);
+}
+
+/* The title bar sits outside every page, so it inherits its ink from `body`
+   where the remapped tokens never reach. */
+.shell-brutal .native-titlebar,
+.shell-brutal .rail {
+  color: var(--b-ink);
+}

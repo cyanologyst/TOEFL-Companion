@@ -86,6 +86,9 @@ export interface StudyActivity {
 
 export interface StudySettings {
   learnerName: string;
+  /** True once the welcome dialog has asked for a name. Kept apart from
+   *  `learnerName` so clearing the name later does not re-run the welcome. */
+  onboarded: boolean;
   targetTestDate: string;
   interviewSeconds: number;
   writingSeconds: number;

@@ -1,0 +1,135 @@
+/* On-device speech models
+ *
+ * A row per model in the same language as the collections list: one outlined
+ * slab each, the one in use filled rather than ticked.
+ */
+
+.speech-models {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.speech-models__lede,
+.speech-models__notice,
+.speech-models__error {
+  max-width: 68ch;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.speech-models__notice,
+.speech-models__error {
+  padding: 10px 13px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  font-weight: 600;
+}
+
+.speech-models__notice {
+  background: var(--pop-sun);
+}
+
+.speech-models__error {
+  background: var(--pop-flame);
+}
+
+.speech-models__list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  gap: 10px;
+  list-style: none;
+}
+
+.speech-models__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 12px 14px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  gap: 12px;
+}
+
+.speech-models__item[data-active="true"] {
+  background: var(--pop-lime);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.speech-models__copy {
+  display: flex;
+  min-width: 220px;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.speech-models__copy strong {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: 15px;
+  gap: 9px;
+}
+
+.speech-models__copy strong .b-tag {
+  font-size: 10px;
+  font-style: normal;
+}
+
+.speech-models__copy small {
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  opacity: 0.82;
+}
+
+.speech-models__size {
+  font-weight: 700 !important;
+  letter-spacing: 0.04em;
+  opacity: 1 !important;
+  text-transform: uppercase;
+}
+
+.speech-models__actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.speech-models__actions .b-btn {
+  min-height: 38px;
+  padding: 0 14px;
+  font-size: 13px;
+}
+
+.speech-models__actions .b-icon-btn {
+  width: 38px;
+  height: 38px;
+}
+
+/* Full-width beneath the row, so a long download does not shift the layout. */
+.speech-models__bar {
+  display: block;
+  width: 100%;
+  height: 14px;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  flex-basis: 100%;
+}
+
+.speech-models__bar > span {
+  display: block;
+  height: 100%;
+  background: var(--pop-lime);
+  transition: width 200ms linear;
+}

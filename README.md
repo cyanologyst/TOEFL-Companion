@@ -108,13 +108,20 @@ npm run desktop:build
 Fresh builds are written to:
 
 ```text
-src-tauri/target/release/bundle/nsis/
+~/.toefl-companion-build/release/bundle/nsis/
 ```
+
+`scripts/tauri.mjs` moves the Cargo target directory there whenever the checkout
+sits deeper than 90 characters, because the native whisper.cpp build fails on
+`MAX_PATH` otherwise. See [docs/RELEASE.md](docs/RELEASE.md).
 
 This delivered copy also includes ready-to-run artifacts in `releases/`:
 
-- `TOEFL-Companion-0.2.0-x64-setup.exe`
-- `TOEFL-Companion-0.2.0-portable.exe`
+- `TOEFL-Companion-1.0.0-x64-setup.exe`
+- `TOEFL-Companion-1.0.0-portable.exe`
+
+Both are unsigned, so SmartScreen warns on a machine that did not build them.
+The release runbook explains what signing would take.
 
 ## Verification
 
@@ -135,7 +142,7 @@ cargo test
 cargo clippy -- -D warnings
 ```
 
-The current test suite contains 86 passing tests. Rendered before/after QA
+The current test suite contains 107 passing tests. Rendered before/after QA
 captures are in `qa/refinement-audit/` and
 `qa/speaking-navigation-refinement/`.
 
@@ -172,8 +179,12 @@ system.
 - The supplied three-to-four hours of source audio/video and transcripts are
   not available yet. Listen & Repeat therefore uses browser speech synthesis
   for the starter pack until real `audioFile` values are added.
-- Speech recognition depends on WebView/browser support and the user's
-  microphone permission.
+- In the desktop app, transcription runs on-device through whisper.cpp and
+  needs a model downloaded once from Settings → Speech. Recording still works
+  without one, but the attempt is saved untranscribed and the recorder reports
+  why. The browser build uses the WebView's own speech recognition instead; the
+  desktop app deliberately does not, since that would send the learner's audio
+  to a remote service.
 - Writing feedback is a deliberately non-scoring UI shell. Connecting an
   offline or API-backed evaluator is future work.
 - Recording audio blobs stay in IndexedDB on the original device. Structured

@@ -1,4 +1,3 @@
-import { DoodleIcon } from "../../components/DoodleIcon";
 import { VocabularyLibrary } from "../../components/VocabularyLibrary";
 import { useVocabularySnapshot } from "../../hooks/useVocabularySnapshot";
 
@@ -9,6 +8,8 @@ interface VocabularyLibraryPageProps {
   onOpenSettings: () => void;
 }
 
+/** The library owns its own page shell, including the Library/Review switch,
+ *  so this route is only the wiring between the app and that surface. */
 export function VocabularyLibraryPage({
   initialWordId,
   onNotice,
@@ -18,24 +19,12 @@ export function VocabularyLibraryPage({
   const snapshot = useVocabularySnapshot();
 
   return (
-    <div className="page vocabulary-library-page">
-      <nav className="vocabulary-library-page__tabs" aria-label="Vocabulary">
-        <button type="button" aria-current="page">
-          <DoodleIcon name="doc" size={18} />
-          Library
-        </button>
-        <button type="button" onClick={onOpenReview}>
-          <DoodleIcon name="sync" size={18} />
-          Review
-        </button>
-      </nav>
-
-      <VocabularyLibrary
-        snapshot={snapshot}
-        initialWordId={initialWordId}
-        onNotice={onNotice}
-        onOpenSettings={onOpenSettings}
-      />
-    </div>
+    <VocabularyLibrary
+      snapshot={snapshot}
+      initialWordId={initialWordId}
+      onNotice={onNotice}
+      onOpenReview={onOpenReview}
+      onOpenSettings={onOpenSettings}
+    />
   );
 }

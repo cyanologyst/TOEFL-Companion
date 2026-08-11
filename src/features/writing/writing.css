@@ -1,0 +1,457 @@
+/* Writing - neo-brutalism
+ *
+ * Reading and writing happen together: you glance back at the professor's
+ * question while composing. Two columns, both bounded, each scrolling its own
+ * content so the page never hands the app scroller anything.
+ *
+ * The authored moment is the discussion arriving - professor then classmates,
+ * stamped down in sequence like cards dealt onto a table.
+ */
+
+.writing-page.brutal {
+  padding: 20px 24px 18px;
+  gap: 14px;
+}
+
+.writing__body {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  gap: 14px;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+}
+
+/* -- Source column ---------------------------------------------------------- */
+
+/* Scrolling one axis makes the browser clip the other, which cut the offset
+   shadow off every card. The scroller is widened by the shadow's reach and
+   pulled back by the same amount. */
+.writing__source {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  padding: 2px 8px 8px 2px;
+  margin: -2px -8px 0 -2px;
+  gap: 12px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--ink) transparent;
+  scrollbar-width: thin;
+}
+
+.writing__source::-webkit-scrollbar {
+  width: 12px;
+}
+
+.writing__source::-webkit-scrollbar-thumb {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--pop-sun);
+}
+
+.w-card {
+  flex: 0 0 auto;
+  padding: 16px 18px;
+  gap: 10px;
+}
+
+.w-card__who {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 11px;
+}
+
+.w-card__face {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border: var(--edge) solid var(--ink);
+  border-radius: 50%;
+  background: var(--paper);
+  place-items: center;
+}
+
+.w-card__face img {
+  display: block;
+  margin-bottom: -3px;
+}
+
+.w-card__name {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.w-card__name strong {
+  font-family: var(--font-display);
+  font-size: 15px;
+}
+
+.w-card__name span {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.w-card h2 {
+  font-size: 21px;
+  line-height: 1.15;
+}
+
+.w-card p {
+  margin: 0;
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* The professor's question is the source of truth; it gets the yellow. */
+.w-card--prof {
+  background: var(--pop-sun);
+}
+
+/* -- Compose column --------------------------------------------------------- */
+
+.writing__compose {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.w-editor {
+  min-height: 0;
+  flex: 1;
+  padding: 0;
+  gap: 0;
+}
+
+.w-editor__field {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  padding: 14px 16px;
+}
+
+.w-editor__field textarea {
+  width: 100%;
+  min-height: 0;
+  flex: 1;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-flat);
+  font-size: 15.5px;
+  font-weight: 500;
+  line-height: 1.6;
+  resize: none;
+}
+
+/* No ring on the surface you stare at for ten minutes. */
+.w-editor__field textarea:focus,
+.w-editor__field textarea:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.w-editor__field textarea::placeholder {
+  color: var(--ink);
+  opacity: 0.42;
+}
+
+.w-editor__foot {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-top: var(--edge) solid var(--ink);
+  gap: 12px;
+}
+
+.w-count {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 7px;
+  font-family: var(--font-display);
+  font-size: 17px;
+}
+
+.w-count small {
+  font-family: var(--font-flat);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  opacity: 0.65;
+  text-transform: uppercase;
+}
+
+.w-count[data-ready="true"] {
+  color: var(--ink);
+}
+
+/* -- Timer ------------------------------------------------------------------ */
+
+.w-timer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 8px 6px 14px;
+  gap: 10px;
+}
+
+.w-timer__digits {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.w-timer[data-low="true"] {
+  background: var(--pop-flame);
+}
+
+/* -- Nav -------------------------------------------------------------------- */
+
+.writing__nav {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.writing__nav-meta {
+  font-family: var(--font-flat);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1120px) {
+  .writing__body {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(110px, 0.75fr) minmax(0, 1.25fr);
+  }
+}
+
+/* The editor head carries a heading and three controls; at this column width
+   the heading was wrapping and shunting the tags. It stays on one line and
+   the controls wrap beneath it instead. */
+.w-editor > .b-head {
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+
+.w-editor > .b-head h2 {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.w-editor > .b-head .b-row {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  row-gap: 8px;
+}
+
+.w-editor > .b-head .b-tag {
+  font-size: 11px;
+}
+
+/* ===========================================================================
+   Discussion picker
+   Thirty exercises, chosen once at the start of a session. It opens over the
+   page as a band rather than a dialog, so the discussion underneath stays
+   visible while you scan the list.
+   =========================================================================== */
+
+.writing-browser {
+  position: relative;
+  z-index: 5;
+  min-height: 0;
+  flex: 1;
+  padding: 0;
+  gap: 0;
+}
+
+.writing-browser > header {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: var(--edge) solid var(--ink);
+  gap: 14px;
+}
+
+.writing-browser h2 {
+  font-size: 19px;
+}
+
+.writing-browser > header p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.writing-browser__filters {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 13px 16px;
+  border-bottom: var(--edge) solid var(--ink);
+  gap: 11px;
+}
+
+.writing-browser .search-field {
+  display: flex;
+  min-width: 220px;
+  height: 44px;
+  flex: 1;
+  align-items: center;
+  padding: 0 14px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  gap: 10px;
+}
+
+.writing-browser .search-field input {
+  min-width: 0;
+  flex: 1;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-flat);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.writing-browser .search-field:focus-within {
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.writing-browser__filters select {
+  min-width: 190px;
+  height: 44px;
+  cursor: pointer;
+}
+
+/* Three columns of short rows: the whole set is visible in two scrolls
+   instead of thirty. */
+.writing-browser__list {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  padding: 14px 16px;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--ink) transparent;
+  scrollbar-width: thin;
+}
+
+.writing-browser__list::-webkit-scrollbar {
+  width: 12px;
+}
+
+.writing-browser__list::-webkit-scrollbar-thumb {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--pop-sun);
+}
+
+.writing-browser__list button {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  box-shadow: 3px 3px 0 var(--ink);
+  cursor: pointer;
+  gap: 11px;
+  text-align: left;
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out,
+    background-color 90ms ease-out;
+}
+
+.writing-browser__list button:hover {
+  box-shadow: 5px 5px 0 var(--ink);
+  transform: translate(-1px, -1px);
+}
+
+.writing-browser__list button[data-active="true"] {
+  background: var(--pop-lime);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.writing-browser__list button > span {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background: var(--pop-sun);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 12px;
+  place-items: center;
+}
+
+.writing-browser__list button > div {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+/* Two lines rather than an ellipsis: half these titles are longer than the
+   column, and a truncated question is not choosable. */
+.writing-browser__list strong {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.writing-browser__list small {
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 11.5px;
+  font-weight: 600;
+  opacity: 0.72;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.writing-browser__list em {
+  flex: 0 0 auto;
+  color: var(--ink);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}

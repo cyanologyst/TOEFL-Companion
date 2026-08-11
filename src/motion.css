@@ -1,0 +1,209 @@
+/* Motion
+ *
+ * One authored moment per screen, not an entrance on every element. Switching
+ * area is the moment: the page settles in once, and after that motion is
+ * reserved for things that actually change state - a recording starting, a
+ * bar filling, a panel opening.
+ *
+ * Everything here is opt-in by class or state. Nothing animates on load a
+ * second time, and nothing loops except the recording indicator, which is
+ * reporting a live condition.
+ */
+
+:root {
+  --ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration-quick: 130ms;
+  --duration-settle: 380ms;
+}
+
+/* -- The one authored moment: a page arriving --------------------------------
+   The content lifts and clears in a single pass. Children do not each animate;
+   the page is one object. */
+
+@keyframes page-settle {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.app-content > .page,
+.app-content > .speaking {
+  animation: page-settle var(--duration-settle) var(--ease-settle) both;
+}
+
+/* -- State changes ---------------------------------------------------------- */
+
+/* Recording is a live condition, so this is the one thing that loops. */
+@keyframes recording-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(201, 54, 54, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 7px rgba(201, 54, 54, 0);
+  }
+}
+
+.recorder-phase-badge[data-tone="recording"],
+.transcription-status[data-live="true"] {
+  animation: recording-pulse 1.8s ease-out infinite;
+}
+
+/* Progress fills rather than jumping, so a review session reads as movement. */
+.study-progress__indicator,
+.overview-row__bar i,
+.prompt-queue__progress i,
+.accuracy-row i b {
+  transition: width 520ms var(--ease-settle);
+}
+
+/* A saved or completed state earns one small acknowledgement. */
+@keyframes mark-pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.recorder-phase-badge[data-tone="saved"],
+.study-status-badge[data-tone="success"] {
+  animation: mark-pop 260ms var(--ease-standard) both;
+}
+
+/* -- Interaction feedback ---------------------------------------------------
+   Cheap, compositor-only, and short enough to feel like response rather than
+   animation. */
+
+.button,
+.speaking-topic,
+.dash__also-row,
+.tc-library__word-button,
+.sidebar-nav-item,
+.settings-nav__button {
+  transition:
+    background-color var(--duration-quick) var(--ease-standard),
+    border-color var(--duration-quick) var(--ease-standard),
+    color var(--duration-quick) var(--ease-standard),
+    transform var(--duration-quick) var(--ease-standard);
+}
+
+.button--primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.button--primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Panels that invite a click lift very slightly under the cursor. */
+.speaking-card,
+.panel.student-card,
+.dash__primary {
+  transition:
+    box-shadow 200ms var(--ease-standard),
+    transform 200ms var(--ease-standard);
+}
+
+/* -- Dialogs ---------------------------------------------------------------- */
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes scrim-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-card,
+.study-confirm-dialog {
+  animation: dialog-in 200ms var(--ease-standard) both;
+}
+
+.modal-backdrop {
+  animation: scrim-in 160ms linear both;
+}
+
+/* -- Portraits -------------------------------------------------------------- */
+
+/* The drawn participants settle in with the discussion they belong to. */
+@keyframes face-in {
+  from {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.person-avatar .icon8 {
+  animation: face-in 300ms var(--ease-settle) both;
+}
+
+.person-avatar--student-1 .icon8 {
+  animation-delay: 70ms;
+}
+
+.person-avatar--student-2 .icon8 {
+  animation-delay: 140ms;
+}
+
+/* -- Reduced motion ---------------------------------------------------------
+   Travel and looping go; a brief cross-fade stays so state changes still
+   register. Collapsing everything to zero makes the interface feel broken
+   rather than calm. */
+
+@media (prefers-reduced-motion: reduce) {
+  .app-content > .page,
+  .app-content > .speaking,
+  .modal-card,
+  .study-confirm-dialog,
+  .person-avatar .icon8 {
+    animation: scrim-in 120ms linear both;
+  }
+
+  .recorder-phase-badge[data-tone="recording"],
+  .transcription-status[data-live="true"],
+  .recorder-phase-badge[data-tone="saved"],
+  .study-status-badge[data-tone="success"] {
+    animation: none;
+  }
+
+  .button--primary:hover:not(:disabled),
+  .button--primary:active:not(:disabled) {
+    transform: none;
+  }
+
+  .study-progress__indicator,
+  .overview-row__bar i,
+  .prompt-queue__progress i,
+  .accuracy-row i b {
+    transition-duration: 120ms;
+  }
+}

@@ -4,6 +4,7 @@ import { DoodleIcon, type DoodleIconName } from "./components/DoodleIcon";
 import { Modal } from "./components/Modal";
 import { NativeTitleBar } from "./components/NativeTitleBar";
 import { VocabularyReminderHost } from "./components/VocabularyReminderHost";
+import { WelcomeDialog } from "./components/WelcomeDialog";
 import rawDiscussions from "./data/academic-discussions.json";
 import rawTopics from "./data/toefl-data.json";
 import { DashboardPage } from "./features/dashboard/DashboardPage";
@@ -98,6 +99,7 @@ export function App(): React.JSX.Element {
   const [writingDirty, setWritingDirty] = useState(false);
   const [speakingDirty, setSpeakingDirty] = useState(false);
   const [pendingRoute, setPendingRoute] = useState<AppRoute | null>(null);
+  const [welcomeDismissed, setWelcomeDismissed] = useState(false);
   const noticeTimerRef = useRef<number | null>(null);
   const vocabulary = useVocabularySnapshot();
 
@@ -254,7 +256,7 @@ export function App(): React.JSX.Element {
   );
 
   return (
-    <div className="desktop-app" data-area={activeArea}>
+    <div className="desktop-app shell-brutal" data-area={activeArea}>
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>
@@ -263,6 +265,7 @@ export function App(): React.JSX.Element {
         activeArea={activeArea}
         learnerName={studyState.settings.learnerName}
         targetDate={studyState.settings.targetTestDate}
+        dueCount={vocabularyStats.dueNow}
         onSelect={(area) => navigate(area)}
       />
       <main id="main-content" className="app-content" tabIndex={-1}>
@@ -352,6 +355,19 @@ export function App(): React.JSX.Element {
         }}
       />
       <VocabularyReminderHost onNotice={showNotice} />
+
+      {/* Asked once, on the first launch. Answering writes the name to study
+          settings, which flows straight back through refreshStudy and closes
+          this dialog. */}
+      <WelcomeDialog
+        open={!welcomeDismissed && !studyState.settings.onboarded}
+        onSubmit={(name) => {
+          studyRepository.completeOnboarding(name);
+          refreshStudy();
+          showNotice(`Welcome, ${name}. Your name is saved in Settings.`);
+        }}
+        onDismiss={() => setWelcomeDismissed(true)}
+      />
 
       {notice ? (
         <div

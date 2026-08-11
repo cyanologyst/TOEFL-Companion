@@ -55,7 +55,7 @@ export function NativeTitleBar({ onSearch }: NativeTitleBarProps): React.JSX.Ele
   return (
     <header className="native-titlebar">
       <div className="native-titlebar__brand" data-tauri-drag-region="">
-        <img src="/app-icon.svg" alt="" width="20" height="20" />
+        <img src="/app-icon.webp" alt="" width="20" height="20" />
         <span>TOEFL Companion</span>
       </div>
       <div className="native-titlebar__drag" data-tauri-drag-region="" />

@@ -1,0 +1,1139 @@
+/* Speaking - neo-brutalism
+ *
+ * Three surfaces on the shared brutalist system: browsing the library,
+ * answering a question, and the listen-and-repeat loop. Each fills the
+ * viewport; only the topic rail, the preparation list, and the transcript
+ * scroll, inside their own frames.
+ *
+ * The authored moment is the recorder engaging - the one place where the
+ * interface has to be unmistakable about a live condition.
+ */
+
+.speaking.brutal,
+.practice.brutal,
+.repeat.brutal {
+  padding: 20px 24px 18px;
+  gap: 14px;
+}
+
+/* -- Browse ----------------------------------------------------------------- */
+
+.speaking__body {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  gap: 14px;
+  grid-template-columns: 300px minmax(0, 1fr);
+}
+
+.sp-rail {
+  min-height: 0;
+  padding: 0;
+  gap: 0;
+}
+
+.sp-rail__head {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  padding: 14px;
+  border-bottom: var(--edge) solid var(--ink);
+  gap: 10px;
+}
+
+/* One filter per row. Side by side in a 230px rail left about 105px each,
+   which is narrower than every option these two offer, so all of them
+   truncated. */
+.sp-rail__filters {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.sp-rail__filters label {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.sp-rail__filters > label > span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sp-rail__filters .b-field {
+  height: 36px;
+  padding: 0 8px;
+}
+
+.sp-rail__list {
+  padding: 8px;
+}
+
+.sp-group + .sp-group {
+  margin-top: 10px;
+}
+
+.sp-group h3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 6px 4px;
+  font-family: var(--font-flat);
+  font-size: 10px;
+  font-weight: 700;
+  gap: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sp-topic {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  padding: 9px 10px;
+  border: 2px solid transparent;
+  border-radius: var(--round-sm);
+  background: transparent;
+  cursor: pointer;
+  gap: 10px;
+  text-align: left;
+  transition:
+    transform 100ms var(--snap),
+    background-color 100ms var(--snap);
+}
+
+.sp-topic:hover {
+  background: rgba(18, 16, 12, 0.06);
+}
+
+.sp-topic[data-active="true"] {
+  border-color: var(--ink);
+  background: var(--pop-sun);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.sp-topic__num {
+  flex: 0 0 auto;
+  font-family: var(--font-display);
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+.sp-topic[data-active="true"] .sp-topic__num {
+  opacity: 1;
+}
+
+.sp-topic__copy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.sp-topic__copy strong {
+  font-family: var(--font-flat);
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.sp-topic__copy small {
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0.65;
+}
+
+.sp-topic__pct {
+  flex: 0 0 auto;
+  font-family: var(--font-display);
+  font-size: 11px;
+}
+
+.sp-rail__foot {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-top: var(--edge) solid var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+  gap: 8px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* -- Detail ----------------------------------------------------------------- */
+
+.sp-detail {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sp-question {
+  flex: 0 0 auto;
+  padding: 18px 20px;
+  gap: 12px;
+}
+
+.sp-question__top {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.sp-question__meta {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.sp-question__meta strong {
+  font-family: var(--font-display);
+  font-size: 17px;
+}
+
+.sp-question__meta span {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.sp-qpick {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  gap: 6px;
+}
+
+.sp-qpick button {
+  width: 38px;
+  height: 38px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  box-shadow: 3px 3px 0 var(--ink);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 13px;
+  transition:
+    transform 100ms var(--snap),
+    box-shadow 100ms var(--snap);
+}
+
+.sp-qpick button[data-active="true"] {
+  background: var(--pop-sky);
+}
+
+.sp-qpick button:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+.sp-question__prompt {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.sp-question__plan {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 11px 14px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  margin: 0;
+  background: var(--pop-lime);
+  font-size: 13.5px;
+  font-weight: 600;
+  gap: 9px;
+  line-height: 1.4;
+}
+
+/* -- Preparation ------------------------------------------------------------ */
+
+.sp-prep {
+  min-height: 0;
+  flex: 1;
+  padding: 0;
+  gap: 0;
+}
+
+.sp-tabs {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+}
+
+.sp-tabs button {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 12px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  cursor: pointer;
+  font-family: var(--font-flat);
+  font-size: 12px;
+  font-weight: 700;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.sp-tabs button[data-active="true"] {
+  background: var(--pop-sun);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.sp-tabs small {
+  font-family: var(--font-display);
+  font-size: 11px;
+}
+
+.sp-prep__list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  gap: 8px;
+  list-style: none;
+}
+
+.sp-prep__list li {
+  padding: 10px 13px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.sp-prep__sample {
+  padding: 12px 14px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  margin-bottom: 10px;
+  background: var(--paper);
+}
+
+.sp-prep__sample h4 {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-size: 12px;
+}
+
+.sp-prep__sample p {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* -- Start bar -------------------------------------------------------------- */
+
+.sp-start {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: var(--pop-lime);
+  gap: 14px;
+}
+
+.sp-start strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 15px;
+}
+
+.sp-start span {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.75;
+}
+
+/* -- Empty ------------------------------------------------------------------ */
+
+.sp-empty {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 36px;
+  gap: 10px;
+  text-align: center;
+}
+
+.sp-empty h2 {
+  font-size: 24px;
+}
+
+.sp-empty p {
+  max-width: 40ch;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@media (max-width: 1120px) {
+  .speaking__body {
+    grid-template-columns: 252px minmax(0, 1fr);
+  }
+}
+
+/* ===========================================================================
+   Interview practice
+   The recorder holds a fixed right column; the question and transcript share
+   the left. The authored moment is the recorder going live.
+   =========================================================================== */
+
+.practice__body {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  gap: 14px;
+  grid-template-columns: minmax(0, 1fr) 330px;
+}
+
+.practice__main,
+.practice__side {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pr-question {
+  flex: 0 0 auto;
+  padding: 18px 20px;
+  gap: 10px;
+}
+
+.pr-question p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 21px;
+  line-height: 1.28;
+  text-wrap: balance;
+}
+
+.pr-question small {
+  font-size: 12.5px;
+  font-weight: 600;
+  opacity: 0.72;
+}
+
+.pr-transcript {
+  min-height: 0;
+  flex: 1;
+  padding: 0;
+  gap: 0;
+}
+
+.pr-transcript__canvas {
+  min-height: 0;
+  flex: 1;
+  padding: 14px 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--ink) transparent;
+  scrollbar-width: thin;
+}
+
+.pr-transcript__canvas p {
+  margin: 0;
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.pr-transcript__foot {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 14px;
+  border-top: var(--edge) solid var(--ink);
+  gap: 10px;
+}
+
+.pr-transcript__foot audio {
+  height: 34px;
+  max-width: 240px;
+}
+
+.pr-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* -- Recorder --------------------------------------------------------------- */
+
+.pr-recorder {
+  flex: 0 0 auto;
+  align-items: center;
+  padding: 18px;
+  gap: 12px;
+  text-align: center;
+}
+
+.pr-recorder__head {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* The dial is the only round thing in this world, which is what makes the
+   countdown read as a clock rather than another panel. */
+.pr-dial {
+  display: grid;
+  width: 152px;
+  height: 152px;
+  border: var(--edge) solid var(--ink);
+  border-radius: 50%;
+  background:
+    conic-gradient(var(--pop-flame) var(--progress, 360deg), var(--paper) 0) content-box,
+    var(--paper);
+  box-shadow: var(--shadow-hard);
+  place-items: center;
+}
+
+.pr-dial__inner {
+  display: grid;
+  width: 104px;
+  height: 104px;
+  border: var(--edge) solid var(--ink);
+  border-radius: 50%;
+  background: var(--paper);
+  place-items: center;
+}
+
+.pr-dial strong {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.pr-dial span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.pr-recorder__status {
+  min-height: 34px;
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.pr-support {
+  min-height: 0;
+  flex: 1;
+  padding: 0;
+  gap: 0;
+}
+
+.pr-support__body {
+  min-height: 0;
+  flex: 1;
+  padding: 12px 14px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--ink) transparent;
+  scrollbar-width: thin;
+}
+
+.practice__foot {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  gap: 14px;
+}
+
+.practice__dots {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.practice__dots button {
+  width: 36px;
+  height: 36px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  box-shadow: 3px 3px 0 var(--ink);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 13px;
+}
+
+.practice__dots button[data-active="true"] {
+  background: var(--pop-sky);
+}
+
+/* ===========================================================================
+   Listen & Repeat
+   Four steps, two rows, every card clipped to its cell.
+   =========================================================================== */
+
+.repeat__body {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  gap: 14px;
+  grid-template-columns: 288px minmax(0, 1fr);
+}
+
+.repeat__main {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rp-steps {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  padding: 0;
+  margin: 0;
+  gap: 8px;
+  list-style: none;
+}
+
+.rp-steps li {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 11px;
+  border: var(--edge) solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  font-family: var(--font-flat);
+  font-size: 12px;
+  font-weight: 700;
+  gap: 8px;
+}
+
+.rp-steps li span {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--paper);
+  font-family: var(--font-display);
+  font-size: 11px;
+  place-items: center;
+}
+
+.rp-steps li[data-state="current"] {
+  background: var(--pop-sun);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.rp-steps li[data-state="complete"] span {
+  background: var(--pop-mint);
+}
+
+.repeat__grid {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.rp-card {
+  min-height: 0;
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
+}
+
+.rp-card__body {
+  min-height: 0;
+  flex: 1;
+  padding: 12px 14px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--ink) transparent;
+  scrollbar-width: thin;
+}
+
+.rp-player {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Bars flex so the waveform always fills its track, whatever the width. */
+.rp-wave {
+  display: flex;
+  min-width: 0;
+  height: 40px;
+  flex: 1;
+  align-items: center;
+  padding: 0 8px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  gap: 2px;
+}
+
+.rp-wave i {
+  width: auto;
+  min-width: 2px;
+  max-width: 7px;
+  flex: 1 1 3px;
+  border-radius: 2px;
+  background: var(--ink);
+}
+
+.rp-card textarea {
+  width: 100%;
+  min-height: 0;
+  flex: 1;
+  padding: 10px 12px;
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-flat);
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.5;
+  resize: none;
+}
+
+.rp-accuracy {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.rp-accuracy__track {
+  position: relative;
+  min-width: 0;
+  height: 18px;
+  flex: 1;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+}
+
+.rp-accuracy__fill {
+  height: 100%;
+  border-right: 2px solid var(--ink);
+  background: var(--pop-mint);
+  transition: width 320ms var(--snap);
+}
+
+.repeat__foot {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px 14px;
+  gap: 10px;
+}
+
+@media (max-width: 1120px) {
+  .practice__body {
+    grid-template-columns: minmax(0, 1fr) 288px;
+  }
+
+  .repeat__body {
+    grid-template-columns: 244px minmax(0, 1fr);
+  }
+
+  .pr-dial {
+    width: 128px;
+    height: 128px;
+  }
+}
+
+/* The dial's inner disc stacks its own two lines. */
+.pr-dial__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+}
+
+/* Recording is the authored moment: the phase badge blinks hard while live. */
+.pr-recorder .recorder-phase-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 11px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  font-family: var(--font-flat);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pr-recorder .recorder-phase-badge[data-tone="recording"] {
+  animation: b-live 900ms steps(1, end) infinite;
+}
+
+.pr-recorder .recorder-phase-badge[data-tone="saved"] {
+  background: var(--pop-mint);
+}
+
+.pr-transcript .transcription-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 11px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  font-family: var(--font-flat);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pr-transcript .transcription-status[data-live="true"] {
+  animation: b-live 900ms steps(1, end) infinite;
+}
+
+/* -- Practice header --------------------------------------------------------
+   Back, identity, and the mode switch on one line. The generic brutal head
+   wraps by default, which stacked the switch under the back button and left
+   the title floating in the middle. */
+.brutal.practice > .brutal__head {
+  flex-wrap: nowrap;
+  gap: 16px;
+}
+
+.brutal.practice > .brutal__head > .brutal__title {
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.brutal.practice .brutal__title h1 {
+  overflow: hidden;
+  font-size: 24px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.brutal.practice .brutal__title span {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  opacity: 0.72;
+  text-transform: uppercase;
+}
+
+/* The footer is a frame, and frames are columns; this one is a row. */
+.b-frame.practice__foot,
+.b-frame.repeat__foot {
+  flex-direction: row;
+}
+
+/* -- Support accordion ------------------------------------------------------
+   The shared accordion carries its own calm styling; inside a brutalist frame
+   it has to be re-skinned or it reads as three broken white bars. */
+.pr-support .study-accordion__item {
+  border: 2px solid var(--ink);
+  border-radius: var(--round-sm);
+  margin-bottom: 8px;
+  background: var(--paper);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.pr-support .study-accordion__trigger {
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: var(--font-flat);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.pr-support .study-accordion__item[data-state="open"] .study-accordion__trigger {
+  border-bottom: 2px solid var(--ink);
+  background: var(--pop-sun);
+}
+
+.pr-support .study-accordion__content,
+.pr-support .study-accordion__panel {
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.pr-support .study-accordion__content ul,
+.pr-support .study-accordion__panel ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.pr-support .study-accordion__content li,
+.pr-support .study-accordion__panel li {
+  margin-bottom: 5px;
+}
+
+.pr-support h4 {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-size: 12px;
+}
+
+.pr-support p {
+  margin: 0 0 8px;
+}
+
+/* The transcript card puts its content straight into the frame rather than
+   into a `__body` wrapper. `.rp-card` carries `padding: 0` on the assumption
+   that a body provides the inset, so here the label, field and Compare button
+   sat hard against a 3px border and the button was clipped off the bottom by
+   147px. Give the card its own inset and let the field take the slack. */
+.rp-card.transcript-result {
+  padding: 12px 14px 14px;
+  gap: 8px;
+}
+
+.rp-card.transcript-result > .b-head,
+.rp-card.transcript-result > label,
+.rp-card.transcript-result > small,
+.rp-card.transcript-result > .compare-button {
+  flex: 0 0 auto;
+}
+
+.rp-card.transcript-result > textarea {
+  min-height: 60px;
+  flex: 1;
+  resize: none;
+}
+
+.rp-card.transcript-result > .compare-button {
+  width: 100%;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+/* Same guard for the recorder card: actions stay reachable, the stage flexes. */
+.rp-card.repeat-recorder {
+  padding: 12px 14px 14px;
+  gap: 10px;
+}
+
+.rp-card.repeat-recorder > .b-head,
+.rp-card.repeat-recorder > .repeat-recorder__actions {
+  flex: 0 0 auto;
+}
+
+.rp-card.repeat-recorder > .repeat-recorder__stage {
+  min-height: 0;
+  flex: 1;
+}
+
+/* Nothing in a frame should touch its border. This catches any card whose
+   content was not wrapped in a body. */
+.rp-card > *:not(.rp-card__body):not(.b-head) {
+  margin-inline: 0;
+}
+
+/* Four cards in a 2x2 were each getting 169px while the transcript card needed
+   268. Two changes: reclaim the vertical overhead above the grid, and give the
+   two review cards the larger share, since the acting cards (a play button, a
+   record button) genuinely need less room than a text field and a diff. */
+.rp-steps li {
+  padding: 6px 10px;
+  font-size: 11.5px;
+}
+
+.rp-steps li span {
+  width: 19px;
+  height: 19px;
+  font-size: 10px;
+}
+
+.repeat__grid {
+  grid-template-rows: minmax(0, 0.82fr) minmax(0, 1.18fr);
+}
+
+/* Whatever height a card ends up with, its content adapts rather than being
+   cut: the field collapses first, then the body scrolls. */
+.rp-card.transcript-result > textarea {
+  min-height: 0;
+}
+
+.rp-card.transcript-result,
+.rp-card.repeat-recorder {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--ink) transparent;
+  scrollbar-width: thin;
+}
+
+.rp-card.comparison-result > .rp-card__body {
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--ink) transparent;
+  scrollbar-width: thin;
+}
+
+/* The placeholder is reassurance, not content; it should not set the height. */
+.rp-card.comparison-result .comparison-placeholder {
+  gap: 6px;
+}
+
+.rp-card.comparison-result .comparison-placeholder h3 {
+  font-size: 15px;
+}
+
+.rp-card.comparison-result .comparison-placeholder p {
+  font-size: 12.5px;
+  line-height: 1.35;
+}
+
+/* Last guard: whatever a card is given, it scrolls rather than losing content.
+   The comparison card's body did not sit as a direct child, so the earlier
+   rule missed it. */
+.rp-card {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--ink) transparent;
+  scrollbar-width: thin;
+}
+
+/* -- Transcription panel additions -------------------------------------------
+   Transcription now happens on this device after the take, so the panel has to
+   carry a working state and the measurements the local model makes possible.
+   ---------------------------------------------------------------------------- */
+
+.pr-transcript__notice {
+  flex: 0 0 auto;
+  padding: 10px 14px;
+  border-top: var(--edge) solid var(--ink);
+  margin: 0;
+  background: var(--pop-sun);
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.pr-transcript__flagged {
+  flex: 0 0 auto;
+  padding: 11px 14px;
+  border-top: var(--edge) solid var(--ink);
+}
+
+.pr-transcript__flagged h3 {
+  margin-bottom: 7px;
+  font-family: var(--font-flat);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.pr-transcript__flagged ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  gap: 6px;
+  list-style: none;
+}
+
+.pr-transcript__flagged li {
+  padding: 3px 9px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--pop-rose);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pr-transcript__foot span {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pr-transcript__foot strong {
+  font-family: var(--font-display);
+  font-size: 13px;
+}
+
+/* -- Insets for frames that zero their own padding ---------------------------
+   A frame with `padding: 0` hands the inset to each band inside it. These
+   bands never got theirs, so the tab row, the prompt list, and the action row
+   sat directly on the frame's border.
+   ---------------------------------------------------------------------------- */
+
+.sp-prep__body {
+  padding: 12px 14px;
+}
+
+.pr-transcript > .b-row {
+  flex: 0 0 auto;
+  padding: 12px 15px;
+  border-bottom: var(--edge) solid var(--ink);
+}
+
+.pr-actions {
+  flex: 0 0 auto;
+  padding: 12px 15px;
+  border-top: var(--edge) solid var(--ink);
+}

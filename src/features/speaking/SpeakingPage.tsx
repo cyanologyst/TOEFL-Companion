@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AudioWaveform } from "../../components/AudioWaveform";
 import { DoodleIcon } from "../../components/DoodleIcon";
+import { Icon8 } from "../../components/Icon8";
 import { Modal } from "../../components/Modal";
-import { EmptyState, PageHeader, SegmentedControl, StudyAccordion } from "../../components/StudyUI";
+import { SegmentedControl, StudyAccordion } from "../../components/StudyUI";
 import rawListenRepeat from "../../data/listen-repeat.json";
 import rawTopics from "../../data/toefl-data.json";
 import { useSpeakingRecorder } from "../../hooks/useSpeakingRecorder";
@@ -16,6 +17,7 @@ import type {
   SavedRecordingMetadata,
   Topic,
 } from "../../types/toefl";
+import "./speaking.css";
 
 type SpeakingMode = "interview" | "repeat";
 type InterviewMode = "practice" | "exam";
@@ -472,56 +474,62 @@ export function SpeakingPage({
 
   return (
     <div
-      className={`page speaking-page${
-        !activeTopic && mode === "repeat" ? " speaking-page--repeat" : ""
-      }`}
+      className={`brutal speaking${!activeTopic && mode === "repeat" ? " speaking--repeat" : ""}`}
     >
       {!activeTopic ? (
         <>
-          <PageHeader
-            className="speaking-page-header"
-            title="Speaking"
-            description="Build natural interview answers and accurate spoken repetition."
-            icon="mic"
-            actions={
-              <SegmentedControl
-                id="speaking-mode"
-                className="speaking-mode-switch"
-                label="Practice type"
-                items={[
-                  {
-                    value: "interview",
-                    label: "Interview practice",
-                    icon: "mic",
-                    tabId: "speaking-interview-tab",
-                    panelId: "speaking-interview-panel",
-                  },
-                  {
-                    value: "repeat",
-                    label: "Listen & Repeat",
-                    icon: "headphone",
-                    tabId: "speaking-repeat-tab",
-                    panelId: "speaking-repeat-panel",
-                  },
-                ]}
-                value={mode}
-                onValueChange={(nextMode) => {
-                  if (
-                    hasProtectedRecording &&
-                    !window.confirm(
-                      "Discard the active or unsaved recording and change practice type?",
-                    )
-                  ) {
-                    return;
-                  }
-                  setMode(nextMode);
-                }}
-              />
-            }
-          />
+          <header className="brutal__head">
+            <div className="brutal__title">
+              <span className="brutal__title-mark">
+                <DoodleIcon name="mic" size={24} />
+              </span>
+              <div>
+                <h1>Speaking</h1>
+                <p>Build natural interview answers and accurate spoken repetition.</p>
+              </div>
+            </div>
+            <SegmentedControl
+              id="speaking-mode"
+              className="speaking-mode-switch"
+              label="Practice type"
+              items={[
+                {
+                  value: "interview",
+                  label: "Interview practice",
+                  icon: "mic",
+                  tabId: "speaking-interview-tab",
+                  panelId: "speaking-interview-panel",
+                },
+                {
+                  value: "repeat",
+                  label: "Listen & Repeat",
+                  icon: "headphone",
+                  tabId: "speaking-repeat-tab",
+                  panelId: "speaking-repeat-panel",
+                },
+              ]}
+              value={mode}
+              onValueChange={(nextMode) => {
+                if (
+                  hasProtectedRecording &&
+                  !window.confirm(
+                    "Discard the active or unsaved recording and change practice type?",
+                  )
+                ) {
+                  return;
+                }
+                setMode(nextMode);
+              }}
+            />
+          </header>
 
           {mode === "repeat" ? (
-            <div id="speaking-repeat-panel" role="tabpanel" aria-labelledby="speaking-repeat-tab">
+            <div
+              id="speaking-repeat-panel"
+              role="tabpanel"
+              aria-labelledby="speaking-repeat-tab"
+              className="speaking__repeat-host"
+            >
               <ListenRepeatWorkspace
                 onNotice={onNotice}
                 onSaved={onSaved}
@@ -529,182 +537,162 @@ export function SpeakingPage({
               />
             </div>
           ) : (
-            <section
+            <div
               id="speaking-interview-panel"
               role="tabpanel"
               aria-labelledby="speaking-interview-tab"
-              className="speaking-library"
+              className="speaking__body"
             >
-              <div className="speaking-library-toolbar">
-                <label className="search-field speaking-search">
-                  <DoodleIcon name="search" size={17} />
-                  <span className="visually-hidden">Search speaking sets</span>
-                  <input
-                    value={query}
-                    onChange={(event) => setQuery(event.target.value)}
-                    placeholder="Search topics or questions…"
-                  />
-                </label>
-                <label className="speaking-sort speaking-category-filter">
-                  <span>Group</span>
-                  <select value={category} onChange={(event) => setCategory(event.target.value)}>
-                    {categories.map((item) => (
-                      <option key={item} value={item}>
-                        {formatCategory(item)}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <label className="speaking-sort">
-                  <span>Sort</span>
-                  <select
-                    value={sort}
-                    onChange={(event) => setSort(event.target.value as TopicSort)}
-                  >
-                    <option value="library">Library order</option>
-                    <option value="recent">Recently practiced</option>
-                    <option value="progress">Needs practice</option>
-                    <option value="bookmarked">Most bookmarked</option>
-                  </select>
-                </label>
-              </div>
-
-              <div className="speaking-topic-browser">
-                <aside className="panel speaking-topic-navigator">
-                  <header className="speaking-topic-navigator__header">
-                    <div>
-                      <p>NEO interview library</p>
-                      <h2>Topics 1–30</h2>
-                      <small>120 interview questions</small>
-                    </div>
-                    <span aria-live="polite">
+              {/* Search and filters live inside the rail they act on, rather
+                  than as a full-width toolbar above the whole page. */}
+              <aside className="b-frame sp-rail" aria-label="Interview topics">
+                <div className="sp-rail__head">
+                  <div className="b-row b-row--between">
+                    <h2>NEO interview library</h2>
+                    <span className="b-tag" aria-live="polite">
                       {filteredTopics.length}/{topics.length}
                     </span>
-                  </header>
+                  </div>
 
-                  <nav
-                    ref={topicNavigatorScrollRef}
-                    className="speaking-topic-navigator__scroll"
-                    aria-label="Interview topics"
-                  >
-                    {topicGroups.map((group) => {
-                      const groupId = `speaking-topic-group-${group.category
-                        .toLocaleLowerCase()
-                        .replace(/[^a-z0-9]+/gu, "-")}`;
-                      return (
-                        <section
-                          key={group.category}
-                          className="speaking-topic-group"
-                          aria-labelledby={groupId}
-                        >
-                          <h3 id={groupId}>
-                            {formatCategory(group.category)}
-                            <span>{group.topics.length}</span>
-                          </h3>
-                          <div className="speaking-topic-group__items">
-                            {group.topics.map((topic) => {
-                              const progress = progressByTopic.get(topic.id)!;
-                              const selected = selectedTopic.id === topic.id;
-                              return (
-                                <button
-                                  key={topic.id}
-                                  ref={(node) => {
-                                    if (node) {
-                                      topicButtonRefs.current.set(topic.id, node);
-                                    } else {
-                                      topicButtonRefs.current.delete(topic.id);
-                                    }
-                                  }}
-                                  type="button"
-                                  className="speaking-topic-nav-item"
-                                  data-active={selected}
-                                  data-status={progress.status}
-                                  aria-current={selected ? "page" : undefined}
-                                  tabIndex={
-                                    selected ||
-                                    (selectedFilteredIndex < 0 &&
-                                      topic.id === filteredTopics[0]?.id)
-                                      ? 0
-                                      : -1
-                                  }
-                                  onClick={() => selectTopicForPreview(topic.id)}
-                                  onKeyDown={(event) =>
-                                    handleTopicNavigatorKeyDown(event, topic.id)
-                                  }
-                                >
-                                  <span className="speaking-topic-nav-item__number">
-                                    {String(topic.id).padStart(2, "0")}
-                                  </span>
-                                  <span className="speaking-topic-nav-item__copy">
-                                    <strong>{topic.title}</strong>
-                                    <small>
-                                      {progress.completedQuestions}/{topic.questions.length}{" "}
-                                      complete
-                                    </small>
-                                  </span>
-                                  <span className="speaking-topic-nav-item__progress">
-                                    {progress.percent}%
-                                  </span>
-                                </button>
-                              );
-                            })}
-                          </div>
-                        </section>
-                      );
-                    })}
-                  </nav>
+                  <label className="b-field">
+                    <DoodleIcon name="search" size={16} />
+                    <span className="visually-hidden">Search speaking sets</span>
+                    <input
+                      value={query}
+                      onChange={(event) => setQuery(event.target.value)}
+                      placeholder="Search topics or questions…"
+                    />
+                  </label>
 
-                  <footer className="speaking-topic-navigator__footer">
-                    <span>{filteredTopics.length * 4} questions shown</span>
-                    <span>{savedKeys.length} saved</span>
-                  </footer>
-                </aside>
+                  <div className="sp-rail__filters">
+                    <label>
+                      <span>Group</span>
+                      <select
+                        value={category}
+                        onChange={(event) => setCategory(event.target.value)}
+                      >
+                        {categories.map((item) => (
+                          <option key={item} value={item}>
+                            {formatCategory(item)}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                    <label>
+                      <span>Sort</span>
+                      <select
+                        value={sort}
+                        onChange={(event) => setSort(event.target.value as TopicSort)}
+                      >
+                        <option value="library">Library order</option>
+                        <option value="recent">Recently practiced</option>
+                        <option value="progress">Needs practice</option>
+                        <option value="bookmarked">Most bookmarked</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
 
-                <section
-                  className="speaking-topic-preview-region"
-                  aria-label="Selected topic overview"
+                <nav
+                  ref={topicNavigatorScrollRef}
+                  className="b-scroll sp-rail__list"
+                  aria-label="Interview topics"
                 >
-                  {filteredTopics.length ? (
-                    <SelectedTopicOverview
-                      key={selectedTopic.id}
-                      topic={selectedTopic}
-                      progress={selectedTopicProgress}
-                      questionIndex={previewQuestionIndex}
-                      bookmarked={savedKeys.includes(
-                        questionKey(selectedTopic.id, previewQuestionIndex),
-                      )}
-                      onQuestionChange={setPreviewQuestionIndex}
-                      onToggleBookmark={() =>
-                        toggleBookmark(selectedTopic.id, previewQuestionIndex)
-                      }
-                      onStart={() => {
-                        setQuestionIndex(previewQuestionIndex);
-                        setActiveTopicId(selectedTopic.id);
-                      }}
-                    />
-                  ) : (
-                    <EmptyState
-                      className="speaking-empty speaking-topic-preview-empty"
-                      icon="search"
-                      title="No matching speaking sets"
-                      description="Try another search phrase or clear the active topic filter."
-                      action={
-                        <button
-                          type="button"
-                          className="button button--outline"
-                          onClick={() => {
-                            setQuery("");
-                            setCategory("All topics");
-                          }}
-                        >
-                          Clear filters
-                        </button>
-                      }
-                    />
+                  {topicGroups.map((group) => {
+                    const groupId = `speaking-topic-group-${group.category
+                      .toLocaleLowerCase()
+                      .replace(/[^a-z0-9]+/gu, "-")}`;
+                    return (
+                      <section key={group.category} className="sp-group" aria-labelledby={groupId}>
+                        <h3 id={groupId}>
+                          {formatCategory(group.category)}
+                          <span>{group.topics.length}</span>
+                        </h3>
+                        {group.topics.map((topic) => {
+                          const progress = progressByTopic.get(topic.id)!;
+                          const selected = selectedTopic.id === topic.id;
+                          return (
+                            <button
+                              key={topic.id}
+                              ref={(node) => {
+                                if (node) {
+                                  topicButtonRefs.current.set(topic.id, node);
+                                } else {
+                                  topicButtonRefs.current.delete(topic.id);
+                                }
+                              }}
+                              type="button"
+                              className="sp-topic"
+                              data-active={selected}
+                              data-status={progress.status}
+                              aria-current={selected ? "page" : undefined}
+                              tabIndex={
+                                selected ||
+                                (selectedFilteredIndex < 0 && topic.id === filteredTopics[0]?.id)
+                                  ? 0
+                                  : -1
+                              }
+                              onClick={() => selectTopicForPreview(topic.id)}
+                              onKeyDown={(event) => handleTopicNavigatorKeyDown(event, topic.id)}
+                            >
+                              <span className="sp-topic__num">
+                                {String(topic.id).padStart(2, "0")}
+                              </span>
+                              <span className="sp-topic__copy">
+                                <strong>{topic.title}</strong>
+                                <small>
+                                  {progress.completedQuestions}/{topic.questions.length} complete
+                                </small>
+                              </span>
+                              <span className="sp-topic__pct">{progress.percent}%</span>
+                            </button>
+                          );
+                        })}
+                      </section>
+                    );
+                  })}
+                </nav>
+
+                <footer className="sp-rail__foot">
+                  <span>{filteredTopics.length * 4} questions shown</span>
+                  <span>{savedKeys.length} saved</span>
+                </footer>
+              </aside>
+
+              {filteredTopics.length ? (
+                <SelectedTopicOverview
+                  key={selectedTopic.id}
+                  topic={selectedTopic}
+                  progress={selectedTopicProgress}
+                  questionIndex={previewQuestionIndex}
+                  bookmarked={savedKeys.includes(
+                    questionKey(selectedTopic.id, previewQuestionIndex),
                   )}
-                </section>
-              </div>
-            </section>
+                  onQuestionChange={setPreviewQuestionIndex}
+                  onToggleBookmark={() => toggleBookmark(selectedTopic.id, previewQuestionIndex)}
+                  onStart={() => {
+                    setQuestionIndex(previewQuestionIndex);
+                    setActiveTopicId(selectedTopic.id);
+                  }}
+                />
+              ) : (
+                <div className="b-frame sp-empty">
+                  <DoodleIcon name="search" size={30} />
+                  <strong>No matching speaking sets</strong>
+                  <p>Try another search phrase or clear the active topic filter.</p>
+                  <button
+                    type="button"
+                    className="b-btn"
+                    onClick={() => {
+                      setQuery("");
+                      setCategory("All topics");
+                    }}
+                  >
+                    Clear filters
+                  </button>
+                </div>
+              )}
+            </div>
           )}
         </>
       ) : (
@@ -817,6 +805,9 @@ function SelectedTopicOverview({
   onStart: () => void;
 }): React.JSX.Element {
   const [supportDialog, setSupportDialog] = useState<SpeakingSupportKind | null>(null);
+  const [prepTab, setPrepTab] = useState<SpeakingSupportKind>("ideas");
+  const questionTabRefs = useRef(new Map<number, HTMLButtonElement>());
+  const questionTabBaseId = `speaking-topic-${topic.id}-questions`;
   const activeQuestion = topic.questions[questionIndex];
   const actionLabel =
     progress.status === "ready"
@@ -825,150 +816,189 @@ function SelectedTopicOverview({
         ? "Practice again"
         : "Continue practice";
 
+  const prepTabs: Array<{ value: SpeakingSupportKind; label: string; count: number }> = [
+    { value: "ideas", label: "Ideas", count: activeQuestion.ideas.length },
+    {
+      value: "collocations",
+      label: "Collocations",
+      count: activeQuestion.collocations.length,
+    },
+    { value: "samples", label: "Sample answers", count: 2 },
+  ];
+
   return (
-    <article className="panel speaking-topic-preview" data-status={progress.status}>
-      <section className="speaking-topic-question-preview" aria-label="Question preview">
-        <SegmentedControl
-          key={topic.id}
-          id={`speaking-topic-${topic.id}-questions`}
-          className="speaking-topic-question-tabs"
-          label={`${topic.title} questions`}
-          items={topic.questions.map((item, index) => ({
-            value: String(index),
-            label: `Q${index + 1}`,
-            panel: (
-              <div className="speaking-topic-question-panel">
-                <header className="speaking-topic-question-panel__header">
-                  <div>
-                    <p>Question {index + 1} preview</p>
-                    <h3>{item.prompt}</h3>
-                  </div>
-                  <button
-                    type="button"
-                    className="icon-button speaking-topic-question-bookmark"
-                    aria-label={bookmarked ? "Remove question bookmark" : "Bookmark this question"}
-                    aria-pressed={bookmarked}
-                    title={bookmarked ? "Remove bookmark" : "Save question"}
-                    onClick={onToggleBookmark}
-                  >
-                    <DoodleIcon name="bookmark" size={20} />
-                  </button>
-                </header>
+    <div className="sp-detail" data-status={progress.status}>
+      <section className="b-frame sp-question b-stamp" aria-label="Question preview">
+        <div className="sp-question__top">
+          <div className="sp-question__meta">
+            <strong>{topic.title}</strong>
+            <span>
+              {formatCategory(topic.category)} · {progress.completedQuestions}/
+              {topic.questions.length} complete
+            </span>
+          </div>
 
-                <p className="speaking-topic-question-panel__plan">
-                  <DoodleIcon name="bulb" size={18} />
-                  {item.plan}
-                </p>
+          <div className="b-row">
+            {/* One panel, four tabs: the questions share a single region that
+                swaps content, so roving tabindex moves focus while only the
+                selected tab owns the panel. */}
+            <div
+              className="sp-qpick"
+              role="tablist"
+              aria-label={`${topic.title} questions`}
+              onKeyDown={(event) => {
+                const last = topic.questions.length - 1;
+                let next: number | null = null;
+                if (event.key === "ArrowRight") {
+                  next = questionIndex === last ? 0 : questionIndex + 1;
+                } else if (event.key === "ArrowLeft") {
+                  next = questionIndex === 0 ? last : questionIndex - 1;
+                } else if (event.key === "Home") {
+                  next = 0;
+                } else if (event.key === "End") {
+                  next = last;
+                }
+                if (next !== null) {
+                  event.preventDefault();
+                  setSupportDialog(null);
+                  onQuestionChange(next);
+                  questionTabRefs.current.get(next)?.focus();
+                }
+              }}
+            >
+              {topic.questions.map((item, index) => (
+                <button
+                  key={item.prompt}
+                  ref={(node) => {
+                    if (node) {
+                      questionTabRefs.current.set(index, node);
+                    } else {
+                      questionTabRefs.current.delete(index);
+                    }
+                  }}
+                  type="button"
+                  role="tab"
+                  id={`${questionTabBaseId}-tab-${index}`}
+                  aria-controls={`${questionTabBaseId}-panel`}
+                  aria-selected={index === questionIndex}
+                  tabIndex={index === questionIndex ? 0 : -1}
+                  data-active={index === questionIndex}
+                  onClick={() => {
+                    setSupportDialog(null);
+                    onQuestionChange(index);
+                  }}
+                >
+                  Q{index + 1}
+                </button>
+              ))}
+            </div>
+            <button
+              type="button"
+              className="b-icon-btn"
+              aria-label={bookmarked ? "Remove question bookmark" : "Bookmark this question"}
+              aria-pressed={bookmarked}
+              title={bookmarked ? "Remove bookmark" : "Save question"}
+              onClick={onToggleBookmark}
+            >
+              <DoodleIcon name="bookmark" size={19} />
+            </button>
+          </div>
+        </div>
 
-                <div className="speaking-topic-support-summary">
-                  <article className="speaking-topic-support-card speaking-topic-support-card--ideas">
-                    <header>
-                      <span>
-                        <DoodleIcon name="bulb" size={18} />
-                        Ideas
-                      </span>
-                      <div className="speaking-topic-support-card__header-actions">
-                        <small>{item.ideas.length}</small>
-                        <button
-                          type="button"
-                          className="speaking-topic-support-card__view"
-                          aria-label={`View all ${item.ideas.length} ideas`}
-                          aria-haspopup="dialog"
-                          onClick={() => setSupportDialog("ideas")}
-                        >
-                          Open
-                          <DoodleIcon name="arrow" size={11} className="doodle-icon--forward" />
-                        </button>
-                      </div>
-                    </header>
-                    <ul>
-                      {item.ideas.slice(0, 3).map((idea) => (
-                        <li key={idea}>{idea}</li>
-                      ))}
-                    </ul>
-                  </article>
+        <div
+          className="sp-question__panel"
+          id={`${questionTabBaseId}-panel`}
+          role="tabpanel"
+          aria-labelledby={`${questionTabBaseId}-tab-${questionIndex}`}
+        >
+          <p className="sp-question__prompt">{activeQuestion.prompt}</p>
 
-                  <article className="speaking-topic-support-card speaking-topic-support-card--collocations">
-                    <header>
-                      <span>
-                        <DoodleIcon name="bookmark" size={18} />
-                        Collocations
-                      </span>
-                      <div className="speaking-topic-support-card__header-actions">
-                        <small>{item.collocations.length}</small>
-                        <button
-                          type="button"
-                          className="speaking-topic-support-card__view"
-                          aria-label={`View all ${item.collocations.length} collocations`}
-                          aria-haspopup="dialog"
-                          onClick={() => setSupportDialog("collocations")}
-                        >
-                          Open
-                          <DoodleIcon name="arrow" size={11} className="doodle-icon--forward" />
-                        </button>
-                      </div>
-                    </header>
-                    <div className="speaking-topic-collocation-preview">
-                      {item.collocations.slice(0, 4).map((collocation) => (
-                        <span key={collocation}>{collocation}</span>
-                      ))}
-                    </div>
-                  </article>
-
-                  <article className="speaking-topic-support-card speaking-topic-support-card--samples">
-                    <header>
-                      <span>
-                        <DoodleIcon name="doc" size={18} />
-                        Sample answers
-                      </span>
-                      <div className="speaking-topic-support-card__header-actions">
-                        <small>2</small>
-                        <button
-                          type="button"
-                          className="speaking-topic-support-card__view"
-                          aria-label="View both sample answers"
-                          aria-haspopup="dialog"
-                          onClick={() => setSupportDialog("samples")}
-                        >
-                          Open
-                          <DoodleIcon name="arrow" size={11} className="doodle-icon--forward" />
-                        </button>
-                      </div>
-                    </header>
-                    <div className="speaking-topic-sample-preview">
-                      <p>
-                        <strong>Sample 1</strong>
-                        {item.answer}
-                      </p>
-                      <p>
-                        <strong>Sample 2</strong>
-                        {item.answer2}
-                      </p>
-                    </div>
-                  </article>
-                </div>
-              </div>
-            ),
-          }))}
-          value={String(questionIndex)}
-          onValueChange={(value) => {
-            setSupportDialog(null);
-            onQuestionChange(Number(value));
-          }}
-        />
+          <p className="sp-question__plan">
+            <DoodleIcon name="bulb" size={17} />
+            {activeQuestion.plan}
+          </p>
+        </div>
       </section>
 
-      <footer className="speaking-topic-preview__actions">
-        <div>
+      {/* One preparation panel rather than three side-by-side cells: the cells
+          were narrow enough that every idea, phrase, and sample was truncated. */}
+      <section className="b-frame sp-prep" aria-label="Preparation material">
+        <div className="b-head">
+          <h2 className="visually-hidden">Preparation</h2>
+          <div className="b-row">
+            <div className="sp-tabs" role="tablist" aria-label="Preparation material">
+              {prepTabs.map((tab) => (
+                <button
+                  key={tab.value}
+                  type="button"
+                  role="tab"
+                  aria-selected={prepTab === tab.value}
+                  data-active={prepTab === tab.value}
+                  onClick={() => setPrepTab(tab.value)}
+                >
+                  {tab.label}
+                  <small>{tab.count}</small>
+                </button>
+              ))}
+            </div>
+            {/* Named for what it opens, not for what it is: "Open full" alone
+                gives a screen-reader user no idea which list appears. */}
+            <button
+              type="button"
+              className="button button--quiet button--small"
+              aria-haspopup="dialog"
+              aria-label={
+                prepTab === "ideas"
+                  ? `View all ${activeQuestion.ideas.length} ideas`
+                  : prepTab === "collocations"
+                    ? `View all ${activeQuestion.collocations.length} collocations`
+                    : "View both sample answers"
+              }
+              onClick={() => setSupportDialog(prepTab)}
+            >
+              Open full
+            </button>
+          </div>
+        </div>
+
+        <div className="b-scroll sp-prep__body">
+          {prepTab === "ideas" ? (
+            <ul className="sp-prep__list">
+              {activeQuestion.ideas.map((idea) => (
+                <li key={idea}>{idea}</li>
+              ))}
+            </ul>
+          ) : prepTab === "collocations" ? (
+            <ul className="sp-prep__list">
+              {activeQuestion.collocations.map((collocation) => (
+                <li key={collocation}>{collocation}</li>
+              ))}
+            </ul>
+          ) : (
+            <div className="sp-prep__samples">
+              <section>
+                <h3>Sample 1</h3>
+                <p>{activeQuestion.answer}</p>
+              </section>
+              <section>
+                <h3>Sample 2</h3>
+                <p>{activeQuestion.answer2}</p>
+              </section>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <div className="b-frame sp-start">
+        <div className="sp-start__copy">
           <strong>Ready for question {questionIndex + 1}?</strong>
           <span>The recorder opens only when you start practice.</span>
         </div>
-        <button type="button" className="button button--primary" onClick={onStart}>
+        <button type="button" className="b-btn b-btn--lime" onClick={onStart}>
           <DoodleIcon name="mic" size={18} />
           {actionLabel}
-          <DoodleIcon name="arrow" size={16} className="doodle-icon--forward" />
         </button>
-      </footer>
+      </div>
 
       {supportDialog ? (
         <SpeakingSupportDialog
@@ -979,7 +1009,7 @@ function SelectedTopicOverview({
           onClose={() => setSupportDialog(null)}
         />
       ) : null}
-    </article>
+    </div>
   );
 }
 
@@ -1101,25 +1131,101 @@ function InterviewPractice({
             ? "saved"
             : "neutral";
 
-  return (
-    <div className="interview-practice" data-practice-mode={interviewMode}>
-      <header className="practice-page-header interview-practice-header">
+  const recorderPanel = (
+    <section
+      className="b-frame pr-recorder"
+      aria-busy={activelyRecording || recorder.phase === "saving"}
+      aria-label="Response recorder"
+    >
+      <div className="pr-recorder__head">
+        <h2>Response timer</h2>
+        <span className="recorder-phase-badge" data-tone={statusTone}>
+          {recorder.phase === "recording"
+            ? "Recording"
+            : recorder.phase === "completed"
+              ? "Draft ready"
+              : recorder.phase === "saved"
+                ? "Saved"
+                : recorder.phase === "failed"
+                  ? "Needs attention"
+                  : recorder.phase === "preparing"
+                    ? "Get ready"
+                    : "Ready"}
+        </span>
+      </div>
+
+      <div
+        className="pr-dial"
+        role="timer"
+        aria-label={`${
+          recorder.phase === "preparing" ? recorder.countdown : recorder.secondsLeft
+        } seconds remaining`}
+        style={
+          {
+            "--progress": `${
+              recorder.phase === "recording" ? (recorder.secondsLeft / maxSeconds) * 360 : 360
+            }deg`,
+          } as React.CSSProperties
+        }
+      >
+        {/* Inner disc so the conic fill reads as a ring rather than a pie. */}
+        <span className="pr-dial__inner">
+          <strong>
+            {recorder.phase === "preparing" ? recorder.countdown : recorder.secondsLeft}
+          </strong>
+          <span>{recorder.phase === "preparing" ? "ready" : "sec"}</span>
+        </span>
+      </div>
+
+      <p className="pr-recorder__status" role="status" aria-live="polite">
+        {recorder.statusMessage}
+      </p>
+
+      {recorder.phase === "idle" || recorder.phase === "failed" ? (
         <button
           type="button"
-          className="back-button"
+          className="b-btn b-btn--lime"
+          disabled={!recorder.isSupported}
+          onClick={() => void (recorder.phase === "failed" ? recorder.retry() : recorder.start())}
+        >
+          <DoodleIcon name="mic" size={19} />
+          {recorder.phase === "failed" ? "Try microphone again" : "Record response"}
+        </button>
+      ) : recorder.phase === "recording" ? (
+        <button
+          type="button"
+          className="b-btn b-btn--flame"
+          disabled={recorder.isStopping}
+          onClick={recorder.stop}
+        >
+          {recorder.isStopping ? "Finishing…" : "Stop recording"}
+        </button>
+      ) : null}
+    </section>
+  );
+
+  return (
+    <div className="brutal practice" data-practice-mode={interviewMode}>
+      {/* Defined above the tree so the recorder can sit in the side column
+          while the question and transcript share the main one. */}
+      <header className="brutal__head">
+        <button
+          type="button"
+          className="b-btn"
           disabled={navigationLocked}
           onClick={() => navigateSafely(onBack)}
         >
-          <span aria-hidden>←</span> Speaking
+          <DoodleIcon name="arrow" size={13} className="doodle-icon--back" />
+          Speaking
         </button>
-        <div>
-          <p className="practice-eyebrow">
-            NEO {topic.id} · {formatCategory(topic.category)}
-          </p>
+        <div className="brutal__title">
           <h1>{topic.title}</h1>
-          <p>Answer naturally, as you would in the updated TOEFL interview.</p>
+          <span>
+            NEO {topic.id} · {formatCategory(topic.category)} · Question {questionIndex + 1} of{" "}
+            {topic.questions.length}
+          </span>
         </div>
-        <fieldset className="interview-mode-control">
+        <fieldset className="b-switch">
           <legend className="visually-hidden">Interview mode</legend>
           <button
             type="button"
@@ -1140,250 +1246,221 @@ function InterviewPractice({
         </fieldset>
       </header>
 
-      <div className="interview-grid" data-mode={interviewMode}>
-        <section className="panel interview-question">
-          <header>
-            <span>Question {questionIndex + 1}</span>
-            <strong>{topic.questions.length} questions in this set</strong>
-            <button
-              type="button"
-              className="icon-button question-bookmark"
-              aria-label={bookmarked ? "Remove question bookmark" : "Bookmark this question"}
-              aria-pressed={bookmarked}
-              title={bookmarked ? "Remove bookmark" : "Save question"}
-              onClick={onToggleBookmark}
-            >
-              <DoodleIcon name="bookmark" size={20} />
-            </button>
-          </header>
-          <div className="interview-question__body">
-            <span className="question-doodle">
-              <DoodleIcon name="mic" size={42} />
-            </span>
-            <div>
-              <p>{question.prompt}</p>
-              {interviewMode === "practice" ? (
-                <small>Give one clear reason and a specific example.</small>
-              ) : (
-                <small>Exam mode · Support material is hidden.</small>
-              )}
+      <div className="practice__body" data-mode={interviewMode}>
+        <div className="practice__main">
+          <section className="b-frame pr-question b-stamp" aria-label="Current question">
+            <div className="b-row b-row--between">
+              <span>Question {questionIndex + 1}</span>
+              <button
+                type="button"
+                className="b-icon-btn"
+                aria-label={bookmarked ? "Remove question bookmark" : "Bookmark this question"}
+                aria-pressed={bookmarked}
+                title={bookmarked ? "Remove bookmark" : "Save question"}
+                onClick={onToggleBookmark}
+              >
+                <DoodleIcon name="bookmark" size={19} />
+              </button>
             </div>
-          </div>
-        </section>
+            <p>{question.prompt}</p>
+            {interviewMode === "practice" ? (
+              <small>Give one clear reason and a specific example.</small>
+            ) : (
+              <small>Exam mode · Support material is hidden.</small>
+            )}
+          </section>
 
-        <section
-          className="panel interview-recorder"
-          aria-busy={activelyRecording || recorder.phase === "saving"}
-        >
-          <header className="interview-recorder__header">
-            <div>
-              <h2>Response timer</h2>
-              <p>{maxSeconds}-second response</p>
+          <section className="b-frame pr-transcript" aria-label="Transcription">
+            <div className="b-row b-row--between">
+              <h2>Transcription</h2>
+              <span
+                className="transcription-status"
+                data-live={activelyRecording || recorder.transcriptionPhase === "running"}
+                role="status"
+                aria-live="polite"
+              >
+                {activelyRecording
+                  ? "Recording"
+                  : recorder.transcriptionPhase === "running"
+                    ? "Transcribing"
+                    : recorder.transcriptionPhase === "failed"
+                      ? "Unavailable"
+                      : recorder.phase === "saved"
+                        ? "Saved"
+                        : recorder.transcript
+                          ? "Ready"
+                          : "Waiting"}
+              </span>
             </div>
-            <span className="recorder-phase-badge" data-tone={statusTone}>
-              {recorder.phase === "recording"
-                ? "Recording"
-                : recorder.phase === "completed"
-                  ? "Draft ready"
-                  : recorder.phase === "saved"
-                    ? "Saved"
-                    : recorder.phase === "failed"
-                      ? "Needs attention"
-                      : recorder.phase === "preparing"
-                        ? "Get ready"
-                        : "Ready"}
-            </span>
-          </header>
-          <div
-            className="countdown-ring"
-            role="timer"
-            aria-label={`${
-              recorder.phase === "preparing" ? recorder.countdown : recorder.secondsLeft
-            } seconds remaining`}
-            style={
-              {
-                "--progress": `${
-                  recorder.phase === "recording" ? (recorder.secondsLeft / maxSeconds) * 360 : 360
-                }deg`,
-              } as React.CSSProperties
-            }
-          >
-            <strong>
-              {recorder.phase === "preparing" ? recorder.countdown : recorder.secondsLeft}
-            </strong>
-            <span>{recorder.phase === "preparing" ? "get ready" : "seconds"}</span>
-          </div>
-          <p className="recorder-status" role="status" aria-live="polite">
-            {recorder.statusMessage}
-          </p>
-          {recorder.phase === "idle" || recorder.phase === "failed" ? (
-            <button
-              type="button"
-              className="button button--primary button--record"
-              disabled={!recorder.isSupported}
-              onClick={() =>
-                void (recorder.phase === "failed" ? recorder.retry() : recorder.start())
-              }
-            >
-              <DoodleIcon name="mic" size={20} />
-              {recorder.phase === "failed" ? "Try microphone again" : "Record response"}
-            </button>
-          ) : recorder.phase === "recording" ? (
-            <button
-              type="button"
-              className="button button--danger button--record"
-              disabled={recorder.isStopping}
-              onClick={recorder.stop}
-            >
-              {recorder.isStopping ? "Finishing…" : "Stop recording"}
-            </button>
-          ) : null}
-        </section>
+            <div className="pr-transcript__canvas">
+              {recorder.phase === "recording" ? (
+                <AudioWaveform analyserRef={recorder.analyserRef} active />
+              ) : null}
+              <p>
+                {recorder.transcript ||
+                  (recorder.transcriptionPhase === "running"
+                    ? "Transcribing your response on this device…"
+                    : recorder.phase === "recording"
+                      ? "Your words appear here once the take is finished."
+                      : "Record a response and its transcript will appear here.")}
+              </p>
+            </div>
 
-        <section className="panel live-transcription">
-          <header>
-            <div>
-              <h2>Live transcription</h2>
-              <p>Speech recognition may be edited after recording.</p>
-            </div>
-            <span
-              className="transcription-status"
-              data-live={activelyRecording}
-              role="status"
-              aria-live="polite"
-            >
-              {activelyRecording
-                ? "Live"
-                : recorder.phase === "completed"
-                  ? "Draft"
-                  : recorder.phase === "saved"
-                    ? "Saved"
-                    : "Waiting"}
-            </span>
-          </header>
-          <div className="transcription-canvas">
-            {recorder.phase === "recording" ? (
-              <AudioWaveform analyserRef={recorder.analyserRef} active />
+            {recorder.transcriptionError ? (
+              <p className="pr-transcript__notice" role="alert">
+                {recorder.transcriptionError}
+              </p>
             ) : null}
-            <p>{recorder.transcript || "Your spoken words will appear here while you record."}</p>
-          </div>
-          <footer>
-            <span>
-              Spoken words <strong>{countWords(recorder.transcript)}</strong>
-            </span>
-            {recorder.result ? (
-              <audio controls src={recorder.result.url} aria-label="Recorded response playback">
-                <track kind="captions" />
-              </audio>
-            ) : null}
-          </footer>
-          {recorder.result && recorder.phase !== "saved" ? (
-            <div className="recording-actions">
-              <button
-                type="button"
-                className="button button--outline"
-                disabled={recorder.pendingAction !== null}
-                onClick={() => void recorder.recordAgain()}
-              >
-                <DoodleIcon name="sync" size={17} />
-                Retry
-              </button>
-              <button
-                type="button"
-                className="button button--quiet"
-                disabled={recorder.pendingAction !== null}
-                onClick={() => void recorder.discard()}
-              >
-                Discard draft
-              </button>
-              <button
-                type="button"
-                className="button button--primary"
-                disabled={recorder.phase === "saving"}
-                onClick={() => void recorder.save()}
-              >
-                <DoodleIcon name="floppy" size={17} />
-                {recorder.phase === "saving" ? "Saving…" : "Save attempt"}
-              </button>
-            </div>
-          ) : null}
-          {recorder.error ? (
-            <p className="inline-error" role="alert">
-              {recorder.error}
-            </p>
-          ) : null}
-        </section>
 
-        {interviewMode === "practice" ? (
-          <aside className="interview-materials" aria-label="Practice support">
-            <StudyAccordion
-              className="interview-support-accordion"
-              defaultValue="ideas"
-              items={[
-                {
-                  value: "ideas",
-                  title: "Ideas to consider",
-                  description: `${Math.min(question.ideas.length, 5)} prompts`,
-                  icon: "bulb",
-                  content: (
-                    <ul>
-                      {question.ideas.slice(0, 5).map((idea) => (
-                        <li key={idea}>{idea}</li>
-                      ))}
-                    </ul>
-                  ),
-                },
-                {
-                  value: "collocations",
-                  title: "Useful collocations",
-                  description: `${Math.min(question.collocations.length, 5)} phrases`,
-                  icon: "bookmark",
-                  content: (
-                    <ul>
-                      {question.collocations.slice(0, 5).map((collocation) => (
-                        <li key={collocation}>{collocation}</li>
-                      ))}
-                    </ul>
-                  ),
-                },
-                {
-                  value: "samples",
-                  title: "Two sample answers",
-                  description: "Compare two approaches",
-                  icon: "doc",
-                  content: (
-                    <div className="sample-answer__content">
-                      <section>
-                        <h4>Sample 1</h4>
-                        <p>{question.answer}</p>
-                      </section>
-                      <section>
-                        <h4>Sample 2</h4>
-                        <p>{question.answer2}</p>
-                      </section>
-                    </div>
-                  ),
-                },
-              ]}
-            />
-          </aside>
-        ) : null}
+            {/* Whisper reports a probability per word. The ones it was least
+                sure of are the closest free stand-in for "an examiner would
+                have had to guess here". */}
+            {recorder.analysis?.lowConfidence.length ? (
+              <div className="pr-transcript__flagged">
+                <h3>Least clear words</h3>
+                <ul>
+                  {recorder.analysis.lowConfidence.slice(0, 8).map((word) => (
+                    <li key={word}>{word}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
+            <div className="pr-transcript__foot">
+              <span>
+                Spoken words <strong>{countWords(recorder.transcript)}</strong>
+              </span>
+              {recorder.analysis ? (
+                <>
+                  <span>
+                    Pace <strong>{Math.round(recorder.analysis.speakingRate)} wpm</strong>
+                  </span>
+                  <span>
+                    Pauses <strong>{recorder.analysis.pauses.length}</strong>
+                  </span>
+                  <span>
+                    Silence <strong>{Math.round(recorder.analysis.silenceRatio * 100)}%</strong>
+                  </span>
+                </>
+              ) : null}
+              {recorder.result ? (
+                <audio controls src={recorder.result.url} aria-label="Recorded response playback">
+                  <track kind="captions" />
+                </audio>
+              ) : null}
+            </div>
+            {recorder.result && recorder.phase !== "saved" ? (
+              <div className="pr-actions">
+                <button
+                  type="button"
+                  className="b-btn"
+                  disabled={recorder.pendingAction !== null}
+                  onClick={() => void recorder.recordAgain()}
+                >
+                  <DoodleIcon name="sync" size={17} />
+                  Retry
+                </button>
+                <button
+                  type="button"
+                  className="b-btn"
+                  disabled={recorder.pendingAction !== null}
+                  onClick={() => void recorder.discard()}
+                >
+                  Discard draft
+                </button>
+                <button
+                  type="button"
+                  className="b-btn b-btn--lime"
+                  disabled={recorder.phase === "saving"}
+                  onClick={() => void recorder.save()}
+                >
+                  <DoodleIcon name="floppy" size={17} />
+                  {recorder.phase === "saving" ? "Saving…" : "Save attempt"}
+                </button>
+              </div>
+            ) : null}
+            {recorder.error ? (
+              <p className="inline-error" role="alert">
+                {recorder.error}
+              </p>
+            ) : null}
+          </section>
+        </div>
+
+        <div className="practice__side">
+          {recorderPanel}
+
+          {interviewMode === "practice" ? (
+            <aside className="b-frame pr-support" aria-label="Practice support">
+              <StudyAccordion
+                className="b-scroll pr-support__body"
+                defaultValue="ideas"
+                items={[
+                  {
+                    value: "ideas",
+                    title: "Ideas to consider",
+                    description: `${Math.min(question.ideas.length, 5)} prompts`,
+                    icon: "bulb",
+                    content: (
+                      <ul>
+                        {question.ideas.slice(0, 5).map((idea) => (
+                          <li key={idea}>{idea}</li>
+                        ))}
+                      </ul>
+                    ),
+                  },
+                  {
+                    value: "collocations",
+                    title: "Useful collocations",
+                    description: `${Math.min(question.collocations.length, 5)} phrases`,
+                    icon: "bookmark",
+                    content: (
+                      <ul>
+                        {question.collocations.slice(0, 5).map((collocation) => (
+                          <li key={collocation}>{collocation}</li>
+                        ))}
+                      </ul>
+                    ),
+                  },
+                  {
+                    value: "samples",
+                    title: "Two sample answers",
+                    description: "Compare two approaches",
+                    icon: "doc",
+                    content: (
+                      <div className="sample-answer__content">
+                        <section>
+                          <h4>Sample 1</h4>
+                          <p>{question.answer}</p>
+                        </section>
+                        <section>
+                          <h4>Sample 2</h4>
+                          <p>{question.answer2}</p>
+                        </section>
+                      </div>
+                    ),
+                  },
+                ]}
+              />
+            </aside>
+          ) : null}
+        </div>
       </div>
 
-      <footer className="question-navigation">
+      <footer className="b-frame practice__foot">
         <button
           type="button"
-          className="button button--quiet"
+          className="b-btn"
           disabled={questionIndex === 0 || navigationLocked}
           onClick={() => navigateSafely(() => onQuestionChange(questionIndex - 1))}
         >
-          <span aria-hidden>←</span> Previous
+          <DoodleIcon name="arrow" size={13} className="doodle-icon--back" />
+          Previous
         </button>
-        <nav className="question-number-list" aria-label="Questions in this set">
+        <nav className="practice__dots" aria-label="Questions in this set">
           {topic.questions.map((item, index) => (
             <button
               type="button"
-              className="question-number-button"
               key={item.prompt}
               aria-label={`Question ${index + 1}`}
               aria-current={index === questionIndex ? "step" : undefined}
@@ -1401,7 +1478,7 @@ function InterviewPractice({
         </nav>
         <button
           type="button"
-          className="button button--primary"
+          className="b-btn b-btn--lime"
           disabled={navigationLocked}
           onClick={() =>
             navigateSafely(() =>
@@ -1412,7 +1489,7 @@ function InterviewPractice({
           }
         >
           {questionIndex + 1 < topic.questions.length ? "Next question" : "Finish set"}
-          <span aria-hidden>→</span>
+          <DoodleIcon name="arrow" size={14} className="doodle-icon--forward" />
         </button>
       </footer>
     </div>
@@ -1677,8 +1754,8 @@ function ListenRepeatWorkspace({
       : "Review from the start";
 
   return (
-    <div className="listen-repeat-layout">
-      <aside className="panel prompt-queue" aria-label="Listen and Repeat prompt queue">
+    <div className="brutal repeat repeat__body">
+      <aside className="b-frame sp-rail prompt-queue" aria-label="Listen and Repeat prompt queue">
         <header>
           <div>
             <p>Scenario {collection.sequence ?? collectionIndex + 1}</p>
@@ -1755,8 +1832,8 @@ function ListenRepeatWorkspace({
         </ol>
       </aside>
 
-      <div className="listen-repeat-main">
-        <ol className="listen-repeat-steps" aria-label="Listen and repeat workflow">
+      <div className="repeat__main">
+        <ol className="rp-steps" aria-label="Listen and repeat workflow">
           {["Listen", "Record", "Compare", "Continue"].map((label, index) => (
             <li
               key={label}
@@ -1769,85 +1846,84 @@ function ListenRepeatWorkspace({
           ))}
         </ol>
 
-        <div className="listen-repeat-practice-grid">
-          <section className="panel listen-prompt-card" data-step-state={stepStates[0]}>
-            <header>
-              <div>
-                <p className="step-eyebrow">Step 1</p>
-                <h2>Listen to the prompt</h2>
-              </div>
+        <div className="repeat__grid">
+          <section className="b-frame rp-card listen-prompt-card" data-step-state={stepStates[0]}>
+            <div className="b-head">
+              <h2>1. Listen to the prompt</h2>
               <span>{prompt.audioFile ? "Original source clip" : "Text-to-speech preview"}</span>
-            </header>
-            <div className="prompt-player">
-              <button
-                type="button"
-                className="prompt-play"
-                onClick={togglePromptPlayback}
-                aria-label={playing ? "Pause prompt" : "Play prompt"}
-                aria-pressed={playing}
-              >
-                <DoodleIcon name={playing ? "pause" : "play"} size={20} />
-              </button>
-              <div className="waveform-placeholder" aria-hidden>
-                {WAVEFORM_BARS.map((bar) => (
-                  <i
-                    key={bar.id}
-                    style={{
-                      height: `${bar.height}px`,
-                    }}
-                  />
-                ))}
-              </div>
-              <time>{formatPromptDuration(prompt.durationSeconds)}</time>
-              {(audioRef.current || utteranceRef.current) && (
+            </div>
+            <div className="b-scroll rp-card__body">
+              <div className="rp-player">
                 <button
                   type="button"
-                  className="button button--quiet prompt-stop"
-                  onClick={stopPromptPlayback}
+                  className="prompt-play"
+                  onClick={togglePromptPlayback}
+                  aria-label={playing ? "Pause prompt" : "Play prompt"}
+                  aria-pressed={playing}
                 >
-                  Stop
+                  <DoodleIcon name={playing ? "pause" : "play"} size={20} />
                 </button>
-              )}
-            </div>
-            <div className="expected-transcript" data-revealed={expectedTranscriptRevealed}>
-              {expectedTranscriptRevealed ? (
-                <div className="expected-transcript__content">
-                  <strong>Expected transcription</strong>
-                  <p>{prompt.transcript}</p>
+                <div className="rp-wave" aria-hidden>
+                  {WAVEFORM_BARS.map((bar) => (
+                    <i
+                      key={bar.id}
+                      style={{
+                        height: `${bar.height}px`,
+                      }}
+                    />
+                  ))}
                 </div>
-              ) : (
-                <div className="expected-transcript__locked">
-                  <span className="expected-transcript__icon" aria-hidden>
-                    <DoodleIcon name="doc" size={18} />
-                  </span>
-                  <div>
-                    <strong>Transcription hidden</strong>
-                    <p>Record your repetition first to reveal the original wording.</p>
-                  </div>
+                <time>{formatPromptDuration(prompt.durationSeconds)}</time>
+                {(audioRef.current || utteranceRef.current) && (
                   <button
                     type="button"
-                    className="button button--quiet expected-transcript__show"
-                    onClick={() => {
-                      setRevealedPromptIds((current) => new Set([...current, prompt.id]));
-                      onNotice("Expected transcription shown.");
-                    }}
+                    className="button button--quiet prompt-stop"
+                    onClick={stopPromptPlayback}
                   >
-                    Show transcription
+                    Stop
                   </button>
-                </div>
-              )}
+                )}
+              </div>
+              <div className="expected-transcript" data-revealed={expectedTranscriptRevealed}>
+                {expectedTranscriptRevealed ? (
+                  <div className="expected-transcript__content">
+                    <strong>Expected transcription</strong>
+                    <p>{prompt.transcript}</p>
+                  </div>
+                ) : (
+                  <div className="expected-transcript__locked">
+                    <span className="expected-transcript__icon" aria-hidden>
+                      <DoodleIcon name="doc" size={18} />
+                    </span>
+                    <div>
+                      <strong>Transcription hidden</strong>
+                      <p>Record your repetition first to reveal the original wording.</p>
+                    </div>
+                    <button
+                      type="button"
+                      className="button button--quiet expected-transcript__show"
+                      onClick={() => {
+                        setRevealedPromptIds((current) => new Set([...current, prompt.id]));
+                        onNotice("Expected transcription shown.");
+                      }}
+                    >
+                      Show transcription
+                    </button>
+                  </div>
+                )}
+              </div>
+              <p className="step-status" role="status" aria-live="polite">
+                {playing
+                  ? "Prompt playing. Pause when you need to."
+                  : hasListened
+                    ? "Prompt heard. You can record your response."
+                    : "Play the full prompt before recording."}
+              </p>
             </div>
-            <p className="step-status" role="status" aria-live="polite">
-              {playing
-                ? "Prompt playing. Pause when you need to."
-                : hasListened
-                  ? "Prompt heard. You can record your response."
-                  : "Play the full prompt before recording."}
-            </p>
           </section>
 
           <section
-            className="panel repeat-recorder"
+            className="b-frame rp-card repeat-recorder"
             data-step-state={stepStates[1]}
             aria-busy={
               recorder.phase === "requesting" ||
@@ -1856,13 +1932,10 @@ function ListenRepeatWorkspace({
               recorder.phase === "saving"
             }
           >
-            <header>
-              <div>
-                <p className="step-eyebrow">Step 2</p>
-                <h2>Record your response</h2>
-              </div>
+            <div className="b-head">
+              <h2>2. Record your response</h2>
               <small>{responseSeconds}-second response, no preparation time.</small>
-            </header>
+            </div>
             <div className="repeat-recorder__stage">
               <span className="repeat-recorder__mic">
                 <DoodleIcon name="mic" size={24} />
@@ -1883,7 +1956,7 @@ function ListenRepeatWorkspace({
               {recorder.phase === "recording" ? (
                 <button
                   type="button"
-                  className="button button--danger"
+                  className="b-btn b-btn--flame"
                   disabled={recorder.isStopping}
                   onClick={recorder.stop}
                 >
@@ -1892,7 +1965,7 @@ function ListenRepeatWorkspace({
               ) : (
                 <button
                   type="button"
-                  className="button button--primary"
+                  className="b-btn b-btn--lime"
                   onClick={() =>
                     void (recorder.phase === "failed" ? recorder.retry() : recorder.start())
                   }
@@ -1910,7 +1983,7 @@ function ListenRepeatWorkspace({
                   </audio>
                   <button
                     type="button"
-                    className="button button--quiet"
+                    className="b-btn"
                     disabled={recorder.pendingAction !== null}
                     onClick={() => {
                       setHasCompared(false);
@@ -1929,114 +2002,109 @@ function ListenRepeatWorkspace({
             ) : null}
           </section>
 
-          <div className="repeat-results">
-            <section className="panel transcript-result" data-step-state={stepStates[2]}>
-              <header>
-                <div>
-                  <p className="step-eyebrow">Step 3</p>
-                  <h2>Your transcription</h2>
-                </div>
-                <span>{countWords(transcript)} words</span>
-              </header>
-              <label htmlFor={`repeat-transcript-${prompt.id}`}>Recognized response</label>
-              <textarea
-                id={`repeat-transcript-${prompt.id}`}
-                value={
-                  recorder.phase === "recording" || recorder.phase === "preparing"
-                    ? recorder.transcript
-                    : editedTranscript
-                }
-                onChange={(event) => {
-                  setEditedTranscript(event.target.value);
-                  setHasCompared(false);
-                }}
-                disabled={!recorder.result}
-                placeholder="Your transcribed response will appear here…"
-              />
-              <small>You can correct recognition errors before comparing.</small>
-              <button
-                type="button"
-                className="button button--outline compare-button"
-                disabled={!compareEnabled}
-                onClick={() => setHasCompared(true)}
-              >
-                <DoodleIcon name="analytics" size={17} />
-                {hasCompared ? "Compare again" : "Compare transcripts"}
-              </button>
-            </section>
-
-            <section
-              className="panel comparison-result"
-              data-step-state={stepStates[3]}
-              aria-live="polite"
+          {/* The two review steps are direct children of the grid so they
+                share the remaining height instead of being nested inside a
+                wrapper that would collapse them. */}
+          <section className="b-frame rp-card transcript-result" data-step-state={stepStates[2]}>
+            <div className="b-head">
+              <h2>3. Your transcription</h2>
+              <span>{countWords(transcript)} words</span>
+            </div>
+            <label htmlFor={`repeat-transcript-${prompt.id}`}>Recognized response</label>
+            <textarea
+              id={`repeat-transcript-${prompt.id}`}
+              value={
+                recorder.phase === "recording" || recorder.phase === "preparing"
+                  ? recorder.transcript
+                  : editedTranscript
+              }
+              onChange={(event) => {
+                setEditedTranscript(event.target.value);
+                setHasCompared(false);
+              }}
+              disabled={!recorder.result}
+              placeholder="Your transcribed response will appear here…"
+            />
+            <small>You can correct recognition errors before comparing.</small>
+            <button
+              type="button"
+              className="button button--outline compare-button"
+              disabled={!compareEnabled}
+              onClick={() => setHasCompared(true)}
             >
-              <header>
-                <div>
-                  <p className="step-eyebrow">Step 4</p>
-                  <h2>Comparison & feedback</h2>
-                </div>
-                {accuracy !== null ? (
-                  <span data-score={accuracy >= 80 ? "good" : "practice"}>
-                    {accuracy >= 80 ? "Good match" : "Keep practicing"}
-                  </span>
-                ) : null}
-              </header>
+              <DoodleIcon name="analytics" size={17} />
+              {hasCompared ? "Compare again" : "Compare transcripts"}
+            </button>
+          </section>
+
+          <section
+            className="b-frame rp-card comparison-result"
+            data-step-state={stepStates[3]}
+            aria-live="polite"
+          >
+            <div className="b-head">
+              <h2>4. Comparison &amp; feedback</h2>
               {accuracy !== null ? (
-                <>
-                  <div className="accuracy-row">
-                    <span>Transcript match</span>
-                    <i
-                      role="progressbar"
-                      aria-label="Transcript match"
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                      aria-valuenow={accuracy}
-                    >
-                      <b style={{ width: `${accuracy}%` }} />
-                    </i>
-                    <strong>{accuracy}%</strong>
-                  </div>
-                  {estimatedBand !== null ? (
-                    <div className="listen-repeat-band">
-                      <div>
-                        <span>Estimated content band</span>
-                        <strong>{estimatedBand}/5</strong>
-                      </div>
-                      <p>{LISTEN_REPEAT_BAND_DESCRIPTIONS[estimatedBand]}</p>
-                      <small>
-                        Transcript-based estimate only. Review your recording for pronunciation and
-                        intelligibility, which are also part of the ETS rubric.
-                      </small>
-                    </div>
-                  ) : null}
-                  <div className="word-difference-groups">
-                    <WordDifferenceGroup label="Missing words" words={differences.missing} />
-                    <WordDifferenceGroup label="Extra words" words={differences.extra} />
-                    <WordDifferenceGroup label="Changed words" words={differences.changed} />
-                  </div>
-                  <p className="comparison-feedback">
-                    {accuracy >= 90
-                      ? "Excellent. Your wording is very close to the original."
-                      : accuracy >= 70
-                        ? "Good work. Replay once and refine the highlighted differences."
-                        : "Listen again, then repeat in shorter phrase groups."}
-                  </p>
-                </>
-              ) : (
-                <div className="comparison-placeholder">
-                  <DoodleIcon name="analytics" size={28} />
-                  <h3>Your comparison will appear here</h3>
-                  <p>Record a response, review the transcript, then choose Compare transcripts.</p>
+                <span data-score={accuracy >= 80 ? "good" : "practice"}>
+                  {accuracy >= 80 ? "Good match" : "Keep practicing"}
+                </span>
+              ) : null}
+            </div>
+            {accuracy !== null ? (
+              <div className="rp-card__body">
+                <div className="accuracy-row">
+                  <span>Transcript match</span>
+                  <i
+                    role="progressbar"
+                    aria-label="Transcript match"
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={accuracy}
+                  >
+                    <b style={{ width: `${accuracy}%` }} />
+                  </i>
+                  <strong>{accuracy}%</strong>
                 </div>
-              )}
-            </section>
-          </div>
+                {estimatedBand !== null ? (
+                  <div className="listen-repeat-band">
+                    <div>
+                      <span>Estimated content band</span>
+                      <strong>{estimatedBand}/5</strong>
+                    </div>
+                    <p>{LISTEN_REPEAT_BAND_DESCRIPTIONS[estimatedBand]}</p>
+                    <small>
+                      Transcript-based estimate only. Review your recording for pronunciation and
+                      intelligibility, which are also part of the ETS rubric.
+                    </small>
+                  </div>
+                ) : null}
+                <div className="word-difference-groups">
+                  <WordDifferenceGroup label="Missing words" words={differences.missing} />
+                  <WordDifferenceGroup label="Extra words" words={differences.extra} />
+                  <WordDifferenceGroup label="Changed words" words={differences.changed} />
+                </div>
+                <p className="comparison-feedback">
+                  {accuracy >= 90
+                    ? "Excellent. Your wording is very close to the original."
+                    : accuracy >= 70
+                      ? "Good work. Replay once and refine the highlighted differences."
+                      : "Listen again, then repeat in shorter phrase groups."}
+                </p>
+              </div>
+            ) : (
+              <div className="comparison-placeholder">
+                <Icon8 name="binoculars" size={40} />
+                <h3>Your comparison will appear here</h3>
+                <p>Record a response, review the transcript, then choose Compare transcripts.</p>
+              </div>
+            )}
+          </section>
         </div>
 
-        <footer className="listen-repeat-footer">
+        <footer className="b-frame repeat__foot">
           <button
             type="button"
-            className="button button--outline"
+            className="b-btn"
             disabled={
               !recorder.result ||
               !hasCompared ||
@@ -2054,7 +2122,7 @@ function ListenRepeatWorkspace({
           </button>
           <button
             type="button"
-            className="button button--primary"
+            className="b-btn b-btn--lime"
             disabled={!hasCompared}
             onClick={() => requestNavigation(nextCollectionIndex, nextPromptIndex)}
           >

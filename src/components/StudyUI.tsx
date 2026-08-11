@@ -11,6 +11,7 @@ import clsx from "clsx";
 import { useId, useRef } from "react";
 import type { KeyboardEvent, ReactElement, ReactNode } from "react";
 import { DoodleIcon, type DoodleIconName } from "./DoodleIcon";
+import { Icon8, illustrationFor } from "./Icon8";
 import { Modal } from "./Modal";
 
 type StudyIcon = DoodleIconName | ReactNode;
@@ -381,12 +382,19 @@ export function EmptyState({
   className,
 }: EmptyStateProps): React.JSX.Element {
   const titleId = useId();
+  // An empty screen is the one place a full drawing earns its size; fall back
+  // to the flat glyph when no illustration matches the meaning.
+  const illustration = typeof icon === "string" ? illustrationFor(icon) : null;
   return (
     <section
       className={clsx("study-empty-state", compact && "is-compact", className)}
       aria-labelledby={titleId}
     >
-      <IconSlot icon={icon} className="study-empty-state__icon" size={28} />
+      {illustration ? (
+        <Icon8 name={illustration} size={compact ? 34 : 48} className="study-empty-state__art" />
+      ) : (
+        <IconSlot icon={icon} className="study-empty-state__icon" size={28} />
+      )}
       <div className="study-empty-state__copy">
         <h2 id={titleId}>{title}</h2>
         <p>{description}</p>
@@ -493,14 +501,12 @@ export function ConfirmDialog({
       description={description}
       onClose={onClose}
       initialFocusRef={cancelRef}
-    >
-      <div className="study-confirm-dialog" aria-busy={pending || undefined}>
-        {children ? <div className="study-confirm-dialog__content">{children}</div> : null}
-        <footer className="modal-actions study-confirm-dialog__actions">
+      footer={
+        <>
           <button
             ref={cancelRef}
             type="button"
-            className="button button--quiet"
+            className="b-btn"
             onClick={onClose}
             disabled={pending}
           >
@@ -508,15 +514,21 @@ export function ConfirmDialog({
           </button>
           <button
             type="button"
-            className={clsx("button", tone === "danger" ? "button--danger" : "button--primary")}
+            className={clsx("b-btn", tone === "danger" ? "b-btn--flame" : "b-btn--lime")}
             onClick={onConfirm}
             disabled={pending}
           >
             {pending ? <SpinnerGapIcon className="is-spinning" size={17} aria-hidden /> : null}
             {pending ? "Working…" : confirmLabel}
           </button>
-        </footer>
-      </div>
+        </>
+      }
+    >
+      {children ? (
+        <div className="study-confirm-dialog" aria-busy={pending || undefined}>
+          {children}
+        </div>
+      ) : null}
     </Modal>
   );
 }

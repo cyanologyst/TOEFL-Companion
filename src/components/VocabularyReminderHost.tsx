@@ -1,152 +1,161 @@
+import { invoke, isTauri } from "@tauri-apps/api/core";
 import { useCallback, useEffect, useRef, useState } from "react";
-import {
-  applyReviewAction,
-  getNextReminderAt,
-  pickNextWord,
-} from "../features/vocabulary/vocabularyEngine";
+import { applyReviewAction } from "../features/vocabulary/vocabularyEngine";
 import { useVocabularySnapshot } from "../hooks/useVocabularySnapshot";
 import { isEditableTarget } from "../lib/keyboard";
+import { decideReminder, isInterruptible, usesInAppCard } from "../services/reminderScheduler";
 import { createReviewEvent, vocabularyRepository } from "../services/vocabularyRepository";
+import type { WordLocation } from "../services/vocabularyRepository";
 import {
   playVocabularyCue,
   showSystemWordNotification,
   speakVocabulary,
 } from "../services/vocabularyBrowser";
-import type { ReviewAction, WordEntry } from "../types/vocabulary";
+import type { ReviewAction } from "../types/vocabulary";
 import { VocabularyReminder } from "./VocabularyReminder";
 
 interface VocabularyReminderHostProps {
   onNotice: (message: string) => void;
 }
 
-function notificationUsesSystem(mode: string): boolean {
+/** One steady heartbeat instead of a timer rebuilt on every state change. */
+const TICK_MS = 1_000;
+
+/* On the desktop the reminder is its own always-on-top window at the corner of
+   the screen, which is the only place it can do its job: a card drawn inside
+   the app is visible only to someone already looking at the app. The in-app
+   card remains for the browser build, where no such window exists. */
+const useDesktopPopup = isTauri();
+
+function usesSystemNotifications(mode: string): boolean {
   return mode === "system" || mode === "toast" || mode === "both";
 }
 
-function notificationUsesPopup(mode: string): boolean {
-  return mode === "popup" || mode === "both";
-}
-
 function navigateToVocabulary(section: string, wordId?: string): void {
-  const params = new URLSearchParams({
-    view: "vocabulary",
-    section,
-  });
+  const params = new URLSearchParams({ view: "vocabulary", section });
   if (wordId) {
     params.set("word", wordId);
   }
   window.history.pushState(null, "", `#${params.toString()}`);
   window.dispatchEvent(new PopStateEvent("popstate"));
   window.requestAnimationFrame(() => {
-    document.getElementById("main-content")?.focus({
-      preventScroll: true,
-    });
+    document.getElementById("main-content")?.focus({ preventScroll: true });
   });
 }
 
+/**
+ * Drives the vocabulary reminder.
+ *
+ * The scheduler decides *whether* and *what*; this component only carries out
+ * the decision and owns the card's lifetime. Everything it needs to read is
+ * held in a ref, so the heartbeat is installed once and is not disturbed by
+ * the vocabulary snapshot changing underneath it - which is what previously
+ * let a review session reset the countdown indefinitely.
+ */
 export function VocabularyReminderHost({
   onNotice,
 }: VocabularyReminderHostProps): React.JSX.Element | null {
   const snapshot = useVocabularySnapshot();
-  const [activeWord, setActiveWord] = useState<WordEntry | null>(null);
-  const shownAtRef = useRef(Date.now());
-  const firingRef = useRef(false);
+  const [active, setActive] = useState<WordLocation | null>(null);
 
-  const fireReminder = useCallback(() => {
-    if (firingRef.current) {
-      return;
-    }
-    firingRef.current = true;
-    try {
-      const now = new Date();
-      const nowIso = now.toISOString();
-      const pausedUntil = snapshot.pausedUntil ? Date.parse(snapshot.pausedUntil) : Number.NaN;
-      if (Number.isFinite(pausedUntil) && pausedUntil > now.getTime()) {
-        vocabularyRepository.setNextReminderAt(new Date(pausedUntil).toISOString());
-        return;
-      }
-
-      const nextAt = getNextReminderAt(snapshot.settings, nowIso);
-      vocabularyRepository.setNextReminderAt(nextAt);
-      const word = pickNextWord(snapshot.wordLists, snapshot.progress, snapshot.settings, nowIso);
-      if (!word) {
-        return;
-      }
-
-      if (notificationUsesSystem(snapshot.settings.notificationMode)) {
-        showSystemWordNotification(word);
-      }
-      if (notificationUsesPopup(snapshot.settings.notificationMode)) {
-        shownAtRef.current = Date.now();
-        setActiveWord(word);
-        playVocabularyCue(snapshot.settings.soundEnabled, "reminder");
-      }
-    } catch {
-      onNotice("The next reminder could not be scheduled because local storage is unavailable.");
-    } finally {
-      firingRef.current = false;
-    }
-  }, [onNotice, snapshot]);
+  const snapshotRef = useRef(snapshot);
+  snapshotRef.current = snapshot;
+  const activeRef = useRef<WordLocation | null>(null);
+  activeRef.current = active;
+  const lastWordIdRef = useRef<string | null>(null);
+  const shownAtRef = useRef(0);
+  const onNoticeRef = useRef(onNotice);
+  onNoticeRef.current = onNotice;
 
   useEffect(() => {
-    if (snapshot.settings.notificationMode === "off") {
-      if (snapshot.nextReminderAt) {
-        vocabularyRepository.setNextReminderAt(null);
-      }
-      return;
-    }
+    const tick = () => {
+      const current = snapshotRef.current;
+      const decision = decideReminder({
+        snapshot: current,
+        nowMs: Date.now(),
+        showing: activeRef.current !== null,
+        interruptible: isInterruptible(),
+        lastWordId: lastWordIdRef.current,
+        // A popup window shows whatever the main window is doing, so only the
+        // in-app card has to wait for the app to be on screen.
+        visible: useDesktopPopup || document.visibilityState === "visible",
+      });
 
-    const now = new Date();
-    const pausedUntil = snapshot.pausedUntil ? Date.parse(snapshot.pausedUntil) : Number.NaN;
-    let target = snapshot.nextReminderAt ? Date.parse(snapshot.nextReminderAt) : Number.NaN;
-
-    if (Number.isFinite(pausedUntil) && pausedUntil > now.getTime()) {
-      target = pausedUntil;
-    } else if (!Number.isFinite(target)) {
-      const firstTarget = getNextReminderAt(snapshot.settings, now.toISOString());
       try {
-        vocabularyRepository.setNextReminderAt(firstTarget);
+        switch (decision.kind) {
+          case "wait":
+            return;
+          case "schedule":
+          case "defer":
+            vocabularyRepository.setNextReminderAt(
+              decision.kind === "schedule" ? decision.at : decision.at,
+            );
+            return;
+          case "fire": {
+            vocabularyRepository.setNextReminderAt(decision.nextAt);
+            lastWordIdRef.current = decision.location.word.id;
+            shownAtRef.current = Date.now();
+
+            if (usesSystemNotifications(current.settings.notificationMode)) {
+              showSystemWordNotification(decision.location.word);
+            }
+            if (usesInAppCard(current.settings.notificationMode)) {
+              if (useDesktopPopup) {
+                void invoke("show_reminder_popup", {
+                  wordId: decision.location.word.id,
+                }).catch(() => {
+                  // If the window cannot open, fall back to the in-app card
+                  // rather than losing the reminder entirely.
+                  setActive(decision.location);
+                });
+              } else {
+                setActive(decision.location);
+              }
+              playVocabularyCue(current.settings.soundEnabled, "reminder");
+            }
+            return;
+          }
+        }
       } catch {
-        onNotice("The reminder schedule could not be saved on this device.");
+        onNoticeRef.current(
+          "The next vocabulary reminder could not be scheduled because local storage is unavailable.",
+        );
       }
-      return;
-    }
+    };
 
-    const remaining = target - now.getTime();
-    if (remaining <= 0) {
-      const frame = window.setTimeout(fireReminder, 0);
-      return () => window.clearTimeout(frame);
-    }
-    const timer = window.setTimeout(() => {
-      if (document.visibilityState === "visible") {
-        fireReminder();
-      }
-    }, remaining);
-    return () => window.clearTimeout(timer);
-  }, [fireReminder, snapshot.nextReminderAt, snapshot.pausedUntil, snapshot.settings, onNotice]);
+    // Run once immediately so a due reminder does not wait a full tick after
+    // the window is reopened.
+    tick();
+    const timer = window.setInterval(tick, TICK_MS);
+    return () => window.clearInterval(timer);
+  }, []);
 
+  /* "Details" on the popup cannot navigate this window directly, so it leaves
+     a marker in the storage both windows already share. */
   useEffect(() => {
-    const catchUp = () => {
-      if (
-        document.visibilityState === "visible" &&
-        snapshot.nextReminderAt &&
-        Date.parse(snapshot.nextReminderAt) <= Date.now()
-      ) {
-        fireReminder();
+    const OPEN_WORD_KEY = "toefl-companion:open-word";
+    const openRequested = (event: StorageEvent) => {
+      if (event.key !== OPEN_WORD_KEY || !event.newValue) {
+        return;
+      }
+      try {
+        const request = JSON.parse(event.newValue) as { id?: string };
+        if (request.id) {
+          window.localStorage.removeItem(OPEN_WORD_KEY);
+          navigateToVocabulary("library", request.id);
+        }
+      } catch {
+        // A malformed marker is not worth surfacing.
       }
     };
-    document.addEventListener("visibilitychange", catchUp);
-    window.addEventListener("focus", catchUp);
-    return () => {
-      document.removeEventListener("visibilitychange", catchUp);
-      window.removeEventListener("focus", catchUp);
-    };
-  }, [fireReminder, snapshot.nextReminderAt]);
+    window.addEventListener("storage", openRequested);
+    return () => window.removeEventListener("storage", openRequested);
+  }, []);
 
   useEffect(() => {
     const onShortcut = (event: KeyboardEvent) => {
       if (
-        snapshot.settings.reviewShortcutEnabled &&
+        snapshotRef.current.settings.reviewShortcutEnabled &&
         !event.defaultPrevented &&
         !event.repeat &&
         !isEditableTarget(event.target) &&
@@ -162,51 +171,49 @@ export function VocabularyReminderHost({
     };
     window.addEventListener("keydown", onShortcut);
     return () => window.removeEventListener("keydown", onShortcut);
-  }, [snapshot.settings.reviewShortcutEnabled]);
+  }, []);
 
-  const recordReview = useCallback(
-    async (action: ReviewAction) => {
-      if (!activeWord) {
-        return;
-      }
-      const location = vocabularyRepository.findWord(activeWord.id, snapshot);
-      if (!location) {
-        setActiveWord(null);
-        return;
-      }
-      const responseSeconds = Math.max(0, (Date.now() - shownAtRef.current) / 1000);
-      const nowIso = new Date().toISOString();
-      const progress = applyReviewAction(
-        snapshot.progress[activeWord.id],
-        activeWord.id,
-        action,
-        nowIso,
-        responseSeconds,
+  const recordReview = useCallback(async (action: ReviewAction) => {
+    const location = activeRef.current;
+    if (!location) {
+      return;
+    }
+
+    const current = snapshotRef.current;
+    const responseSeconds = Math.max(0, (Date.now() - shownAtRef.current) / 1_000);
+    const nowIso = new Date().toISOString();
+    const progress = applyReviewAction(
+      current.progress[location.word.id],
+      location.word.id,
+      action,
+      nowIso,
+      responseSeconds,
+    );
+
+    try {
+      vocabularyRepository.setProgress(
+        location.word.id,
+        progress,
+        createReviewEvent(location, action, responseSeconds),
       );
-      try {
-        vocabularyRepository.setProgress(
-          activeWord.id,
-          progress,
-          createReviewEvent(location, action, responseSeconds),
-        );
-      } catch {
-        onNotice("This reminder response could not be saved. The word remains open.");
-        throw new Error("Reminder response could not be saved.");
-      }
-      playVocabularyCue(snapshot.settings.soundEnabled, action === "known" ? "known" : "later");
-      setActiveWord(null);
-    },
-    [activeWord, onNotice, snapshot],
-  );
+    } catch {
+      onNoticeRef.current("This reminder response could not be saved. The word remains open.");
+      throw new Error("Reminder response could not be saved.");
+    }
 
-  if (!activeWord) {
+    playVocabularyCue(current.settings.soundEnabled, action === "known" ? "known" : "later");
+    setActive(null);
+  }, []);
+
+  if (!active) {
     return null;
   }
 
   return (
-    <div className="vocab-reminder-layer">
+    <div className="vocab-reminder-layer b-portal">
       <VocabularyReminder
-        word={activeWord}
+        word={active.word}
+        collectionTitle={active.list.title}
         durationSeconds={snapshot.settings.popupDurationSeconds}
         compact={
           snapshot.settings.compactNotificationsWhenFullscreen &&
@@ -215,19 +222,21 @@ export function VocabularyReminderHost({
         onReview={recordReview}
         onSnooze={(minutes) => {
           try {
-            vocabularyRepository.snoozeWord(activeWord.id, minutes);
-            setActiveWord(null);
+            vocabularyRepository.snoozeWord(active.word.id, minutes);
+            setActive(null);
           } catch {
-            onNotice("This reminder could not be snoozed because local storage is unavailable.");
+            onNoticeRef.current(
+              "This reminder could not be snoozed because local storage is unavailable.",
+            );
             throw new Error("Reminder could not be snoozed.");
           }
         }}
-        onListen={() => speakVocabulary(activeWord.term, snapshot.settings)}
+        onListen={() => speakVocabulary(active.word.term, snapshot.settings)}
         onDetails={() => {
-          navigateToVocabulary("library", activeWord.id);
-          setActiveWord(null);
+          navigateToVocabulary("library", active.word.id);
+          setActive(null);
         }}
-        onDismiss={() => setActiveWord(null)}
+        onDismiss={() => setActive(null)}
       />
     </div>
   );

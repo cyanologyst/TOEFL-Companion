@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
+import type { StudyActivity, StudySettings } from "../../types/study";
 import type { VocabularyStats } from "../../types/vocabulary";
 import { DashboardPage } from "./DashboardPage";
 
@@ -26,67 +27,98 @@ const vocabularyStats: VocabularyStats = {
   mastered: 26,
 };
 
+const settings: StudySettings = {
+  learnerName: "Alex",
+  onboarded: true,
+  targetTestDate: "",
+  interviewSeconds: 40,
+  writingSeconds: 600,
+  autoSaveWriting: true,
+  playSounds: true,
+};
+
+function renderDashboard(
+  overrides: {
+    settings?: Partial<StudySettings>;
+    stats?: Partial<VocabularyStats>;
+    activities?: StudyActivity[];
+    onNavigate?: (area: string) => void;
+  } = {},
+) {
+  const onNavigate = overrides.onNavigate ?? vi.fn();
+  const result = render(
+    <DashboardPage
+      settings={{ ...settings, ...overrides.settings }}
+      vocabularyStats={{ ...vocabularyStats, ...overrides.stats }}
+      speakingAttempts={8}
+      writingSubmissions={3}
+      activities={overrides.activities ?? []}
+      onNavigate={onNavigate}
+    />,
+  );
+  return { ...result, onNavigate };
+}
+
 describe("DashboardPage", () => {
-  it("renders the complete no-scroll dashboard information architecture", () => {
-    const { container } = render(
-      <DashboardPage
-        settings={{
-          learnerName: "Alex",
-          targetTestDate: "",
-          interviewSeconds: 40,
-          writingSeconds: 600,
-          autoSaveWriting: true,
-          playSounds: true,
-        }}
-        vocabularyStats={vocabularyStats}
-        speakingAttempts={8}
-        writingSubmissions={3}
-        activities={[]}
-        onNavigate={vi.fn()}
-      />,
-    );
+  it("leads with one recommended session rather than repeating every area", () => {
+    const { container } = renderDashboard();
 
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Alex");
-    expect(screen.getByRole("region", { name: "Today’s study plan" })).toBeVisible();
-    expect(screen.getByRole("region", { name: "Quick actions" })).toBeVisible();
-    expect(screen.getByRole("region", { name: "Continue studying" })).toBeVisible();
-    expect(screen.getByRole("region", { name: "Your progress overview" })).toBeVisible();
-    expect(screen.getByRole("region", { name: "Weekly study streak" })).toBeVisible();
-    expect(screen.getByRole("region", { name: "Recent activity" })).toBeVisible();
-    expect(screen.getByText("The expert in anything was once a beginner.")).toBeVisible();
 
-    const continuationCards = container.querySelectorAll(".dashboard-continue-card");
-    expect(continuationCards).toHaveLength(3);
-    expect(continuationCards[0]).toHaveClass("dashboard-continue-card--vocabulary");
-    expect(continuationCards[1]).toHaveClass("dashboard-continue-card--speaking");
-    expect(continuationCards[2]).toHaveClass("dashboard-continue-card--writing");
+    // Due vocabulary decays, so it takes the hero over the other skills.
+    expect(screen.getByRole("region", { name: "Recommended session" })).toBeVisible();
+    expect(screen.getByText("Review 18 words")).toBeVisible();
+    expect(screen.getByText("18 due for recall")).toBeVisible();
+
+    // Each area is offered exactly once as a quick jump.
+    expect(container.querySelectorAll(".dash-b-skill")).toHaveLength(3);
   });
 
-  it("keeps the dashboard actions connected to the existing app navigation", async () => {
+  it("routes the hero action to its area", async () => {
     const user = userEvent.setup();
     const onNavigate = vi.fn();
-    render(
-      <DashboardPage
-        settings={{
-          learnerName: "Alex",
-          targetTestDate: "",
-          interviewSeconds: 40,
-          writingSeconds: 600,
-          autoSaveWriting: true,
-          playSounds: true,
-        }}
-        vocabularyStats={vocabularyStats}
-        speakingAttempts={8}
-        writingSubmissions={3}
-        activities={[]}
-        onNavigate={onNavigate}
-      />,
-    );
+    renderDashboard({ onNavigate });
 
-    await user.click(screen.getByRole("button", { name: "Smart review: Due vocabulary" }));
+    await user.click(screen.getByRole("button", { name: /Start review/ }));
     expect(onNavigate).toHaveBeenLastCalledWith("vocabulary");
+  });
 
-    await user.click(screen.getByRole("button", { name: "History: Study progress" }));
-    expect(onNavigate).toHaveBeenLastCalledWith("progress");
+  it("routes each skill tile to its area", async () => {
+    const user = userEvent.setup();
+    const onNavigate = vi.fn();
+    const { container } = renderDashboard({ onNavigate });
+
+    const tiles = container.querySelectorAll<HTMLButtonElement>(".dash-b-skill");
+    await user.click(tiles[1]);
+    expect(onNavigate).toHaveBeenLastCalledWith("speaking");
+    await user.click(tiles[2]);
+    expect(onNavigate).toHaveBeenLastCalledWith("writing");
+  });
+
+  it("stamps the countdown once a test date is set", () => {
+    const inTenDays = new Date();
+    inTenDays.setDate(inTenDays.getDate() + 10);
+
+    renderDashboard({ settings: { targetTestDate: inTenDays.toLocaleDateString("en-CA") } });
+
+    expect(screen.getByText("10")).toBeVisible();
+    expect(screen.getByText("days left")).toBeVisible();
+  });
+
+  it("invites a first session rather than reporting a wall of zeros", () => {
+    renderDashboard({
+      stats: { dueNow: 0, new: 0, mastered: 0, reviewedToday: 0, totalReviews: 0 },
+    });
+
+    expect(screen.getByText("Everything is ready to begin")).toBeVisible();
+    expect(screen.getByText("No streak yet")).toBeVisible();
+    expect(screen.getByText(/One session starts the run/)).toBeVisible();
+  });
+
+  it("shows the week strip with today marked", () => {
+    const { container } = renderDashboard();
+    const days = container.querySelectorAll(".dash-b__week-row li");
+    expect(days).toHaveLength(7);
+    expect(container.querySelectorAll('[data-today="true"]')).toHaveLength(1);
   });
 });

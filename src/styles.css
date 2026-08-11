@@ -12,6 +12,10 @@
   font-synthesis: none;
   --font-ui: "Lexend Variable", "Segoe UI", sans-serif;
   --font-body: "Source Sans 3 Variable", "Segoe UI", sans-serif;
+  /* Rounded, hand-drawn-adjacent display face for headings only. It matches
+     the doodle illustrations without costing legibility the way an actual
+     handwriting face would in an app read for hours. */
+  --font-display: "Fredoka Variable", "Lexend Variable", "Segoe UI", sans-serif;
   --font-persian: "A Iranian Sans", Tahoma, "Segoe UI", Arial, sans-serif;
   --navy-950: #071638;
   --navy-900: #0d1d42;
@@ -163,15 +167,21 @@ summary {
   outline-offset: 2px;
 }
 
-h1,
-h2,
-h3,
-h4,
 strong,
 button,
 label,
 th {
   font-family: var(--font-ui);
+}
+
+/* Headings take the display face; controls and labels stay on Lexend so the
+   personality sits in the titles rather than in every button. */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.005em;
 }
 
 h1,
@@ -2837,98 +2847,6 @@ textarea {
   background: var(--surface-soft);
 }
 
-.writing-browser {
-  position: relative;
-  z-index: 5;
-  margin-bottom: 14px;
-  padding: 16px;
-}
-
-.writing-browser > header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-
-.writing-browser h2 {
-  margin-bottom: 3px;
-  font-size: 14px;
-}
-
-.writing-browser header p {
-  margin-bottom: 0;
-  color: var(--navy-500);
-  font-size: 10px;
-}
-
-.writing-browser__filters {
-  display: grid;
-  grid-template-columns: minmax(240px, 1fr) 220px;
-  gap: 10px;
-  margin: 13px 0;
-}
-
-.writing-browser__list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  max-height: 290px;
-  gap: 8px;
-  overflow: auto;
-}
-
-.writing-browser__list button {
-  display: grid;
-  grid-template-columns: 32px minmax(0, 1fr) auto;
-  gap: 8px;
-  align-items: center;
-  min-height: 60px;
-  padding: 9px;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  text-align: left;
-}
-
-.writing-browser__list button:hover,
-.writing-browser__list button[data-active="true"] {
-  border-color: #c7b8ea;
-  background: #fbf9ff;
-}
-
-.writing-browser__list button > span {
-  display: grid;
-  width: 30px;
-  height: 30px;
-  place-items: center;
-  border-radius: 8px;
-  color: var(--violet-600);
-  background: var(--violet-100);
-  font-family: var(--font-ui);
-  font-size: 9px;
-}
-
-.writing-browser__list strong,
-.writing-browser__list small {
-  display: block;
-}
-
-.writing-browser__list strong {
-  overflow: hidden;
-  font-size: 9px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.writing-browser__list small {
-  color: var(--navy-500);
-  font-size: 8px;
-}
-
-.writing-browser__list em {
-  color: var(--violet-600);
-  font-size: 8px;
-  font-style: normal;
-}
-
 .discussion-context {
   display: grid;
   grid-template-columns: 1.1fr 1fr 1fr;
@@ -2957,30 +2875,46 @@ textarea {
   margin-bottom: 11px;
 }
 
+/* Holds a drawn portrait now rather than an initial, so it is sized to the
+   illustration and the tinted disc reads as a frame behind it. */
 .person-avatar {
   display: grid;
-  width: 30px;
-  height: 30px;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  overflow: hidden;
   place-items: center;
+  border: 1px solid transparent;
   border-radius: 50%;
   font-family: var(--font-ui);
   font-size: 10px;
   font-weight: 600;
 }
 
+.person-avatar .icon8 {
+  display: block;
+  /* The drawings sit low in their own box; nudge so the face centres. */
+  margin-bottom: -3px;
+}
+
 .person-avatar--professor {
+  width: 46px;
+  height: 46px;
+  border-color: var(--teal-100);
   color: var(--teal-700);
-  background: var(--teal-100);
+  background: var(--teal-50);
 }
 
 .person-avatar--student-1 {
+  border-color: var(--green-100);
   color: var(--green-600);
-  background: var(--green-100);
+  background: #f2fbf7;
 }
 
 .person-avatar--student-2 {
+  border-color: var(--blue-100);
   color: var(--blue-600);
-  background: var(--blue-100);
+  background: #f3f8ff;
 }
 
 .professor-card header strong,
@@ -3740,206 +3674,7 @@ textarea {
   font-style: normal;
 }
 
-.app-toast {
-  position: fixed;
-  z-index: 400;
-  right: 22px;
-  bottom: 22px;
-  display: flex;
-  max-width: 390px;
-  min-height: 48px;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 10px 9px 12px;
-  border: 1px solid #b9ddd7;
-  border-radius: 10px;
-  background: #f2fbf8;
-  box-shadow: var(--shadow-raised);
-}
-
-.app-toast[data-error="true"] {
-  border-color: #f0baba;
-  background: #fff5f5;
-}
-
-.app-toast > span {
-  display: grid;
-  width: 23px;
-  height: 23px;
-  place-items: center;
-  border-radius: 50%;
-  color: #fff;
-  background: var(--teal-600);
-  font-size: 10px;
-}
-
-.app-toast[data-error="true"] > span {
-  background: var(--red-600);
-}
-
-.app-toast p {
-  flex: 1;
-  margin: 0;
-  font-size: 10px;
-}
-
-.app-toast button {
-  width: 24px;
-  height: 24px;
-  color: var(--navy-500);
-  font-size: 16px;
-}
-
 /* Existing reminder workflow, visually integrated with the new shell */
-
-.vocab-reminder-layer {
-  position: fixed;
-  z-index: 250;
-  right: 20px;
-  bottom: 20px;
-}
-
-.vocab-reminder {
-  position: relative;
-  width: 360px;
-  overflow: hidden;
-  border: 1px solid #b9ddd7;
-  border-radius: 14px;
-  background: #fff;
-  box-shadow: var(--shadow-raised);
-}
-
-.vocab-reminder--compact {
-  width: 320px;
-}
-
-.vocab-reminder-progress {
-  position: absolute;
-  inset: 0 auto auto 0;
-  height: 3px;
-  background: var(--teal-600);
-}
-
-.vocab-reminder-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 15px 15px 11px;
-  border-bottom: 1px solid var(--border);
-}
-
-.vocab-reminder-eyebrow {
-  display: block;
-  color: var(--teal-700);
-  font-family: var(--font-ui);
-  font-size: 8px;
-  text-transform: uppercase;
-}
-
-.vocab-reminder-term {
-  margin: 2px 0;
-  font-size: 22px;
-}
-
-.vocab-reminder-meta {
-  margin: 0;
-  color: var(--navy-500);
-  font-size: 9px;
-}
-
-.vocab-reminder-header-actions {
-  display: flex;
-  gap: 5px;
-}
-
-.vocab-reminder-icon-button {
-  display: grid;
-  width: 29px;
-  height: 29px;
-  place-items: center;
-  border: 1px solid var(--border);
-  border-radius: 7px;
-}
-
-.vocab-reminder-content {
-  padding: 14px 15px;
-}
-
-.vocab-reminder-meaning {
-  margin-bottom: 9px;
-  color: var(--navy-700);
-  font-size: 11px;
-}
-
-.vocab-reminder-example {
-  margin: 0;
-  color: var(--navy-500);
-  font-size: 9px;
-}
-
-.vocab-reminder-example-label {
-  display: block;
-  color: var(--navy-700);
-  font-family: var(--font-ui);
-  font-size: 8px;
-}
-
-.vocab-reminder-review-actions {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  margin: 0;
-  padding: 0 15px 12px;
-  border: 0;
-  gap: 7px;
-}
-
-.vocab-reminder-action {
-  min-height: 36px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-size: 9px;
-}
-
-.vocab-reminder-action--known {
-  color: #fff;
-  background: var(--teal-700);
-}
-
-.vocab-reminder-secondary-actions {
-  padding: 11px 15px;
-  border-top: 1px solid var(--border);
-  background: var(--surface-soft);
-}
-
-.vocab-reminder-snooze {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin: 0 0 8px;
-  padding: 0;
-  border: 0;
-}
-
-.vocab-reminder-snooze-label {
-  margin-right: auto;
-  color: var(--navy-500);
-  font-size: 8px;
-}
-
-.vocab-reminder-snooze-button,
-.vocab-reminder-details-button {
-  min-height: 28px;
-  padding: 0 8px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: #fff;
-  font-size: 8px;
-}
-
-.vocab-reminder-details-button {
-  width: 100%;
-}
 
 .vocab-reminder-countdown,
 .vocab-reminder-feedback,
@@ -4549,19 +4284,27 @@ textarea {
   padding: 10px 9px 9px 12px;
 }
 
+/* White cards with a tinted border and illustration rather than three blocks
+   of flat colour, which read as heavier than anything else on the page. */
 .dashboard-continue-card--vocabulary {
   border-color: #cfe9e2;
-  background: #eaf8f2;
+  background: var(--color-surface);
 }
 
 .dashboard-continue-card--speaking {
   border-color: #d4e6f5;
-  background: #e7f1fa;
+  background: var(--color-surface);
 }
 
 .dashboard-continue-card--writing {
-  border-color: #bdb3c7;
-  background: #d1cad8;
+  border-color: #d2c6ee;
+  background: var(--color-surface);
+}
+
+/* The artwork carries its own pale backdrop; blending it drops the hard
+   rectangle that colour fill used to hide. */
+.dashboard-continue-card img {
+  mix-blend-mode: multiply;
 }
 
 .dashboard-continue-card.is-recommended {
@@ -5152,14 +4895,20 @@ textarea {
   }
 }
 
+/* Reduced motion drops travel and looping but keeps a short cross-fade, so a
+   state change still registers. Collapsing every duration to 0.01ms made the
+   interface feel broken rather than calm. Movement properties are the ones
+   that cause trouble; opacity and colour are not.
+   See motion.css for the per-component reduced-motion treatment. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+    transition-property:
+      opacity, background-color, border-color, color, fill, stroke, box-shadow !important;
+    transition-duration: 120ms !important;
   }
 }
 
@@ -5623,29 +5372,6 @@ textarea {
 .modal-actions {
   gap: 8px;
   padding-top: 18px;
-}
-
-.app-toast {
-  z-index: var(--z-toast);
-  min-height: 50px;
-  border-color: var(--color-border-strong);
-  box-shadow: 0 14px 34px rgba(7, 22, 56, 0.16);
-}
-
-.app-toast > span:first-child {
-  display: grid;
-  width: 26px;
-  height: 26px;
-  place-items: center;
-  border-radius: 50%;
-  color: #fff;
-  background: var(--color-primary);
-  font-size: 9px;
-  font-weight: 700;
-}
-
-.app-toast[data-error="true"] > span:first-child {
-  background: var(--color-destructive);
 }
 
 .app-sidebar__brand strong {
@@ -6924,92 +6650,6 @@ textarea {
   margin-bottom: 2px;
   color: var(--color-foreground);
   font-size: 11px;
-}
-
-.speaking-support-dialog {
-  padding: 18px 20px 22px;
-}
-
-.speaking-support-dialog__ideas,
-.speaking-support-dialog__collocations {
-  display: grid;
-  gap: 9px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.speaking-support-dialog__ideas li {
-  display: grid;
-  grid-template-columns: 28px minmax(0, 1fr);
-  gap: 10px;
-  align-items: start;
-  padding: 11px 12px;
-  border: 1px solid #deeaef;
-  border-radius: 9px;
-  background: #f8fbfc;
-}
-
-.speaking-support-dialog__ideas li > span {
-  display: grid;
-  width: 26px;
-  height: 26px;
-  place-items: center;
-  border-radius: 8px;
-  color: #1d5d9f;
-  background: #eaf4fa;
-  font-family: var(--font-ui);
-  font-size: 11px;
-  font-weight: 700;
-}
-
-.speaking-support-dialog__ideas p,
-.speaking-support-dialog__answers p {
-  margin: 0;
-  color: var(--color-muted-foreground);
-  font-size: 13px;
-  line-height: 1.55;
-}
-
-.speaking-support-dialog__collocations li {
-  display: grid;
-  gap: 3px;
-  padding: 10px 12px;
-  border: 1px solid #dce7ee;
-  border-radius: 9px;
-  background: #f6f9fb;
-}
-
-.speaking-support-dialog__collocations strong {
-  color: #244961;
-  font-size: 13px;
-}
-
-.speaking-support-dialog__collocations span {
-  color: var(--color-muted-foreground);
-  font-size: 12px;
-}
-
-.speaking-support-dialog__answers {
-  display: grid;
-  gap: 16px;
-}
-
-.speaking-support-dialog__answers article {
-  padding: 15px 16px;
-  border: 1px solid #deeaef;
-  border-radius: 10px;
-  background: #fbfcfd;
-}
-
-.speaking-support-dialog__answers h3 {
-  display: block;
-  margin: 0 0 8px;
-  color: #1d5d9f;
-  font-family: var(--font-ui);
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
 }
 
 .speaking-topic-preview__actions {

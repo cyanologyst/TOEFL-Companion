@@ -164,19 +164,17 @@ describe("SpeakingPage topic navigator", () => {
       expect(tab).toHaveAttribute("tabindex", "-1");
     });
 
-    const controlledPanels = questionTabs.map((tab) => {
-      const panelId = tab.getAttribute("aria-controls");
-      expect(panelId).toBeTruthy();
-      const panel = document.getElementById(panelId!);
-      expect(panel).toHaveAttribute("role", "tabpanel");
-      expect(panel).toHaveAttribute("aria-labelledby", tab.id);
-      return panel!;
+    // The four questions share one panel that swaps content, so every tab
+    // points at the same region and the selected tab labels it.
+    const panelId = questionTabs[0].getAttribute("aria-controls");
+    expect(panelId).toBeTruthy();
+    questionTabs.forEach((tab) => {
+      expect(tab).toHaveAttribute("aria-controls", panelId);
     });
-    expect(controlledPanels[0]).not.toHaveAttribute("hidden");
-    controlledPanels.slice(1).forEach((panel) => {
-      expect(panel).toHaveAttribute("hidden");
-    });
-    expect(within(preview).getByRole("tabpanel")).toHaveTextContent(finalTopic.questions[0].prompt);
+    const panel = document.getElementById(panelId!)!;
+    expect(panel).toHaveAttribute("role", "tabpanel");
+    expect(panel).toHaveAttribute("aria-labelledby", questionTabs[0].id);
+    expect(panel).toHaveTextContent(finalTopic.questions[0].prompt);
 
     await user.click(within(questionTablist).getByRole("tab", { name: "Q4" }));
 
@@ -184,8 +182,7 @@ describe("SpeakingPage topic navigator", () => {
     expect(questionTabs[3]).toHaveAttribute("tabindex", "0");
     expect(questionTabs[0]).toHaveAttribute("aria-selected", "false");
     expect(questionTabs[0]).toHaveAttribute("tabindex", "-1");
-    expect(controlledPanels[0]).toHaveAttribute("hidden");
-    expect(controlledPanels[3]).not.toHaveAttribute("hidden");
+    expect(panel).toHaveAttribute("aria-labelledby", questionTabs[3].id);
     expect(within(preview).getByRole("tabpanel")).toHaveTextContent(finalTopic.questions[3].prompt);
 
     await user.click(screen.getByRole("button", { name: "Start practice" }));
@@ -208,7 +205,12 @@ describe("SpeakingPage topic navigator", () => {
     const question = finalTopic.questions[3];
     expect(activePanel).toHaveTextContent(question.prompt);
 
-    const ideasTrigger = within(activePanel).getByRole("button", {
+    // Preparation material is one panel with a tab per kind; the trigger opens
+    // whichever kind is showing, and names it.
+    const prep = screen.getByRole("tablist", { name: "Preparation material" });
+
+    await user.click(within(prep).getByRole("tab", { name: /Ideas/ }));
+    const ideasTrigger = screen.getByRole("button", {
       name: `View all ${question.ideas.length} ideas`,
     });
     expect(ideasTrigger).toHaveAttribute("aria-haspopup", "dialog");
@@ -226,7 +228,8 @@ describe("SpeakingPage topic navigator", () => {
       expect(screen.queryByRole("dialog", { name: "Ideas to consider" })).not.toBeInTheDocument();
     });
 
-    const collocationsTrigger = within(activePanel).getByRole("button", {
+    await user.click(within(prep).getByRole("tab", { name: /Collocations/ }));
+    const collocationsTrigger = screen.getByRole("button", {
       name: `View all ${question.collocations.length} collocations`,
     });
     expect(collocationsTrigger).toHaveAttribute("aria-haspopup", "dialog");
@@ -249,7 +252,8 @@ describe("SpeakingPage topic navigator", () => {
       expect(screen.queryByRole("dialog", { name: "Useful collocations" })).not.toBeInTheDocument();
     });
 
-    const samplesTrigger = within(activePanel).getByRole("button", {
+    await user.click(within(prep).getByRole("tab", { name: /Sample answers/ }));
+    const samplesTrigger = screen.getByRole("button", {
       name: "View both sample answers",
     });
     expect(samplesTrigger).toHaveAttribute("aria-haspopup", "dialog");

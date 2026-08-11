@@ -9,7 +9,10 @@ import {
 } from "../../services/desktopBackup";
 import { studyRepository } from "../../services/studyRepository";
 import { vocabularyRepository } from "../../services/vocabularyRepository";
+import { SpeechModels } from "./SpeechModels";
 import type { StudySettings } from "../../types/study";
+import "../../brutal.css";
+import "./settings.css";
 import type { NotificationMode, VocabularySettings } from "../../types/vocabulary";
 
 interface SettingsPageProps {
@@ -18,7 +21,7 @@ interface SettingsPageProps {
   onChanged: () => void;
 }
 
-type SettingsSection = "profile" | "practice" | "reminders" | "audio" | "storage";
+type SettingsSection = "profile" | "practice" | "reminders" | "audio" | "speech" | "storage";
 type AsyncPhase = "idle" | "loading" | "success" | "error";
 
 interface LocalSettingsDraft {
@@ -46,6 +49,12 @@ const SETTINGS_SECTIONS: ReadonlyArray<{
   { id: "practice", label: "Practice", description: "Timers and draft saving", icon: "stopwatch" },
   { id: "reminders", label: "Reminders", description: "Vocabulary recall cards", icon: "bell" },
   { id: "audio", label: "Audio", description: "Speech and sound cues", icon: "speaker" },
+  {
+    id: "speech",
+    label: "Speech to text",
+    description: "Offline transcription model",
+    icon: "mic",
+  },
   { id: "storage", label: "Storage", description: "Local backup and restore", icon: "floppy" },
 ];
 
@@ -252,6 +261,39 @@ export function SettingsPage({
     }
   };
 
+  /* Bringing the next reminder forward to now is all this needs: the host's
+     heartbeat picks it up within a second, through exactly the same path a
+     scheduled reminder takes. */
+  const showReminderNow = () => {
+    try {
+      vocabularyRepository.pauseReminders(null);
+      vocabularyRepository.setNextReminderAt(new Date().toISOString());
+      setReminderStatus("A word is on its way to the bottom left.");
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "A reminder could not be shown right now.";
+      setReminderStatus(message);
+      onNotice(message);
+    }
+  };
+
+  const nextReminderLabel = (() => {
+    if (notificationMode === "off") {
+      return "Reminders are off.";
+    }
+    const paused = vocabulary.pausedUntil ? Date.parse(vocabulary.pausedUntil) : Number.NaN;
+    if (Number.isFinite(paused) && paused > Date.now()) {
+      return `Paused until ${new Date(paused).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}.`;
+    }
+    const next = vocabulary.nextReminderAt ? Date.parse(vocabulary.nextReminderAt) : Number.NaN;
+    if (!Number.isFinite(next)) {
+      return "The next reminder is being scheduled.";
+    }
+    const minutes = Math.max(0, Math.round((next - Date.now()) / 60_000));
+    const clock = new Date(next).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    return minutes <= 1 ? "Next reminder: any moment." : `Next reminder around ${clock}.`;
+  })();
+
   const saveMessage = isDirty
     ? "Unsaved changes"
     : saveStatus === "success"
@@ -259,24 +301,24 @@ export function SettingsPage({
       : "No pending changes";
 
   return (
-    <div className="page settings-page">
-      <header className="page-heading settings-heading">
-        <div className="page-heading__title">
-          <span className="page-heading__icon page-heading__icon--settings">
+    <div className="brutal settings-page">
+      <header className="brutal__head">
+        <div className="brutal__title">
+          <span className="brutal__title-mark">
             <DoodleIcon name="setting" size={28} />
           </span>
           <div>
             <h1>Settings</h1>
-            <p>Configure practice, reminders, audio, and local storage.</p>
+            <p className="b-eyebrow">Practice, reminders, audio, speech, storage</p>
           </div>
         </div>
-        <div className="settings-heading__actions">
+        <div className="brutal__head-actions">
           <span className="settings-save-summary" data-dirty={isDirty} aria-live="polite">
             {saveMessage}
           </span>
           <button
             type="button"
-            className="button button--primary"
+            className="b-btn b-btn--lime"
             onClick={save}
             disabled={!isDirty || saveStatus === "loading"}
           >
@@ -285,13 +327,13 @@ export function SettingsPage({
         </div>
       </header>
 
-      <div className="settings-layout settings-layout--focused">
-        <nav className="settings-nav settings-nav--buttons" aria-label="Settings sections">
+      <div className="set-b__body">
+        <nav className="b-frame set-b__nav" aria-label="Settings sections">
           {SETTINGS_SECTIONS.map((section) => (
             <button
               type="button"
               key={section.id}
-              className="settings-nav__button"
+              className="set-b__nav-item"
               data-active={activeSection === section.id}
               aria-current={activeSection === section.id ? "page" : undefined}
               onClick={() => setActiveSection(section.id)}
@@ -305,7 +347,7 @@ export function SettingsPage({
           ))}
         </nav>
 
-        <div className="settings-sections settings-sections--single">
+        <div className="b-frame set-b__panel">
           {activeSection === "profile" ? (
             <section className="panel settings-section" id="profile-settings">
               <header>
@@ -321,6 +363,8 @@ export function SettingsPage({
                 <label>
                   Display name
                   <input
+                    maxLength={40}
+                    placeholder="Your first name"
                     value={settings.learnerName}
                     onChange={(event) =>
                       setSettings((current) => ({
@@ -504,7 +548,15 @@ export function SettingsPage({
                   </label>
                 </div>
               ) : null}
+              {/* Reminders arrive on their own schedule, so without this there
+                  is no way to see one on purpose - and no way to tell the
+                  feature is working at all until an interval happens to pass
+                  while you are looking. */}
               <div className="settings-inline-actions">
+                <button type="button" className="button button--outline" onClick={showReminderNow}>
+                  <DoodleIcon name="bell" size={17} />
+                  Show a word now
+                </button>
                 <button
                   type="button"
                   className="button button--quiet"
@@ -520,7 +572,7 @@ export function SettingsPage({
                   Resume
                 </button>
                 <span className="settings-inline-status" role="status" aria-live="polite">
-                  {reminderStatus}
+                  {reminderStatus || nextReminderLabel}
                 </span>
               </div>
             </section>
@@ -568,6 +620,21 @@ export function SettingsPage({
                   <small>Off by default for low-distraction study sessions.</small>
                 </span>
               </label>
+            </section>
+          ) : null}
+
+          {activeSection === "speech" ? (
+            <section className="panel settings-section" id="speech-settings">
+              <header>
+                <span>
+                  <DoodleIcon name="mic" size={22} />
+                </span>
+                <div>
+                  <h2>Speech recognition</h2>
+                  <p>The model that turns your recorded answers into text, offline.</p>
+                </div>
+              </header>
+              <SpeechModels onNotice={onNotice} />
             </section>
           ) : null}
 

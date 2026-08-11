@@ -1465,9 +1465,31 @@
   font-family: var(--font-flat);
   font-size: 14px;
   font-weight: 500;
-  /* Room for descenders. Without it the tail of every "y" and "g" was cut,
-     which turned "Library order" into "Libraru order". */
   line-height: 1.35;
+}
+
+/* Descenders in a select. styles.css pins `input, select { height: 40px }`, so
+   vertical padding here does not add height, it eats the content box: 40px
+   less two 3px borders less 10px top and bottom left 14px to hold an 18.9px
+   line. An input survives that, because overflow clips at the padding box and
+   the tails have the padding to grow into; a select does not, because the
+   engine confines the selected option's text to the content box. The result
+   was "Library order" rendering as "Libraru order". Raising the line height
+   alone, which this file tried first, only widened the shortfall.
+
+   Six leaves 22px of room and keeps the control exactly 40px tall. Inputs are
+   in the list because the text is centred either way, so this costs them
+   nothing and stops the same trap being reset by a later line-height change.
+   Textareas are left out: they size to their rows and never clipped. */
+:is(.brutal, .b-portal) input:not([type]),
+:is(.brutal, .b-portal) input[type="text"],
+:is(.brutal, .b-portal) input[type="number"],
+:is(.brutal, .b-portal) input[type="date"],
+:is(.brutal, .b-portal) input[type="time"],
+:is(.brutal, .b-portal) input[type="email"],
+:is(.brutal, .b-portal) input[type="search"],
+:is(.brutal, .b-portal) select {
+  padding-block: 6px;
 }
 
 /* A select has to leave room for its own caret, or the last word of a long

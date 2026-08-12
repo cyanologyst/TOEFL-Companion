@@ -618,11 +618,27 @@
   grid-template-columns: 288px minmax(0, 1fr);
 }
 
+/* The four steps are a sequence, not a dashboard, and each one carries real
+   content. Splitting the height into two equal fractions gave every card the
+   same slice whatever it held: at 1280x800 the recorder hid 27px of itself, and
+   at the window's 960x650 minimum the four cards were 89-129px tall and hid
+   68, 179, 132 and 118px with no way to reach any of it.
+
+   So the workflow column scrolls instead. Cards keep a floor and grow to their
+   content; when the four of them outrun a short window, this one scroller
+   moves. The page itself still never scrolls. */
 .repeat__main {
   display: flex;
   min-height: 0;
   flex-direction: column;
   gap: 12px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--ink) transparent;
+  scrollbar-width: thin;
+  /* Room for the cards' offset shadows, which a scroller would otherwise cut. */
+  padding: 3px 8px 8px 3px;
+  margin: -3px -8px -8px -3px;
 }
 
 .rp-steps {
@@ -675,10 +691,11 @@
 .repeat__grid {
   display: grid;
   min-height: 0;
-  flex: 1;
+  flex: 0 0 auto;
   gap: 12px;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+  /* A floor, then content. Nothing is ever squeezed below what it can show. */
+  grid-auto-rows: minmax(212px, auto);
 }
 
 .rp-card {
@@ -686,12 +703,43 @@
   padding: 0;
   gap: 0;
   overflow: hidden;
+  /* Each card answers for its own width, so a head stacks when the card is
+     narrow rather than when the window is. Two cards side by side at 1280 are
+     319px wide — narrower than most phones. */
+  container-type: inline-size;
+}
+
+/* A title and its aside on one line need about this much room. Below it they
+   were both squeezing to two or three words a line and colliding: "1. Listen to
+   the prompt" against "Original source clip". */
+@container (max-width: 430px) {
+  .rp-card .b-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+  }
+
+  /* Icon, explanation and button shared one row, and the button took its
+     natural width first — which left the explanation about ninety pixels wide,
+     wrapping to a word a line. The button drops under the text instead. */
+  .rp-card .expected-transcript__locked {
+    grid-template-columns: 32px minmax(0, 1fr);
+  }
+
+  .rp-card .expected-transcript__show {
+    justify-self: start;
+    grid-column: 2;
+  }
 }
 
 .rp-card__body {
   min-height: 0;
   flex: 1;
   padding: 12px 14px;
+  /* Only ever vertical. `overflow-y: auto` alone makes the other axis compute
+     to auto as well, which is where the stray horizontal scrollbar under the
+     waveform came from. */
+  overflow-x: clip;
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-color: var(--ink) transparent;
@@ -769,6 +817,71 @@
   transition: width 320ms var(--snap);
 }
 
+/* -- Transcription progress ------------------------------------------------
+   The model reports its own percentage. Loading has none to report, so that
+   stage sweeps instead of sitting at zero and looking stuck. */
+.rp-transcribing {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  padding: 0 14px 12px;
+  gap: 5px;
+}
+
+.rp-transcribing__line {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: var(--font-flat);
+  font-size: 12px;
+  font-weight: 700;
+  gap: 10px;
+}
+
+.rp-transcribing__line b {
+  font-family: var(--font-display);
+  font-size: 13px;
+}
+
+.rp-transcribing__track {
+  position: relative;
+  height: 14px;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+}
+
+.rp-transcribing__track i {
+  display: block;
+  height: 100%;
+  background: var(--pop-sky);
+  transition: width 200ms linear;
+}
+
+.rp-transcribing__track i[data-indeterminate="true"] {
+  width: 38%;
+  animation: rp-sweep 1100ms ease-in-out infinite alternate;
+}
+
+@keyframes rp-sweep {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(265%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rp-transcribing__track i[data-indeterminate="true"] {
+    width: 100%;
+    animation: none;
+  }
+}
+
 .repeat__foot {
   display: flex;
   flex: 0 0 auto;
@@ -791,6 +904,17 @@
   .pr-dial {
     width: 128px;
     height: 128px;
+  }
+}
+
+/* Two columns stop earning their keep below about 460px each: the head stacks,
+   the waveform runs out of track, and the hidden-transcript row squeezes to one
+   word a line. At 1280 the pair came out 314px wide — phone width on a desktop.
+   The prompt queue and the app rail take ~370px before this grid sees any, so
+   the switch is at 1400 rather than at twice 460. */
+@media (max-width: 1400px) {
+  .repeat__grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 

@@ -14,6 +14,7 @@ import { listen } from "@tauri-apps/api/event";
 /** whisper.cpp accepts one rate only. */
 const TARGET_SAMPLE_RATE = 16_000;
 const DOWNLOAD_PROGRESS_EVENT = "transcription://download-progress";
+const TRANSCRIBE_PROGRESS_EVENT = "transcription://progress";
 
 export interface TranscriptionModel {
   id: string;
@@ -51,6 +52,14 @@ export interface DownloadProgress {
   modelId: string;
   received: number;
   total: number;
+}
+
+export interface TranscribeProgress {
+  modelId: string;
+  /** `loading` is the model coming off disk; `running` is the audio decoding. */
+  stage: "loading" | "running";
+  /** 0 to 1 within the stage. */
+  fraction: number;
 }
 
 export const TRANSCRIPTION_DEFAULT_MODEL = "small.en";
@@ -159,16 +168,68 @@ function encodeBase64(samples: Float32Array): string {
   return btoa(binary);
 }
 
+/**
+ * Which model a caller wants.
+ *
+ * `accurate` honours the learner's choice in Settings, which is what an
+ * interview answer deserves: it is scored on what they actually said.
+ * `fast` is for Listen & Repeat, where the answer is checked by edit distance
+ * against a sentence we already have. There, a tight loop beats a better model
+ * — measured on this machine, a ten-second clip costs 20.0s on Small, 5.5s on
+ * Base and 2.4s on Tiny, because whisper always decodes a full 30-second window
+ * however short the recording is.
+ */
+export type TranscriptionSpeed = "accurate" | "fast";
+
+/** Fastest first, then whatever else is on disk. */
+const FAST_PREFERENCE = ["base.en", "tiny.en", "small.en", "medium.en"];
+
+export async function resolveModelId(speed: TranscriptionSpeed): Promise<string> {
+  const preferred = getPreferredModelId();
+  if (speed === "accurate" || !isTauri()) {
+    return preferred;
+  }
+  try {
+    const installed = new Set(
+      (await listTranscriptionModels()).filter((model) => model.installed).map((model) => model.id),
+    );
+    // Never download on the learner's behalf: if the quick models are not
+    // there, use the one they already chose.
+    return FAST_PREFERENCE.find((id) => installed.has(id)) ?? preferred;
+  } catch {
+    return preferred;
+  }
+}
+
+export interface TranscribeOptions {
+  speed?: TranscriptionSpeed;
+  onProgress?: (progress: TranscribeProgress) => void;
+}
+
 export async function transcribeRecording(
   blob: Blob,
-  modelId: string = getPreferredModelId(),
+  options: TranscribeOptions = {},
 ): Promise<TranscriptResult> {
   if (!isTauri()) {
     throw new Error("Transcription only runs in the desktop app.");
   }
 
+  const modelId = await resolveModelId(options.speed ?? "accurate");
   const samples = await decodeToMono16k(blob);
-  return invoke<TranscriptResult>("transcribe_speech", {
-    request: { modelId, pcmBase64: encodeBase64(samples) },
-  });
+
+  const unlisten = options.onProgress
+    ? await listen<TranscribeProgress>(TRANSCRIBE_PROGRESS_EVENT, (event) => {
+        if (event.payload.modelId === modelId) {
+          options.onProgress?.(event.payload);
+        }
+      })
+    : null;
+
+  try {
+    return await invoke<TranscriptResult>("transcribe_speech", {
+      request: { modelId, pcmBase64: encodeBase64(samples) },
+    });
+  } finally {
+    unlisten?.();
+  }
 }

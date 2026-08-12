@@ -21,6 +21,8 @@ function controller(): SpeakingRecorderController {
     transcript: "",
     transcriptionPhase: "idle",
     transcriptionError: "",
+    transcriptionProgress: 0,
+    transcriptionStage: null,
     analysis: null,
     result: null,
     error: "",

@@ -45,6 +45,7 @@ const VERBATIM_PROMPT: &str =
     "Um, so, I think, uh, the thing is, you know, like, basically, I mean, well, yeah.";
 
 const DOWNLOAD_PROGRESS_EVENT: &str = "transcription://download-progress";
+const TRANSCRIBE_PROGRESS_EVENT: &str = "transcription://progress";
 
 struct ModelSpec {
     id: &'static str,
@@ -136,6 +137,37 @@ struct DownloadProgress {
     model_id: String,
     received: u64,
     total: u64,
+}
+
+/// Which part of the work is running. Loading a model and decoding audio have
+/// very different durations, and a single bar that covers both silently stalls
+/// at 0% for whichever comes first.
+#[derive(Serialize, Clone, Copy)]
+#[serde(rename_all = "camelCase")]
+enum TranscribeStage {
+    Loading,
+    Running,
+}
+
+#[derive(Serialize, Clone)]
+#[serde(rename_all = "camelCase")]
+struct TranscribeProgress {
+    model_id: String,
+    stage: TranscribeStage,
+    /// 0.0 to 1.0 within the stage.
+    fraction: f32,
+}
+
+/// A dropped listener is not worth failing a transcription over.
+fn emit_progress(app: &AppHandle, model_id: &str, stage: TranscribeStage, fraction: f32) {
+    let _ = app.emit(
+        TRANSCRIBE_PROGRESS_EVENT,
+        TranscribeProgress {
+            model_id: model_id.to_string(),
+            stage,
+            fraction,
+        },
+    );
 }
 
 #[derive(Serialize)]
@@ -385,11 +417,12 @@ pub async fn transcribe_speech(
     let model_id = request.model_id.clone();
     let path_string = path.to_string_lossy().to_string();
     let engine = state.inner().clone();
+    let reporter = app.clone();
 
     // whisper.cpp saturates every core it is given; keeping it off the async
     // runtime keeps the window responsive while it works.
     tauri::async_runtime::spawn_blocking(move || {
-        run_transcription(&engine, &model_id, &path_string, &samples)
+        run_transcription(&engine, &reporter, &model_id, &path_string, &samples)
     })
     .await
     .map_err(|error| format!("The transcription task could not run. {error}"))?
@@ -397,11 +430,16 @@ pub async fn transcribe_speech(
 
 fn run_transcription(
     state: &TranscriptionState,
+    app: &AppHandle,
     model_id: &str,
     model_path: &str,
     samples: &[f32],
 ) -> Result<TranscriptResult, String> {
     let started = Instant::now();
+    // Loading is its own visible stage: the first run of a session pays for it,
+    // and on the 539 MB model that is several seconds before any audio is read.
+    emit_progress(app, model_id, TranscribeStage::Loading, 0.0);
+
     let mut loaded = state
         .loaded
         .lock()
@@ -445,9 +483,26 @@ fn run_transcription(
     params.set_temperature(0.0);
     params.set_initial_prompt(VERBATIM_PROMPT);
 
+    // Without this the window sat on "Transcribing your response on this device."
+    // for twenty seconds with nothing moving, which reads as a hung app rather
+    // than a working one. whisper reports its own percentage; pass it straight
+    // through rather than animating a guess.
+    let progress_app = app.clone();
+    let progress_model = model_id.to_string();
+    params.set_progress_callback_safe(move |percent: i32| {
+        emit_progress(
+            &progress_app,
+            &progress_model,
+            TranscribeStage::Running,
+            (percent as f32 / 100.0).clamp(0.0, 1.0),
+        );
+    });
+
     whisper
         .full(params, samples)
         .map_err(|error| format!("The response could not be transcribed. {error}"))?;
+
+    emit_progress(app, model_id, TranscribeStage::Running, 1.0);
 
     let mut text = String::new();
     let mut words: Vec<TranscriptWord> = Vec::new();

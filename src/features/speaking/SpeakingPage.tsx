@@ -1496,6 +1496,58 @@ function InterviewPractice({
   );
 }
 
+/**
+ * whisper reports a percentage per decoded segment, which on a clip this short
+ * means one callback at zero and then the answer. Rather than animate a
+ * fabricated percentage over that, the bar sweeps and counts the seconds it has
+ * actually been working, and switches to a real percentage only if the model
+ * reports one — which it does on longer interview answers.
+ */
+function TranscribeProgressBar({
+  stage,
+  fraction,
+}: {
+  stage: "loading" | "running" | null;
+  fraction: number;
+}): React.JSX.Element {
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    const started = Date.now();
+    const timer = window.setInterval(() => {
+      setSeconds(Math.round((Date.now() - started) / 1_000));
+    }, 250);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const percent = Math.round(Math.min(1, Math.max(0, fraction)) * 100);
+  const measured = percent > 0;
+  const label = stage === "loading" ? "Loading the speech model" : "Checking what you said";
+
+  return (
+    <div className="rp-transcribing">
+      <div className="rp-transcribing__line">
+        <span>{label}</span>
+        <b>{measured ? `${percent}%` : `${seconds}s`}</b>
+      </div>
+      <div
+        className="rp-transcribing__track"
+        role="progressbar"
+        aria-label={label}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        // Omitted while there is nothing real to report, which is what tells a
+        // screen reader the work is indeterminate rather than stuck at zero.
+        aria-valuenow={measured ? percent : undefined}
+      >
+        {/* No inline width unless it means something: the stylesheet owns the
+            sweeping width, and an inline 0% would beat it on specificity. */}
+        {measured ? <i style={{ width: `${percent}%` }} /> : <i data-indeterminate="true" />}
+      </div>
+    </div>
+  );
+}
+
 function ListenRepeatWorkspace({
   onNotice,
   onSaved,
@@ -1540,6 +1592,11 @@ function ListenRepeatWorkspace({
   const recorder = useSpeakingRecorder({
     maxSeconds: responseSeconds,
     preparationSeconds: 0,
+    // The repetition is graded by comparing words with a sentence we already
+    // have, so the fastest installed model is the right trade here. On Small a
+    // ten-second repeat costs twenty seconds to check, which is longer than
+    // recording it.
+    transcriptionSpeed: "fast",
     onSave: () => {
       studyRepository.addListenRepeatAttempt({
         promptId: prompt.id,
@@ -1995,6 +2052,16 @@ function ListenRepeatWorkspace({
                 </>
               ) : null}
             </div>
+            {/* whisper decodes a full 30-second window whatever the clip
+                length, so even an eight-second repeat takes seconds to check.
+                Showing its real progress is the difference between a wait and
+                an app that looks dead. */}
+            {recorder.transcriptionPhase === "running" ? (
+              <TranscribeProgressBar
+                stage={recorder.transcriptionStage}
+                fraction={recorder.transcriptionProgress}
+              />
+            ) : null}
             {recorder.error ? (
               <p className="inline-error" role="alert">
                 {recorder.error}

@@ -3,6 +3,7 @@ import { recordingRepository, RecordingStorageError } from "../services/recordin
 import {
   isTranscriptionSupported,
   transcribeRecording,
+  type TranscriptionSpeed,
   type TranscriptResult,
 } from "../services/transcription";
 import { formatCount } from "../lib/format";
@@ -26,6 +27,9 @@ export type TranscriptionPhase = "idle" | "live" | "running" | "done" | "failed"
 interface UseSpeakingRecorderOptions {
   maxSeconds?: number;
   preparationSeconds?: number;
+  /** Listen & Repeat asks for `fast`: it checks the words against a sentence it
+   *  already has, so the wait matters more than the model. */
+  transcriptionSpeed?: TranscriptionSpeed;
   onSave: (result: SavedRecordingMetadata) => void;
 }
 
@@ -37,6 +41,10 @@ export interface SpeakingRecorderController {
   transcript: string;
   transcriptionPhase: TranscriptionPhase;
   transcriptionError: string;
+  /** 0 to 1 while the model works, so the wait can show its own progress
+   *  instead of looking like a frozen window. */
+  transcriptionProgress: number;
+  transcriptionStage: "loading" | "running" | null;
   analysis: TranscriptResult | null;
   result: RecordingCompletion | null;
   error: string;
@@ -110,6 +118,7 @@ function storageErrorMessage(error: unknown): string {
 export function useSpeakingRecorder({
   maxSeconds = 45,
   preparationSeconds = DEFAULT_PREPARATION_SECONDS,
+  transcriptionSpeed = "accurate",
   onSave,
 }: UseSpeakingRecorderOptions): SpeakingRecorderController {
   const [phase, setPhase] = useState<RecorderPhase>("idle");
@@ -126,6 +135,8 @@ export function useSpeakingRecorder({
   const [isStopping, setIsStopping] = useState(false);
   const [transcriptionPhase, setTranscriptionPhase] = useState<TranscriptionPhase>("idle");
   const [transcriptionError, setTranscriptionError] = useState("");
+  const [transcriptionProgress, setTranscriptionProgress] = useState(0);
+  const [transcriptionStage, setTranscriptionStage] = useState<"loading" | "running" | null>(null);
   const [analysis, setAnalysis] = useState<TranscriptResult | null>(null);
 
   /* On the desktop the response is transcribed here, by whisper.cpp, after the
@@ -325,13 +336,26 @@ export function useSpeakingRecorder({
       setTranscriptionPhase("running");
       setTranscriptionError("");
       setAnalysis(null);
+      setTranscriptionProgress(0);
+      setTranscriptionStage("loading");
       setStatusMessage("Transcribing your response on this device.");
 
       try {
-        const transcription = await transcribeRecording(blob);
+        const transcription = await transcribeRecording(blob, {
+          speed: transcriptionSpeed,
+          onProgress: (progress) => {
+            if (generation !== generationRef.current || !mountedRef.current) {
+              return;
+            }
+            setTranscriptionStage(progress.stage);
+            setTranscriptionProgress(progress.fraction);
+          },
+        });
         if (generation !== generationRef.current || !mountedRef.current) {
           return;
         }
+        setTranscriptionStage(null);
+        setTranscriptionProgress(1);
 
         transcriptRef.current = transcription.text;
         setTranscript(transcription.text);
@@ -362,6 +386,8 @@ export function useSpeakingRecorder({
           return;
         }
         setTranscriptionPhase("failed");
+        setTranscriptionStage(null);
+        setTranscriptionProgress(0);
         setTranscriptionError(
           transcriptionError_ instanceof Error
             ? transcriptionError_.message
@@ -370,7 +396,7 @@ export function useSpeakingRecorder({
         setStatusMessage("The response was recorded, but it could not be transcribed.");
       }
     },
-    [],
+    [transcriptionSpeed],
   );
 
   const beginRecording = useCallback(
@@ -896,6 +922,8 @@ export function useSpeakingRecorder({
     transcript,
     transcriptionPhase,
     transcriptionError,
+    transcriptionProgress,
+    transcriptionStage,
     analysis,
     result,
     error,

@@ -34,14 +34,37 @@ describe("Tauri desktop contract", () => {
       title: "TOEFL Companion",
       width: 1280,
       height: 800,
-      minWidth: 960,
-      minHeight: 650,
+      minWidth: 980,
+      minHeight: 668,
       decorations: false,
       resizable: true,
       fullscreen: false,
       theme: "Light",
       visible: false,
     });
+  });
+
+  /* These two minimums measure different boxes. Tauri's is the outer window;
+     the stylesheet's is the webview's client area, which is smaller even with
+     decorations off, because Windows still reserves a border for the shadow.
+     Measured on Windows 11: a 960x930 window gives a 944x921 client area.
+
+     While the two were both 960x650 the app spent its minimum size clipping
+     itself — the body stayed 960 wide inside a 944 viewport with overflow-x
+     hidden, so 16px of layout was unreachable and all five rail labels were
+     cut. The outer minimum has to clear the inner one by more than the frame. */
+  it("keeps the window minimum clear of the layout minimum", () => {
+    const FRAME_WIDTH = 16;
+    const FRAME_HEIGHT = 9;
+    const stylesheet = readFileSync(projectPath("src", "styles.css"), "utf8");
+    const layout = stylesheet.match(
+      /body\s*\{[^}]*min-width:\s*(\d+)px;[^}]*min-height:\s*(\d+)px;/su,
+    );
+    expect(layout).not.toBeNull();
+    const main = tauriConfig.app.windows[0];
+
+    expect(Number(main.minWidth)).toBeGreaterThan(Number(layout?.[1]) + FRAME_WIDTH);
+    expect(Number(main.minHeight)).toBeGreaterThan(Number(layout?.[2]) + FRAME_HEIGHT);
   });
 
   it("builds the React frontend and packages an NSIS installer", () => {

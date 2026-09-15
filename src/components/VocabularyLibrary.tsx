@@ -11,7 +11,7 @@ import {
   type WordLocation,
 } from "../services/vocabularyRepository";
 import { useMediaQuery } from "../hooks/useMediaQuery";
-import type { WordList } from "../types/vocabulary";
+import type { CollectionColor, WordList } from "../types/vocabulary";
 import { DoodleIcon } from "./DoodleIcon";
 import { Modal } from "./Modal";
 import { ConfirmDialog } from "./StudyUI";
@@ -39,6 +39,18 @@ type DuplicatePolicy = "keep" | "skip";
 type Confirmation =
   | { kind: "word"; location: WordLocation }
   | { kind: "collection"; list: WordList };
+
+/** The Collection select's value for "make a new one". Never a real list id. */
+const NEW_COLLECTION = "__new-collection__";
+const COLOR_NAMES: Record<CollectionColor, string> = {
+  mint: "Mint",
+  sky: "Sky",
+  grape: "Grape",
+  rose: "Rose",
+  sun: "Sun",
+  lime: "Lime",
+  flame: "Flame",
+};
 
 const WORDS_PER_PAGE = 20;
 const MAX_IMPORT_BYTES = 5_000_000;
@@ -229,9 +241,15 @@ export function VocabularyLibrary({
   const [wordError, setWordError] = useState("");
   const [saving, setSaving] = useState(false);
 
-  const [collectionsOpen, setCollectionsOpen] = useState(false);
-  const [newCollectionTitle, setNewCollectionTitle] = useState("");
+  /* The collection open in the editor; "new" opens it blank. */
+  const [collectionEditor, setCollectionEditor] = useState<WordList | "new" | null>(null);
+  const [collectionTitle, setCollectionTitle] = useState("");
+  const [collectionColor, setCollectionColor] = useState<CollectionColor>("mint");
   const [collectionError, setCollectionError] = useState("");
+  /* Where a deleted collection's words go; null deletes them with it. */
+  const [keepWordsIn, setKeepWordsIn] = useState<string | null>(null);
+  /* Add word can create the collection it is filing the word into. */
+  const [newListTitle, setNewListTitle] = useState("");
 
   const [importOpen, setImportOpen] = useState(false);
   const [importFileName, setImportFileName] = useState("");
@@ -244,13 +262,16 @@ export function VocabularyLibrary({
 
   const isNarrow = useMediaQuery("(max-width: 1180px)");
   const searchId = useId();
-  const collectionId = useId();
+  const collectionFormId = useId();
+  const colorName = useId();
+  const keepName = useId();
   const policyName = useId();
   const wordFormId = useId();
   const searchInputRef = useRef<HTMLInputElement>(null);
   const termInputRef = useRef<HTMLInputElement>(null);
   const newCollectionRef = useRef<HTMLInputElement>(null);
   const rowRefs = useRef(new Map<string, HTMLButtonElement>());
+  const shelfRefs = useRef(new Map<string, HTMLButtonElement>());
   const pendingFocusRef = useRef<string | null>(null);
   const appliedInitialRef = useRef<string | undefined>(undefined);
 
@@ -323,6 +344,16 @@ export function VocabularyLibrary({
   }, [snapshot]);
 
   const editableLists = snapshot.wordLists.filter((list) => !list.isBuiltIn);
+  /* One of the learner's own collections with nothing in it yet. */
+  const emptyCollection =
+    collectionFilter !== "all"
+      ? editableLists.find((list) => list.id === collectionFilter && list.words.length === 0)
+      : undefined;
+  /* Read from the live snapshot, so the review switch reflects a change at once. */
+  const editorList =
+    collectionEditor && collectionEditor !== "new"
+      ? (snapshot.wordLists.find((list) => list.id === collectionEditor.id) ?? collectionEditor)
+      : null;
   const importAnalysis = useMemo(
     () => (importValue === undefined ? null : analyzeImport(importValue, snapshot)),
     [importValue, snapshot],
@@ -355,6 +386,21 @@ export function VocabularyLibrary({
       node?.scrollIntoView({ block: "nearest" });
     });
   }, [visibleWords]);
+
+  // A collection picked or just created past the edge of the shelf is brought into view.
+  useEffect(() => {
+    shelfRefs.current
+      .get(collectionFilter)
+      ?.scrollIntoView?.({ block: "nearest", inline: "nearest" });
+  }, [collectionFilter]);
+
+  const registerShelfCard = (key: string, node: HTMLButtonElement | null) => {
+    if (node) {
+      shelfRefs.current.set(key, node);
+    } else {
+      shelfRefs.current.delete(key);
+    }
+  };
 
   const resetPaging = () => {
     setPage(0);
@@ -449,6 +495,7 @@ export function VocabularyLibrary({
         ? collectionFilter
         : vocabularyRepository.personalListId,
     );
+    setNewListTitle("");
     setWordError("");
     setWordModalOpen(true);
   };
@@ -465,6 +512,7 @@ export function VocabularyLibrary({
       collocations: location.word.collocations ?? [],
       notes: location.word.notes ?? "",
     });
+    setNewListTitle("");
     setWordError("");
     setWordModalOpen(true);
   };
@@ -483,16 +531,33 @@ export function VocabularyLibrary({
     setSaving(true);
     setWordError("");
     try {
+      let listId = targetListId;
+      if (listId === NEW_COLLECTION) {
+        // Created and remembered first, so a failed save retries into the same
+        // collection instead of tripping over its own new name.
+        listId = vocabularyRepository.createWordList(newListTitle).id;
+        setTargetListId(listId);
+        setNewListTitle("");
+      }
       if (editing) {
         vocabularyRepository.updateEditableWord(editing.list.id, editing.word.id, draft);
         setSelectedWordId(editing.word.id);
-        onNotice(`${draft.term.trim()} was updated.`);
+        if (listId !== editing.list.id) {
+          const moved = vocabularyRepository.moveWord(editing.word.id, listId);
+          if (collectionFilter !== "all") {
+            setCollectionFilter(moved.list.id);
+            setPage(0);
+          }
+          onNotice(`${draft.term.trim()} moved to ${moved.list.title}.`);
+        } else {
+          onNotice(`${draft.term.trim()} was updated.`);
+        }
       } else {
-        const word = await vocabularyRepository.addWordToList(draft, targetListId);
+        const word = await vocabularyRepository.addWordToList(draft, listId);
         setSelectedWordId(word.id);
         setQuery("");
         setStatusFilter("all");
-        setCollectionFilter(targetListId);
+        setCollectionFilter(listId);
         setPage(0);
         onNotice(`${word.term} was added to your library.`);
       }
@@ -506,18 +571,51 @@ export function VocabularyLibrary({
     }
   };
 
-  const createCollection = (event: React.FormEvent) => {
+  const openCollectionEditor = (list: WordList | "new") => {
+    const worn = new Set(snapshot.wordLists.map((candidate) => candidate.color));
+    setCollectionEditor(list);
+    setCollectionTitle(list === "new" ? "" : getLibraryDisplayTitle(list));
+    setCollectionColor(
+      list === "new"
+        ? (vocabularyRepository.collectionColors.find((color) => !worn.has(color)) ?? "mint")
+        : (list.color ?? "mint"),
+    );
+    setCollectionError("");
+  };
+
+  const saveCollection = (event: React.FormEvent) => {
     event.preventDefault();
+    if (!collectionEditor) {
+      return;
+    }
     try {
-      const list = vocabularyRepository.createWordList(newCollectionTitle);
-      setNewCollectionTitle("");
-      setCollectionError("");
-      setCollectionFilter(list.id);
-      resetPaging();
-      onNotice(`${list.title} was created.`);
+      if (collectionEditor === "new") {
+        const list = vocabularyRepository.createWordList(collectionTitle, collectionColor);
+        setCollectionFilter(list.id);
+        resetPaging();
+        onNotice(`${list.title} is ready. Add words to it from Add word.`);
+      } else {
+        const current = editorList ?? collectionEditor;
+        if (!current.isBuiltIn && collectionTitle.trim() !== current.title) {
+          vocabularyRepository.renameWordList(current.id, collectionTitle);
+        }
+        if (collectionColor !== current.color) {
+          vocabularyRepository.setListColor(current.id, collectionColor);
+        }
+        onNotice(`${collectionTitle.trim() || getLibraryDisplayTitle(current)} was saved.`);
+      }
+      setCollectionEditor(null);
     } catch (error) {
       setCollectionError(errorMessage(error));
     }
+  };
+
+  const requestCollectionDelete = (list: WordList) => {
+    setCollectionEditor(null);
+    // Keeping the words is the default: deleting a folder should not quietly
+    // delete what was filed in it.
+    setKeepWordsIn(list.words.length ? vocabularyRepository.personalListId : null);
+    setConfirmation({ kind: "collection", list });
   };
 
   const toggleCollection = (list: WordList, enabled: boolean) => {
@@ -631,10 +729,17 @@ export function VocabularyLibrary({
         setDetailOpen(false);
         onNotice(`${confirmation.location.word.term} was deleted. Its review history was kept.`);
       } else {
-        vocabularyRepository.deleteImportedList(confirmation.list.id);
-        setCollectionFilter("all");
+        const keptIn = keepWordsIn
+          ? snapshot.wordLists.find((list) => list.id === keepWordsIn)
+          : undefined;
+        vocabularyRepository.deleteWordList(confirmation.list.id, keptIn?.id);
+        setCollectionFilter(keptIn ? keptIn.id : "all");
         resetPaging();
-        onNotice(`${confirmation.list.title} was deleted. Its review history was kept.`);
+        onNotice(
+          keptIn
+            ? `${confirmation.list.title} was deleted. Its words are now in ${keptIn.title}.`
+            : `${confirmation.list.title} was deleted. Review history was kept.`,
+        );
       }
       setConfirmation(null);
     } catch (error) {
@@ -679,14 +784,23 @@ export function VocabularyLibrary({
     confirmation?.kind === "collection"
       ? {
           title: "Delete this collection?",
-          description: `“${confirmation.list.title}” and its ${formatCount(confirmation.list.words.length, "word")} leave the library. Review history is kept.`,
-          confirmLabel: "Delete collection",
+          description: confirmation.list.words.length
+            ? `“${confirmation.list.title}” holds ${formatCount(confirmation.list.words.length, "word")}. Choose what happens to them.`
+            : `“${confirmation.list.title}” is empty, so nothing else is affected.`,
+          confirmLabel:
+            confirmation.list.words.length && keepWordsIn === null
+              ? "Delete collection and words"
+              : "Delete collection",
         }
       : {
           title: "Delete this word?",
           description: `“${confirmation?.location.word.term ?? ""}” leaves this collection. Review history is kept.`,
           confirmLabel: "Delete word",
         };
+  const keepTargets =
+    confirmation?.kind === "collection"
+      ? editableLists.filter((list) => list.id !== confirmation.list.id)
+      : [];
 
   return (
     <div className="brutal vlib">
@@ -741,6 +855,80 @@ export function VocabularyLibrary({
         </div>
       </header>
 
+      {/* Collections sit above the list they filter, as a row seen at a glance
+          rather than a menu that has to be opened to learn it exists. */}
+      <nav className="vlib-shelf" aria-label="Collections">
+        <ul className="vlib-shelf__track">
+          <li>
+            <button
+              type="button"
+              ref={(node) => registerShelfCard("all", node)}
+              className="vlib-shelf__card vlib-shelf__card--all"
+              data-active={collectionFilter === "all"}
+              aria-pressed={collectionFilter === "all"}
+              onClick={() => {
+                setCollectionFilter("all");
+                resetPaging();
+              }}
+            >
+              <span className="vlib-shelf__swatch" aria-hidden />
+              <strong>All words</strong>
+              <small>{formatCount(locations.length, "word")}</small>
+            </button>
+          </li>
+          {/* Beside All words rather than at the end, so adding a collection
+              never scrolls out of reach once the shelf is full. */}
+          <li>
+            <button
+              type="button"
+              className="vlib-shelf__card vlib-shelf__card--new"
+              onClick={() => openCollectionEditor("new")}
+            >
+              <span className="vlib-shelf__plus" aria-hidden>
+                +
+              </span>
+              <strong>New collection</strong>
+              <small>Name it, give it a colour</small>
+            </button>
+          </li>
+          {snapshot.wordLists.map((list) => {
+            const active = collectionFilter === list.id;
+            const title = getLibraryDisplayTitle(list);
+            return (
+              <li key={list.id} data-color={list.color}>
+                <button
+                  ref={(node) => registerShelfCard(list.id, node)}
+                  type="button"
+                  className="vlib-shelf__card"
+                  data-active={active}
+                  aria-pressed={active}
+                  onClick={() => {
+                    setCollectionFilter(list.id);
+                    resetPaging();
+                  }}
+                >
+                  <span className="vlib-shelf__swatch" aria-hidden />
+                  <strong>{title}</strong>
+                  <small>
+                    {formatCount(list.words.length, "word")}
+                    {list.isEnabled ? "" : " · not in review"}
+                  </small>
+                </button>
+                <button
+                  type="button"
+                  className="vlib-shelf__edit"
+                  aria-label={`Edit ${title}`}
+                  title="Edit collection"
+                  onClick={() => openCollectionEditor(list)}
+                >
+                  <DoodleIcon name="pencil" size={14} />
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+
       <div className="brutal__body vlib__body">
         <section className="b-frame vlib__list" aria-label="Vocabulary words">
           <div className="vlib__filters">
@@ -760,35 +948,6 @@ export function VocabularyLibrary({
                   placeholder="Search this library"
                 />
               </label>
-              <label className="b-field vlib__collection" htmlFor={collectionId}>
-                <span className="sr-only">Filter by collection</span>
-                <select
-                  id={collectionId}
-                  value={collectionFilter}
-                  onChange={(event) => {
-                    setCollectionFilter(event.target.value);
-                    resetPaging();
-                  }}
-                >
-                  <option value="all">All collections</option>
-                  {snapshot.wordLists.map((list) => (
-                    <option key={list.id} value={list.id}>
-                      {getLibraryDisplayTitle(list)}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <button
-                type="button"
-                className="b-btn vlib__collections-btn"
-                onClick={() => {
-                  setCollectionError("");
-                  setCollectionsOpen(true);
-                }}
-              >
-                <DoodleIcon name="menu" size={16} />
-                Collections
-              </button>
             </div>
 
             <div className="vlib__filter-row">
@@ -940,11 +1099,19 @@ export function VocabularyLibrary({
           ) : (
             <div className="vlib__empty">
               <DoodleIcon name="search" size={40} />
-              <h3>{query.trim() ? `Nothing matches “${query.trim()}”` : "Nothing in this view"}</h3>
+              <h3>
+                {query.trim()
+                  ? `Nothing matches “${query.trim()}”`
+                  : emptyCollection
+                    ? `${emptyCollection.title} is empty`
+                    : "Nothing in this view"}
+              </h3>
               <p>
                 {query.trim()
                   ? "Try a shorter term, or clear the search and pick another collection."
-                  : "Change the status filter, or add a word to one of your own collections."}
+                  : emptyCollection
+                    ? "Add its first word, or move words in by editing them."
+                    : "Change the status filter, or add a word to one of your own collections."}
               </p>
               {query.trim() ? (
                 <button
@@ -1004,7 +1171,11 @@ export function VocabularyLibrary({
               type="submit"
               form={wordFormId}
               className="b-btn b-btn--lime"
-              disabled={saving || !draft.term.trim()}
+              disabled={
+                saving ||
+                !draft.term.trim() ||
+                (targetListId === NEW_COLLECTION && !newListTitle.trim())
+              }
             >
               {saving ? "Saving…" : editing ? "Save changes" : "Add to library"}
             </button>
@@ -1012,21 +1183,30 @@ export function VocabularyLibrary({
         }
       >
         <form id={wordFormId} className="modal-form" onSubmit={(event) => void saveWord(event)}>
-          {editing ? null : (
+          {/* On edit this is how a word moves: pick a different collection. */}
+          <label>
+            Collection
+            <select value={targetListId} onChange={(event) => setTargetListId(event.target.value)}>
+              {editableLists.map((list) => (
+                <option key={list.id} value={list.id}>
+                  {list.title}
+                </option>
+              ))}
+              <option value={NEW_COLLECTION}>+ New collection…</option>
+            </select>
+          </label>
+          {targetListId === NEW_COLLECTION ? (
             <label>
-              Collection
-              <select
-                value={targetListId}
-                onChange={(event) => setTargetListId(event.target.value)}
-              >
-                {editableLists.map((list) => (
-                  <option key={list.id} value={list.id}>
-                    {list.title}
-                  </option>
-                ))}
-              </select>
+              New collection name
+              <input
+                required
+                maxLength={80}
+                value={newListTitle}
+                onChange={(event) => setNewListTitle(event.target.value)}
+                placeholder="Environment, Week 3, Reading notes…"
+              />
             </label>
-          )}
+          ) : null}
           <div className="form-grid form-grid--two">
             <label>
               Word or collocation
@@ -1122,88 +1302,113 @@ export function VocabularyLibrary({
       </Modal>
 
       <Modal
-        open={collectionsOpen}
-        title="Collections"
-        description="Create a collection, choose which ones feed review, or take one out of the app."
-        onClose={() => setCollectionsOpen(false)}
+        open={collectionEditor !== null}
+        title={collectionEditor === "new" ? "New collection" : "Edit collection"}
+        description={
+          collectionEditor === "new"
+            ? "A name you will recognise at a glance, and a colour to find it by."
+            : editorList?.isBuiltIn
+              ? "Built-in collections keep their name. The colour and review setting are yours."
+              : "Rename it, recolour it, choose whether it feeds review, or remove it."
+        }
+        onClose={() => setCollectionEditor(null)}
         initialFocusRef={newCollectionRef}
-      >
-        <div className="vlib-collections">
-          <form className="vlib-collections__create" onSubmit={createCollection}>
-            <label>
-              New collection
-              <input
-                ref={newCollectionRef}
-                required
-                maxLength={80}
-                value={newCollectionTitle}
-                onChange={(event) => setNewCollectionTitle(event.target.value)}
-                placeholder="Reading notes, Environment…"
-              />
-            </label>
-            <button type="submit" className="b-btn" disabled={!newCollectionTitle.trim()}>
-              Create
+        footer={
+          <>
+            {editorList &&
+            !editorList.isBuiltIn &&
+            editorList.id !== vocabularyRepository.personalListId ? (
+              <button
+                type="button"
+                className="b-btn b-btn--flame vlib-editor__delete"
+                onClick={() => requestCollectionDelete(editorList)}
+              >
+                <DoodleIcon name="delete" size={16} />
+                Delete
+              </button>
+            ) : null}
+            <button type="button" className="b-btn" onClick={() => setCollectionEditor(null)}>
+              Cancel
             </button>
-          </form>
+            <button
+              type="submit"
+              form={collectionFormId}
+              className="b-btn b-btn--lime"
+              disabled={!collectionTitle.trim()}
+            >
+              {collectionEditor === "new" ? "Create collection" : "Save"}
+            </button>
+          </>
+        }
+      >
+        <form id={collectionFormId} className="modal-form vlib-editor" onSubmit={saveCollection}>
+          <label>
+            Name
+            <input
+              ref={newCollectionRef}
+              required
+              maxLength={80}
+              disabled={editorList?.isBuiltIn}
+              value={collectionTitle}
+              onChange={(event) => setCollectionTitle(event.target.value)}
+              placeholder="Environment, Week 3, Reading notes…"
+            />
+          </label>
+
+          <fieldset className="vlib-editor__colors">
+            <legend>Colour</legend>
+            <div className="vlib-editor__swatches">
+              {vocabularyRepository.collectionColors.map((color) => (
+                <label key={color} className="vlib-editor__swatch" data-color={color}>
+                  <input
+                    type="radio"
+                    name={colorName}
+                    value={color}
+                    checked={collectionColor === color}
+                    onChange={() => setCollectionColor(color)}
+                  />
+                  <span className="sr-only">{COLOR_NAMES[color]}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+
+          {editorList ? (
+            <div className="vlib-editor__review">
+              <span>
+                <strong>Include in review</strong>
+                <small>Its words appear in review sessions and reminders.</small>
+              </span>
+              <button
+                type="button"
+                role="switch"
+                className="vlib-collections__switch"
+                aria-checked={editorList.isEnabled}
+                aria-label={`Review enabled for ${editorList.title}`}
+                onClick={() => toggleCollection(editorList, !editorList.isEnabled)}
+              >
+                <span />
+              </button>
+            </div>
+          ) : null}
+
+          {editorList ? (
+            <button
+              type="button"
+              className="b-btn vlib-editor__export"
+              onClick={() => exportCollection(editorList)}
+            >
+              <DoodleIcon name="download" size={16} />
+              Export as JSON
+            </button>
+          ) : null}
 
           {collectionError ? (
             <p className="vlib-alert" role="alert">
               {collectionError}
             </p>
           ) : null}
-
-          <ul className="vlib-collections__list">
-            {snapshot.wordLists.map((list) => (
-              <li key={list.id} className="vlib-collections__item">
-                <span className="vlib-collections__copy">
-                  <strong>{getLibraryDisplayTitle(list)}</strong>
-                  <small>
-                    {formatCount(list.words.length, "word")} ·{" "}
-                    {list.isBuiltIn ? "Built in" : "Yours"}
-                  </small>
-                </span>
-                <span className="vlib-collections__review">
-                  <span aria-hidden>In review</span>
-                  <button
-                    type="button"
-                    role="switch"
-                    className="vlib-collections__switch"
-                    aria-checked={list.isEnabled}
-                    aria-label={`Review enabled for ${list.title}`}
-                    onClick={() => toggleCollection(list, !list.isEnabled)}
-                  >
-                    <span />
-                  </button>
-                </span>
-                <span className="vlib-collections__actions">
-                  <button
-                    type="button"
-                    className="b-icon-btn"
-                    aria-label={`Export ${list.title}`}
-                    title="Export as JSON"
-                    onClick={() => exportCollection(list)}
-                  >
-                    <DoodleIcon name="download" size={17} />
-                  </button>
-                  {list.isBuiltIn || list.id === vocabularyRepository.personalListId ? null : (
-                    <button
-                      type="button"
-                      className="b-icon-btn"
-                      aria-label={`Delete ${list.title}`}
-                      title="Delete collection"
-                      onClick={() => {
-                        setCollectionsOpen(false);
-                        setConfirmation({ kind: "collection", list });
-                      }}
-                    >
-                      <DoodleIcon name="delete" size={17} />
-                    </button>
-                  )}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        </form>
       </Modal>
 
       <Modal
@@ -1395,7 +1600,52 @@ export function VocabularyLibrary({
         tone="danger"
         onClose={() => setConfirmation(null)}
         onConfirm={confirmDeletion}
-      />
+      >
+        {confirmation?.kind === "collection" && confirmation.list.words.length ? (
+          <fieldset className="vlib-keep">
+            <legend className="sr-only">What happens to its words</legend>
+            <label className="vlib-keep__option">
+              <input
+                type="radio"
+                name={keepName}
+                checked={keepWordsIn !== null}
+                onChange={() => setKeepWordsIn(keepTargets[0]?.id ?? null)}
+              />
+              <span>
+                <strong>Keep the words</strong>
+                <small>Move them into another collection first.</small>
+              </span>
+            </label>
+            {keepWordsIn !== null ? (
+              <label className="vlib-keep__target">
+                Keep them in
+                <select
+                  value={keepWordsIn}
+                  onChange={(event) => setKeepWordsIn(event.target.value)}
+                >
+                  {keepTargets.map((list) => (
+                    <option key={list.id} value={list.id}>
+                      {list.title}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            ) : null}
+            <label className="vlib-keep__option">
+              <input
+                type="radio"
+                name={keepName}
+                checked={keepWordsIn === null}
+                onChange={() => setKeepWordsIn(null)}
+              />
+              <span>
+                <strong>Delete the words too</strong>
+                <small>They leave the library. Their review history is kept.</small>
+              </span>
+            </label>
+          </fieldset>
+        ) : null}
+      </ConfirmDialog>
     </div>
   );
 }

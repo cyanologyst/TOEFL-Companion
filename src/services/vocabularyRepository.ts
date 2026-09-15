@@ -1,6 +1,7 @@
 import rawBuiltInList from "../data/toefl-550.wordlist.json";
 import rawNeoList from "../data/toefl-neo-1-10.wordlist.json";
 import type {
+  CollectionColor,
   ReviewAction,
   ReviewEvent,
   ReviewProgressEntry,
@@ -22,7 +23,24 @@ export const VOCABULARY_STORAGE_KEY = "toefl-companion:vocabulary:v1";
 export const VOCABULARY_CHANGE_EVENT = "toefl-companion:vocabulary-change";
 const VOCABULARY_SCHEMA_VERSION = 1;
 const PERSONAL_LIST_ID = "personal-words";
+const PERSONAL_LIST_TITLE = "Personal words";
 const MAX_EVENTS = 10_000;
+
+/** New collections take the first of these that no list is already wearing. */
+const COLLECTION_COLORS: readonly CollectionColor[] = [
+  "mint",
+  "sky",
+  "grape",
+  "rose",
+  "sun",
+  "lime",
+  "flame",
+];
+const DEFAULT_LIST_COLORS: Record<string, CollectionColor> = {
+  "toefl-550-march-2026": "sun",
+  "toefl-neo-1-10": "sky",
+  [PERSONAL_LIST_ID]: "mint",
+};
 
 const CP_1252_REVERSE: Record<number, number> = {
   0x20ac: 0x80,
@@ -62,6 +80,10 @@ export interface VocabularyStore {
   personalWords: WordEntry[];
   importedLists: WordList[];
   enabledLists: Record<string, boolean>;
+  /** Colour chosen per list id. Lists without one fall back to a fixed colour. */
+  collectionColors: Record<string, CollectionColor>;
+  /** Personal words renamed by the learner; null keeps the default name. */
+  personalListTitle: string | null;
   pausedUntil: string | null;
   nextReminderAt: string | null;
 }
@@ -227,6 +249,8 @@ function createDefaultStore(): VocabularyStore {
       ...Object.fromEntries(BUILT_IN_LISTS.map((list) => [list.id, true])),
       [PERSONAL_LIST_ID]: true,
     },
+    collectionColors: {},
+    personalListTitle: null,
     pausedUntil: null,
     nextReminderAt: null,
   };
@@ -453,6 +477,21 @@ function assertVersionedStoreShape(value: Record<string, unknown>): void {
   }
 }
 
+function isCollectionColor(value: unknown): value is CollectionColor {
+  return typeof value === "string" && (COLLECTION_COLORS as readonly string[]).includes(value);
+}
+
+function hydrateCollectionColors(value: unknown): Record<string, CollectionColor> {
+  if (!isRecord(value)) {
+    return {};
+  }
+  return Object.fromEntries(
+    Object.entries(value).filter((entry): entry is [string, CollectionColor] =>
+      isCollectionColor(entry[1]),
+    ),
+  );
+}
+
 function hydrateStore(value: Record<string, unknown>): VocabularyStore {
   const defaults = createDefaultStore();
 
@@ -501,6 +540,10 @@ function hydrateStore(value: Record<string, unknown>): VocabularyStore {
       ...defaults.enabledLists,
       ...enabledLists,
     },
+    // Both are absent from stores saved before collections could be renamed or
+    // coloured, and hydrate to the defaults.
+    collectionColors: hydrateCollectionColors(value.collectionColors),
+    personalListTitle: cleanText(value.personalListTitle)?.slice(0, 80) ?? null,
     pausedUntil: safeIso(value.pausedUntil, null),
     nextReminderAt: safeIso(value.nextReminderAt, null),
   };
@@ -553,28 +596,70 @@ export function vocabularyStorageEntry(value: unknown): readonly [string, Vocabu
 }
 
 function createWordLists(store: VocabularyStore): WordList[] {
+  const colorFor = (listId: string, fallbackIndex: number): CollectionColor =>
+    store.collectionColors[listId] ??
+    DEFAULT_LIST_COLORS[listId] ??
+    COLLECTION_COLORS[fallbackIndex % COLLECTION_COLORS.length];
+
   const personalList: WordList = {
     schemaVersion: 1,
     id: PERSONAL_LIST_ID,
-    title: "Personal words",
+    title: store.personalListTitle ?? PERSONAL_LIST_TITLE,
     language: "en",
     source: "Added in TOEFL Companion",
     words: store.personalWords,
     isEnabled: store.enabledLists[PERSONAL_LIST_ID] !== false,
     isBuiltIn: false,
+    color: colorFor(PERSONAL_LIST_ID, 0),
   };
 
   return [
     ...BUILT_IN_LISTS.map((list) => ({
       ...list,
       isEnabled: store.enabledLists[list.id] !== false,
+      color: colorFor(list.id, 0),
     })),
     personalList,
-    ...store.importedLists.map((list) => ({
+    ...store.importedLists.map((list, index) => ({
       ...list,
       isEnabled: store.enabledLists[list.id] !== false,
+      // Lists made before colours existed start after the three fixed ones.
+      color: colorFor(list.id, index + 3),
     })),
   ];
+}
+
+function removeWordFrom(store: VocabularyStore, listId: string, wordId: string): void {
+  if (listId === PERSONAL_LIST_ID) {
+    store.personalWords = store.personalWords.filter((word) => word.id !== wordId);
+    return;
+  }
+  const list = store.importedLists.find((candidate) => candidate.id === listId);
+  if (list) {
+    list.words = list.words.filter((word) => word.id !== wordId);
+  }
+}
+
+function appendWordTo(store: VocabularyStore, listId: string, word: WordEntry): void {
+  if (listId === PERSONAL_LIST_ID) {
+    store.personalWords.push(word);
+    return;
+  }
+  const list = store.importedLists.find((candidate) => candidate.id === listId);
+  if (!list) {
+    throw new Error("The selected collection is no longer available.");
+  }
+  list.words.push(word);
+}
+
+/** The tag a word carries says which kind of list made it. Moving keeps that honest. */
+function retagWord(word: WordEntry, toListId: string, order: number): WordEntry {
+  const toTag = toListId === PERSONAL_LIST_ID ? "Personal" : "Custom";
+  return {
+    ...word,
+    order,
+    tags: word.tags.map((tag) => (tag === "Personal" || tag === "Custom" ? toTag : tag)),
+  };
 }
 
 function mutate(mutator: (store: VocabularyStore) => void): VocabularySnapshot {
@@ -706,19 +791,37 @@ export const vocabularyRepository = {
     });
   },
 
-  createWordList(title: string): WordList {
-    const normalizedTitle = title.trim();
-    if (!normalizedTitle) {
-      throw new Error("Enter a wordlist name.");
+  collectionColors: COLLECTION_COLORS,
+
+  /** Trims a collection name and checks it against every other list's name. */
+  assertCollectionTitle(title: string, exceptListId?: string): string {
+    const normalized = title.trim();
+    if (!normalized) {
+      throw new Error("Give the collection a name.");
     }
+    if (normalized.length > 80) {
+      throw new Error("Keep the name under 80 characters.");
+    }
+    const clash = this.getSnapshot().wordLists.find(
+      (list) =>
+        list.id !== exceptListId &&
+        list.title.toLocaleLowerCase() === normalized.toLocaleLowerCase(),
+    );
+    if (clash) {
+      throw new Error(`There is already a collection called “${clash.title}”.`);
+    }
+    return normalized;
+  },
+
+  createWordList(title: string, color?: CollectionColor): WordList {
+    const normalizedTitle = this.assertCollectionTitle(title);
     const snapshot = this.getSnapshot();
-    if (
-      snapshot.wordLists.some(
-        (list) => list.title.toLocaleLowerCase() === normalizedTitle.toLocaleLowerCase(),
-      )
-    ) {
-      throw new Error(`A wordlist named “${normalizedTitle}” already exists.`);
-    }
+    const worn = new Set(snapshot.wordLists.map((list) => list.color));
+    const chosen: CollectionColor =
+      color && isCollectionColor(color)
+        ? color
+        : (COLLECTION_COLORS.find((candidate) => !worn.has(candidate)) ??
+          COLLECTION_COLORS[snapshot.wordLists.length % COLLECTION_COLORS.length]);
 
     const list: WordList = {
       schemaVersion: 1,
@@ -733,8 +836,70 @@ export const vocabularyRepository = {
     mutate((store) => {
       store.importedLists.push(list);
       store.enabledLists[list.id] = true;
+      store.collectionColors[list.id] = chosen;
     });
-    return list;
+    return { ...list, color: chosen };
+  },
+
+  renameWordList(listId: string, title: string): WordList {
+    const list = this.getSnapshot().wordLists.find((candidate) => candidate.id === listId);
+    if (!list) {
+      throw new Error("That collection is no longer in the library.");
+    }
+    if (list.isBuiltIn) {
+      throw new Error("Built-in collections keep their names.");
+    }
+    const normalized = this.assertCollectionTitle(title, listId);
+    const snapshot = mutate((store) => {
+      if (listId === PERSONAL_LIST_ID) {
+        store.personalListTitle = normalized === PERSONAL_LIST_TITLE ? null : normalized;
+        return;
+      }
+      const stored = store.importedLists.find((candidate) => candidate.id === listId);
+      if (stored) {
+        stored.title = normalized;
+      }
+    });
+    return snapshot.wordLists.find((candidate) => candidate.id === listId) ?? list;
+  },
+
+  setListColor(listId: string, color: CollectionColor): VocabularySnapshot {
+    if (!isCollectionColor(color)) {
+      throw new Error("Choose one of the collection colours.");
+    }
+    if (!this.getSnapshot().wordLists.some((list) => list.id === listId)) {
+      throw new Error("That collection is no longer in the library.");
+    }
+    return mutate((store) => {
+      store.collectionColors[listId] = color;
+    });
+  },
+
+  /** Moves a word between the learner's own collections. The id is kept, so
+   *  its review history and schedule move with it. */
+  moveWord(wordId: string, toListId: string): WordLocation {
+    const snapshot = this.getSnapshot();
+    const location = this.findWord(wordId, snapshot);
+    if (!location) {
+      throw new Error("That word is no longer in the library.");
+    }
+    if (location.list.isBuiltIn) {
+      throw new Error("Words in built-in collections stay where they are.");
+    }
+    const target = snapshot.wordLists.find((list) => list.id === toListId);
+    if (!target || target.isBuiltIn) {
+      throw new Error("Choose one of your own collections.");
+    }
+    if (target.id === location.list.id) {
+      return location;
+    }
+
+    const moved = retagWord(location.word, target.id, target.words.length + 1);
+    mutate((store) => {
+      removeWordFrom(store, location.list.id, wordId);
+      appendWordTo(store, target.id, moved);
+    });
+    return this.findWord(wordId) ?? { list: target, word: moved };
   },
 
   async addWordToList(draft: PersonalWordDraft, listId: string): Promise<WordEntry> {
@@ -917,9 +1082,43 @@ export const vocabularyRepository = {
   },
 
   deleteImportedList(listId: string): void {
+    this.deleteWordList(listId);
+  },
+
+  /**
+   * Removes a collection the learner created. With `moveWordsTo`, its words
+   * are kept in that collection first; without it, they leave with it. Review
+   * history is kept either way, because it is keyed by word id.
+   */
+  deleteWordList(listId: string, moveWordsTo?: string): void {
+    if (listId === PERSONAL_LIST_ID || BUILT_IN_LIST_IDS.has(listId)) {
+      throw new Error("Only collections you created can be deleted.");
+    }
+    const snapshot = this.getSnapshot();
+    const list = snapshot.wordLists.find((candidate) => candidate.id === listId);
+    if (!list) {
+      return;
+    }
+    const target = moveWordsTo
+      ? snapshot.wordLists.find((candidate) => candidate.id === moveWordsTo)
+      : undefined;
+    if (moveWordsTo && (!target || target.isBuiltIn || target.id === listId)) {
+      throw new Error("Choose one of your own collections to keep these words in.");
+    }
+
     mutate((store) => {
-      store.importedLists = store.importedLists.filter((list) => list.id !== listId);
+      if (target) {
+        list.words.forEach((word, index) => {
+          appendWordTo(
+            store,
+            target.id,
+            retagWord(word, target.id, target.words.length + index + 1),
+          );
+        });
+      }
+      store.importedLists = store.importedLists.filter((candidate) => candidate.id !== listId);
       delete store.enabledLists[listId];
+      delete store.collectionColors[listId];
     });
   },
 

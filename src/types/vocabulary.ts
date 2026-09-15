@@ -25,6 +25,9 @@ export interface WordEntry {
   enrichmentSource: string | null;
 }
 
+/** The seven flat colours of the interface, in the order new collections take them. */
+export type CollectionColor = "mint" | "sky" | "grape" | "rose" | "sun" | "lime" | "flame";
+
 export interface WordList {
   schemaVersion: 1;
   id: string;
@@ -34,6 +37,8 @@ export interface WordList {
   words: WordEntry[];
   isEnabled: boolean;
   isBuiltIn: boolean;
+  /** Assigned by the repository when it builds a snapshot; never read from a file. */
+  color?: CollectionColor;
 }
 
 export interface ReviewProgressEntry {

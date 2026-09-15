@@ -41,21 +41,6 @@
   flex: 1;
 }
 
-.vlib__collection {
-  width: 178px;
-  flex: 0 0 auto;
-}
-
-.vlib__collection select {
-  cursor: pointer;
-}
-
-.vlib__collections-btn {
-  flex: 0 0 auto;
-  min-height: 44px;
-  font-size: 13px;
-}
-
 /* The status filter is the one control a learner reaches for every visit, so
    it carries its counts inline rather than hiding them in a summary line. */
 .vlib__status-filter {
@@ -523,83 +508,323 @@
   line-height: 1.45;
 }
 
-/* -- Collections dialog ------------------------------------------------------ */
+/* -- Collection shelf ------------------------------------------------------ */
 
-.vlib-collections {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+/* Seven flat colours a collection can wear. Every surface that shows one reads
+   the same variable: the shelf card, the editor's swatch, the inspector tag. */
+[data-color="mint"] {
+  --swatch: var(--pop-mint);
 }
 
-/* A bordered box holding a bordered input is a box inside a box. The create
-   row is a band separated by a rule instead, so the field is the only thing
-   here that draws an edge. */
-.vlib-collections__create {
-  display: flex;
-  align-items: flex-end;
-  padding: 0 0 16px;
-  border-bottom: var(--edge) solid var(--ink);
-  gap: 10px;
+[data-color="sky"] {
+  --swatch: var(--pop-sky);
 }
 
-.vlib-collections__create label {
-  display: flex;
+[data-color="grape"] {
+  --swatch: var(--pop-grape);
+}
+
+[data-color="rose"] {
+  --swatch: var(--pop-rose);
+}
+
+[data-color="sun"] {
+  --swatch: var(--pop-sun);
+}
+
+[data-color="lime"] {
+  --swatch: var(--pop-lime);
+}
+
+[data-color="flame"] {
+  --swatch: var(--pop-flame);
+}
+
+/* The track scrolls sideways once the cards outrun the width. Its padding,
+   cancelled by an equal negative margin, leaves room for the cards' shadows
+   and focus rings, which a scroller would otherwise clip. */
+.vlib-shelf {
   min-width: 0;
-  flex: 1;
-  flex-direction: column;
-  gap: 6px;
+  flex: 0 0 auto;
 }
 
-.vlib-collections__list {
+.vlib-shelf__track {
   display: flex;
-  flex-direction: column;
-  padding: 0;
-  margin: 0;
-  gap: 10px;
+  padding: 6px 10px 12px 6px;
+  margin: -6px -10px -12px -6px;
+  gap: 12px;
   list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  /* Both inherit, and any value but auto makes the engine ignore the
+     ::-webkit-scrollbar styles below and draw the platform bar with arrows. */
+  scrollbar-color: auto;
+  scrollbar-width: auto;
 }
 
-.vlib-collections__item {
+/* A slim bar in the interface's own colours. */
+.vlib-shelf__track::-webkit-scrollbar {
+  height: 10px;
+}
+
+.vlib-shelf__track::-webkit-scrollbar-button {
+  display: none;
+}
+
+.vlib-shelf__track::-webkit-scrollbar-thumb {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--pop-sun);
+}
+
+/* Cards share the row and grow into it, so a few collections fill the shelf
+   and only a long list of them makes it scroll. */
+.vlib-shelf__track > li {
+  position: relative;
   display: flex;
+  max-width: 272px;
+  flex: 1 0 180px;
+}
+
+.vlib-shelf__card {
+  display: grid;
+  width: 100%;
+  min-height: 72px;
+  align-content: center;
   align-items: center;
-  padding: 11px 13px;
+  padding: 9px 12px;
   border: var(--edge) solid var(--ink);
   border-radius: var(--round-sm);
   background: var(--paper);
-  gap: 11px;
+  box-shadow: 4px 4px 0 var(--ink);
+  color: var(--ink);
+  column-gap: 10px;
+  cursor: pointer;
+  font-family: var(--font-flat);
+  grid-template-columns: 12px minmax(0, 1fr);
+  text-align: left;
+  transition:
+    transform 90ms var(--snap),
+    box-shadow 90ms var(--snap);
 }
 
-.vlib-collections__copy {
-  display: flex;
-  min-width: 0;
-  flex: 1;
-  flex-direction: column;
-}
-
-.vlib-collections__copy strong {
+/* Two lines before a cut, in the flat face: the display face is too wide for
+   either built-in name to fit a card, and a collection is picked by its name. */
+.vlib-shelf__card strong {
+  display: -webkit-box;
   overflow: hidden;
-  font-family: var(--font-display);
-  font-size: 15px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  -webkit-box-orient: vertical;
+  font-size: 14px;
+  font-weight: 700;
+  grid-column: 2;
+  -webkit-line-clamp: 2;
+  line-height: 1.2;
 }
 
-.vlib-collections__copy small {
+/* The count shares its row with the edit button, so the title above gets the
+   card's whole width. */
+.vlib-shelf__card small {
+  min-height: 24px;
+  padding-right: 30px;
   font-size: 12px;
   font-weight: 600;
-  opacity: 0.72;
+  grid-column: 2;
+  line-height: 24px;
 }
 
-/* A green toggle with nothing beside it does not say what it governs. */
-.vlib-collections__review {
-  display: flex;
+.vlib-shelf__card--all small,
+.vlib-shelf__card--new small {
+  padding-right: 0;
+}
+
+.vlib-shelf__swatch {
+  width: 12px;
+  height: 34px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--swatch, var(--paper));
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+.vlib-shelf__card:hover:not([data-active="true"]) {
+  background: color-mix(in srgb, var(--swatch, var(--pop-sun)) 32%, var(--paper));
+}
+
+/* The chosen collection is pressed into its own shadow and fills with its
+   colour, so which one is filtering reads from the edge of vision. */
+.vlib-shelf__card[data-active="true"] {
+  background: var(--swatch, var(--pop-sun));
+  box-shadow: 1px 1px 0 var(--ink);
+  transform: translate(3px, 3px);
+}
+
+.vlib-shelf__card[data-active="true"] .vlib-shelf__swatch {
+  background: var(--paper);
+}
+
+/* The edit button rides with its card when the card is pressed in. */
+.vlib-shelf__edit {
+  position: absolute;
+  right: 11px;
+  bottom: 12px;
+  display: grid;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 2px solid var(--ink);
+  border-radius: 7px;
+  background: var(--paper);
+  cursor: pointer;
+  place-items: center;
+  transition: transform 90ms var(--snap);
+}
+
+.vlib-shelf__edit:hover {
+  background: var(--pop-sun);
+}
+
+.vlib-shelf__card[data-active="true"] + .vlib-shelf__edit {
+  transform: translate(3px, 3px);
+}
+
+/* "All words" wears every colour at once, as flat stripes. */
+.vlib-shelf__card--all {
+  --swatch: var(--pop-sun);
+}
+
+.vlib-shelf__card--all .vlib-shelf__swatch,
+.vlib-shelf__card--all[data-active="true"] .vlib-shelf__swatch {
+  background: linear-gradient(
+    var(--pop-mint) 0 33%,
+    var(--pop-sky) 33% 66%,
+    var(--pop-rose) 66% 100%
+  );
+}
+
+/* An empty slot on the shelf, drawn as one. */
+.vlib-shelf__card--new {
+  border-style: dashed;
+  background: var(--paper);
+  box-shadow: none;
+  grid-template-columns: 24px minmax(0, 1fr);
+}
+.vlib-shelf__plus {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--pop-lime);
+  font-family: var(--font-display);
+  font-size: 15px;
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  line-height: 1;
+  place-items: center;
+}
+
+.vlib__collection-tag i {
+  width: 10px;
+  height: 10px;
   flex: 0 0 auto;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--swatch, var(--paper));
+}
+
+/* -- Collection editor ------------------------------------------------------ */
+
+.vlib-editor__colors {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.vlib-editor__colors legend {
+  padding: 0;
+  margin-bottom: 9px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.vlib-editor__swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.vlib-editor__swatch {
+  position: relative;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  border: var(--edge) solid var(--ink);
+  border-radius: 50%;
+  background: var(--swatch);
+  cursor: pointer;
+  place-items: center;
+}
+
+.vlib-editor__swatch input {
+  position: absolute;
+  margin: 0;
+  cursor: pointer;
+  inset: 0;
+  opacity: 0;
+}
+
+/* A tick rather than a second ring: a ring around a bordered circle reads as a
+   box inside a box. */
+.vlib-editor__swatch:has(input:checked)::after {
+  content: "✓";
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.vlib-editor__swatch:has(input:focus-visible) {
+  outline: 3px solid var(--pop-sky);
+  outline-offset: 3px;
+}
+
+/* A band, not a box: the dialog is already the frame. */
+.vlib-editor__review {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: var(--edge) solid var(--ink);
+  gap: 16px;
+}
+
+.vlib-editor__review > span {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vlib-editor__review strong {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.vlib-editor__review small {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.vlib-editor__export {
+  align-self: flex-start;
+}
+
+.vlib-editor__delete {
+  margin-right: auto;
 }
 
 /* A switch you can read from across the row: the knob moves and the track
@@ -635,15 +860,51 @@
   transform: translateX(32px);
 }
 
-.vlib-collections__actions {
+/* -- Deleting a collection that still holds words -------------------------- */
+
+.vlib-keep {
   display: flex;
-  flex: 0 0 auto;
-  gap: 7px;
+  min-width: 0;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  gap: 12px;
 }
 
-.vlib-collections__actions .b-icon-btn {
-  width: 36px;
-  height: 36px;
+.vlib-keep__option {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  gap: 10px;
+}
+
+.vlib-keep__option > span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vlib-keep__option strong {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.vlib-keep__option small {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.vlib-keep__target {
+  display: flex;
+  flex-direction: column;
+  margin-left: 28px;
+  font-size: 12px;
+  font-weight: 700;
+  gap: 6px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 /* -- Import dialog ----------------------------------------------------------- */

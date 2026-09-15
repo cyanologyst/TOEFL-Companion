@@ -258,7 +258,10 @@ export function WordInspector({
       <div className="vlib__inspector-embedded">
         <div className="vlib__inspector-tags">
           <StatusTag status={status} />
-          <span className="b-tag">{getLibraryDisplayTitle(list)}</span>
+          <span className="b-tag vlib__collection-tag" data-color={list.color}>
+            <i aria-hidden />
+            {getLibraryDisplayTitle(list)}
+          </span>
         </div>
         <WordSections word={word} progress={progress} />
         <div className="vlib__inspector-foot">{actions}</div>
@@ -271,7 +274,10 @@ export function WordInspector({
       <header className="vlib__inspector-head">
         <div className="vlib__inspector-tags">
           <StatusTag status={status} />
-          <span className="b-tag">{getLibraryDisplayTitle(list)}</span>
+          <span className="b-tag vlib__collection-tag" data-color={list.color}>
+            <i aria-hidden />
+            {getLibraryDisplayTitle(list)}
+          </span>
         </div>
         <div className="vlib__inspector-title">
           <div>

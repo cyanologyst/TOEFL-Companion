@@ -17,6 +17,8 @@ import "./themes.css";
 import "./brutal.css";
 // The rail's folding and its rubber-band spring, layered over brutal.css.
 import "./rail.css";
+// Anything that scrolls fades at the edges where more content is hidden.
+import "./scroll-fade.css";
 // After styles.css so motion can layer on top of the base rules.
 import "./motion.css";
 

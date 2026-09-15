@@ -1852,7 +1852,7 @@ function ListenRepeatWorkspace({
             }}
           />
         </div>
-        <ol>
+        <ol className="b-scroll prompt-queue__list">
           {collection.prompts.map((item, index) => (
             <li key={item.id}>
               <button

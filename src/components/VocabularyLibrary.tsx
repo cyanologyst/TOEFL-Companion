@@ -1522,31 +1522,33 @@ export function VocabularyLibrary({
 
               {importAnalysis.words.length ? (
                 <div className="vlib-import__preview">
-                  <table>
-                    <caption className="sr-only">Preview of the first imported words</caption>
-                    <thead>
-                      <tr>
-                        <th scope="col">Word</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Meaning</th>
-                        <th scope="col">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {importAnalysis.words.slice(0, 8).map((word) => (
-                        <tr key={`${word.index}-${word.term}`}>
-                          <th scope="row">{word.term}</th>
-                          <td>{word.partOfSpeech || "—"}</td>
-                          <td dir="auto">{word.shortMeaning || "No meaning"}</td>
-                          <td>
-                            {word.duplicate
-                              ? `Duplicate in ${word.duplicateSource === "file" ? "file" : "library"}`
-                              : "Ready"}
-                          </td>
+                  <div className="vlib-import__preview-scroll">
+                    <table>
+                      <caption className="sr-only">Preview of the first imported words</caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Word</th>
+                          <th scope="col">Type</th>
+                          <th scope="col">Meaning</th>
+                          <th scope="col">Status</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {importAnalysis.words.slice(0, 8).map((word) => (
+                          <tr key={`${word.index}-${word.term}`}>
+                            <th scope="row">{word.term}</th>
+                            <td>{word.partOfSpeech || "—"}</td>
+                            <td dir="auto">{word.shortMeaning || "No meaning"}</td>
+                            <td>
+                              {word.duplicate
+                                ? `Duplicate in ${word.duplicateSource === "file" ? "file" : "library"}`
+                                : "Ready"}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               ) : null}
 

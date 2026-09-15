@@ -1601,14 +1601,19 @@
   opacity: var(--quiet);
 }
 
+/* A frame never scrolls itself: its border and hard shadow would go under the
+   scroll fade's mask. The panel holds a scroller instead. */
 .set-b__panel {
   min-height: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.set-b__scroll {
+  display: flex;
+  flex-direction: column;
   padding: 22px 26px;
   gap: 18px;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-color: var(--line) transparent;
-  scrollbar-width: thin;
 }
 
 .set-b__panel .settings-section {

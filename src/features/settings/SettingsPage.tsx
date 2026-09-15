@@ -362,418 +362,426 @@ export function SettingsPage({
         </nav>
 
         <div className="b-frame set-b__panel">
-          {activeSection === "appearance" ? (
-            <section className="panel settings-section" id="appearance-settings">
-              <header>
-                <span>
-                  <DoodleIcon name="star" size={22} />
-                </span>
-                <div>
-                  <h2>Theme</h2>
-                  <p>Every screen follows it. Applies straight away, on this computer.</p>
-                </div>
-              </header>
-              <fieldset className="theme-picker">
-                <legend className="sr-only">Theme</legend>
-                {THEME_OPTIONS.map((option) => (
-                  /* Each option carries its own theme, so its preview, its name
+          {/* The frame holds the scroller rather than scrolling itself, so the
+              scroll fade never reaches its border or shadow. */}
+          <div className="b-scroll set-b__scroll">
+            {activeSection === "appearance" ? (
+              <section className="panel settings-section" id="appearance-settings">
+                <header>
+                  <span>
+                    <DoodleIcon name="star" size={22} />
+                  </span>
+                  <div>
+                    <h2>Theme</h2>
+                    <p>Every screen follows it. Applies straight away, on this computer.</p>
+                  </div>
+                </header>
+                <fieldset className="theme-picker">
+                  <legend className="sr-only">Theme</legend>
+                  {THEME_OPTIONS.map((option) => (
+                    /* Each option carries its own theme, so its preview, its name
                      and its description are drawn in exactly the colours you get. */
-                  <label
-                    key={option.id}
-                    className="theme-picker__option"
-                    data-theme-preview={option.id}
-                  >
-                    <input
-                      type="radio"
-                      name="app-theme"
-                      value={option.id}
-                      checked={appearance.theme === option.id}
-                      onChange={() => appearanceRepository.update({ theme: option.id })}
-                    />
-                    <span className="theme-picker__preview" aria-hidden>
-                      <span className="theme-picker__card">
-                        <span className="theme-picker__line" />
-                        <span className="theme-picker__line theme-picker__line--short" />
-                        <span className="theme-picker__pops">
-                          <i data-pop="lime" />
-                          <i data-pop="sun" />
-                          <i data-pop="sky" />
-                          <i data-pop="mint" />
-                          <i data-pop="flame" />
+                    <label
+                      key={option.id}
+                      className="theme-picker__option"
+                      data-theme-preview={option.id}
+                    >
+                      <input
+                        type="radio"
+                        name="app-theme"
+                        value={option.id}
+                        checked={appearance.theme === option.id}
+                        onChange={() => appearanceRepository.update({ theme: option.id })}
+                      />
+                      <span className="theme-picker__preview" aria-hidden>
+                        <span className="theme-picker__card">
+                          <span className="theme-picker__line" />
+                          <span className="theme-picker__line theme-picker__line--short" />
+                          <span className="theme-picker__pops">
+                            <i data-pop="lime" />
+                            <i data-pop="sun" />
+                            <i data-pop="sky" />
+                            <i data-pop="mint" />
+                            <i data-pop="flame" />
+                          </span>
                         </span>
                       </span>
-                    </span>
-                    <span className="theme-picker__copy">
-                      <strong>{option.label}</strong>
-                      <small>{option.description}</small>
-                    </span>
-                  </label>
-                ))}
-              </fieldset>
-            </section>
-          ) : null}
+                      <span className="theme-picker__copy">
+                        <strong>{option.label}</strong>
+                        <small>{option.description}</small>
+                      </span>
+                    </label>
+                  ))}
+                </fieldset>
+              </section>
+            ) : null}
 
-          {activeSection === "profile" ? (
-            <section className="panel settings-section" id="profile-settings">
-              <header>
-                <span>
-                  <DoodleIcon name="target" size={22} />
-                </span>
-                <div>
-                  <h2>Learner profile</h2>
-                  <p>Used only inside this local app.</p>
-                </div>
-              </header>
-              <div className="settings-fields settings-fields--two">
-                <label>
-                  Display name
-                  <input
-                    maxLength={40}
-                    placeholder="Your first name"
-                    value={settings.learnerName}
-                    onChange={(event) =>
-                      setSettings((current) => ({
-                        ...current,
-                        learnerName: event.target.value,
-                      }))
-                    }
-                  />
-                </label>
-                <label>
-                  Target test date
-                  <input
-                    type="date"
-                    value={settings.targetTestDate}
-                    onChange={(event) =>
-                      setSettings((current) => ({
-                        ...current,
-                        targetTestDate: event.target.value,
-                      }))
-                    }
-                  />
-                </label>
-              </div>
-            </section>
-          ) : null}
-
-          {activeSection === "practice" ? (
-            <section className="panel settings-section" id="practice-settings">
-              <header>
-                <span>
-                  <DoodleIcon name="stopwatch" size={22} />
-                </span>
-                <div>
-                  <h2>Practice timing</h2>
-                  <p>Adjust working timers without changing source content.</p>
-                </div>
-              </header>
-              <div className="settings-fields settings-fields--two">
-                <label>
-                  Interview response time
-                  <select
-                    value={settings.interviewSeconds}
-                    onChange={(event) =>
-                      setSettings((current) => ({
-                        ...current,
-                        interviewSeconds: Number(event.target.value),
-                      }))
-                    }
-                  >
-                    <option value={30}>30 seconds</option>
-                    <option value={40}>40 seconds</option>
-                    <option value={45}>45 seconds</option>
-                    <option value={60}>60 seconds</option>
-                  </select>
-                </label>
-                <label>
-                  Academic Discussion timer
-                  <select
-                    value={settings.writingSeconds}
-                    onChange={(event) =>
-                      setSettings((current) => ({
-                        ...current,
-                        writingSeconds: Number(event.target.value),
-                      }))
-                    }
-                  >
-                    <option value={300}>5 minutes</option>
-                    <option value={600}>10 minutes</option>
-                    <option value={900}>15 minutes</option>
-                    <option value={1_200}>20 minutes</option>
-                  </select>
-                </label>
-              </div>
-              <label className="setting-toggle setting-toggle--switch">
-                <input
-                  type="checkbox"
-                  role="switch"
-                  aria-checked={settings.autoSaveWriting}
-                  checked={settings.autoSaveWriting}
-                  onChange={(event) =>
-                    setSettings((current) => ({
-                      ...current,
-                      autoSaveWriting: event.target.checked,
-                    }))
-                  }
-                />
-                <span>
-                  <strong>Automatically save writing drafts</strong>
-                  <small>Drafts remain on this device until you clear them.</small>
-                </span>
-              </label>
-            </section>
-          ) : null}
-
-          {activeSection === "reminders" ? (
-            <section className="panel settings-section" id="reminder-settings">
-              <header>
-                <span>
-                  <DoodleIcon name="bell" size={22} />
-                </span>
-                <div>
-                  <h2>Vocabulary reminders</h2>
-                  <p>Show an optional recall card while the app is open.</p>
-                </div>
-                <button
-                  type="button"
-                  className="button button--quiet"
-                  onClick={() => void requestNotifications()}
-                  disabled={notificationStatus === "loading"}
-                >
-                  {notificationStatus === "loading"
-                    ? "Requesting permission..."
-                    : "Allow system notifications"}
-                </button>
-              </header>
-              <AsyncStatus
-                status={notificationStatus}
-                message={notificationMessage || undefined}
-                onRetry={() => void requestNotifications()}
-              />
-              <div className="settings-fields settings-fields--two">
-                <label>
-                  Reminder interval
-                  <select
-                    value={reminderInterval}
-                    onChange={(event) => setReminderInterval(Number(event.target.value))}
-                  >
-                    <option value={10}>Every 10 minutes</option>
-                    <option value={20}>Every 20 minutes</option>
-                    <option value={30}>Every 30 minutes</option>
-                    <option value={60}>Every hour</option>
-                    <option value={120}>Every 2 hours</option>
-                  </select>
-                </label>
-                <label>
-                  Delivery
-                  <select
-                    value={notificationMode}
-                    onChange={(event) =>
-                      setNotificationMode(event.target.value as NotificationMode)
-                    }
-                  >
-                    <option value="popup">In-app reminder card</option>
-                    <option value="system">System notification</option>
-                    <option value="both">Both</option>
-                    <option value="toast">Compact in-app toast</option>
-                    <option value="off">Off</option>
-                  </select>
-                </label>
-              </div>
-              <label className="setting-toggle setting-toggle--switch">
-                <input
-                  type="checkbox"
-                  role="switch"
-                  aria-checked={quietHours}
-                  checked={quietHours}
-                  onChange={(event) => setQuietHours(event.target.checked)}
-                />
-                <span>
-                  <strong>Quiet hours</strong>
-                  <small>Do not interrupt long reading or rest periods.</small>
-                </span>
-              </label>
-              {quietHours ? (
-                <div className="settings-fields settings-fields--two compact-time-fields">
+            {activeSection === "profile" ? (
+              <section className="panel settings-section" id="profile-settings">
+                <header>
+                  <span>
+                    <DoodleIcon name="target" size={22} />
+                  </span>
+                  <div>
+                    <h2>Learner profile</h2>
+                    <p>Used only inside this local app.</p>
+                  </div>
+                </header>
+                <div className="settings-fields settings-fields--two">
                   <label>
-                    Start
+                    Display name
                     <input
-                      type="time"
-                      value={quietStart}
-                      onChange={(event) => setQuietStart(event.target.value)}
+                      maxLength={40}
+                      placeholder="Your first name"
+                      value={settings.learnerName}
+                      onChange={(event) =>
+                        setSettings((current) => ({
+                          ...current,
+                          learnerName: event.target.value,
+                        }))
+                      }
                     />
                   </label>
                   <label>
-                    End
+                    Target test date
                     <input
-                      type="time"
-                      value={quietEnd}
-                      onChange={(event) => setQuietEnd(event.target.value)}
+                      type="date"
+                      value={settings.targetTestDate}
+                      onChange={(event) =>
+                        setSettings((current) => ({
+                          ...current,
+                          targetTestDate: event.target.value,
+                        }))
+                      }
                     />
                   </label>
                 </div>
-              ) : null}
-              {/* Reminders arrive on their own schedule, so without this there
+              </section>
+            ) : null}
+
+            {activeSection === "practice" ? (
+              <section className="panel settings-section" id="practice-settings">
+                <header>
+                  <span>
+                    <DoodleIcon name="stopwatch" size={22} />
+                  </span>
+                  <div>
+                    <h2>Practice timing</h2>
+                    <p>Adjust working timers without changing source content.</p>
+                  </div>
+                </header>
+                <div className="settings-fields settings-fields--two">
+                  <label>
+                    Interview response time
+                    <select
+                      value={settings.interviewSeconds}
+                      onChange={(event) =>
+                        setSettings((current) => ({
+                          ...current,
+                          interviewSeconds: Number(event.target.value),
+                        }))
+                      }
+                    >
+                      <option value={30}>30 seconds</option>
+                      <option value={40}>40 seconds</option>
+                      <option value={45}>45 seconds</option>
+                      <option value={60}>60 seconds</option>
+                    </select>
+                  </label>
+                  <label>
+                    Academic Discussion timer
+                    <select
+                      value={settings.writingSeconds}
+                      onChange={(event) =>
+                        setSettings((current) => ({
+                          ...current,
+                          writingSeconds: Number(event.target.value),
+                        }))
+                      }
+                    >
+                      <option value={300}>5 minutes</option>
+                      <option value={600}>10 minutes</option>
+                      <option value={900}>15 minutes</option>
+                      <option value={1_200}>20 minutes</option>
+                    </select>
+                  </label>
+                </div>
+                <label className="setting-toggle setting-toggle--switch">
+                  <input
+                    type="checkbox"
+                    role="switch"
+                    aria-checked={settings.autoSaveWriting}
+                    checked={settings.autoSaveWriting}
+                    onChange={(event) =>
+                      setSettings((current) => ({
+                        ...current,
+                        autoSaveWriting: event.target.checked,
+                      }))
+                    }
+                  />
+                  <span>
+                    <strong>Automatically save writing drafts</strong>
+                    <small>Drafts remain on this device until you clear them.</small>
+                  </span>
+                </label>
+              </section>
+            ) : null}
+
+            {activeSection === "reminders" ? (
+              <section className="panel settings-section" id="reminder-settings">
+                <header>
+                  <span>
+                    <DoodleIcon name="bell" size={22} />
+                  </span>
+                  <div>
+                    <h2>Vocabulary reminders</h2>
+                    <p>Show an optional recall card while the app is open.</p>
+                  </div>
+                  <button
+                    type="button"
+                    className="button button--quiet"
+                    onClick={() => void requestNotifications()}
+                    disabled={notificationStatus === "loading"}
+                  >
+                    {notificationStatus === "loading"
+                      ? "Requesting permission..."
+                      : "Allow system notifications"}
+                  </button>
+                </header>
+                <AsyncStatus
+                  status={notificationStatus}
+                  message={notificationMessage || undefined}
+                  onRetry={() => void requestNotifications()}
+                />
+                <div className="settings-fields settings-fields--two">
+                  <label>
+                    Reminder interval
+                    <select
+                      value={reminderInterval}
+                      onChange={(event) => setReminderInterval(Number(event.target.value))}
+                    >
+                      <option value={10}>Every 10 minutes</option>
+                      <option value={20}>Every 20 minutes</option>
+                      <option value={30}>Every 30 minutes</option>
+                      <option value={60}>Every hour</option>
+                      <option value={120}>Every 2 hours</option>
+                    </select>
+                  </label>
+                  <label>
+                    Delivery
+                    <select
+                      value={notificationMode}
+                      onChange={(event) =>
+                        setNotificationMode(event.target.value as NotificationMode)
+                      }
+                    >
+                      <option value="popup">In-app reminder card</option>
+                      <option value="system">System notification</option>
+                      <option value="both">Both</option>
+                      <option value="toast">Compact in-app toast</option>
+                      <option value="off">Off</option>
+                    </select>
+                  </label>
+                </div>
+                <label className="setting-toggle setting-toggle--switch">
+                  <input
+                    type="checkbox"
+                    role="switch"
+                    aria-checked={quietHours}
+                    checked={quietHours}
+                    onChange={(event) => setQuietHours(event.target.checked)}
+                  />
+                  <span>
+                    <strong>Quiet hours</strong>
+                    <small>Do not interrupt long reading or rest periods.</small>
+                  </span>
+                </label>
+                {quietHours ? (
+                  <div className="settings-fields settings-fields--two compact-time-fields">
+                    <label>
+                      Start
+                      <input
+                        type="time"
+                        value={quietStart}
+                        onChange={(event) => setQuietStart(event.target.value)}
+                      />
+                    </label>
+                    <label>
+                      End
+                      <input
+                        type="time"
+                        value={quietEnd}
+                        onChange={(event) => setQuietEnd(event.target.value)}
+                      />
+                    </label>
+                  </div>
+                ) : null}
+                {/* Reminders arrive on their own schedule, so without this there
                   is no way to see one on purpose - and no way to tell the
                   feature is working at all until an interval happens to pass
                   while you are looking. */}
-              <div className="settings-inline-actions">
-                <button type="button" className="button button--outline" onClick={showReminderNow}>
-                  <DoodleIcon name="bell" size={17} />
-                  Show a word now
-                </button>
-                <button
-                  type="button"
-                  className="button button--quiet"
-                  onClick={() => pauseReminders(60)}
-                >
-                  Pause 1 hour
-                </button>
-                <button
-                  type="button"
-                  className="button button--quiet"
-                  onClick={() => pauseReminders(null)}
-                >
-                  Resume
-                </button>
-                <span className="settings-inline-status" role="status" aria-live="polite">
-                  {reminderStatus || nextReminderLabel}
-                </span>
-              </div>
-            </section>
-          ) : null}
-
-          {activeSection === "audio" ? (
-            <section className="panel settings-section" id="audio-settings">
-              <header>
-                <span>
-                  <DoodleIcon name="speaker" size={22} />
-                </span>
-                <div>
-                  <h2>Audio &amp; speech</h2>
-                  <p>Used for vocabulary pronunciation and starter repeat prompts.</p>
+                <div className="settings-inline-actions">
+                  <button
+                    type="button"
+                    className="button button--outline"
+                    onClick={showReminderNow}
+                  >
+                    <DoodleIcon name="bell" size={17} />
+                    Show a word now
+                  </button>
+                  <button
+                    type="button"
+                    className="button button--quiet"
+                    onClick={() => pauseReminders(60)}
+                  >
+                    Pause 1 hour
+                  </button>
+                  <button
+                    type="button"
+                    className="button button--quiet"
+                    onClick={() => pauseReminders(null)}
+                  >
+                    Resume
+                  </button>
+                  <span className="settings-inline-status" role="status" aria-live="polite">
+                    {reminderStatus || nextReminderLabel}
+                  </span>
                 </div>
-              </header>
-              <label className="range-field">
-                <span>
-                  Speech rate <strong>{speechRate.toFixed(1)}×</strong>
-                </span>
-                <input
-                  type="range"
-                  min={0.5}
-                  max={1.5}
-                  step={0.1}
-                  value={speechRate}
-                  onChange={(event) => setSpeechRate(Number(event.target.value))}
+              </section>
+            ) : null}
+
+            {activeSection === "audio" ? (
+              <section className="panel settings-section" id="audio-settings">
+                <header>
+                  <span>
+                    <DoodleIcon name="speaker" size={22} />
+                  </span>
+                  <div>
+                    <h2>Audio &amp; speech</h2>
+                    <p>Used for vocabulary pronunciation and starter repeat prompts.</p>
+                  </div>
+                </header>
+                <label className="range-field">
+                  <span>
+                    Speech rate <strong>{speechRate.toFixed(1)}×</strong>
+                  </span>
+                  <input
+                    type="range"
+                    min={0.5}
+                    max={1.5}
+                    step={0.1}
+                    value={speechRate}
+                    onChange={(event) => setSpeechRate(Number(event.target.value))}
+                  />
+                </label>
+                <label className="setting-toggle setting-toggle--switch">
+                  <input
+                    type="checkbox"
+                    role="switch"
+                    aria-checked={settings.playSounds}
+                    checked={settings.playSounds}
+                    onChange={(event) =>
+                      setSettings((current) => ({
+                        ...current,
+                        playSounds: event.target.checked,
+                      }))
+                    }
+                  />
+                  <span>
+                    <strong>Interface sound cues</strong>
+                    <small>Off by default for low-distraction study sessions.</small>
+                  </span>
+                </label>
+              </section>
+            ) : null}
+
+            {activeSection === "speech" ? (
+              <section className="panel settings-section" id="speech-settings">
+                <header>
+                  <span>
+                    <DoodleIcon name="mic" size={22} />
+                  </span>
+                  <div>
+                    <h2>Speech recognition</h2>
+                    <p>The model that turns your recorded answers into text, offline.</p>
+                  </div>
+                </header>
+                <SpeechModels onNotice={onNotice} />
+              </section>
+            ) : null}
+
+            {activeSection === "storage" ? (
+              <section className="panel settings-section" id="storage-settings">
+                <header>
+                  <span>
+                    <DoodleIcon name="floppy" size={22} />
+                  </span>
+                  <div>
+                    <h2>Local data</h2>
+                    <p>Back up vocabulary, progress, transcripts, and writing revisions.</p>
+                  </div>
+                </header>
+                <div className="storage-summary">
+                  <div>
+                    <strong>On-device first</strong>
+                    <p>
+                      Structured study data uses versioned local storage. Saved audio is kept in
+                      IndexedDB and remains on this device.
+                    </p>
+                  </div>
+                  <span>Local</span>
+                </div>
+                <AsyncStatus
+                  status={backupStatus}
+                  message={backupMessage || undefined}
+                  onRetry={() => (pendingRestore ? void applyRestore() : void exportBackup())}
+                  retryLabel={pendingRestore ? "Try restore again" : "Export again"}
                 />
-              </label>
-              <label className="setting-toggle setting-toggle--switch">
                 <input
-                  type="checkbox"
-                  role="switch"
-                  aria-checked={settings.playSounds}
-                  checked={settings.playSounds}
-                  onChange={(event) =>
-                    setSettings((current) => ({
-                      ...current,
-                      playSounds: event.target.checked,
-                    }))
-                  }
+                  ref={restoreRef}
+                  hidden
+                  type="file"
+                  accept="application/json,.json"
+                  onChange={(event) => void stageRestore(event)}
                 />
-                <span>
-                  <strong>Interface sound cues</strong>
-                  <small>Off by default for low-distraction study sessions.</small>
-                </span>
-              </label>
-            </section>
-          ) : null}
-
-          {activeSection === "speech" ? (
-            <section className="panel settings-section" id="speech-settings">
-              <header>
-                <span>
-                  <DoodleIcon name="mic" size={22} />
-                </span>
-                <div>
-                  <h2>Speech recognition</h2>
-                  <p>The model that turns your recorded answers into text, offline.</p>
+                <div className="settings-inline-actions">
+                  <button
+                    type="button"
+                    className="button button--outline"
+                    onClick={() => void exportBackup()}
+                    disabled={backupStatus === "loading"}
+                  >
+                    <DoodleIcon name="download" size={17} />
+                    Export complete backup
+                  </button>
+                  <button
+                    type="button"
+                    className="button button--outline"
+                    onClick={() => restoreRef.current?.click()}
+                    disabled={backupStatus === "loading"}
+                  >
+                    <DoodleIcon name="upload" size={17} />
+                    Restore backup
+                  </button>
                 </div>
-              </header>
-              <SpeechModels onNotice={onNotice} />
-            </section>
-          ) : null}
+              </section>
+            ) : null}
 
-          {activeSection === "storage" ? (
-            <section className="panel settings-section" id="storage-settings">
-              <header>
-                <span>
-                  <DoodleIcon name="floppy" size={22} />
-                </span>
-                <div>
-                  <h2>Local data</h2>
-                  <p>Back up vocabulary, progress, transcripts, and writing revisions.</p>
-                </div>
-              </header>
-              <div className="storage-summary">
-                <div>
-                  <strong>On-device first</strong>
-                  <p>
-                    Structured study data uses versioned local storage. Saved audio is kept in
-                    IndexedDB and remains on this device.
-                  </p>
-                </div>
-                <span>Local</span>
-              </div>
-              <AsyncStatus
-                status={backupStatus}
-                message={backupMessage || undefined}
-                onRetry={() => (pendingRestore ? void applyRestore() : void exportBackup())}
-                retryLabel={pendingRestore ? "Try restore again" : "Export again"}
-              />
-              <input
-                ref={restoreRef}
-                hidden
-                type="file"
-                accept="application/json,.json"
-                onChange={(event) => void stageRestore(event)}
-              />
-              <div className="settings-inline-actions">
-                <button
-                  type="button"
-                  className="button button--outline"
-                  onClick={() => void exportBackup()}
-                  disabled={backupStatus === "loading"}
-                >
-                  <DoodleIcon name="download" size={17} />
-                  Export complete backup
-                </button>
-                <button
-                  type="button"
-                  className="button button--outline"
-                  onClick={() => restoreRef.current?.click()}
-                  disabled={backupStatus === "loading"}
-                >
-                  <DoodleIcon name="upload" size={17} />
-                  Restore backup
-                </button>
-              </div>
-            </section>
-          ) : null}
-
-          <AsyncStatus
-            className="settings-save-status"
-            status={saveStatus}
-            message={
-              saveStatus === "loading"
-                ? "Saving settings..."
-                : saveStatus === "success"
-                  ? "Settings saved on this device."
-                  : saveStatus === "error"
-                    ? "Settings could not be saved."
-                    : undefined
-            }
-            onRetry={save}
-          />
+            <AsyncStatus
+              className="settings-save-status"
+              status={saveStatus}
+              message={
+                saveStatus === "loading"
+                  ? "Saving settings..."
+                  : saveStatus === "success"
+                    ? "Settings saved on this device."
+                    : saveStatus === "error"
+                      ? "Settings could not be saved."
+                      : undefined
+              }
+              onRetry={save}
+            />
+          </div>
         </div>
       </div>
 

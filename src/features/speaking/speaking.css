@@ -73,6 +73,29 @@
   padding: 8px;
 }
 
+/* Listen & Repeat's queue is the same kind of rail: its header, picker and
+   progress stay put and only the prompt list scrolls. The legacy stylesheet
+   scrolled the whole frame, header and all (a frame never scrolls itself; see
+   scroll-fade.css), and below 1180px turned the list into a sideways strip of
+   230px cards inside a 244px column. */
+.repeat .prompt-queue {
+  position: static;
+  max-height: none;
+  overflow: hidden;
+}
+
+.repeat .prompt-queue__list {
+  display: block;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.repeat .prompt-queue li button {
+  height: auto;
+  border: 0;
+  border-radius: 0;
+}
+
 .sp-group + .sp-group {
   margin-top: 10px;
 }

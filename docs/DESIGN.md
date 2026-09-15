@@ -106,6 +106,31 @@ than the window instead of scrolling within itself.
 another bordered box reads as a mistake, not as depth. Bands (border on one
 side) are how a frame is divided. Every child of a frame gets an inset.
 
+## Scrolling
+
+Anything that scrolls fades at an edge while there is more past it, and shows
+that edge crisply once there is not: a list that fits has no fade, and a list
+scrolled to its end has none at that end. The effect lives in
+[`src/scroll-fade.css`](../src/scroll-fade.css) and is CSS only. Each edge's
+strength is a registered number that a scroll-driven animation ties to the
+element's own scroll position, and a mask built from those numbers does the
+fading, so it works in every theme without knowing the colour behind it.
+
+- **A frame never scrolls itself.** A mask clips everything an element paints
+  outside its border box and fades its own border, so a frame's hard shadow
+  would vanish. A frame that needs to scroll holds a borderless `.b-scroll`
+  (Settings' panel, the Listen & Repeat queue, the import preview all do).
+- **A new scroller joins the fade list** in `scroll-fade.css`. The contract test
+  (`tests/app/scrollFade.contract.test.ts`) fails on a scroller in a themed
+  stylesheet that is neither faded nor exempt with a reason, on a faded class no
+  component renders, and on a faded frame.
+- **Sticky headers and scrollbars stay out of the fade.** Set
+  `--scroll-fade-inset-top` to a sticky header's height and
+  `--scroll-fade-gutter` to the scrollbar's thickness (0px when it is hidden).
+- **Left unfaded:** the page itself, which never scrolls; text fields with their
+  own border, where a mask would hide the focus ring; and a Listen & Repeat
+  card's last-resort overflow, which the minimum window never reaches.
+
 ## The token bridge
 
 Hundreds of pre-redesign rules still ask for the old semantic tokens
@@ -153,6 +178,7 @@ Then walk every route and dialog state, in every theme, and assert per element:
 | Theme contrast     | Visible text under 4.5:1 (3:1 when large), or an icon under 3:1, against the background actually beneath it, semi-transparent layers and ancestor opacity blended in |
 | Theme leftovers    | A colour from the legacy palette in any theme, or one of Sunshine's own colours in any other theme outside its settings preview |
 | Rail spring        | Folding and opening must overshoot the target width and settle on it |
+| Scroll fade        | An overflowing scroller with no fade; a fade on an element with its own border or shadow; an edge's strength not 0 at its own end and 1 away from it; a scrollbar or sticky header inside the fade |
 | Legacy typeface    | Text set in anything but Archivo Black or Space Grotesk, ignoring `aria-hidden` and off-canvas measurement nodes |
 | Descender clipping | A control whose line box is taller than its content box         |
 

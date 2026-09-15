@@ -1,0 +1,209 @@
+/* Scroll fade
+ *
+ * Wherever content scrolls, an edge fades while there is more to see past it:
+ * the bottom while there is more below, the top once something has scrolled
+ * away above, and the same sideways. At either end that edge's fade is gone,
+ * so a list that fits, or one scrolled all the way, shows its edges crisply.
+ *
+ * CSS only. Each edge's strength is a registered number driven by the
+ * element's own scroll position through a scroll-driven animation, so it
+ * follows the wheel, the keyboard, a drag and a jump alike. It comes in over
+ * the first --scroll-fade-ramp of travel and goes out over the last. A
+ * scroller with nothing to scroll has no active timeline, so every strength
+ * stays 0 and nothing fades.
+ *
+ * The fade is a mask, so it fades content without knowing the colour behind
+ * it and holds in every theme. A mask also clips whatever an element paints
+ * outside its border box and fades its own border, so it only ever goes on a
+ * borderless scroller. A frame that has to scroll holds one instead
+ * (.set-b__scroll, .prompt-queue__list, .vlib-import__preview-scroll); a frame
+ * never scrolls itself.
+ *
+ * Knobs, set per scroller at the bottom of this file and nowhere else:
+ *   --scroll-fade-inset-top  a sticky header's height; the fade starts under it
+ *   --scroll-fade-gutter     the scrollbar's thickness, kept out of the mask so
+ *                            its thumb never dims (10px, a thin bar); 0px where
+ *                            the bar is hidden
+ *   --scroll-fade-size       how far the fade reaches into the content
+ *
+ * The colours below are mask alpha, not paint: black keeps, transparent hides.
+ */
+
+@property --scroll-fade-top {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --scroll-fade-bottom {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --scroll-fade-left {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --scroll-fade-right {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+/* 1 while the axis scrolls, which is when its scrollbar is showing. */
+@property --scroll-fade-y {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --scroll-fade-x {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@keyframes scroll-fade-top {
+  from {
+    --scroll-fade-top: 0;
+  }
+  to {
+    --scroll-fade-top: 1;
+  }
+}
+
+@keyframes scroll-fade-bottom {
+  from {
+    --scroll-fade-bottom: 1;
+  }
+  to {
+    --scroll-fade-bottom: 0;
+  }
+}
+
+@keyframes scroll-fade-left {
+  from {
+    --scroll-fade-left: 0;
+  }
+  to {
+    --scroll-fade-left: 1;
+  }
+}
+
+@keyframes scroll-fade-right {
+  from {
+    --scroll-fade-right: 1;
+  }
+  to {
+    --scroll-fade-right: 0;
+  }
+}
+
+@keyframes scroll-fade-y {
+  from,
+  to {
+    --scroll-fade-y: 1;
+  }
+}
+
+@keyframes scroll-fade-x {
+  from,
+  to {
+    --scroll-fade-x: 1;
+  }
+}
+
+.b-scroll,
+.b-modal__body,
+.shell-brutal .rail__nav,
+.repeat__main,
+.rp-card__body,
+.pr-support__body,
+.pr-transcript__canvas,
+.writing__source,
+.writing-browser__list,
+.w-editor__field textarea,
+.progress-sessions,
+.vlib-shelf__track,
+.vlib-import__preview-scroll {
+  /* How much travel brings a fade in or out. Capped at half the scroll range:
+     a panel that scrolls 23px would otherwise start its bottom ramp above the
+     top, and never show more than 72% of either fade. */
+  --scroll-fade-ramp: min(32px, 50%);
+  /* Never more than a fifth of a short scroller at each end. */
+  --_fade-size: min(var(--scroll-fade-size, 28px), 18%);
+  --_fade-inset: var(--scroll-fade-inset-top, 0px);
+  --_fade-gutter: var(--scroll-fade-gutter, 10px);
+
+  /* Top layer first: the vertical bar's strip, the horizontal bar's strip,
+     then the two fades, which intersect so a corner fades both ways. A fade's
+     length grows with its strength, so at 0 its transparent stop has no width. */
+  mask-image:
+    linear-gradient(black 0 0), linear-gradient(black 0 0),
+    linear-gradient(
+      to bottom,
+      black var(--_fade-inset),
+      transparent var(--_fade-inset),
+      black calc(var(--_fade-inset) + var(--scroll-fade-top) * var(--_fade-size)),
+      black calc(100% - var(--scroll-fade-bottom) * var(--_fade-size)),
+      transparent 100%
+    ),
+    linear-gradient(
+      to right,
+      transparent 0,
+      black calc(var(--scroll-fade-left) * var(--_fade-size)),
+      black calc(100% - var(--scroll-fade-right) * var(--_fade-size)),
+      transparent 100%
+    );
+  mask-position:
+    right top,
+    left bottom,
+    0 0,
+    0 0;
+  mask-size:
+    calc(var(--scroll-fade-y) * var(--_fade-gutter)) 100%,
+    100% calc(var(--scroll-fade-x) * var(--_fade-gutter)),
+    100% 100%,
+    100% 100%;
+  mask-repeat: no-repeat;
+  mask-composite: add, add, intersect, add;
+
+  animation:
+    scroll-fade-top linear both,
+    scroll-fade-bottom linear both,
+    scroll-fade-y linear both,
+    scroll-fade-left linear both,
+    scroll-fade-right linear both,
+    scroll-fade-x linear both;
+  animation-timeline:
+    scroll(self block), scroll(self block), scroll(self block), scroll(self inline),
+    scroll(self inline), scroll(self inline);
+  animation-range:
+    0 var(--scroll-fade-ramp),
+    calc(100% - var(--scroll-fade-ramp)) 100%,
+    normal,
+    0 var(--scroll-fade-ramp),
+    calc(100% - var(--scroll-fade-ramp)) 100%,
+    normal;
+}
+
+/* -- Per scroller ------------------------------------------------------------ */
+
+/* The rail hides its scrollbar, so there is no strip to keep. */
+.shell-brutal .rail__nav {
+  --scroll-fade-gutter: 0px;
+}
+
+/* Sticky column headers stay crisp; the fade starts under them. The heights
+   are the headers' own: 9px padding twice, an 11px face's 16.5px line and half
+   of a collapsed 3px rule; 7px padding twice, a 15px line and half of 2px. */
+.vlib__scroll {
+  --scroll-fade-inset-top: 36px;
+}
+
+.vlib-import__preview-scroll {
+  --scroll-fade-inset-top: 30px;
+}

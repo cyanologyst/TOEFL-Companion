@@ -1123,11 +1123,21 @@
   font-size: 21px;
 }
 
+/* The border belongs to the box and the scrolling to a borderless box inside
+   it, so the scroll fade never fades the border. */
 .vlib-import__preview {
+  display: flex;
   max-height: 216px;
-  overflow: auto;
+  flex-direction: column;
+  overflow: hidden;
   border: 2px solid var(--line);
   border-radius: var(--round-sm);
+}
+
+.vlib-import__preview-scroll {
+  min-height: 0;
+  flex: 1;
+  overflow: auto;
   overscroll-behavior: contain;
   scrollbar-color: var(--line) transparent;
   scrollbar-width: thin;

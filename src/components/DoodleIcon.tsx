@@ -40,20 +40,27 @@ interface DoodleIconProps {
   decorative?: boolean;
 }
 
+/**
+ * The doodles are black line art on transparent PNGs. Drawn as an <img> they
+ * stay black, which vanishes on a dark theme and fights a coloured surface.
+ * Used as a mask over the current text colour instead, every icon is ink on
+ * paper, dark on an accent, and light on the Night ground, with no per-theme
+ * artwork.
+ */
 export function DoodleIcon({
   name,
   size = 22,
   className = "",
   decorative = true,
 }: DoodleIconProps): React.JSX.Element {
-  return (
-    <img
-      className={`doodle-icon ${className}`.trim()}
-      src={`/assets/doodle/${name}.png`}
-      width={size}
-      height={size}
-      alt={decorative ? "" : name}
-      aria-hidden={decorative || undefined}
-    />
+  const source = `url("/assets/doodle/${name}.png")`;
+  const shared = {
+    className: `doodle-icon ${className}`.trim(),
+    style: { width: size, height: size, maskImage: source },
+  };
+  return decorative ? (
+    <span {...shared} aria-hidden />
+  ) : (
+    <span {...shared} role="img" aria-label={name} />
   );
 }

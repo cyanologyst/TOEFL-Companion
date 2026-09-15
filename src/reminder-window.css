@@ -38,22 +38,13 @@ body.reminder-window {
 /* Carries the world's tokens: this page never mounts the app shell that
    normally provides them. */
 .reminder-window__card {
-  --ink: #12100c;
-  --paper: #fffdf3;
-  --ground: #ffe01b;
-  --pop-lime: #c6f24e;
-  --pop-mint: #7be495;
-  --pop-sky: #7cc6fe;
-  --pop-rose: #ff9bd2;
-  --pop-flame: #ff6b5e;
-  --pop-sun: #ffd93d;
   --edge: 3px;
   --drop: 5px;
   --drop-deep: 7px;
   --round: 14px;
   --round-sm: 10px;
-  --shadow-hard: var(--drop) var(--drop) 0 var(--ink);
-  --shadow-deep: var(--drop-deep) var(--drop-deep) 0 var(--ink);
+  --shadow-hard: var(--drop) var(--drop) 0 var(--shade);
+  --shadow-deep: var(--drop-deep) var(--drop-deep) 0 var(--shade);
   --font-display: "Archivo Black", "Arial Black", sans-serif;
   --font-flat: "Space Grotesk Variable", "Segoe UI", sans-serif;
   --snap: cubic-bezier(0.2, 0.9, 0.25, 1);
@@ -87,6 +78,6 @@ body.reminder-window {
 }
 
 .reminder-window__card *::selection {
-  color: var(--ink);
+  color: var(--on-pop);
   background: var(--pop-lime);
 }

@@ -13,6 +13,9 @@ import { SpeechModels } from "./SpeechModels";
 import type { StudySettings } from "../../types/study";
 import "../../brutal.css";
 import "./settings.css";
+import "./appearance.css";
+import { useAppearance } from "../../hooks/useAppearance";
+import { appearanceRepository, THEME_OPTIONS } from "../../services/appearance";
 import type { NotificationMode, VocabularySettings } from "../../types/vocabulary";
 
 interface SettingsPageProps {
@@ -21,7 +24,14 @@ interface SettingsPageProps {
   onChanged: () => void;
 }
 
-type SettingsSection = "profile" | "practice" | "reminders" | "audio" | "speech" | "storage";
+type SettingsSection =
+  | "profile"
+  | "appearance"
+  | "practice"
+  | "reminders"
+  | "audio"
+  | "speech"
+  | "storage";
 type AsyncPhase = "idle" | "loading" | "success" | "error";
 
 interface LocalSettingsDraft {
@@ -46,6 +56,7 @@ const SETTINGS_SECTIONS: ReadonlyArray<{
   icon: DoodleIconName;
 }> = [
   { id: "profile", label: "Profile", description: "Name and test date", icon: "target" },
+  { id: "appearance", label: "Appearance", description: "Theme colours", icon: "star" },
   { id: "practice", label: "Practice", description: "Timers and draft saving", icon: "stopwatch" },
   { id: "reminders", label: "Reminders", description: "Vocabulary recall cards", icon: "bell" },
   { id: "audio", label: "Audio", description: "Speech and sound cues", icon: "speaker" },
@@ -89,6 +100,9 @@ export function SettingsPage({
   onChanged,
 }: SettingsPageProps): React.JSX.Element {
   const vocabulary = useVocabularySnapshot();
+  /* Appearance applies the moment it is picked, outside the save-and-discard
+     draft the other sections share: a theme is judged by seeing it. */
+  const appearance = useAppearance();
   const initialDraftRef = useRef(createDraft(initialSettings, vocabulary.settings));
   const [settings, setSettings] = useState<StudySettings>(initialSettings);
   const [reminderInterval, setReminderInterval] = useState(
@@ -348,6 +362,57 @@ export function SettingsPage({
         </nav>
 
         <div className="b-frame set-b__panel">
+          {activeSection === "appearance" ? (
+            <section className="panel settings-section" id="appearance-settings">
+              <header>
+                <span>
+                  <DoodleIcon name="star" size={22} />
+                </span>
+                <div>
+                  <h2>Theme</h2>
+                  <p>Every screen follows it. Applies straight away, on this computer.</p>
+                </div>
+              </header>
+              <fieldset className="theme-picker">
+                <legend className="sr-only">Theme</legend>
+                {THEME_OPTIONS.map((option) => (
+                  /* Each option carries its own theme, so its preview, its name
+                     and its description are drawn in exactly the colours you get. */
+                  <label
+                    key={option.id}
+                    className="theme-picker__option"
+                    data-theme-preview={option.id}
+                  >
+                    <input
+                      type="radio"
+                      name="app-theme"
+                      value={option.id}
+                      checked={appearance.theme === option.id}
+                      onChange={() => appearanceRepository.update({ theme: option.id })}
+                    />
+                    <span className="theme-picker__preview" aria-hidden>
+                      <span className="theme-picker__card">
+                        <span className="theme-picker__line" />
+                        <span className="theme-picker__line theme-picker__line--short" />
+                        <span className="theme-picker__pops">
+                          <i data-pop="lime" />
+                          <i data-pop="sun" />
+                          <i data-pop="sky" />
+                          <i data-pop="mint" />
+                          <i data-pop="flame" />
+                        </span>
+                      </span>
+                    </span>
+                    <span className="theme-picker__copy">
+                      <strong>{option.label}</strong>
+                      <small>{option.description}</small>
+                    </span>
+                  </label>
+                ))}
+              </fieldset>
+            </section>
+          ) : null}
+
           {activeSection === "profile" ? (
             <section className="panel settings-section" id="profile-settings">
               <header>

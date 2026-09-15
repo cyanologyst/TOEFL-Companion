@@ -5,6 +5,11 @@ export interface AppSidebarProps {
   learnerName: string;
   targetDate: string;
   dueCount?: number;
+  /** Folded to its icons. Every label stays in the DOM as the button's name. */
+  collapsed?: boolean;
+  /** Open over the page on a narrow window, rather than beside it. */
+  overlay?: boolean;
+  onToggleCollapsed?: () => void;
   onSelect: (
     area: "dashboard" | "vocabulary" | "reading" | "speaking" | "writing" | "progress" | "settings",
   ) => void;
@@ -62,22 +67,51 @@ export function AppSidebar({
   learnerName,
   targetDate,
   dueCount = 0,
+  collapsed = false,
+  overlay = false,
+  onToggleCollapsed,
   onSelect,
 }: AppSidebarProps): React.JSX.Element {
   const initial = learnerName.trim().charAt(0).toLocaleUpperCase();
   const days = daysUntil(targetDate);
+  // Folded, the labels are hidden, so a hover title carries them instead.
+  const hint = (label: string) => (collapsed ? label : undefined);
 
   return (
-    <aside className="rail" aria-label="Application">
+    <aside
+      id="app-rail"
+      className="rail"
+      aria-label="Application"
+      data-collapsed={collapsed}
+      data-overlay={overlay}
+    >
+      {onToggleCollapsed ? (
+        <button
+          type="button"
+          className="rail__toggle"
+          aria-controls="app-rail"
+          aria-expanded={!collapsed}
+          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+          title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+          onClick={onToggleCollapsed}
+        >
+          <DoodleIcon name="arrow" size={15} />
+        </button>
+      ) : null}
+
       <button
         type="button"
         className="rail__brand"
         onClick={() => onSelect("dashboard")}
         aria-label="TOEFL Companion, go to today"
+        title={hint("TOEFL Companion")}
       >
         {/* No mark here: the title bar already carries the app icon, and
             showing it twice within a few hundred pixels reads as a mistake. */}
-        <span>
+        <span className="rail__brand-mark" aria-hidden>
+          T
+        </span>
+        <span className="rail__brand-name">
           <strong>TOEFL</strong>
           <small>Companion</small>
         </span>
@@ -88,7 +122,10 @@ export function AppSidebar({
       {days !== null && days >= 0 ? (
         /* The visible text already reads "42 days to test", so it is its own
            accessible name; a label here would only duplicate it. */
-        <p className="rail__countdown">
+        <p
+          className="rail__countdown"
+          title={hint(`${days} ${days === 1 ? "day" : "days"} to test`)}
+        >
           <strong>{days}</strong>
           <span>{days === 1 ? "day to test" : "days to test"}</span>
         </p>
@@ -97,6 +134,7 @@ export function AppSidebar({
           type="button"
           className="rail__countdown rail__countdown--empty"
           onClick={() => onSelect("settings")}
+          title={hint("Set test date")}
         >
           <DoodleIcon name="calendar" size={20} />
           <span>Set test date</span>
@@ -116,6 +154,7 @@ export function AppSidebar({
                   className={`rail__item rail__item--${item.tone}`}
                   data-active={active}
                   aria-current={active ? "page" : undefined}
+                  title={hint(item.label)}
                   onClick={() => onSelect(item.area)}
                 >
                   <span className="rail__item-mark">
@@ -138,6 +177,7 @@ export function AppSidebar({
         className="rail__profile"
         data-active={activeArea === "settings"}
         aria-current={activeArea === "settings" ? "page" : undefined}
+        title={hint(`${learnerName || "Set your name"}, settings`)}
         onClick={() => onSelect("settings")}
       >
         {/* No name yet only happens if someone clears it in Settings, so the
@@ -147,7 +187,7 @@ export function AppSidebar({
           <strong>{learnerName || "Set your name"}</strong>
           <small>Settings</small>
         </span>
-        <DoodleIcon name="setting" size={18} />
+        <DoodleIcon name="setting" size={18} className="rail__profile-icon" />
       </button>
     </aside>
   );

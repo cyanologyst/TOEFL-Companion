@@ -10,8 +10,10 @@ import {
   vocabularyRepository,
   type WordLocation,
 } from "./services/vocabularyRepository";
+import { appearanceRepository, applyTheme } from "./services/appearance";
 import { speakVocabulary } from "./services/vocabularyBrowser";
 import type { ReviewAction } from "./types/vocabulary";
+import "./themes.css";
 import "./brutal.css";
 import "./reminder-window.css";
 
@@ -128,5 +130,13 @@ function ReminderWindow(): React.JSX.Element | null {
 
 const root = document.getElementById("reminder-root");
 if (root) {
+  // This window never mounts the app, so it applies the theme itself, and
+  // follows a change made in the main window through shared storage.
+  applyTheme(appearanceRepository.get().theme);
+  window.addEventListener("storage", (event) => {
+    if (event.key === null || event.key === appearanceRepository.storageKey) {
+      applyTheme(appearanceRepository.get().theme);
+    }
+  });
   createRoot(root).render(<ReminderWindow />);
 }

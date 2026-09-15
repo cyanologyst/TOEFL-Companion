@@ -40,6 +40,9 @@ export function AudioWaveform({ analyserRef, active }: AudioWaveformProps): Reac
       analyser.getByteFrequencyData(data);
       context.clearRect(0, 0, bounds.width, bounds.height);
 
+      // Drawn in the canvas's own text colour, so the bars follow the theme and
+      // stay legible on whichever surface the recorder sits on.
+      const barColor = getComputedStyle(canvas).color;
       const barCount = 28;
       const gap = 3;
       const barWidth = Math.max(2, (bounds.width - gap * (barCount - 1)) / barCount);
@@ -50,12 +53,14 @@ export function AudioWaveform({ analyserRef, active }: AudioWaveformProps): Reac
         const height = Math.max(4, intensity * (bounds.height - 6));
         const x = index * (barWidth + gap);
         const y = (bounds.height - height) / 2;
-        context.fillStyle = `rgba(255, 255, 255, ${0.46 + intensity * 0.5})`;
+        context.globalAlpha = 0.46 + intensity * 0.5;
+        context.fillStyle = barColor;
         context.beginPath();
         context.roundRect(x, y, barWidth, height, barWidth / 2);
         context.fill();
       }
 
+      context.globalAlpha = 1;
       animationFrame = window.requestAnimationFrame(draw);
     };
 

@@ -16,27 +16,14 @@
    the tokens are shared; `.brutal` alone carries the page layout. */
 .brutal,
 .b-portal {
-  --ink: #12100c;
-  --paper: #fffdf3;
-  --ground: #ffe01b;
-  --ground-deep: #f5c800;
-
-  --pop-lime: #c6f24e;
-  --pop-mint: #7be495;
-  --pop-sky: #7cc6fe;
-  --pop-grape: #b197fc;
-  --pop-rose: #ff9bd2;
-  --pop-flame: #ff6b5e;
-  --pop-sun: #ffd93d;
-
   --edge: 3px;
   --drop: 5px;
   --drop-deep: 7px;
   --round: 14px;
   --round-sm: 10px;
 
-  --shadow-hard: var(--drop) var(--drop) 0 var(--ink);
-  --shadow-deep: var(--drop-deep) var(--drop-deep) 0 var(--ink);
+  --shadow-hard: var(--drop) var(--drop) 0 var(--shade);
+  --shadow-deep: var(--drop-deep) var(--drop-deep) 0 var(--shade);
 
   --font-display: "Archivo Black", "Arial Black", sans-serif;
   --font-flat: "Space Grotesk Variable", "Segoe UI", sans-serif;
@@ -46,6 +33,10 @@
 }
 
 .brutal {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: flex;
   height: 100%;
   flex-direction: column;
@@ -60,17 +51,21 @@
 }
 
 :is(.brutal, .b-portal) *::selection {
-  color: var(--ink);
+  color: var(--on-pop);
   background: var(--pop-lime);
 }
 
 /* -- Frame: the one container primitive ------------------------------------- */
 
 .b-frame {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: flex;
   min-height: 0;
   flex-direction: column;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round);
   background: var(--paper);
   box-shadow: var(--shadow-hard);
@@ -81,10 +76,18 @@
 }
 
 .b-frame--sun {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-sun);
 }
 
 .b-frame--lime {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-lime);
 }
 
@@ -113,10 +116,14 @@
 /* -- Tag / chip ------------------------------------------------------------- */
 
 .b-tag {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: inline-flex;
   align-items: center;
   padding: 4px 11px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 999px;
   background: var(--paper);
   font-family: var(--font-flat);
@@ -129,30 +136,49 @@
 }
 
 .b-tag--sun {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-sun);
 }
 
 .b-tag--mint {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-mint);
 }
 
 .b-tag--sky {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-sky);
 }
 
 .b-tag--rose {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-rose);
 }
 
 /* -- Button ----------------------------------------------------------------- */
 
 .b-btn {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 42px;
   padding: 0 18px;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
   box-shadow: var(--shadow-hard);
@@ -178,44 +204,72 @@
 
 .b-btn:active:not(:disabled) {
   transform: translate(var(--drop), var(--drop));
-  box-shadow: 0 0 0 var(--ink);
+  box-shadow: 0 0 0 var(--shade);
 }
 
 /* Waiting, not broken. A flat 45% opacity washed the fills out until the
    ratings looked like a rendering fault; this keeps the colour and says
    "not yet" with a flattened shadow and dimmed ink instead. */
 .b-btn:disabled {
-  box-shadow: 2px 2px 0 var(--ink);
-  color: rgba(18, 16, 12, 0.55);
+  box-shadow: 2px 2px 0 var(--shade);
+  color: color-mix(in srgb, var(--ink) 55%, transparent);
   cursor: not-allowed;
   opacity: 0.75;
 }
 
 .b-btn--sun {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-sun);
 }
 
 .b-btn--lime {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-lime);
 }
 
 .b-btn--sky {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-sky);
 }
 
 .b-btn--mint {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-mint);
 }
 
 .b-btn--rose {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-rose);
 }
 
 .b-btn--flame {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-flame);
 }
 
 .b-btn--grape {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-grape);
 }
 
@@ -225,14 +279,18 @@
 
 /* Square icon control. */
 .b-icon-btn {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: grid;
   width: 42px;
   height: 42px;
   flex: 0 0 auto;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: 3px 3px 0 var(--shade);
   cursor: pointer;
   place-items: center;
   transition:
@@ -242,23 +300,27 @@
 
 .b-icon-btn:hover {
   transform: translate(-1px, -1px);
-  box-shadow: 5px 5px 0 var(--ink);
+  box-shadow: 5px 5px 0 var(--shade);
 }
 
 .b-icon-btn:active {
   transform: translate(3px, 3px);
-  box-shadow: 0 0 0 var(--ink);
+  box-shadow: 0 0 0 var(--shade);
 }
 
 /* -- Fields ----------------------------------------------------------------- */
 
 .b-field {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: flex;
   min-width: 0;
   align-items: center;
   height: 44px;
   padding: 0 14px;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
   gap: 9px;
@@ -301,13 +363,17 @@
 /* -- Segmented switch ------------------------------------------------------- */
 
 .b-switch {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: inline-flex;
   flex: 0 0 auto;
   padding: 4px;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: 999px;
   background: var(--paper);
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: 3px 3px 0 var(--shade);
   gap: 4px;
 }
 
@@ -324,7 +390,11 @@
 }
 
 .b-switch button[data-active="true"] {
-  border-color: var(--ink);
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  border-color: var(--line);
   background: var(--pop-sun);
 }
 
@@ -335,7 +405,7 @@
   flex: 1;
   overflow-y: auto;
   overscroll-behavior: contain;
-  scrollbar-color: var(--ink) transparent;
+  scrollbar-color: var(--line) transparent;
   scrollbar-width: thin;
 }
 
@@ -344,7 +414,7 @@
 }
 
 .b-scroll::-webkit-scrollbar-thumb {
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 999px;
   background: var(--pop-sun);
 }
@@ -376,14 +446,18 @@
 }
 
 .brutal__title-mark {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   display: grid;
   width: 54px;
   height: 54px;
   flex: 0 0 auto;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round-sm);
   background: var(--pop-lime);
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 4px 4px 0 var(--shade);
   place-items: center;
 }
 
@@ -432,12 +506,16 @@
 }
 
 .rev-progress__track {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   position: relative;
   min-width: 0;
   height: 20px;
   flex: 1;
   overflow: hidden;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 999px;
   background: var(--paper);
 }
@@ -446,9 +524,13 @@
    its line box - 19px inside a 16px track. The clip on the track was hiding
    that rather than the rounded cap it was added for. */
 .rev-progress__fill {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   display: block;
   height: 100%;
-  border-right: 2px solid var(--ink);
+  border-right: 2px solid var(--line);
   border-radius: 0 999px 999px 0;
   background: var(--pop-lime);
   transition: width 320ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -488,7 +570,7 @@
   font-family: var(--font-flat);
   font-size: 15px;
   font-weight: 500;
-  opacity: 0.72;
+  opacity: var(--quiet);
 }
 
 /* -- Reveal ----------------------------------------------------------------- */
@@ -501,14 +583,14 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
-  border: var(--edge) dashed var(--ink);
+  border: var(--edge) dashed var(--line);
   border-radius: var(--round-sm);
   background: repeating-linear-gradient(
     45deg,
     transparent,
     transparent 9px,
-    rgba(18, 16, 12, 0.045) 9px,
-    rgba(18, 16, 12, 0.045) 18px
+    color-mix(in srgb, var(--ink) 4.5%, transparent) 9px,
+    color-mix(in srgb, var(--ink) 4.5%, transparent) 18px
   );
   cursor: pointer;
   gap: 10px;
@@ -516,7 +598,7 @@
 }
 
 .rev-reveal:hover {
-  background-color: rgba(198, 242, 78, 0.35);
+  background-color: color-mix(in srgb, var(--pop-lime) 35%, transparent);
 }
 
 .rev-reveal strong {
@@ -527,7 +609,7 @@
 .rev-reveal small {
   font-size: 13px;
   font-weight: 500;
-  opacity: 0.7;
+  opacity: var(--quiet);
 }
 
 .rev-answer {
@@ -539,9 +621,13 @@
 }
 
 .rev-answer__meaning {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   flex: 0 0 auto;
   padding: 14px 16px;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round-sm);
   background: var(--pop-sun);
   font-family: var(--font-display);
@@ -552,7 +638,7 @@
 .rev-answer__example {
   flex: 0 0 auto;
   padding: 12px 16px;
-  border-left: 6px solid var(--ink);
+  border-left: 6px solid var(--line);
   margin: 0;
   font-size: 15px;
   font-style: italic;
@@ -569,8 +655,12 @@
 }
 
 .rev-answer__chips li {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   padding: 5px 11px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 999px;
   background: var(--pop-sky);
   font-size: 13px;
@@ -605,7 +695,7 @@
   font-family: var(--font-flat);
   font-size: 12px;
   font-weight: 600;
-  opacity: 0.75;
+  opacity: var(--quiet);
 }
 
 /* -- Side rail -------------------------------------------------------------- */
@@ -632,20 +722,24 @@
   width: 128px;
   height: 128px;
   align-self: center;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: 50%;
   background:
     conic-gradient(var(--pop-lime) var(--dial, 0deg), var(--paper) 0) content-box,
     var(--paper);
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 4px 4px 0 var(--shade);
   place-items: center;
 }
 
 .rev-dial span {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: grid;
   width: 82px;
   height: 82px;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: 50%;
   background: var(--paper);
   font-family: var(--font-display);
@@ -660,8 +754,12 @@
 }
 
 .rev-tally div {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   padding: 9px 10px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
   text-align: center;
@@ -809,13 +907,21 @@
 @keyframes b-live {
   0%,
   49% {
+    --ink: var(--on-pop);
+    --line: var(--on-pop);
+    --quiet: var(--quiet-pop);
+    color: var(--on-pop);
     background: var(--pop-flame);
     box-shadow: var(--shadow-hard);
   }
   50%,
   100% {
+    --ink: var(--ink-base);
+    --line: var(--line-base);
+    --quiet: var(--quiet-base);
+    color: var(--ink);
     background: var(--paper);
-    box-shadow: 2px 2px 0 var(--ink);
+    box-shadow: 2px 2px 0 var(--shade);
   }
 }
 
@@ -862,6 +968,10 @@
   }
 
   .b-live {
+    --ink: var(--on-pop);
+    --line: var(--on-pop);
+    --quiet: var(--quiet-pop);
+    color: var(--on-pop);
     animation: none;
     background: var(--pop-flame);
   }
@@ -931,7 +1041,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 12px 16px;
-  border-bottom: var(--edge) solid var(--ink);
+  border-bottom: var(--edge) solid var(--line);
   gap: 12px;
 }
 
@@ -954,19 +1064,17 @@
 
 .desktop-app:has(.brutal) .app-sidebar,
 .app-sidebar.is-brutal {
-  border-right: 3px solid var(--b-ink, #12100c);
-  background: #fffdf3;
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
+  border-right: 3px solid var(--line);
+  background: var(--paper);
 }
 
 /* Applied to the shell root so the rail and bar can be styled without every
    page having to opt in individually. */
 .shell-brutal {
-  --b-ink: #12100c;
-  --b-paper: #fffdf3;
-  --b-ground: #ffe01b;
-  --b-lime: #c6f24e;
-  --b-sun: #ffd93d;
-  --b-sky: #7cc6fe;
   --b-display: "Archivo Black", "Arial Black", sans-serif;
   --b-flat: "Space Grotesk Variable", "Segoe UI", sans-serif;
 }
@@ -981,8 +1089,12 @@
 }
 
 .shell-brutal .native-titlebar {
-  border-bottom: 3px solid var(--b-ink);
-  background: var(--b-sun);
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  border-bottom: 3px solid var(--line);
+  background: var(--pop-sun);
 }
 
 .shell-brutal .native-titlebar__brand {
@@ -997,30 +1109,36 @@
 }
 
 .shell-brutal .native-titlebar__search {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
   height: 32px;
   align-self: center;
   /* Clear of the window controls by more than its own offset shadow. */
   margin: 0 16px 0 0;
   padding: 0 12px;
-  border: 2px solid var(--b-ink);
+  border: 2px solid var(--line);
   border-radius: 999px;
-  background: var(--b-paper);
-  box-shadow: 2px 2px 0 var(--b-ink);
-  color: var(--b-ink);
+  background: var(--paper);
+  box-shadow: 2px 2px 0 var(--shade);
+  color: var(--ink);
   font-family: var(--b-flat);
   font-weight: 600;
 }
 
 .shell-brutal .native-titlebar__search:hover {
   transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0 var(--b-ink);
+  box-shadow: 3px 3px 0 var(--shade);
 }
 
 .shell-brutal .native-titlebar__search kbd {
-  border: 1px solid var(--b-ink);
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  border: 1px solid var(--line);
   border-radius: 5px;
-  background: var(--b-lime);
-  color: var(--b-ink);
+  background: var(--pop-lime);
+  color: var(--ink);
   font-family: var(--b-flat);
   font-weight: 700;
 }
@@ -1028,16 +1146,16 @@
 /* The window controls kept the old navy glyph and a pale grey hover, which on
    a sun-yellow bar read as a patch of another interface. */
 .shell-brutal .window-control {
-  color: var(--b-ink);
+  color: var(--ink);
 }
 
 .shell-brutal .window-control:hover {
-  background: rgba(18, 16, 12, 0.14);
+  background: color-mix(in srgb, var(--ink) 14%, transparent);
 }
 
 .shell-brutal .window-control--close:hover {
-  color: var(--b-paper);
-  background: #d6343a;
+  color: var(--paper);
+  background: var(--danger-strong);
 }
 
 .shell-brutal .window-control svg {
@@ -1047,13 +1165,17 @@
 /* -- Rail ------------------------------------------------------------------- */
 
 .shell-brutal .app-sidebar {
-  border-right: 3px solid var(--b-ink);
-  background: var(--b-paper);
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
+  border-right: 3px solid var(--line);
+  background: var(--paper);
 }
 
 .shell-brutal .app-sidebar__brand {
   padding-bottom: 14px;
-  border-bottom: 3px solid var(--b-ink);
+  border-bottom: 3px solid var(--line);
 }
 
 .shell-brutal .app-sidebar__brand strong {
@@ -1073,7 +1195,7 @@
 .shell-brutal .sidebar-nav-item {
   border: 3px solid transparent;
   border-radius: 10px;
-  color: var(--b-ink);
+  color: var(--ink);
   font-family: var(--b-display);
   font-size: 14px;
   transition:
@@ -1083,46 +1205,66 @@
 }
 
 .shell-brutal .sidebar-nav-item:hover {
-  border-color: var(--b-ink);
-  background: var(--b-paper);
-  box-shadow: 3px 3px 0 var(--b-ink);
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
+  border-color: var(--line);
+  background: var(--paper);
+  box-shadow: 3px 3px 0 var(--shade);
   transform: translate(-1px, -1px);
 }
 
 /* The active area is a stuck-on sticker, not a soft tint. */
 .shell-brutal .sidebar-nav-item[data-active="true"] {
-  border-color: var(--b-ink);
-  background: var(--b-lime);
-  box-shadow: 4px 4px 0 var(--b-ink);
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  border-color: var(--line);
+  background: var(--pop-lime);
+  box-shadow: 4px 4px 0 var(--shade);
 }
 
 .shell-brutal .sidebar-nav-item[data-active="true"] .doodle-icon {
-  color: var(--b-ink);
+  color: var(--ink);
 }
 
 .shell-brutal .app-sidebar__encouragement {
-  border: 3px solid var(--b-ink);
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  border: 3px solid var(--line);
   border-radius: 12px;
-  background: var(--b-sky);
-  box-shadow: 4px 4px 0 var(--b-ink);
+  background: var(--pop-sky);
+  box-shadow: 4px 4px 0 var(--shade);
 }
 
 .shell-brutal .app-sidebar__encouragement p {
-  color: var(--b-ink);
+  color: var(--ink);
   font-family: var(--b-flat);
   font-size: 13px;
   font-weight: 600;
 }
 
 .shell-brutal .app-sidebar__profile {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   border: 0;
-  border-top: 3px solid var(--b-ink);
-  background: var(--b-ground);
+  border-top: 3px solid var(--line);
+  background: var(--ground);
   font-family: var(--b-flat);
 }
 
 .shell-brutal .app-sidebar__profile:hover {
-  background: var(--b-sun);
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  background: var(--pop-sun);
 }
 
 .shell-brutal .app-sidebar__profile strong {
@@ -1131,11 +1273,14 @@
 }
 
 .shell-brutal .profile-avatar {
-  border: 3px solid var(--b-ink);
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  border: 3px solid var(--line);
   border-radius: 50%;
-  color: var(--b-ink);
-  background: var(--b-lime);
-  box-shadow: 2px 2px 0 var(--b-ink);
+  color: var(--ink);
+  background: var(--pop-lime);
+  box-shadow: 2px 2px 0 var(--shade);
   font-family: var(--b-display);
 }
 
@@ -1158,6 +1303,10 @@
 /* -- Hero ------------------------------------------------------------------- */
 
 .dash-b__hero {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   position: relative;
   overflow: hidden;
   padding: 26px 30px;
@@ -1196,6 +1345,10 @@
 
 /* A hard sticker in the corner: the countdown that actually matters. */
 .dash-b__stamp {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   position: absolute;
   top: 18px;
   right: 18px;
@@ -1203,7 +1356,7 @@
   flex-direction: column;
   align-items: center;
   padding: 10px 16px;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
   box-shadow: var(--shadow-hard);
@@ -1233,10 +1386,14 @@
 }
 
 .dash-b-skill {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: flex;
   align-items: center;
   padding: 12px 16px;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round);
   background: var(--paper);
   box-shadow: var(--shadow-hard);
@@ -1255,7 +1412,7 @@
 
 .dash-b-skill:active {
   transform: translate(var(--drop), var(--drop));
-  box-shadow: 0 0 0 var(--ink);
+  box-shadow: 0 0 0 var(--shade);
 }
 
 .dash-b-skill__mark {
@@ -1263,20 +1420,32 @@
   width: 46px;
   height: 46px;
   flex: 0 0 auto;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round-sm);
   place-items: center;
 }
 
 .dash-b-skill--vocabulary .dash-b-skill__mark {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-mint);
 }
 
 .dash-b-skill--speaking .dash-b-skill__mark {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-sky);
 }
 
 .dash-b-skill--writing .dash-b-skill__mark {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-grape);
 }
 
@@ -1295,7 +1464,7 @@
 .dash-b-skill__copy small {
   font-size: 12px;
   font-weight: 600;
-  opacity: 0.75;
+  opacity: var(--quiet);
 }
 
 .dash-b-skill__num {
@@ -1322,23 +1491,31 @@
 }
 
 .dash-b__week-row li {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: flex;
   flex: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
   gap: 4px;
 }
 
 .dash-b__week-row li[data-done="true"] {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-lime);
 }
 
 .dash-b__week-row li[data-today="true"] {
-  box-shadow: inset 0 0 0 3px var(--ink);
+  box-shadow: inset 0 0 0 3px var(--shade);
 }
 
 .dash-b__week-row b {
@@ -1387,16 +1564,24 @@
 }
 
 .set-b__nav-item:hover {
-  border-color: var(--ink);
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
+  border-color: var(--line);
   background: var(--paper);
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: 3px 3px 0 var(--shade);
   transform: translate(-1px, -1px);
 }
 
 .set-b__nav-item[data-active="true"] {
-  border-color: var(--ink);
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  border-color: var(--line);
   background: var(--pop-sun);
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 4px 4px 0 var(--shade);
 }
 
 .set-b__nav-item span {
@@ -1413,7 +1598,7 @@
 .set-b__nav-item small {
   font-size: 11px;
   font-weight: 600;
-  opacity: 0.75;
+  opacity: var(--quiet);
 }
 
 .set-b__panel {
@@ -1422,7 +1607,7 @@
   gap: 18px;
   overflow-y: auto;
   overscroll-behavior: contain;
-  scrollbar-color: var(--ink) transparent;
+  scrollbar-color: var(--line) transparent;
   scrollbar-width: thin;
 }
 
@@ -1457,8 +1642,11 @@
 :is(.brutal, .b-portal) input[type="search"],
 :is(.brutal, .b-portal) select,
 :is(.brutal, .b-portal) textarea {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
   padding: 10px 13px;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
   color: var(--ink);
@@ -1560,7 +1748,7 @@
 /* Existing buttons inside converted pages inherit the world rather than
    needing every call site rewritten. */
 :is(.brutal, .b-portal) .button {
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round-sm);
   box-shadow: var(--shadow-hard);
   color: var(--ink);
@@ -1577,24 +1765,40 @@
 
 :is(.brutal, .b-portal) .button:active:not(:disabled) {
   transform: translate(var(--drop), var(--drop));
-  box-shadow: 0 0 0 var(--ink);
+  box-shadow: 0 0 0 var(--shade);
 }
 
 :is(.brutal, .b-portal) .button--primary {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-lime);
 }
 
 :is(.brutal, .b-portal) .button--outline,
 :is(.brutal, .b-portal) .button--quiet {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   background: var(--paper);
 }
 
 :is(.brutal, .b-portal) .button--danger {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-flame);
 }
 
 .brutal .panel {
-  border: var(--edge) solid var(--ink);
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round);
   background: var(--paper);
   box-shadow: var(--shadow-hard);
@@ -1602,7 +1806,11 @@
 
 :is(.brutal, .b-portal) .status-badge,
 :is(.brutal, .b-portal) .study-status-badge {
-  border: 2px solid var(--ink);
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  border: 2px solid var(--line);
   border-radius: 999px;
   background: var(--pop-sun);
   font-family: var(--font-flat);
@@ -1621,7 +1829,11 @@
 
 .brutal .progress-stat,
 .brutal .progress-card {
-  border: var(--edge) solid var(--ink);
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round);
   background: var(--paper);
   box-shadow: var(--shadow-hard);
@@ -1644,16 +1856,24 @@
 }
 
 .brutal .progress-stat__art {
-  border: 2px solid var(--ink);
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  border: 2px solid var(--line);
   border-radius: var(--round-sm);
   background: var(--pop-sun);
 }
 
 .brutal .progress__streak {
-  border: var(--edge) solid var(--ink);
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  border: var(--edge) solid var(--line);
   border-radius: 999px;
   background: var(--pop-lime);
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: 3px 3px 0 var(--shade);
 }
 
 .brutal .progress__streak strong {
@@ -1661,24 +1881,36 @@
 }
 
 .brutal .progress-legend i {
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 3px;
 }
 
 .brutal .progress-sessions li {
-  border: 2px solid var(--ink);
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
+  border: 2px solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
 }
 
 .brutal .progress-sessions__mark {
-  border: 2px solid var(--ink);
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  border: 2px solid var(--line);
   border-radius: 6px;
   background: var(--pop-sky);
 }
 
 .brutal .progress-tip {
-  border: var(--edge) solid var(--ink);
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
   box-shadow: var(--shadow-hard);
@@ -1687,7 +1919,11 @@
 }
 
 .brutal .progress__first-run {
-  border: var(--edge) dashed var(--ink);
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
+  border: var(--edge) dashed var(--line);
   border-radius: var(--round);
   background: var(--paper);
 }
@@ -1711,7 +1947,7 @@
 
 .set-b__panel .settings-section > header {
   padding: 0 0 4px;
-  border-bottom: 3px solid var(--ink);
+  border-bottom: 3px solid var(--line);
   margin-bottom: 14px;
 }
 
@@ -1723,6 +1959,10 @@
    =========================================================================== */
 
 .shell-brutal .rail {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   position: fixed;
   z-index: var(--z-sidebar, 50);
   top: var(--titlebar-height, 40px);
@@ -1732,22 +1972,26 @@
   width: var(--sidebar-width, 232px);
   flex-direction: column;
   padding: 14px 12px 0;
-  border-right: 3px solid var(--b-ink);
-  background: var(--b-paper);
+  border-right: 3px solid var(--line);
+  background: var(--paper);
   gap: 12px;
 }
 
 /* -- Brand ------------------------------------------------------------------ */
 
 .shell-brutal .rail__brand {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: flex;
   flex: 0 0 auto;
   align-items: center;
   padding: 8px;
-  border: 3px solid var(--b-ink);
+  border: 3px solid var(--line);
   border-radius: 12px;
-  background: var(--b-ground);
-  box-shadow: 4px 4px 0 var(--b-ink);
+  background: var(--ground);
+  box-shadow: 4px 4px 0 var(--shade);
   cursor: pointer;
   gap: 10px;
   text-align: left;
@@ -1758,12 +2002,12 @@
 
 .shell-brutal .rail__brand:hover {
   transform: translate(-1px, -1px);
-  box-shadow: 6px 6px 0 var(--b-ink);
+  box-shadow: 6px 6px 0 var(--shade);
 }
 
 .shell-brutal .rail__brand:active {
   transform: translate(4px, 4px);
-  box-shadow: 0 0 0 var(--b-ink);
+  box-shadow: 0 0 0 var(--shade);
 }
 
 .shell-brutal .rail__brand img {
@@ -1779,14 +2023,14 @@
 }
 
 .shell-brutal .rail__brand strong {
-  color: var(--b-ink);
+  color: var(--ink);
   font-family: var(--b-display);
   font-size: 17px;
   letter-spacing: -0.02em;
 }
 
 .shell-brutal .rail__brand small {
-  color: var(--b-ink);
+  color: var(--ink);
   font-family: var(--b-flat);
   font-size: 11px;
   font-weight: 700;
@@ -1797,27 +2041,31 @@
 /* -- Countdown -------------------------------------------------------------- */
 
 .shell-brutal .rail__countdown {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   display: flex;
   flex: 0 0 auto;
   align-items: baseline;
   justify-content: center;
   padding: 8px 10px;
-  border: 3px solid var(--b-ink);
+  border: 3px solid var(--line);
   border-radius: 10px;
-  background: var(--b-lime);
-  box-shadow: 3px 3px 0 var(--b-ink);
+  background: var(--pop-lime);
+  box-shadow: 3px 3px 0 var(--shade);
   gap: 7px;
 }
 
 .shell-brutal .rail__countdown strong {
-  color: var(--b-ink);
+  color: var(--ink);
   font-family: var(--b-display);
   font-size: 26px;
   line-height: 1;
 }
 
 .shell-brutal .rail__countdown span {
-  color: var(--b-ink);
+  color: var(--ink);
   font-family: var(--b-flat);
   font-size: 11px;
   font-weight: 700;
@@ -1826,13 +2074,21 @@
 }
 
 .shell-brutal .rail__countdown--empty {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   align-items: center;
-  background: var(--b-paper);
+  background: var(--paper);
   cursor: pointer;
 }
 
 .shell-brutal .rail__countdown--empty:hover {
-  background: var(--b-sun);
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  background: var(--pop-sun);
 }
 
 /* -- Navigation ------------------------------------------------------------- */
@@ -1866,12 +2122,12 @@
 .shell-brutal .rail__group-label {
   padding-left: 4px;
   margin: 0;
-  color: var(--b-ink);
+  color: var(--ink);
   font-family: var(--b-flat);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.16em;
-  opacity: 0.55;
+  opacity: var(--quiet);
   text-transform: uppercase;
 }
 
@@ -1893,78 +2149,113 @@
 }
 
 .shell-brutal .rail__item:hover {
-  border-color: var(--b-ink);
-  background: var(--b-paper);
-  box-shadow: 3px 3px 0 var(--b-ink);
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
+  border-color: var(--line);
+  background: var(--paper);
+  box-shadow: 3px 3px 0 var(--shade);
   transform: translate(-1px, -1px);
 }
 
 .shell-brutal .rail__item:active {
   transform: translate(3px, 3px);
-  box-shadow: 0 0 0 var(--b-ink);
+  box-shadow: 0 0 0 var(--shade);
 }
 
 /* The active area is a sticker pressed onto the rail. Its own colour fills
    the row so the section you are in is legible from the edge of vision. */
 .shell-brutal .rail__item[data-active="true"] {
-  border-color: var(--b-ink);
-  box-shadow: 4px 4px 0 var(--b-ink);
+  border-color: var(--line);
+  box-shadow: 4px 4px 0 var(--shade);
 }
 
 .shell-brutal .rail__item--mint[data-active="true"] {
-  background: #7be495;
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  background: var(--pop-mint);
 }
 
 .shell-brutal .rail__item--lime[data-active="true"] {
-  background: #c6f24e;
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  background: var(--pop-lime);
 }
 
 .shell-brutal .rail__item--sky[data-active="true"] {
-  background: #7cc6fe;
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  background: var(--pop-sky);
 }
 
 .shell-brutal .rail__item--grape[data-active="true"] {
-  background: #b197fc;
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  background: var(--pop-grape);
 }
 
 .shell-brutal .rail__item--sun[data-active="true"] {
-  background: var(--b-sun);
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  background: var(--pop-sun);
 }
 
 .shell-brutal .rail__item--rose[data-active="true"] {
-  background: #ff9bd2;
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  background: var(--pop-rose);
 }
 
 .shell-brutal .rail__item-mark {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: grid;
   width: 32px;
   height: 32px;
   flex: 0 0 auto;
-  border: 2px solid var(--b-ink);
+  border: 2px solid var(--line);
   border-radius: 8px;
-  background: var(--b-paper);
+  background: var(--paper);
   place-items: center;
 }
 
 .shell-brutal .rail__item-label {
   min-width: 0;
   flex: 1;
-  color: var(--b-ink);
+  color: var(--ink);
   font-family: var(--b-display);
   font-size: 14px;
   letter-spacing: -0.01em;
 }
 
 .shell-brutal .rail__badge {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
   display: grid;
   min-width: 24px;
   height: 22px;
   flex: 0 0 auto;
   padding: 0 6px;
-  border: 2px solid var(--b-ink);
+  border: 2px solid var(--line);
   border-radius: 999px;
-  color: var(--b-ink);
-  background: #ff6b5e;
+  color: var(--ink);
+  background: var(--pop-flame);
   font-family: var(--b-display);
   font-size: 11px;
   place-items: center;
@@ -1973,15 +2264,19 @@
 /* -- Profile ---------------------------------------------------------------- */
 
 .shell-brutal .rail__profile {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: flex;
   flex: 0 0 auto;
   align-items: center;
   padding: 10px;
-  border: 3px solid var(--b-ink);
+  border: 3px solid var(--line);
   border-top-width: 3px;
   border-radius: 12px 12px 0 0;
   border-bottom: 0;
-  background: var(--b-ground);
+  background: var(--ground);
   cursor: pointer;
   gap: 10px;
   margin-top: auto;
@@ -1991,18 +2286,25 @@
 
 .shell-brutal .rail__profile:hover,
 .shell-brutal .rail__profile[data-active="true"] {
-  background: var(--b-sun);
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  background: var(--pop-sun);
 }
 
 .shell-brutal .rail__avatar {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
   display: grid;
   width: 34px;
   height: 34px;
   flex: 0 0 auto;
-  border: 3px solid var(--b-ink);
+  border: 3px solid var(--line);
   border-radius: 50%;
-  color: var(--b-ink);
-  background: var(--b-lime);
+  color: var(--ink);
+  background: var(--pop-lime);
   font-family: var(--b-display);
   font-size: 15px;
   place-items: center;
@@ -2018,7 +2320,7 @@
 
 .shell-brutal .rail__profile-copy strong {
   overflow: hidden;
-  color: var(--b-ink);
+  color: var(--ink);
   font-family: var(--b-display);
   font-size: 14px;
   text-overflow: ellipsis;
@@ -2026,12 +2328,12 @@
 }
 
 .shell-brutal .rail__profile-copy small {
-  color: var(--b-ink);
+  color: var(--ink);
   font-family: var(--b-flat);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.06em;
-  opacity: 0.7;
+  opacity: var(--quiet);
   text-transform: uppercase;
 }
 
@@ -2146,7 +2448,7 @@
   z-index: var(--z-modal, 200);
   display: grid;
   padding: 26px;
-  background: rgba(18, 16, 12, 0.55);
+  background: color-mix(in srgb, var(--scrim) 55%, transparent);
   inset: 0;
   place-items: center;
 }
@@ -2154,11 +2456,15 @@
 /* Flex rather than a fixed row template: a dialog may have a body, a footer,
    or both, and each combination has to keep the scroller in the middle. */
 .b-modal {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: flex;
   width: min(100%, 560px);
   max-height: min(84vh, 720px);
   flex-direction: column;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round);
   background: var(--paper);
   box-shadow: var(--shadow-deep);
@@ -2178,11 +2484,15 @@
 }
 
 .b-modal__head {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   padding: 14px 18px;
-  border-bottom: var(--edge) solid var(--ink);
+  border-bottom: var(--edge) solid var(--line);
   border-radius: 11px 11px 0 0;
   background: var(--pop-sun);
   gap: 14px;
@@ -2207,7 +2517,7 @@
   padding: 18px;
   overflow-y: auto;
   overscroll-behavior: contain;
-  scrollbar-color: var(--ink) transparent;
+  scrollbar-color: var(--line) transparent;
   scrollbar-width: thin;
 }
 
@@ -2216,7 +2526,7 @@
 }
 
 .b-modal__body::-webkit-scrollbar-thumb {
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 999px;
   background: var(--pop-sun);
 }
@@ -2224,12 +2534,16 @@
 /* Pinned below the scroller: a seven-field form used to push its own confirm
    button past the bottom of the window. */
 .b-modal__foot {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-end;
   padding: 13px 18px;
-  border-top: var(--edge) solid var(--ink);
+  border-top: var(--edge) solid var(--line);
   border-radius: 0 0 11px 11px;
   background: var(--pop-sun);
   gap: 10px;
@@ -2312,7 +2626,7 @@
   flex-wrap: wrap;
   justify-content: flex-end;
   padding: 14px 0 2px;
-  border-top: var(--edge) solid var(--ink);
+  border-top: var(--edge) solid var(--line);
   margin-top: 4px;
   gap: 10px;
 }
@@ -2334,11 +2648,15 @@
 }
 
 .b-modal .search-field {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: flex;
   align-items: center;
   height: 48px;
   padding: 0 14px;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
   gap: 10px;
@@ -2365,13 +2683,17 @@
 }
 
 .b-modal .global-search__results button {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: flex;
   align-items: center;
   padding: 10px 13px;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: 3px 3px 0 var(--shade);
   cursor: pointer;
   gap: 12px;
   text-align: left;
@@ -2382,8 +2704,12 @@
 }
 
 .b-modal .global-search__results button:hover {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-lime);
-  box-shadow: 5px 5px 0 var(--ink);
+  box-shadow: 5px 5px 0 var(--shade);
   transform: translate(-1px, -1px);
 }
 
@@ -2403,7 +2729,7 @@
   overflow: hidden;
   font-size: 12px;
   font-weight: 600;
-  opacity: 0.75;
+  opacity: var(--quiet);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -2422,7 +2748,7 @@
   flex-direction: column;
   align-items: center;
   padding: 26px 18px;
-  border: var(--edge) dashed var(--ink);
+  border: var(--edge) dashed var(--line);
   border-radius: var(--round-sm);
   gap: 8px;
   text-align: center;
@@ -2456,12 +2782,16 @@
 /* Bottom left, clear of the toast at bottom right: an interruption and a
    confirmation must never land on top of each other. */
 .vocab-reminder {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   position: relative;
   display: flex;
   width: 372px;
   flex-direction: column;
   overflow: hidden;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round);
   background: var(--paper);
   box-shadow: var(--shadow-deep);
@@ -2475,42 +2805,66 @@
 /* The bar drains left to right. `appearance: none` is what lets the track and
    the value carry this world's flat fills instead of the platform's. */
 .vocab-reminder-progress {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: block;
   width: 100%;
   height: 10px;
   flex: 0 0 auto;
   border: 0;
-  border-bottom: var(--edge) solid var(--ink);
+  border-bottom: var(--edge) solid var(--line);
   appearance: none;
   background: var(--paper);
 }
 
 .vocab-reminder-progress::-webkit-progress-bar {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   background: var(--paper);
 }
 
 .vocab-reminder-progress::-webkit-progress-value {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-lime);
 }
 
 /* Once the answer is showing the countdown has stopped, so the bar stops
    looking like something that is still running out. */
 .vocab-reminder[data-revealed="true"] .vocab-reminder-progress::-webkit-progress-value {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-mint);
 }
 
 .vocab-reminder-bar {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   display: flex;
   flex: 0 0 auto;
   align-items: center;
   justify-content: space-between;
   padding: 9px 12px;
-  border-bottom: var(--edge) solid var(--ink);
+  border-bottom: var(--edge) solid var(--line);
   background: var(--pop-sun);
   gap: 10px;
 }
 
 .vocab-reminder-bar .b-tag {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   min-width: 0;
   max-width: 232px;
   background: var(--paper);
@@ -2539,14 +2893,17 @@
 }
 
 .vocab-reminder-icon-button {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
   display: grid;
   width: 32px;
   height: 32px;
   flex: 0 0 auto;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 8px;
   background: var(--paper);
-  box-shadow: 2px 2px 0 var(--ink);
+  box-shadow: 2px 2px 0 var(--shade);
   color: var(--ink);
   cursor: pointer;
   place-items: center;
@@ -2556,12 +2913,12 @@
 }
 
 .vocab-reminder-icon-button:hover:not(:disabled) {
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 4px 4px 0 var(--shade);
   transform: translate(-1px, -1px);
 }
 
 .vocab-reminder-icon-button:active:not(:disabled) {
-  box-shadow: 0 0 0 var(--ink);
+  box-shadow: 0 0 0 var(--shade);
   transform: translate(2px, 2px);
 }
 
@@ -2575,7 +2932,7 @@
   margin: 3px 0 0;
   font-size: 13px;
   font-weight: 600;
-  opacity: 0.72;
+  opacity: var(--quiet);
 }
 
 .vocab-reminder-content {
@@ -2591,14 +2948,14 @@
   flex-direction: column;
   align-items: center;
   padding: 14px 12px;
-  border: var(--edge) dashed var(--ink);
+  border: var(--edge) dashed var(--line);
   border-radius: var(--round-sm);
   background: repeating-linear-gradient(
     45deg,
     transparent,
     transparent 9px,
-    rgba(18, 16, 12, 0.045) 9px,
-    rgba(18, 16, 12, 0.045) 18px
+    color-mix(in srgb, var(--ink) 4.5%, transparent) 9px,
+    color-mix(in srgb, var(--ink) 4.5%, transparent) 18px
   );
   cursor: pointer;
   gap: 3px;
@@ -2606,7 +2963,7 @@
 }
 
 .vocab-reminder-recall:hover {
-  background-color: rgba(198, 242, 78, 0.35);
+  background-color: color-mix(in srgb, var(--pop-lime) 35%, transparent);
 }
 
 .vocab-reminder-recall strong {
@@ -2617,12 +2974,16 @@
 .vocab-reminder-recall small {
   font-size: 12px;
   font-weight: 500;
-  opacity: 0.75;
+  opacity: var(--quiet);
 }
 
 .vocab-reminder-meaning {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   padding: 11px 13px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: var(--round-sm);
   margin: 0;
   background: var(--pop-sun);
@@ -2633,7 +2994,7 @@
 
 .vocab-reminder-example {
   padding: 0 0 0 12px;
-  border-left: 5px solid var(--ink);
+  border-left: 5px solid var(--line);
   margin: 11px 0 0;
   font-size: 13px;
   font-style: italic;
@@ -2668,8 +3029,12 @@
 }
 
 .vocab-reminder-action kbd {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   padding: 0 4px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 5px;
   background: var(--paper);
   font-family: var(--font-flat);
@@ -2678,11 +3043,15 @@
 }
 
 .vocab-reminder-secondary-actions {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: flex;
   flex: 0 0 auto;
   align-items: center;
   padding: 11px 15px;
-  border-top: var(--edge) solid var(--ink);
+  border-top: var(--edge) solid var(--line);
   background: var(--ground);
   gap: 10px;
 }
@@ -2710,9 +3079,12 @@
 
 .vocab-reminder-snooze-label kbd,
 .vocab-reminder-snooze-button {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
   min-height: 28px;
   padding: 0 9px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 999px;
   background: var(--paper);
   color: var(--ink);
@@ -2726,19 +3098,26 @@
 }
 
 .vocab-reminder-snooze-button:hover:not(:disabled) {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-sun);
 }
 
 .vocab-reminder-details-button {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
   display: inline-flex;
   min-height: 32px;
   flex: 0 0 auto;
   align-items: center;
   padding: 0 12px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
-  box-shadow: 2px 2px 0 var(--ink);
+  box-shadow: 2px 2px 0 var(--shade);
   color: var(--ink);
   cursor: pointer;
   font-family: var(--font-display);
@@ -2747,7 +3126,7 @@
 }
 
 .vocab-reminder-details-button:hover:not(:disabled) {
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 4px 4px 0 var(--shade);
   transform: translate(-1px, -1px);
 }
 
@@ -2772,10 +3151,14 @@
 }
 
 .speaking-support-dialog__ideas li {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: grid;
   align-items: start;
   padding: 11px 13px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
   gap: 11px;
@@ -2783,10 +3166,13 @@
 }
 
 .speaking-support-dialog__ideas li > span {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
   display: grid;
   width: 30px;
   height: 30px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 8px;
   background: var(--pop-sun);
   color: var(--ink);
@@ -2805,9 +3191,13 @@
 }
 
 .speaking-support-dialog__collocations li {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   display: grid;
   padding: 10px 13px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: var(--round-sm);
   background: var(--pop-sky);
   gap: 3px;
@@ -2832,8 +3222,12 @@
 }
 
 .speaking-support-dialog__answers article {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   padding: 14px 16px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
 }
@@ -2858,6 +3252,9 @@
    =========================================================================== */
 
 .app-toast {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
   position: fixed;
   z-index: var(--z-toast, 400);
   right: 22px;
@@ -2867,28 +3264,35 @@
   min-height: 52px;
   align-items: center;
   padding: 10px 12px;
-  border: 3px solid #12100c;
+  border: 3px solid var(--line);
   border-radius: 14px;
-  background: #c6f24e;
-  box-shadow: 6px 6px 0 #12100c;
-  color: #12100c;
+  background: var(--pop-lime);
+  box-shadow: 6px 6px 0 var(--shade);
+  color: var(--ink);
   font-family: "Space Grotesk Variable", "Segoe UI", sans-serif;
   gap: 11px;
 }
 
 .app-toast[data-error="true"] {
-  background: #ff6b5e;
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  background: var(--pop-flame);
 }
 
 .app-toast > span:first-child {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
   display: grid;
   width: 30px;
   height: 30px;
   flex: 0 0 auto;
-  border: 2px solid #12100c;
+  border: 2px solid var(--line);
   border-radius: 50%;
-  background: #fffdf3;
-  color: #12100c;
+  background: var(--paper);
+  color: var(--ink);
   font-family: "Archivo Black", "Arial Black", sans-serif;
   font-size: 11px;
   place-items: center;
@@ -2898,39 +3302,46 @@
   min-width: 0;
   flex: 1;
   margin: 0;
-  color: #12100c;
+  color: var(--ink);
   font-size: 13.5px;
   font-weight: 600;
   line-height: 1.4;
 }
 
 .app-toast button {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
   display: grid;
   width: 28px;
   height: 28px;
   flex: 0 0 auto;
-  border: 2px solid #12100c;
+  border: 2px solid var(--line);
   border-radius: 8px;
-  background: #fffdf3;
-  color: #12100c;
+  background: var(--paper);
+  color: var(--ink);
   cursor: pointer;
   font-size: 15px;
   place-items: center;
 }
 
 .app-toast button:hover {
-  background: #ffd93d;
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  background: var(--pop-sun);
 }
 
 .study-tooltip,
 .app-tooltip {
   max-width: 230px;
   padding: 7px 11px;
-  border: 2px solid #12100c;
+  border: 2px solid var(--line);
   border-radius: 8px;
-  background: #12100c;
-  box-shadow: 3px 3px 0 rgba(18, 16, 12, 0.35);
-  color: #fffdf3;
+  background: var(--ink);
+  box-shadow: 3px 3px 0 color-mix(in srgb, var(--shade) 35%, transparent);
+  color: var(--paper);
   font-family: "Space Grotesk Variable", "Segoe UI", sans-serif;
   font-size: 12px;
   font-weight: 600;
@@ -2939,7 +3350,7 @@
 
 .study-tooltip__arrow,
 .app-tooltip-arrow {
-  fill: #12100c;
+  fill: var(--ink);
 }
 
 /* ===========================================================================
@@ -2949,12 +3360,16 @@
    =========================================================================== */
 
 :is(.brutal, .b-portal) .study-segmented-control__list {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: inline-flex;
   padding: 4px;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: 999px;
   background: var(--paper);
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: 3px 3px 0 var(--shade);
   gap: 4px;
 }
 
@@ -2975,11 +3390,14 @@
 }
 
 :is(.brutal, .b-portal) .study-segmented-control__tab:hover:not([data-state="active"]) {
-  background: rgba(18, 16, 12, 0.07);
+  background: color-mix(in srgb, var(--ink) 7%, transparent);
 }
 
 :is(.brutal, .b-portal) .study-segmented-control__tab[data-state="active"] {
-  border-color: var(--ink);
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  border-color: var(--line);
   background: var(--pop-sun);
   color: var(--ink);
 }
@@ -2991,18 +3409,34 @@
 /* Session marks take the colour of the skill they belong to, matching the
    legend on the chart above them. */
 .brutal .progress-sessions__mark[data-kind="vocabulary"] {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-mint);
 }
 
 .brutal .progress-sessions__mark[data-kind="reading"] {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-lime);
 }
 
 .brutal .progress-sessions__mark[data-kind="speaking"] {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-sky);
 }
 
 .brutal .progress-sessions__mark[data-kind="writing"] {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-grape);
 }
 
@@ -3012,14 +3446,18 @@
 
 /* The section marker in the settings panel kept its pale disc. */
 .brutal .settings-section > header > span {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   display: grid;
   width: 42px;
   height: 42px;
   flex: 0 0 auto;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round-sm);
   background: var(--pop-sun);
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: 3px 3px 0 var(--shade);
   place-items: center;
 }
 
@@ -3027,7 +3465,11 @@
    pale grey flash between routes is the old design surfacing for a frame. */
 .desktop-app.shell-brutal,
 .shell-brutal .app-content {
-  background: var(--b-ground);
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
+  background: var(--ground);
 }
 
 /* The empty states kept the old ink: near-navy headings over a blue-grey body.
@@ -3051,31 +3493,21 @@
 
 /* ===========================================================================
    Token bridge
-   Hundreds of pre-redesign rules still resolve their colour through the old
+   Hundreds of pre-redesign rules still resolve their typeface through the old
    semantic tokens. Rather than hunt each rule down, the tokens themselves are
    remapped inside this world, so anything not yet rewritten still lands in the
-   right palette. Chasing individual selectors is what kept leaving one grey
-   caption or one pale border behind on every screen.
+   right face. Chasing individual selectors is what kept leaving one 9px label
+   or one Lexend caption behind on every screen.
+
+   Colours used to be bridged here too, and only here, so a portal or the body
+   outside these roots kept the old navy. The legacy colour tokens now name
+   roles where they are defined, in styles.css, and reach everything.
    =========================================================================== */
 
 .brutal,
 .b-portal,
 .shell-brutal {
-  --navy-950: #12100c;
-  --navy-700: #12100c;
-  --navy-500: rgba(18, 16, 12, 0.72);
-  --color-foreground: #12100c;
-  --color-muted-foreground: rgba(18, 16, 12, 0.78);
-  --color-subtle-foreground: rgba(18, 16, 12, 0.72);
-  --color-surface: #fffdf3;
-  --color-surface-muted: #fffdf3;
-  --color-border: #12100c;
-  --color-border-strong: #12100c;
-  --surface-soft: #fffdf3;
-  --border: #12100c;
-
-  /* Typefaces travel by token the same way colours do, and the leftovers were
-     the same shape: a `small` here, a caption there, still set in Lexend or
+  /* The leftovers were a `small` here, a caption there, still set in Lexend or
      Source Sans because some legacy rule asked for `--font-ui`. Remapping the
      tokens catches every one of those; the declaration below catches the rest,
      which inherit their face from `body` rather than naming a token at all. */
@@ -3093,5 +3525,5 @@
    where the remapped tokens never reach. */
 .shell-brutal .native-titlebar,
 .shell-brutal .rail {
-  color: var(--b-ink);
+  color: var(--ink);
 }

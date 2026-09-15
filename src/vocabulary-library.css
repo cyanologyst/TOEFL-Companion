@@ -26,7 +26,7 @@
   flex: 0 0 auto;
   flex-direction: column;
   padding: 13px 15px;
-  border-bottom: var(--edge) solid var(--ink);
+  border-bottom: var(--edge) solid var(--line);
   gap: 11px;
 }
 
@@ -59,11 +59,15 @@
 }
 
 .vlib__status-filter button span {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: inline-grid;
   min-width: 22px;
   height: 20px;
   padding: 0 5px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 999px;
   background: var(--paper);
   font-family: var(--font-flat);
@@ -73,6 +77,10 @@
 }
 
 .vlib__status-filter button[data-active="true"] span {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   background: var(--paper);
 }
 
@@ -99,11 +107,15 @@
 }
 
 .vlib__table thead th {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   position: sticky;
   z-index: 1;
   top: 0;
   padding: 9px 14px;
-  border-bottom: var(--edge) solid var(--ink);
+  border-bottom: var(--edge) solid var(--line);
   background: var(--pop-sun);
   font-family: var(--font-flat);
   font-size: 11px;
@@ -118,20 +130,24 @@
 }
 
 .vlib__row {
-  border-bottom: 2px solid var(--ink);
+  border-bottom: 2px solid var(--line);
   cursor: pointer;
   transition: background-color 90ms ease-out;
 }
 
 .vlib__row:hover {
-  background: rgba(198, 242, 78, 0.4);
+  background: color-mix(in srgb, var(--pop-lime) 40%, transparent);
 }
 
 /* Selection is a fill, not a tint: in a world of flat colour, half-strength
    states read as a rendering fault. */
 .vlib__row[data-selected="true"] {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-lime);
-  outline: var(--edge) solid var(--ink);
+  outline: var(--edge) solid var(--line);
   outline-offset: -3px;
 }
 
@@ -170,11 +186,14 @@
 }
 
 .vlib__speak {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
   display: grid;
   width: 26px;
   height: 26px;
   flex: 0 0 auto;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 7px;
   background: var(--paper);
   color: var(--ink);
@@ -183,6 +202,10 @@
 }
 
 .vlib__speak:hover {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-sky);
 }
 
@@ -192,7 +215,7 @@
   margin-top: 2px;
   font-size: 11px;
   font-weight: 600;
-  opacity: 0.7;
+  opacity: var(--quiet);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -215,7 +238,7 @@
 
 .vlib__meaning[data-empty="true"] {
   font-style: italic;
-  opacity: 0.55;
+  opacity: var(--quiet);
 }
 
 .vlib__status-cell {
@@ -228,7 +251,7 @@
   margin-top: 3px;
   font-size: 11px;
   font-weight: 600;
-  opacity: 0.72;
+  opacity: var(--quiet);
 }
 
 /* -- Pager ------------------------------------------------------------------ */
@@ -240,7 +263,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 11px 15px;
-  border-top: var(--edge) solid var(--ink);
+  border-top: var(--edge) solid var(--line);
   gap: 12px;
 }
 
@@ -303,11 +326,15 @@
 }
 
 .vlib__inspector-head {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
   padding: 14px 16px;
-  border-bottom: var(--edge) solid var(--ink);
+  border-bottom: var(--edge) solid var(--line);
   background: var(--pop-lime);
   border-radius: 11px 11px 0 0;
   gap: 9px;
@@ -337,7 +364,7 @@
   margin: 4px 0 0;
   font-size: 13px;
   font-weight: 600;
-  opacity: 0.78;
+  opacity: var(--quiet);
 }
 
 .vlib__inspector-body {
@@ -360,8 +387,12 @@
 }
 
 .vlib__meaning-block {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   padding: 12px 14px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: var(--round-sm);
   margin: 0;
   background: var(--pop-sun);
@@ -371,6 +402,10 @@
 }
 
 .vlib__meaning-block[data-empty="true"] {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   background: var(--paper);
   font-family: var(--font-flat);
   font-size: 14px;
@@ -380,7 +415,7 @@
 
 .vlib__example {
   padding: 2px 0 2px 13px;
-  border-left: 5px solid var(--ink);
+  border-left: 5px solid var(--line);
   margin: 0;
   font-size: 14px;
   font-style: italic;
@@ -388,6 +423,9 @@
 }
 
 .vlib__example mark {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
   padding: 0 3px;
   background: var(--pop-sun);
   color: var(--ink);
@@ -405,8 +443,12 @@
 }
 
 .vlib__chips li {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   padding: 4px 10px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 999px;
   background: var(--pop-sky);
   font-size: 12.5px;
@@ -414,6 +456,10 @@
 }
 
 .vlib__chips--tags li {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   background: var(--paper);
 }
 
@@ -425,8 +471,12 @@
 }
 
 .vlib__tally > div {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   padding: 8px 10px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
 }
@@ -455,7 +505,7 @@
   display: grid;
   flex: 0 0 auto;
   padding: 12px 16px;
-  border-top: var(--edge) solid var(--ink);
+  border-top: var(--edge) solid var(--line);
   gap: 9px;
   grid-template-columns: 1fr 1fr;
 }
@@ -572,7 +622,7 @@
 }
 
 .vlib-shelf__track::-webkit-scrollbar-thumb {
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 999px;
   background: var(--pop-sun);
 }
@@ -587,16 +637,19 @@
 }
 
 .vlib-shelf__card {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
   display: grid;
   width: 100%;
   min-height: 72px;
   align-content: center;
   align-items: center;
   padding: 9px 12px;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 4px 4px 0 var(--shade);
   color: var(--ink);
   column-gap: 10px;
   cursor: pointer;
@@ -638,9 +691,13 @@
 }
 
 .vlib-shelf__swatch {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   width: 12px;
   height: 34px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 999px;
   background: var(--swatch, var(--paper));
   grid-column: 1;
@@ -654,17 +711,29 @@
 /* The chosen collection is pressed into its own shadow and fills with its
    colour, so which one is filtering reads from the edge of vision. */
 .vlib-shelf__card[data-active="true"] {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--swatch, var(--pop-sun));
-  box-shadow: 1px 1px 0 var(--ink);
+  box-shadow: 1px 1px 0 var(--shade);
   transform: translate(3px, 3px);
 }
 
 .vlib-shelf__card[data-active="true"] .vlib-shelf__swatch {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   background: var(--paper);
 }
 
 /* The edit button rides with its card when the card is pressed in. */
 .vlib-shelf__edit {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   position: absolute;
   right: 11px;
   bottom: 12px;
@@ -672,7 +741,7 @@
   width: 24px;
   height: 24px;
   padding: 0;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 7px;
   background: var(--paper);
   cursor: pointer;
@@ -681,6 +750,10 @@
 }
 
 .vlib-shelf__edit:hover {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-sun);
 }
 
@@ -704,16 +777,24 @@
 
 /* An empty slot on the shelf, drawn as one. */
 .vlib-shelf__card--new {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   border-style: dashed;
   background: var(--paper);
   box-shadow: none;
   grid-template-columns: 24px minmax(0, 1fr);
 }
 .vlib-shelf__plus {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   display: grid;
   width: 24px;
   height: 24px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 50%;
   background: var(--pop-lime);
   font-family: var(--font-display);
@@ -725,10 +806,14 @@
 }
 
 .vlib__collection-tag i {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   width: 10px;
   height: 10px;
   flex: 0 0 auto;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 50%;
   background: var(--swatch, var(--paper));
 }
@@ -758,11 +843,15 @@
 }
 
 .vlib-editor__swatch {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   position: relative;
   display: grid;
   width: 40px;
   height: 40px;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: 50%;
   background: var(--swatch);
   cursor: pointer;
@@ -797,7 +886,7 @@
   align-items: center;
   justify-content: space-between;
   padding-top: 14px;
-  border-top: var(--edge) solid var(--ink);
+  border-top: var(--edge) solid var(--line);
   gap: 16px;
 }
 
@@ -830,27 +919,39 @@
 /* A switch you can read from across the row: the knob moves and the track
    fills, both in hard colour. */
 .vlib-collections__switch {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: inline-flex;
   width: 62px;
   height: 30px;
   flex: 0 0 auto;
   align-items: center;
   padding: 3px;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: 999px;
   background: var(--paper);
   cursor: pointer;
 }
 
 .vlib-collections__switch[aria-checked="true"] {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-mint);
 }
 
 .vlib-collections__switch span {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: block;
   width: 20px;
   height: 20px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 50%;
   background: var(--paper);
   transition: transform 120ms var(--snap);
@@ -919,14 +1020,14 @@
   display: flex;
   align-items: center;
   padding: 14px;
-  border: var(--edge) dashed var(--ink);
+  border: var(--edge) dashed var(--line);
   border-radius: var(--round-sm);
   cursor: pointer;
   gap: 12px;
 }
 
 .vlib-import__picker:hover {
-  background: rgba(198, 242, 78, 0.35);
+  background: color-mix(in srgb, var(--pop-lime) 35%, transparent);
 }
 
 .vlib-import__picker input[type="file"] {
@@ -951,7 +1052,7 @@
 .vlib-import__picker small {
   font-size: 12px;
   font-weight: 600;
-  opacity: 0.72;
+  opacity: var(--quiet);
 }
 
 .vlib-import__format {
@@ -962,8 +1063,12 @@
 }
 
 .vlib-import__format code {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   padding: 1px 5px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 5px;
   background: var(--pop-sun);
   font-size: 12px;
@@ -978,18 +1083,30 @@
 }
 
 .vlib-import__summary > div {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   padding: 9px 10px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
   text-align: center;
 }
 
 .vlib-import__summary > div[data-warn="true"] {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-rose);
 }
 
 .vlib-import__summary > div[data-good="true"] {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-mint);
 }
 
@@ -1009,10 +1126,10 @@
 .vlib-import__preview {
   max-height: 216px;
   overflow: auto;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: var(--round-sm);
   overscroll-behavior: contain;
-  scrollbar-color: var(--ink) transparent;
+  scrollbar-color: var(--line) transparent;
   scrollbar-width: thin;
 }
 
@@ -1024,13 +1141,17 @@
 .vlib-import__preview th,
 .vlib-import__preview td {
   padding: 7px 11px;
-  border-bottom: 2px solid var(--ink);
+  border-bottom: 2px solid var(--line);
   font-size: 12.5px;
   font-weight: 500;
   text-align: left;
 }
 
 .vlib-import__preview thead th {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   position: sticky;
   top: 0;
   background: var(--pop-sun);
@@ -1055,15 +1176,19 @@
   display: flex;
   flex-direction: column;
   padding: 12px 14px;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round-sm);
   margin: 0;
   gap: 9px;
 }
 
 .vlib-import__policy legend {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   padding: 0 6px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 999px;
   background: var(--pop-sun);
   font-size: 11px;
@@ -1086,16 +1211,20 @@
 .vlib-import__policy small {
   font-size: 12px;
   font-weight: 500;
-  opacity: 0.75;
+  opacity: var(--quiet);
 }
 
 /* -- Messages ---------------------------------------------------------------- */
 
 .vlib-alert {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   display: flex;
   align-items: flex-start;
   padding: 11px 13px;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round-sm);
   margin: 0;
   background: var(--pop-flame);
@@ -1116,6 +1245,10 @@
 }
 
 .vlib-alert--warn {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-sun);
 }
 

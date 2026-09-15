@@ -37,7 +37,7 @@
   flex: 0 0 auto;
   flex-direction: column;
   padding: 14px;
-  border-bottom: var(--edge) solid var(--ink);
+  border-bottom: var(--edge) solid var(--line);
   gap: 10px;
 }
 
@@ -109,20 +109,24 @@
 }
 
 .sp-topic:hover {
-  background: rgba(18, 16, 12, 0.06);
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
 }
 
 .sp-topic[data-active="true"] {
-  border-color: var(--ink);
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  border-color: var(--line);
   background: var(--pop-sun);
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: 3px 3px 0 var(--shade);
 }
 
 .sp-topic__num {
   flex: 0 0 auto;
   font-family: var(--font-display);
   font-size: 11px;
-  opacity: 0.6;
+  opacity: var(--quiet);
 }
 
 .sp-topic[data-active="true"] .sp-topic__num {
@@ -146,7 +150,7 @@
 .sp-topic__copy small {
   font-size: 11px;
   font-weight: 600;
-  opacity: 0.65;
+  opacity: var(--quiet);
 }
 
 .sp-topic__pct {
@@ -162,7 +166,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 14px;
-  border-top: var(--edge) solid var(--ink);
+  border-top: var(--edge) solid var(--line);
   font-size: 11px;
   font-weight: 700;
   gap: 8px;
@@ -207,7 +211,7 @@
 .sp-question__meta span {
   font-size: 12px;
   font-weight: 600;
-  opacity: 0.7;
+  opacity: var(--quiet);
 }
 
 .sp-qpick {
@@ -218,12 +222,16 @@
 }
 
 .sp-qpick button {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   width: 38px;
   height: 38px;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: 3px 3px 0 var(--shade);
   cursor: pointer;
   font-family: var(--font-display);
   font-size: 13px;
@@ -233,12 +241,16 @@
 }
 
 .sp-qpick button[data-active="true"] {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-sky);
 }
 
 .sp-qpick button:active {
   transform: translate(3px, 3px);
-  box-shadow: 0 0 0 var(--ink);
+  box-shadow: 0 0 0 var(--shade);
 }
 
 .sp-question__prompt {
@@ -250,11 +262,15 @@
 }
 
 .sp-question__plan {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   padding: 11px 14px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: var(--round-sm);
   margin: 0;
   background: var(--pop-lime);
@@ -280,11 +296,15 @@
 }
 
 .sp-tabs button {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: inline-flex;
   align-items: center;
   height: 34px;
   padding: 0 12px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
   cursor: pointer;
@@ -296,8 +316,12 @@
 }
 
 .sp-tabs button[data-active="true"] {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-sun);
-  box-shadow: 2px 2px 0 var(--ink);
+  box-shadow: 2px 2px 0 var(--shade);
 }
 
 .sp-tabs small {
@@ -315,8 +339,12 @@
 }
 
 .sp-prep__list li {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   padding: 10px 13px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
   font-size: 13.5px;
@@ -325,8 +353,12 @@
 }
 
 .sp-prep__sample {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   padding: 12px 14px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: var(--round-sm);
   margin-bottom: 10px;
   background: var(--paper);
@@ -348,6 +380,10 @@
 /* -- Start bar -------------------------------------------------------------- */
 
 .sp-start {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   display: flex;
   flex: 0 0 auto;
   flex-direction: row;
@@ -367,7 +403,7 @@
 .sp-start span {
   font-size: 12px;
   font-weight: 600;
-  opacity: 0.75;
+  opacity: var(--quiet);
 }
 
 /* -- Empty ------------------------------------------------------------------ */
@@ -440,7 +476,7 @@
 .pr-question small {
   font-size: 12.5px;
   font-weight: 600;
-  opacity: 0.72;
+  opacity: var(--quiet);
 }
 
 .pr-transcript {
@@ -456,7 +492,7 @@
   padding: 14px 16px;
   overflow-y: auto;
   overscroll-behavior: contain;
-  scrollbar-color: var(--ink) transparent;
+  scrollbar-color: var(--line) transparent;
   scrollbar-width: thin;
 }
 
@@ -475,7 +511,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 11px 14px;
-  border-top: var(--edge) solid var(--ink);
+  border-top: var(--edge) solid var(--line);
   gap: 10px;
 }
 
@@ -515,7 +551,7 @@
   display: grid;
   width: 152px;
   height: 152px;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: 50%;
   background:
     conic-gradient(var(--pop-flame) var(--progress, 360deg), var(--paper) 0) content-box,
@@ -525,10 +561,14 @@
 }
 
 .pr-dial__inner {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: grid;
   width: 104px;
   height: 104px;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: 50%;
   background: var(--paper);
   place-items: center;
@@ -569,7 +609,7 @@
   padding: 12px 14px;
   overflow-y: auto;
   overscroll-behavior: contain;
-  scrollbar-color: var(--ink) transparent;
+  scrollbar-color: var(--line) transparent;
   scrollbar-width: thin;
 }
 
@@ -590,18 +630,26 @@
 }
 
 .practice__dots button {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   width: 36px;
   height: 36px;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: 3px 3px 0 var(--shade);
   cursor: pointer;
   font-family: var(--font-display);
   font-size: 13px;
 }
 
 .practice__dots button[data-active="true"] {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-sky);
 }
 
@@ -634,7 +682,7 @@
   gap: 12px;
   overflow-y: auto;
   overscroll-behavior: contain;
-  scrollbar-color: var(--ink) transparent;
+  scrollbar-color: var(--line) transparent;
   scrollbar-width: thin;
   /* Room for the cards' offset shadows, which a scroller would otherwise cut. */
   padding: 3px 8px 8px 3px;
@@ -652,12 +700,16 @@
 }
 
 .rp-steps li {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: flex;
   flex: 1;
   flex-direction: row;
   align-items: center;
   padding: 8px 11px;
-  border: var(--edge) solid var(--ink);
+  border: var(--edge) solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
   font-family: var(--font-flat);
@@ -667,11 +719,15 @@
 }
 
 .rp-steps li span {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: grid;
   width: 22px;
   height: 22px;
   flex: 0 0 auto;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 50%;
   background: var(--paper);
   font-family: var(--font-display);
@@ -680,11 +736,19 @@
 }
 
 .rp-steps li[data-state="current"] {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-sun);
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: 3px 3px 0 var(--shade);
 }
 
 .rp-steps li[data-state="complete"] span {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-mint);
 }
 
@@ -742,7 +806,7 @@
   overflow-x: clip;
   overflow-y: auto;
   overscroll-behavior: contain;
-  scrollbar-color: var(--ink) transparent;
+  scrollbar-color: var(--line) transparent;
   scrollbar-width: thin;
 }
 
@@ -755,13 +819,17 @@
 
 /* Bars flex so the waveform always fills its track, whatever the width. */
 .rp-wave {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: flex;
   min-width: 0;
   height: 40px;
   flex: 1;
   align-items: center;
   padding: 0 8px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
   gap: 2px;
@@ -777,11 +845,14 @@
 }
 
 .rp-card textarea {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
   width: 100%;
   min-height: 0;
   flex: 1;
   padding: 10px 12px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: var(--round-sm);
   background: var(--paper);
   color: var(--ink);
@@ -800,19 +871,27 @@
 }
 
 .rp-accuracy__track {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   position: relative;
   min-width: 0;
   height: 18px;
   flex: 1;
   overflow: hidden;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 999px;
   background: var(--paper);
 }
 
 .rp-accuracy__fill {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   height: 100%;
-  border-right: 2px solid var(--ink);
+  border-right: 2px solid var(--line);
   background: var(--pop-mint);
   transition: width 320ms var(--snap);
 }
@@ -845,15 +924,23 @@
 }
 
 .rp-transcribing__track {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   position: relative;
   height: 14px;
   overflow: hidden;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 999px;
   background: var(--paper);
 }
 
 .rp-transcribing__track i {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   display: block;
   height: 100%;
   background: var(--pop-sky);
@@ -929,10 +1016,14 @@
 
 /* Recording is the authored moment: the phase badge blinks hard while live. */
 .pr-recorder .recorder-phase-badge {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: inline-flex;
   align-items: center;
   padding: 4px 11px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 999px;
   background: var(--paper);
   font-family: var(--font-flat);
@@ -947,14 +1038,22 @@
 }
 
 .pr-recorder .recorder-phase-badge[data-tone="saved"] {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-mint);
 }
 
 .pr-transcript .transcription-status {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: inline-flex;
   align-items: center;
   padding: 4px 11px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 999px;
   background: var(--paper);
   font-family: var(--font-flat);
@@ -996,7 +1095,7 @@
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  opacity: 0.72;
+  opacity: var(--quiet);
   text-transform: uppercase;
 }
 
@@ -1010,11 +1109,15 @@
    The shared accordion carries its own calm styling; inside a brutalist frame
    it has to be re-skinned or it reads as three broken white bars. */
 .pr-support .study-accordion__item {
-  border: 2px solid var(--ink);
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
+  border: 2px solid var(--line);
   border-radius: var(--round-sm);
   margin-bottom: 8px;
   background: var(--paper);
-  box-shadow: 2px 2px 0 var(--ink);
+  box-shadow: 2px 2px 0 var(--shade);
 }
 
 .pr-support .study-accordion__trigger {
@@ -1031,7 +1134,11 @@
 }
 
 .pr-support .study-accordion__item[data-state="open"] .study-accordion__trigger {
-  border-bottom: 2px solid var(--ink);
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
+  border-bottom: 2px solid var(--line);
   background: var(--pop-sun);
 }
 
@@ -1144,7 +1251,7 @@
 .rp-card.repeat-recorder {
   overflow-y: auto;
   overscroll-behavior: contain;
-  scrollbar-color: var(--ink) transparent;
+  scrollbar-color: var(--line) transparent;
   scrollbar-width: thin;
 }
 
@@ -1153,7 +1260,7 @@
   flex: 1;
   overflow-y: auto;
   overscroll-behavior: contain;
-  scrollbar-color: var(--ink) transparent;
+  scrollbar-color: var(--line) transparent;
   scrollbar-width: thin;
 }
 
@@ -1177,7 +1284,7 @@
 .rp-card {
   overflow-y: auto;
   overscroll-behavior: contain;
-  scrollbar-color: var(--ink) transparent;
+  scrollbar-color: var(--line) transparent;
   scrollbar-width: thin;
 }
 
@@ -1187,9 +1294,13 @@
    ---------------------------------------------------------------------------- */
 
 .pr-transcript__notice {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   flex: 0 0 auto;
   padding: 10px 14px;
-  border-top: var(--edge) solid var(--ink);
+  border-top: var(--edge) solid var(--line);
   margin: 0;
   background: var(--pop-sun);
   font-size: 12.5px;
@@ -1200,7 +1311,7 @@
 .pr-transcript__flagged {
   flex: 0 0 auto;
   padding: 11px 14px;
-  border-top: var(--edge) solid var(--ink);
+  border-top: var(--edge) solid var(--line);
 }
 
 .pr-transcript__flagged h3 {
@@ -1222,8 +1333,12 @@
 }
 
 .pr-transcript__flagged li {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   padding: 3px 9px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 999px;
   background: var(--pop-rose);
   font-size: 12px;
@@ -1253,11 +1368,11 @@
 .pr-transcript > .b-row {
   flex: 0 0 auto;
   padding: 12px 15px;
-  border-bottom: var(--edge) solid var(--ink);
+  border-bottom: var(--edge) solid var(--line);
 }
 
 .pr-actions {
   flex: 0 0 auto;
   padding: 12px 15px;
-  border-top: var(--edge) solid var(--ink);
+  border-top: var(--edge) solid var(--line);
 }

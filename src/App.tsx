@@ -17,7 +17,10 @@ import { VocabularyLibraryPage } from "./features/vocabulary/VocabularyLibraryPa
 import { VocabularyPage } from "./features/vocabulary/VocabularyPage";
 import { calculateVocabularyStats } from "./features/vocabulary/vocabularyEngine";
 import { WritingPage } from "./features/writing/WritingPage";
+import { useAppearance } from "./hooks/useAppearance";
+import { useMediaQuery } from "./hooks/useMediaQuery";
 import { useVocabularySnapshot } from "./hooks/useVocabularySnapshot";
+import { appearanceRepository } from "./services/appearance";
 import { learningRepository } from "./services/learningRepository";
 import { STUDY_CHANGE_EVENT, studyRepository } from "./services/studyRepository";
 import type { AcademicDiscussionLibrary, AppArea, StudyState } from "./types/study";
@@ -112,6 +115,26 @@ export function App(): React.JSX.Element {
   const [welcomeDismissed, setWelcomeDismissed] = useState(false);
   const noticeTimerRef = useRef<number | null>(null);
   const vocabulary = useVocabularySnapshot();
+  const appearance = useAppearance();
+  /* A wide window docks the rail beside the page and can fold it; a narrow one
+     starts folded and opens it over the page, since there is no room for both.
+     Each remembers its own state, so widening the window never leaves the rail
+     lying across the page. */
+  const narrowWindow = useMediaQuery("(max-width: 1080px)");
+  const railState = narrowWindow
+    ? appearance.railOpenNarrow
+      ? "narrow-open"
+      : "narrow-folded"
+    : appearance.railCollapsed
+      ? "folded"
+      : "open";
+  const toggleRail = () => {
+    appearanceRepository.update(
+      narrowWindow
+        ? { railOpenNarrow: !appearance.railOpenNarrow }
+        : { railCollapsed: !appearance.railCollapsed },
+    );
+  };
 
   const vocabularyStats = useMemo(
     () =>
@@ -266,7 +289,7 @@ export function App(): React.JSX.Element {
   );
 
   return (
-    <div className="desktop-app shell-brutal" data-area={activeArea}>
+    <div className="desktop-app shell-brutal" data-area={activeArea} data-rail={railState}>
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>
@@ -276,6 +299,9 @@ export function App(): React.JSX.Element {
         learnerName={studyState.settings.learnerName}
         targetDate={studyState.settings.targetTestDate}
         dueCount={vocabularyStats.dueNow}
+        collapsed={railState === "folded" || railState === "narrow-folded"}
+        overlay={railState === "narrow-open"}
+        onToggleCollapsed={toggleRail}
         onSelect={(area) => navigate(area)}
       />
       <main id="main-content" className="app-content" tabIndex={-1}>

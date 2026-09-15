@@ -15,6 +15,7 @@ import {
 } from "recharts";
 import { DoodleIcon, type DoodleIconName } from "../../components/DoodleIcon";
 import { Icon8, type Icon8Name } from "../../components/Icon8";
+import { useThemeColors } from "../../hooks/useAppearance";
 import type { StudyActivity, StudyState } from "../../types/study";
 import type { VocabularyStats } from "../../types/vocabulary";
 import {
@@ -34,28 +35,20 @@ interface ProgressPageProps {
   studyState: StudyState;
 }
 
-/* The charts are drawn by recharts in SVG, so they take the world's palette as
-   literal values rather than through CSS. Flat fills with a hard black edge:
-   the same rule every other mark on these pages follows. */
-const INK = "#12100c";
-const PAPER = "#fffdf3";
-
-const SKILL_COLOR = {
-  vocabulary: "#7be495",
-  reading: "#c6f24e",
-  speaking: "#7cc6fe",
-  writing: "#b197fc",
+/* The charts are drawn by recharts in SVG, where a CSS variable cannot reach a
+   presentation attribute. So they read the theme's roles as literal values,
+   and read them again when the theme changes. Flat fills with a hard edge: the
+   same rule every other mark on these pages follows. */
+const CHART_ROLES = {
+  ink: "--ink-base",
+  line: "--line-base",
+  paper: "--paper",
+  vocabulary: "--pop-mint",
+  reading: "--pop-lime",
+  speaking: "--pop-sky",
+  writing: "--pop-grape",
+  learning: "--pop-sun",
 } as const;
-
-const MASTERY_COLOR = {
-  mastered: "#7be495",
-  familiar: "#c6f24e",
-  learning: "#ffd93d",
-  new: PAPER,
-} as const;
-
-/** Axis labels are ink at full strength; there is no grey in this world. */
-const AXIS_TICK = { fontSize: 11, fill: INK, fontWeight: 600 } as const;
 
 const ACTIVITY_ICON: Record<StudyActivity["kind"], DoodleIconName> = {
   vocabulary: "doc",
@@ -171,6 +164,21 @@ export function ProgressPage({
   speakingAttempts,
   studyState,
 }: ProgressPageProps): React.JSX.Element {
+  const colors = useThemeColors(CHART_ROLES);
+  const skillColor = {
+    vocabulary: colors.vocabulary,
+    reading: colors.reading,
+    speaking: colors.speaking,
+    writing: colors.writing,
+  };
+  const masteryColor = {
+    mastered: colors.vocabulary,
+    familiar: colors.reading,
+    learning: colors.learning,
+    new: colors.paper,
+  };
+  /* Axis labels are ink at full strength; there is no grey in this world. */
+  const axisTick = { fontSize: 11, fill: colors.ink, fontWeight: 600 };
   const days = useMemo(() => activityByDay(studyState.activities), [studyState.activities]);
   const mastery = useMemo(() => masteryBreakdown(vocabularyStats), [vocabularyStats]);
   const trend = useMemo(() => accuracyTrend(studyState), [studyState]);
@@ -249,19 +257,19 @@ export function ProgressPage({
                 </h2>
                 <ul className="progress-legend">
                   <li>
-                    <i style={{ background: SKILL_COLOR.vocabulary }} />
+                    <i style={{ background: skillColor.vocabulary }} />
                     Vocabulary
                   </li>
                   <li>
-                    <i style={{ background: SKILL_COLOR.reading }} />
+                    <i style={{ background: skillColor.reading }} />
                     Reading
                   </li>
                   <li>
-                    <i style={{ background: SKILL_COLOR.speaking }} />
+                    <i style={{ background: skillColor.speaking }} />
                     Speaking
                   </li>
                   <li>
-                    <i style={{ background: SKILL_COLOR.writing }} />
+                    <i style={{ background: skillColor.writing }} />
                     Writing
                   </li>
                 </ul>
@@ -269,20 +277,23 @@ export function ProgressPage({
               <div className="progress-card__body progress-chart">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={days} margin={{ top: 4, right: 4, bottom: 0, left: 0 }}>
-                    <XAxis dataKey="label" tickLine={false} axisLine={false} tick={AXIS_TICK} />
+                    <XAxis dataKey="label" tickLine={false} axisLine={false} tick={axisTick} />
                     <YAxis
                       allowDecimals={false}
                       tickLine={false}
                       axisLine={false}
-                      tick={AXIS_TICK}
+                      tick={axisTick}
                       width={34}
                     />
-                    <Tooltip content={<ChartTip />} cursor={{ fill: "rgba(18,16,12,0.09)" }} />
+                    <Tooltip
+                      content={<ChartTip />}
+                      cursor={{ fill: colors.line, fillOpacity: 0.09 }}
+                    />
                     <Bar
                       dataKey="vocabulary"
                       stackId="a"
-                      fill={SKILL_COLOR.vocabulary}
-                      stroke={INK}
+                      fill={skillColor.vocabulary}
+                      stroke={colors.line}
                       strokeWidth={2}
                       radius={[0, 0, 0, 0]}
                       animationDuration={700}
@@ -290,8 +301,8 @@ export function ProgressPage({
                     <Bar
                       dataKey="reading"
                       stackId="a"
-                      fill={SKILL_COLOR.reading}
-                      stroke={INK}
+                      fill={skillColor.reading}
+                      stroke={colors.line}
                       strokeWidth={2}
                       animationDuration={700}
                       animationBegin={45}
@@ -299,8 +310,8 @@ export function ProgressPage({
                     <Bar
                       dataKey="speaking"
                       stackId="a"
-                      fill={SKILL_COLOR.speaking}
-                      stroke={INK}
+                      fill={skillColor.speaking}
+                      stroke={colors.line}
                       strokeWidth={2}
                       animationDuration={700}
                       animationBegin={90}
@@ -308,8 +319,8 @@ export function ProgressPage({
                     <Bar
                       dataKey="writing"
                       stackId="a"
-                      fill={SKILL_COLOR.writing}
-                      stroke={INK}
+                      fill={skillColor.writing}
+                      stroke={colors.line}
                       strokeWidth={2}
                       radius={[4, 4, 0, 0]}
                       animationDuration={700}
@@ -338,12 +349,12 @@ export function ProgressPage({
                       innerRadius="54%"
                       outerRadius="84%"
                       paddingAngle={2}
-                      stroke={INK}
+                      stroke={colors.line}
                       strokeWidth={3}
                       animationDuration={750}
                     >
                       {mastery.map((slice) => (
-                        <Cell key={slice.tone} fill={MASTERY_COLOR[slice.tone]} />
+                        <Cell key={slice.tone} fill={masteryColor[slice.tone]} />
                       ))}
                     </Pie>
                     <Tooltip content={<ChartTip />} />
@@ -353,7 +364,7 @@ export function ProgressPage({
               <ul className="progress-legend">
                 {mastery.map((slice) => (
                   <li key={slice.tone}>
-                    <i style={{ background: MASTERY_COLOR[slice.tone] }} />
+                    <i style={{ background: masteryColor[slice.tone] }} />
                     {slice.name} {slice.value}
                   </li>
                 ))}
@@ -372,12 +383,12 @@ export function ProgressPage({
                 {trend.length > 1 ? (
                   <ResponsiveContainer width="100%" height="100%">
                     <AreaChart data={trend} margin={{ top: 6, right: 6, bottom: 0, left: 0 }}>
-                      <XAxis dataKey="label" tickLine={false} axisLine={false} tick={AXIS_TICK} />
+                      <XAxis dataKey="label" tickLine={false} axisLine={false} tick={axisTick} />
                       <YAxis
                         domain={[0, 100]}
                         tickLine={false}
                         axisLine={false}
-                        tick={AXIS_TICK}
+                        tick={axisTick}
                         width={34}
                       />
                       <Tooltip content={<ChartTip />} />
@@ -387,11 +398,11 @@ export function ProgressPage({
                         type="linear"
                         dataKey="accuracy"
                         name="Match"
-                        stroke={INK}
+                        stroke={colors.line}
                         strokeWidth={3}
-                        fill={SKILL_COLOR.speaking}
+                        fill={skillColor.speaking}
                         fillOpacity={1}
-                        dot={{ fill: PAPER, stroke: INK, strokeWidth: 2, r: 4 }}
+                        dot={{ fill: colors.paper, stroke: colors.line, strokeWidth: 2, r: 4 }}
                         animationDuration={800}
                       />
                     </AreaChart>

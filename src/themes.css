@@ -1,0 +1,201 @@
+/* Themes
+ *
+ * Every colour in the interface comes from this file. A theme is a full set of
+ * roles rather than a tint:
+ *
+ *   --ground, --ground-deep   the page behind the frames, and its dots
+ *   --paper                   the surface cards, fields and dialogs sit on
+ *   --ink-base                text on ground and paper
+ *   --line-base               outlines on ground and paper
+ *   --shade                   the hard offset shadow
+ *   --on-pop                  text and outlines on top of an accent
+ *   --pop-*                   seven accents, by the job they do:
+ *                               lime  primary action, done
+ *                               sun   selected, current, bands
+ *                               sky   focus, information, answers
+ *                               mint  correct, learned
+ *                               rose  difficult
+ *                               flame danger, wrong
+ *                               grape writing, a spare
+ *   --danger-strong           the platform-red close button
+ *   --scrim                   what a dialog dims the page with
+ *   --quiet-base, --quiet-pop the faintest text may get, as a strength, on
+ *                             ground and paper and on an accent. Each is the
+ *                             lowest that still reads at 4.5:1 on every such
+ *                             surface of its theme, hover tints included, plus
+ *                             a small margin. Accents need more: they are
+ *                             lighter than paper in dark themes and darker in
+ *                             light ones.
+ *
+ * Rules elsewhere name a role, never a colour, so a theme recolours every
+ * element at once. The shapes do not change between themes: 3px outlines and
+ * unblurred offset shadows stay.
+ *
+ * `--ink`, `--line` and `--quiet` start from the base values here, and are
+ * re-pointed at `--on-pop` and `--quiet-pop` by any rule that fills an element
+ * with an accent. Anything inside that element then reads correctly without
+ * knowing where it sits.
+ *
+ * Selectors name `[data-theme]` on the root even for the default theme. This
+ * file is bundled into a chunk that loads before the main stylesheet, so a
+ * bare `:root` here loses every tie with a legacy `:root` there.
+ *
+ * Each theme also answers to [data-theme-preview], so Settings can draw a
+ * theme with its real colours without applying it.
+ */
+
+/* TOEFL Indigo: the brand's own #343579, on a soft lavender ground. */
+:root,
+:root[data-theme="indigo"],
+[data-theme-preview="indigo"] {
+  color-scheme: light;
+  --ground: #eaebfb;
+  --ground-deep: #d8daf6;
+  --paper: #ffffff;
+  --ink-base: #25265c;
+  --line-base: #343579;
+  --shade: #343579;
+  --on-pop: #25265c;
+  --pop-lime: #e6f77e;
+  --pop-sun: #d3d4ff;
+  --pop-sky: #86defd;
+  --pop-mint: #a3e7c3;
+  --pop-rose: #ffbcd6;
+  --pop-flame: #ff9684;
+  --pop-grape: #bdb5ff;
+  --danger-strong: #d6343a;
+  --scrim: #1b1c4a;
+  --quiet-base: 75%;
+  --quiet-pop: 87%;
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+}
+
+/* Night: deep navy surfaces and soft light ink for evening study. Accents are
+   dimmed so a filled button does not glare out of a dark page. */
+:root[data-theme="night"],
+[data-theme-preview="night"] {
+  color-scheme: dark;
+  --ground: #121331;
+  --ground-deep: #1d1f48;
+  --paper: #1e2049;
+  --ink-base: #ecebf7;
+  --line-base: #a5a7e8;
+  --shade: #4b4d98;
+  --on-pop: #15163a;
+  --pop-lime: #cde37a;
+  --pop-sun: #aeb0f0;
+  --pop-sky: #72cff4;
+  --pop-mint: #84d6ab;
+  --pop-rose: #e9a3c3;
+  --pop-flame: #f08e7f;
+  --pop-grape: #a99af2;
+  --danger-strong: #d6343a;
+  --scrim: #05061a;
+  --quiet-base: 59%;
+  --quiet-pop: 83%;
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+}
+
+/* Deep Teal: TOEFL's secondary #103d4b with cream surfaces, cyan and pale lime. */
+:root[data-theme="teal"],
+[data-theme-preview="teal"] {
+  color-scheme: light;
+  --ground: #d9eaec;
+  --ground-deep: #c4dde0;
+  --paper: #fbfaf4;
+  --ink-base: #103d4b;
+  --line-base: #103d4b;
+  --shade: #103d4b;
+  --on-pop: #103d4b;
+  --pop-lime: #ecfb8f;
+  --pop-sun: #ffe3a1;
+  --pop-sky: #86defd;
+  --pop-mint: #a2e3c5;
+  --pop-rose: #f6bccb;
+  --pop-flame: #ff9f89;
+  --pop-grape: #c4bbff;
+  --danger-strong: #d6343a;
+  --scrim: #0a2a34;
+  --quiet-base: 81%;
+  --quiet-pop: 93%;
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+}
+
+/* Sunshine: the original yellow, value for value. */
+:root[data-theme="sunshine"],
+[data-theme-preview="sunshine"] {
+  color-scheme: light;
+  --ground: #ffe01b;
+  --ground-deep: #f5c800;
+  --paper: #fffdf3;
+  --ink-base: #12100c;
+  --line-base: #12100c;
+  --shade: #12100c;
+  --on-pop: #12100c;
+  --pop-lime: #c6f24e;
+  --pop-sun: #ffd93d;
+  --pop-sky: #7cc6fe;
+  --pop-mint: #7be495;
+  --pop-rose: #ff9bd2;
+  --pop-flame: #ff6b5e;
+  --pop-grape: #b197fc;
+  --danger-strong: #d6343a;
+  --scrim: #12100c;
+  --quiet-base: 67%;
+  --quiet-pop: 82%;
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+}
+
+/* Paper: warm cream, the colour TOEFL sets its dark bands' text in, with
+   indigo ink. Less glare than white on a bright screen. */
+:root[data-theme="paper"],
+[data-theme-preview="paper"] {
+  color-scheme: light;
+  --ground: #f2e9d8;
+  --ground-deep: #e5d8c0;
+  --paper: #fffaf0;
+  --ink-base: #2b2c66;
+  --line-base: #343579;
+  --shade: #343579;
+  --on-pop: #2b2c66;
+  --pop-lime: #e6f28c;
+  --pop-sun: #f5d993;
+  --pop-sky: #a8dcef;
+  --pop-mint: #aedcbe;
+  --pop-rose: #f1bfcd;
+  --pop-flame: #f3a391;
+  --pop-grape: #c7bdf1;
+  --danger-strong: #d6343a;
+  --scrim: #1f2050;
+  --quiet-base: 78%;
+  --quiet-pop: 90%;
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+}
+
+/* Icons are masks filled with the text colour around them (see DoodleIcon), so
+   a doodle is ink on paper, dark on an accent, and light on the Night ground.
+   Nothing may dim or filter one: the legacy rules that did were removed.
+
+   The fill is important because an icon is a <span>, and legacy rules such as
+   `.prompt-queue li button > span { background: … }` were written when icons
+   were images. They painted the badge tint into the icon's mask, so a play
+   mark vanished into its own row. Recolour an icon with `color`, never with a
+   background. */
+.doodle-icon {
+  display: inline-block;
+  flex: 0 0 auto;
+  background-color: currentColor !important;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+}

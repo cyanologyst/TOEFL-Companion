@@ -1,0 +1,223 @@
+/* Rail: folding, and the rubber band
+ *
+ * The rail folds to its icons and opens again on a spring that overshoots its
+ * width and settles back, like a rubber band let go. On a wide window the page
+ * moves with it. On a narrow one the page stays where it is and the open rail
+ * lies over it, because there is not room for both.
+ *
+ * Folding used to be a breakpoint in the legacy stylesheet that narrowed the
+ * column without telling the new rail, so every label was cut to a letter.
+ * The state is now explicit, set by the app on .desktop-app[data-rail].
+ */
+
+.desktop-app.shell-brutal {
+  --rail-open: 232px;
+  --rail-folded: 82px;
+  /* A spring as a linear() curve: past the target by about fifteen percent,
+     back under it, then still. */
+  --rubber: linear(
+    0,
+    0.052 3.1%,
+    0.197 6.6%,
+    0.414 10.4%,
+    0.66 14.6%,
+    0.883 19%,
+    1.047 23.6%,
+    1.133 28.2%,
+    1.148 32%,
+    1.117 36.4%,
+    1.05 42.3%,
+    0.987 49.1%,
+    0.964 55%,
+    0.97 61.1%,
+    0.992 69.4%,
+    1.004 78.8%,
+    1
+  );
+  --rubber-duration: 640ms;
+}
+
+.desktop-app.shell-brutal[data-rail="open"] {
+  --sidebar-width: var(--rail-open);
+  --rail-width: var(--rail-open);
+}
+
+.desktop-app.shell-brutal[data-rail="folded"],
+.desktop-app.shell-brutal[data-rail="narrow-folded"] {
+  --sidebar-width: var(--rail-folded);
+  --rail-width: var(--rail-folded);
+}
+
+/* Open over the page: the page keeps the folded offset. */
+.desktop-app.shell-brutal[data-rail="narrow-open"] {
+  --sidebar-width: var(--rail-folded);
+  --rail-width: var(--rail-open);
+}
+
+/* Clipping during the spring keeps a label from spilling past the edge while
+   the width is still catching up; the rail's own shadow sits outside its box
+   and is not clipped. */
+.shell-brutal .rail {
+  width: var(--rail-width, 232px);
+  overflow: hidden;
+  transition:
+    width var(--rubber-duration) var(--rubber),
+    box-shadow 220ms ease-out;
+}
+
+.shell-brutal .app-content {
+  transition: left var(--rubber-duration) var(--rubber);
+}
+
+.desktop-app.shell-brutal[data-rail="narrow-open"] .rail {
+  box-shadow: 8px 0 0 color-mix(in srgb, var(--shade) 40%, transparent);
+}
+
+/* Labels never wrap mid-spring; they are clipped instead. */
+.shell-brutal .rail :is(.rail__item-label, .rail__group-label, .rail__profile-copy strong) {
+  white-space: nowrap;
+}
+
+/* -- Toggle ----------------------------------------------------------------- */
+
+.shell-brutal .rail__toggle {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  display: grid;
+  width: 34px;
+  height: 28px;
+  flex: 0 0 auto;
+  align-self: flex-end;
+  padding: 0;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: 2px 2px 0 var(--shade);
+  color: var(--ink);
+  cursor: pointer;
+  place-items: center;
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out;
+}
+
+.shell-brutal .rail__toggle:hover {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  background: var(--pop-sun);
+  color: var(--on-pop);
+}
+
+.shell-brutal .rail__toggle:active {
+  box-shadow: 0 0 0 var(--shade);
+  transform: translate(2px, 2px);
+}
+
+/* The arrow points the way the rail will move, and swings on the same spring. */
+.shell-brutal .rail__toggle .doodle-icon {
+  transform: rotate(180deg);
+  transition: transform var(--rubber-duration) var(--rubber);
+}
+
+.shell-brutal .rail[data-collapsed="true"] .rail__toggle {
+  align-self: center;
+}
+
+.shell-brutal .rail[data-collapsed="true"] .rail__toggle .doodle-icon {
+  transform: rotate(0deg);
+}
+
+/* -- Folded ----------------------------------------------------------------- */
+
+/* Named through .rail__brand: `.shell-brutal .rail__brand span` in brutal.css
+   lays out the name as a flex column and, being more specific, was showing the
+   folded mark beside the full name on an open rail. */
+.shell-brutal .rail__brand .rail__brand-mark {
+  display: none;
+}
+
+.shell-brutal .rail[data-collapsed="true"] {
+  padding-inline: 10px;
+}
+
+/* Hidden from sight but not from assistive technology: each label is still the
+   name of its button. */
+.shell-brutal
+  .rail[data-collapsed="true"]
+  :is(
+    .rail__brand-name,
+    .rail__countdown span,
+    .rail__group-label,
+    .rail__item-label,
+    .rail__profile-copy
+  ) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.shell-brutal .rail[data-collapsed="true"] .rail__brand {
+  justify-content: center;
+  padding: 8px 4px;
+}
+
+.shell-brutal .rail[data-collapsed="true"] .rail__brand-mark {
+  display: block;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1;
+}
+
+.shell-brutal .rail[data-collapsed="true"] .rail__countdown {
+  padding: 8px 4px;
+}
+
+.shell-brutal .rail[data-collapsed="true"] .rail__countdown strong {
+  font-size: 20px;
+}
+
+/* A thin rule stands in for each group's name. */
+.shell-brutal .rail[data-collapsed="true"] .rail__group + .rail__group {
+  padding-top: 10px;
+  border-top: 2px solid color-mix(in srgb, var(--line) 35%, transparent);
+}
+
+.shell-brutal .rail[data-collapsed="true"] .rail__item {
+  position: relative;
+  justify-content: center;
+  padding: 6px;
+}
+
+/* The due count shrinks to a sticker on the icon's corner. */
+.shell-brutal .rail[data-collapsed="true"] .rail__badge {
+  position: absolute;
+  top: -4px;
+  right: -2px;
+  min-width: 20px;
+  height: 18px;
+  padding: 0 4px;
+  font-size: 10px;
+}
+
+.shell-brutal .rail[data-collapsed="true"] .rail__profile {
+  justify-content: center;
+  padding: 10px 4px;
+}
+
+.shell-brutal .rail[data-collapsed="true"] .rail__profile-icon {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shell-brutal .rail,
+  .shell-brutal .app-content,
+  .shell-brutal .rail__toggle .doodle-icon {
+    transition-duration: 1ms;
+  }
+}

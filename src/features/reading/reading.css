@@ -50,7 +50,7 @@
   flex: 0 0 auto;
   flex-direction: column;
   padding: 13px 14px;
-  border-bottom: var(--edge) solid var(--ink);
+  border-bottom: var(--edge) solid var(--line);
   gap: 10px;
 }
 
@@ -93,7 +93,7 @@
   align-items: center;
   padding: 10px 14px;
   border: 0;
-  border-bottom: 2px solid var(--ink);
+  border-bottom: 2px solid var(--line);
   background: transparent;
   color: var(--ink);
   cursor: pointer;
@@ -113,6 +113,10 @@
 }
 
 .read__row[data-active="true"] {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-lime);
 }
 
@@ -123,10 +127,14 @@
 }
 
 .read__row-num {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
+  color: var(--ink);
   display: grid;
   width: 30px;
   height: 30px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-radius: 50%;
   background: var(--paper);
   font-family: var(--font-display);
@@ -135,10 +143,18 @@
 }
 
 .read__row[data-status="started"] .read__row-num {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-sun);
 }
 
 .read__row[data-status="done"] .read__row-num {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-mint);
 }
 
@@ -209,10 +225,14 @@
 /* The exam's own instruction, in its own band, so it reads as the task and not
    as a caption to the text below it. */
 .read__instruction {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   flex: 0 0 auto;
   margin: 0;
   padding: 11px 22px;
-  border-bottom: var(--edge) solid var(--ink);
+  border-bottom: var(--edge) solid var(--line);
   background: var(--pop-sun);
   font-size: 14px;
   font-weight: 700;
@@ -252,10 +272,13 @@
 /* Specific enough to outrank the shared text-field rule, which would give each
    box a 40px height and a full field's padding. */
 .brutal .read__passage .read__box {
+  --ink: var(--ink-base);
+  --line: var(--line-base);
+  --quiet: var(--quiet-base);
   width: 1.3em;
   height: 1.7em;
   padding: 0;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line);
   border-bottom-width: 4px;
   border-radius: 5px;
   background: var(--paper);
@@ -277,16 +300,28 @@
 }
 
 .brutal .read__passage .read__box[data-state="correct"] {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-mint);
 }
 
 /* Colour is not the only signal: a wrong letter is also struck through. */
 .brutal .read__passage .read__box[data-state="wrong"] {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-flame);
   text-decoration: line-through 2px;
 }
 
 .brutal .read__passage .read__box[data-state="answer"] {
+  --ink: var(--on-pop);
+  --line: var(--on-pop);
+  --quiet: var(--quiet-pop);
+  color: var(--on-pop);
   background: var(--pop-sky);
 }
 
@@ -303,7 +338,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 12px 16px 14px;
-  border-top: var(--edge) solid var(--ink);
+  border-top: var(--edge) solid var(--line);
   gap: 10px 14px;
 }
 

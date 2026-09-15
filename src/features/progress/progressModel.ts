@@ -5,6 +5,7 @@ export interface DayBar {
   key: string;
   label: string;
   vocabulary: number;
+  reading: number;
   speaking: number;
   writing: number;
   total: number;
@@ -36,6 +37,7 @@ export function activityByDay(activities: StudyActivity[], now = new Date()): Da
       key: dayKey(date),
       label: new Intl.DateTimeFormat(undefined, { weekday: "narrow" }).format(date),
       vocabulary: 0,
+      reading: 0,
       speaking: 0,
       writing: 0,
       total: 0,

@@ -42,6 +42,7 @@ const PAPER = "#fffdf3";
 
 const SKILL_COLOR = {
   vocabulary: "#7be495",
+  reading: "#c6f24e",
   speaking: "#7cc6fe",
   writing: "#b197fc",
 } as const;
@@ -58,6 +59,7 @@ const AXIS_TICK = { fontSize: 11, fill: INK, fontWeight: 600 } as const;
 
 const ACTIVITY_ICON: Record<StudyActivity["kind"], DoodleIconName> = {
   vocabulary: "doc",
+  reading: "bookmark",
   speaking: "mic",
   writing: "pen",
 };
@@ -251,6 +253,10 @@ export function ProgressPage({
                     Vocabulary
                   </li>
                   <li>
+                    <i style={{ background: SKILL_COLOR.reading }} />
+                    Reading
+                  </li>
+                  <li>
                     <i style={{ background: SKILL_COLOR.speaking }} />
                     Speaking
                   </li>
@@ -280,6 +286,15 @@ export function ProgressPage({
                       strokeWidth={2}
                       radius={[0, 0, 0, 0]}
                       animationDuration={700}
+                    />
+                    <Bar
+                      dataKey="reading"
+                      stackId="a"
+                      fill={SKILL_COLOR.reading}
+                      stroke={INK}
+                      strokeWidth={2}
+                      animationDuration={700}
+                      animationBegin={45}
                     />
                     <Bar
                       dataKey="speaking"

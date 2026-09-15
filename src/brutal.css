@@ -1915,6 +1915,10 @@
   background: #7be495;
 }
 
+.shell-brutal .rail__item--lime[data-active="true"] {
+  background: #c6f24e;
+}
+
 .shell-brutal .rail__item--sky[data-active="true"] {
   background: #7cc6fe;
 }
@@ -2988,6 +2992,10 @@
    legend on the chart above them. */
 .brutal .progress-sessions__mark[data-kind="vocabulary"] {
   background: var(--pop-mint);
+}
+
+.brutal .progress-sessions__mark[data-kind="reading"] {
+  background: var(--pop-lime);
 }
 
 .brutal .progress-sessions__mark[data-kind="speaking"] {

@@ -7,6 +7,7 @@ import type {
   WritingPracticeRecord,
   WritingSubmission,
 } from "../types/study";
+import type { ReadingCheck, ReadingPassageRecord } from "../types/reading";
 import { dispatchLocalChange, readJsonValue, writeJsonValue } from "./storage";
 
 export const STUDY_STORAGE_KEY = "toefl-companion:study:v1";
@@ -47,6 +48,7 @@ function defaultState(): StudyState {
   return {
     schemaVersion: 1,
     writing: {},
+    reading: {},
     listenRepeatAttempts: [],
     activities: [],
     settings: { ...DEFAULT_SETTINGS },
@@ -93,7 +95,7 @@ function hydrateActivity(value: unknown): StudyActivity | null {
   const kind = value.kind;
   const createdAt = cleanText(value.createdAt);
   if (
-    (kind !== "vocabulary" && kind !== "speaking" && kind !== "writing") ||
+    (kind !== "vocabulary" && kind !== "reading" && kind !== "speaking" && kind !== "writing") ||
     !Number.isFinite(Date.parse(createdAt))
   ) {
     return null;
@@ -107,6 +109,52 @@ function hydrateActivity(value: unknown): StudyActivity | null {
   };
 }
 
+function hydrateReadingCheck(value: unknown): ReadingCheck | null {
+  if (!isRecord(value)) {
+    return null;
+  }
+  const checkedAt = cleanText(value.checkedAt);
+  if (!Number.isFinite(Date.parse(checkedAt))) {
+    return null;
+  }
+  const totalLetters = finiteInteger(value.totalLetters, 0, 0, 1_000);
+  const totalWords = finiteInteger(value.totalWords, 0, 0, 100);
+  return {
+    checkedAt: new Date(checkedAt).toISOString(),
+    correctLetters: finiteInteger(value.correctLetters, 0, 0, totalLetters),
+    totalLetters,
+    correctWords: finiteInteger(value.correctWords, 0, 0, totalWords),
+    totalWords,
+  };
+}
+
+function hydrateReadingRecord(value: unknown, passageId: string): ReadingPassageRecord | null {
+  if (!isRecord(value)) {
+    return null;
+  }
+  const updatedAt = cleanText(value.updatedAt);
+  const revealedAt = cleanText(value.revealedAt);
+  return {
+    passageId,
+    // Not cleaned: a space is an empty letter box, not whitespace to trim.
+    letters: Array.isArray(value.letters)
+      ? value.letters
+          .slice(0, 40)
+          .map((word) => (typeof word === "string" ? word.slice(0, 40) : ""))
+      : [],
+    updatedAt: Number.isFinite(Date.parse(updatedAt))
+      ? new Date(updatedAt).toISOString()
+      : new Date(0).toISOString(),
+    lastCheck: hydrateReadingCheck(value.lastCheck),
+    bestCorrectLetters: finiteInteger(value.bestCorrectLetters, 0, 0, 1_000),
+    checks: finiteInteger(value.checks, 0, 0, 100_000),
+    revealedAt:
+      revealedAt && Number.isFinite(Date.parse(revealedAt))
+        ? new Date(revealedAt).toISOString()
+        : null,
+  };
+}
+
 function hydrateState(value: unknown): StudyState {
   if (!isRecord(value) || value.schemaVersion !== 1) {
     return defaultState();
@@ -117,6 +165,13 @@ function hydrateState(value: unknown): StudyState {
         discussionId,
         hydrateWritingRecord(record, discussionId),
       ])
+    : [];
+  // Older saves have no reading section; they hydrate to an empty one.
+  const readingEntries = isRecord(value.reading)
+    ? Object.entries(value.reading).flatMap(([passageId, record]) => {
+        const hydrated = hydrateReadingRecord(record, passageId);
+        return hydrated ? [[passageId, hydrated] as const] : [];
+      })
     : [];
   const settings = isRecord(value.settings) ? value.settings : {};
   const listenRepeatAttempts = Array.isArray(value.listenRepeatAttempts)
@@ -143,6 +198,7 @@ function hydrateState(value: unknown): StudyState {
   return {
     schemaVersion: 1,
     writing: Object.fromEntries(writingEntries),
+    reading: Object.fromEntries(readingEntries),
     listenRepeatAttempts: listenRepeatAttempts.slice(-MAX_LISTEN_ATTEMPTS),
     activities: Array.isArray(value.activities)
       ? value.activities
@@ -290,6 +346,75 @@ export const studyRepository = {
       state.activities = [activity, ...state.activities].slice(0, MAX_ACTIVITIES);
     });
     return attempt;
+  },
+
+  saveReadingLetters(passageId: string, letters: readonly string[]): StudyState {
+    return mutate((state) => {
+      const current = state.reading[passageId];
+      state.reading[passageId] = {
+        passageId,
+        letters: [...letters],
+        updatedAt: new Date().toISOString(),
+        lastCheck: current?.lastCheck ?? null,
+        bestCorrectLetters: current?.bestCorrectLetters ?? 0,
+        checks: current?.checks ?? 0,
+        revealedAt: current?.revealedAt ?? null,
+      };
+    });
+  },
+
+  /**
+   * Stores a check. Only a first check or a better score reaches the activity
+   * log, so pressing Check again on the same letters does not pad the history.
+   */
+  recordReadingCheck(
+    passageId: string,
+    title: string,
+    letters: readonly string[],
+    result: Omit<ReadingCheck, "checkedAt">,
+  ): ReadingCheck {
+    const check: ReadingCheck = { ...result, checkedAt: new Date().toISOString() };
+    mutate((state) => {
+      const current = state.reading[passageId];
+      const improved = !current?.lastCheck || result.correctLetters > current.bestCorrectLetters;
+      state.reading[passageId] = {
+        passageId,
+        letters: [...letters],
+        updatedAt: check.checkedAt,
+        lastCheck: check,
+        bestCorrectLetters: Math.max(current?.bestCorrectLetters ?? 0, result.correctLetters),
+        checks: (current?.checks ?? 0) + 1,
+        revealedAt: current?.revealedAt ?? null,
+      };
+      if (improved) {
+        const shown = current?.revealedAt ? " · answers shown" : "";
+        const activity: StudyActivity = {
+          id: crypto.randomUUID(),
+          kind: "reading",
+          title: `Completed the words: ${title}`,
+          detail: `${result.correctLetters} of ${result.totalLetters} letters${shown}`,
+          createdAt: check.checkedAt,
+        };
+        state.activities = [activity, ...state.activities].slice(0, MAX_ACTIVITIES);
+      }
+    });
+    return check;
+  },
+
+  markReadingRevealed(passageId: string, letters: readonly string[]): StudyState {
+    return mutate((state) => {
+      const current = state.reading[passageId];
+      const now = new Date().toISOString();
+      state.reading[passageId] = {
+        passageId,
+        letters: [...letters],
+        updatedAt: now,
+        lastCheck: current?.lastCheck ?? null,
+        bestCorrectLetters: current?.bestCorrectLetters ?? 0,
+        checks: current?.checks ?? 0,
+        revealedAt: current?.revealedAt ?? now,
+      };
+    });
   },
 
   addActivity(kind: ActivityKind, title: string, detail: string): StudyActivity {

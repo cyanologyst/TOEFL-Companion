@@ -1,4 +1,13 @@
-export type AppArea = "dashboard" | "vocabulary" | "speaking" | "writing" | "progress" | "settings";
+import type { ReadingPassageRecord } from "./reading";
+
+export type AppArea =
+  | "dashboard"
+  | "vocabulary"
+  | "reading"
+  | "speaking"
+  | "writing"
+  | "progress"
+  | "settings";
 
 export interface AcademicDiscussionStudent {
   name: string;
@@ -74,7 +83,7 @@ export interface ListenRepeatAttempt {
   createdAt: string;
 }
 
-export type ActivityKind = "vocabulary" | "speaking" | "writing";
+export type ActivityKind = "vocabulary" | "reading" | "speaking" | "writing";
 
 export interface StudyActivity {
   id: string;
@@ -99,6 +108,8 @@ export interface StudySettings {
 export interface StudyState {
   schemaVersion: 1;
   writing: Record<string, WritingPracticeRecord>;
+  /** Complete the Words progress, keyed by passage id. */
+  reading: Record<string, ReadingPassageRecord>;
   listenRepeatAttempts: ListenRepeatAttempt[];
   activities: StudyActivity[];
   settings: StudySettings;

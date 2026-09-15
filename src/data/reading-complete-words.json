@@ -1,0 +1,7386 @@
+{
+ "schemaVersion": 1,
+ "task": "Complete the Words",
+ "source": "NEO TOEFL Reading, Tests 1-40",
+ "passages": [
+  {
+   "id": "neo-01-1",
+   "title": "History of the South Pacific",
+   "sources": [
+    1
+   ],
+   "blankCount": 10,
+   "letterCount": 41,
+   "parts": [
+    "The history of the South Pacific is marked by diverse cultures and significant events. Indigenous ",
+    {
+     "stem": "popul",
+     "missing": "ations"
+    },
+    " developed ",
+    {
+     "stem": "com",
+     "missing": "plex"
+    },
+    " societies ",
+    {
+     "stem": "wi",
+     "missing": "th"
+    },
+    " rich ",
+    {
+     "stem": "tradi",
+     "missing": "tions"
+    },
+    " and ",
+    {
+     "stem": "soc",
+     "missing": "ial"
+    },
+    " structures. ",
+    {
+     "stem": "T",
+     "missing": "he"
+    },
+    " region's ",
+    {
+     "stem": "poli",
+     "missing": "tical"
+    },
+    " and ",
+    {
+     "stem": "econ",
+     "missing": "omic"
+    },
+    " landscapes ",
+    {
+     "stem": "exper",
+     "missing": "ienced"
+    },
+    " profound ",
+    {
+     "stem": "cha",
+     "missing": "nges"
+    },
+    " following colonization by Europeans. Studying this history allows for a greater understanding of cultural interactions and the ongoing effects of historical events on contemporary South Pacific societies. Traditional navigation techniques using stars and ocean swells enabled remarkable voyaging achievements, while contemporary movements focus on cultural preservation, language revitalization, and addressing climate change impacts on island nations."
+   ]
+  },
+  {
+   "id": "neo-01-2",
+   "title": "Tiger territories",
+   "sources": [
+    1
+   ],
+   "blankCount": 10,
+   "letterCount": 31,
+   "parts": [
+    "Tigers are solitary animals known for their territorial behavior; males use scent markings and vocalizations to define their territories. Each ",
+    {
+     "stem": "ma",
+     "missing": "le"
+    },
+    " tiger ",
+    {
+     "stem": "estab",
+     "missing": "lishes"
+    },
+    " control ",
+    {
+     "stem": "ov",
+     "missing": "er"
+    },
+    " a ",
+    {
+     "stem": "la",
+     "missing": "rge"
+    },
+    " territory ",
+    {
+     "stem": "span",
+     "missing": "ning"
+    },
+    " several ",
+    {
+     "stem": "squ",
+     "missing": "are"
+    },
+    " miles ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " patrols ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " area ",
+    {
+     "stem": "regu",
+     "missing": "larly"
+    },
+    " to ",
+    {
+     "stem": "lo",
+     "missing": "ok"
+    },
+    " for prey and maintain dominance. This behavior helps reduce conflicts over prey, but tigers are known to fiercely defend their territory from intruders when necessary. Often hunting at night, tigers use stealth and their excellent night vision to their advantage."
+   ]
+  },
+  {
+   "id": "neo-01-3",
+   "title": "Tectonic plates",
+   "sources": [
+    1
+   ],
+   "blankCount": 10,
+   "letterCount": 39,
+   "parts": [
+    "Tectonic plates are large pieces of Earth's outer shell that move slowly over the planet's surface, and their study is fundamental in understanding Earth's geological activity. These plates fit ",
+    {
+     "stem": "toge",
+     "missing": "ther"
+    },
+    " much ",
+    {
+     "stem": "li",
+     "missing": "ke"
+    },
+    " a ",
+    {
+     "stem": "jig",
+     "missing": "saw"
+    },
+    " puzzle ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " constantly ",
+    {
+     "stem": "sh",
+     "missing": "ift"
+    },
+    ", causing ",
+    {
+     "stem": "earth",
+     "missing": "quakes"
+    },
+    ", the ",
+    {
+     "stem": "form",
+     "missing": "ation"
+    },
+    " of ",
+    {
+     "stem": "moun",
+     "missing": "tains"
+    },
+    ", and ",
+    {
+     "stem": "volc",
+     "missing": "anic"
+    },
+    " eruptions. ",
+    {
+     "stem": "Scien",
+     "missing": "tists"
+    },
+    " analyze these movements to better understand natural disasters and how Earth's surface changes over time. Advances in this field have significantly improved our ability to monitor and prepare for natural disasters as well as to mitigate their impacts."
+   ]
+  },
+  {
+   "id": "neo-02-1",
+   "title": "Supply and demand",
+   "sources": [
+    2
+   ],
+   "blankCount": 10,
+   "letterCount": 30,
+   "parts": [
+    "Supply and demand are fundamental concepts in economics because they determine the price and availability of goods or services. When ",
+    {
+     "stem": "the",
+     "missing": "re"
+    },
+    " is ",
+    {
+     "stem": "mo",
+     "missing": "re"
+    },
+    " demand ",
+    {
+     "stem": "f",
+     "missing": "or"
+    },
+    " a ",
+    {
+     "stem": "pro",
+     "missing": "duct"
+    },
+    ", suppliers ",
+    {
+     "stem": "m",
+     "missing": "ay"
+    },
+    " make ",
+    {
+     "stem": "i",
+     "missing": "t"
+    },
+    " more ",
+    {
+     "stem": "expe",
+     "missing": "nsive"
+    },
+    " to ",
+    {
+     "stem": "incr",
+     "missing": "ease"
+    },
+    " profits. ",
+    {
+     "stem": "Conve",
+     "missing": "rsely"
+    },
+    ", an ",
+    {
+     "stem": "exc",
+     "missing": "ess"
+    },
+    " supply can lead to price reductions. Market equilibrium occurs when supply matches demand, resulting in stable prices. The real world, however, is rarely as simple as this. Various factors influence these dynamics, including consumer preferences, production costs, and external events."
+   ]
+  },
+  {
+   "id": "neo-02-2",
+   "title": "Fossils and natural selection",
+   "sources": [
+    2
+   ],
+   "blankCount": 10,
+   "letterCount": 39,
+   "parts": [
+    "Fossils provide invaluable evidence of evolutionary history, documenting species that lived millions of years ago. Paleontologists examine these remains to understand how organisms have changed over time. Natural selection ",
+    {
+     "stem": "expl",
+     "missing": "ains"
+    },
+    " how ",
+    {
+     "stem": "advant",
+     "missing": "ageous"
+    },
+    " traits ",
+    {
+     "stem": "incr",
+     "missing": "ease"
+    },
+    " in ",
+    {
+     "stem": "freq",
+     "missing": "uency"
+    },
+    " in a ",
+    {
+     "stem": "popul",
+     "missing": "ation"
+    },
+    ". Species ",
+    {
+     "stem": "ad",
+     "missing": "apt"
+    },
+    " to ",
+    {
+     "stem": "th",
+     "missing": "eir"
+    },
+    " environments, ",
+    {
+     "stem": "wh",
+     "missing": "ich"
+    },
+    " leads ",
+    {
+     "stem": "t",
+     "missing": "o"
+    },
+    " incredible ",
+    {
+     "stem": "dive",
+     "missing": "rsity"
+    },
+    " observed in the biological world today through the mechanism of natural selection. The ongoing study of evolution continues to reveal how life on Earth has developed and diversified."
+   ]
+  },
+  {
+   "id": "neo-02-3",
+   "title": "James Cook's voyages",
+   "sources": [
+    2
+   ],
+   "blankCount": 10,
+   "letterCount": 34,
+   "parts": [
+    "James Cook was a British naval officer, explorer, and cartographer born in 1728. He ",
+    {
+     "stem": "i",
+     "missing": "s"
+    },
+    " best ",
+    {
+     "stem": "kn",
+     "missing": "own"
+    },
+    " for ",
+    {
+     "stem": "h",
+     "missing": "is"
+    },
+    " three ",
+    {
+     "stem": "voy",
+     "missing": "ages"
+    },
+    " across ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " Pacific ",
+    {
+     "stem": "Oc",
+     "missing": "ean"
+    },
+    " during ",
+    {
+     "stem": "wh",
+     "missing": "ich"
+    },
+    " he ",
+    {
+     "stem": "meticu",
+     "missing": "lously"
+    },
+    " mapped ",
+    {
+     "stem": "coast",
+     "missing": "lines"
+    },
+    " and ",
+    {
+     "stem": "coll",
+     "missing": "ected"
+    },
+    " data on astronomy, natural history, and oceanography. Cook is the first European to circumnavigate New Zealand and make contact with the Hawaiian Islands. He is also notable for implementing health measures aboard his ships, such as dietary changes to prevent the disease scurvy."
+   ]
+  },
+  {
+   "id": "neo-03-1",
+   "title": "Child development milestones",
+   "sources": [
+    3
+   ],
+   "blankCount": 10,
+   "letterCount": 35,
+   "parts": [
+    "Child development milestones are key indicators of a child's growth. They ",
+    {
+     "stem": "enco",
+     "missing": "mpass"
+    },
+    " various ",
+    {
+     "stem": "asp",
+     "missing": "ects"
+    },
+    " of development, ",
+    {
+     "stem": "incl",
+     "missing": "uding"
+    },
+    " language ",
+    {
+     "stem": "acqui",
+     "missing": "sition"
+    },
+    ", motor ",
+    {
+     "stem": "ski",
+     "missing": "lls"
+    },
+    " and ",
+    {
+     "stem": "soc",
+     "missing": "ial"
+    },
+    " interactions. ",
+    {
+     "stem": "O",
+     "missing": "ne"
+    },
+    " example ",
+    {
+     "stem": "i",
+     "missing": "s"
+    },
+    " taking a ",
+    {
+     "stem": "fi",
+     "missing": "rst"
+    },
+    " step, ",
+    {
+     "stem": "wh",
+     "missing": "ich"
+    },
+    " typically occurs around the age of twelve months. These milestones are useful in helping parents and caretakers monitor a child's progress. It is important to remember, however, that these milestones only provide a general guide, and each child develops at their own pace."
+   ]
+  },
+  {
+   "id": "neo-03-2",
+   "title": "Making paint from pigments",
+   "sources": [
+    3
+   ],
+   "blankCount": 10,
+   "letterCount": 29,
+   "parts": [
+    "Pigments are substances that provide color to materials, and they can be derived from various natural sources, such as minerals and plants. It ",
+    {
+     "stem": "w",
+     "missing": "as"
+    },
+    " once ",
+    {
+     "stem": "com",
+     "missing": "mon"
+    },
+    " for ",
+    {
+     "stem": "art",
+     "missing": "ists"
+    },
+    " to ",
+    {
+     "stem": "cre",
+     "missing": "ate"
+    },
+    " their ",
+    {
+     "stem": "o",
+     "missing": "wn"
+    },
+    " paints ",
+    {
+     "stem": "b",
+     "missing": "y"
+    },
+    " mixing ",
+    {
+     "stem": "sev",
+     "missing": "eral"
+    },
+    " pigments ",
+    {
+     "stem": "toge",
+     "missing": "ther"
+    },
+    ". This ",
+    {
+     "stem": "pro",
+     "missing": "cess"
+    },
+    " was ",
+    {
+     "stem": "ti",
+     "missing": "me"
+    },
+    "-consuming and required detailed knowledge of pigments—their chemical properties, how they interact with different media, and their durability over time. But it also allowed painters to give their artworks a truly unique color palette."
+   ]
+  },
+  {
+   "id": "neo-03-3",
+   "title": "Art and religion",
+   "sources": [
+    3
+   ],
+   "blankCount": 10,
+   "letterCount": 42,
+   "parts": [
+    "Throughout history, art and religion have been deeply intertwined. Religious ",
+    {
+     "stem": "bel",
+     "missing": "iefs"
+    },
+    " often ",
+    {
+     "stem": "ins",
+     "missing": "pire"
+    },
+    " artistic ",
+    {
+     "stem": "crea",
+     "missing": "tions"
+    },
+    ", from ",
+    {
+     "stem": "anc",
+     "missing": "ient"
+    },
+    " cave ",
+    {
+     "stem": "pain",
+     "missing": "tings"
+    },
+    " to ",
+    {
+     "stem": "elab",
+     "missing": "orate"
+    },
+    " cathedral ",
+    {
+     "stem": "archit",
+     "missing": "ecture"
+    },
+    ". Throughout ",
+    {
+     "stem": "his",
+     "missing": "tory"
+    },
+    ", artists ",
+    {
+     "stem": "ha",
+     "missing": "ve"
+    },
+    " used ",
+    {
+     "stem": "vis",
+     "missing": "ual"
+    },
+    " imagery to express spiritual ideas and convey religious stories. Iconography, the study of symbols and images in art, helps us understand the meaning behind religious artworks. Churches, temples, and other places of worship are often adorned with intricate designs that reflect the convictions and practices of their communities."
+   ]
+  },
+  {
+   "id": "neo-04-1",
+   "title": "The Odyssey",
+   "sources": [
+    4
+   ],
+   "blankCount": 10,
+   "letterCount": 33,
+   "parts": [
+    "The Odyssey is an ancient Greek epic poem that follows the hero, Odysseus, on his ten-year journey home after the Trojan War. It ",
+    {
+     "stem": "i",
+     "missing": "s"
+    },
+    " widely ",
+    {
+     "stem": "consi",
+     "missing": "dered"
+    },
+    " one ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " the ",
+    {
+     "stem": "grea",
+     "missing": "test"
+    },
+    " works ",
+    {
+     "stem": "i",
+     "missing": "n"
+    },
+    " the ",
+    {
+     "stem": "his",
+     "missing": "tory"
+    },
+    " of ",
+    {
+     "stem": "Euro",
+     "missing": "pean"
+    },
+    " literature. The Odyssey ",
+    {
+     "stem": "estab",
+     "missing": "lished"
+    },
+    " many ",
+    {
+     "stem": "narr",
+     "missing": "ative"
+    },
+    " structures ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " archetypes—like the hero's journey—that continue to shape storytelling today. It also delves into timeless human experiences. Odysseus's longing to return home, for example, resonates with the universal desire for belonging and stability. He must adapt, disguise, and rediscover himself, reflecting the fluid nature of identity."
+   ]
+  },
+  {
+   "id": "neo-04-2",
+   "title": "Skills for academic success",
+   "sources": [
+    4
+   ],
+   "blankCount": 10,
+   "letterCount": 37,
+   "parts": [
+    "What are some foundational skills for academic success? Critical ",
+    {
+     "stem": "thin",
+     "missing": "king"
+    },
+    " allows ",
+    {
+     "stem": "stud",
+     "missing": "ents"
+    },
+    " to ",
+    {
+     "stem": "appr",
+     "missing": "oach"
+    },
+    " problems ",
+    {
+     "stem": "systema",
+     "missing": "tically"
+    },
+    ", analyze ",
+    {
+     "stem": "infor",
+     "missing": "mation"
+    },
+    ", and ",
+    {
+     "stem": "ma",
+     "missing": "ke"
+    },
+    " connections ",
+    {
+     "stem": "bet",
+     "missing": "ween"
+    },
+    " ideas. ",
+    {
+     "stem": "Al",
+     "missing": "so"
+    },
+    " important ",
+    {
+     "stem": "a",
+     "missing": "re"
+    },
+    " soft skills ",
+    {
+     "stem": "li",
+     "missing": "ke"
+    },
+    " time management and social skills. Time management is helpful for balancing studies, extracurricular activities, and personal life in an efficient manner. Social skills are good predictors of academic success because those who communicate effectively can form positive relationships with their peers and professors."
+   ]
+  },
+  {
+   "id": "neo-04-3",
+   "title": "Early humans and fire",
+   "sources": [
+    4
+   ],
+   "blankCount": 10,
+   "letterCount": 34,
+   "parts": [
+    "Learning the controlled use of fire was a key development in human history that greatly improved the early humans' ability to survive. ",
+    {
+     "stem": "Coo",
+     "missing": "king"
+    },
+    " food, ",
+    {
+     "stem": "partic",
+     "missing": "ularly"
+    },
+    " meat ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " tubers, ",
+    {
+     "stem": "ma",
+     "missing": "de"
+    },
+    " digesting ",
+    {
+     "stem": "nutr",
+     "missing": "ients"
+    },
+    " much ",
+    {
+     "stem": "eas",
+     "missing": "ier"
+    },
+    ". Fire ",
+    {
+     "stem": "al",
+     "missing": "so"
+    },
+    " provided ",
+    {
+     "stem": "war",
+     "missing": "mth"
+    },
+    " in ",
+    {
+     "stem": "col",
+     "missing": "der"
+    },
+    " climates, ",
+    {
+     "stem": "allo",
+     "missing": "wing"
+    },
+    " humans to expand their geographic range and survive in areas where they might not have otherwise. In addition, fire was used to harden wood for tools like spears and to shape stones for cutting and scraping, thus contributing to advances in toolmaking."
+   ]
+  },
+  {
+   "id": "neo-05-1",
+   "title": "Sleep and circadian rhythms",
+   "sources": [
+    5
+   ],
+   "blankCount": 10,
+   "letterCount": 32,
+   "parts": [
+    "The study of sleep and circadian rhythms explores how humans and animals regulate their sleep-wake cycles. This ",
+    {
+     "stem": "fi",
+     "missing": "eld"
+    },
+    " examines ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " biological ",
+    {
+     "stem": "clo",
+     "missing": "cks"
+    },
+    " that ",
+    {
+     "stem": "man",
+     "missing": "age"
+    },
+    " daily ",
+    {
+     "stem": "rhy",
+     "missing": "thms"
+    },
+    ", influenced ",
+    {
+     "stem": "b",
+     "missing": "y"
+    },
+    " factors ",
+    {
+     "stem": "su",
+     "missing": "ch"
+    },
+    " as ",
+    {
+     "stem": "li",
+     "missing": "ght"
+    },
+    " and ",
+    {
+     "stem": "tempe",
+     "missing": "rature"
+    },
+    ". Understanding ",
+    {
+     "stem": "proc",
+     "missing": "esses"
+    },
+    " of this kind helps in addressing sleep disorders and optimizing work schedules. Research in this area is crucial for improving health, productivity, and well-being in modern societies. Recent studies have identified specific genes responsible for circadian regulation, while melatonin production and seasonal affective disorder demonstrate the profound connection between environmental cues and internal biological timing mechanisms."
+   ]
+  },
+  {
+   "id": "neo-05-2",
+   "title": "Studying weather patterns",
+   "sources": [
+    5
+   ],
+   "blankCount": 10,
+   "letterCount": 32,
+   "parts": [
+    "Weather patterns are influenced by a variety of factors, including atmospheric pressure, temperature, and humidity. Meteorologists ",
+    {
+     "stem": "st",
+     "missing": "udy"
+    },
+    " these ",
+    {
+     "stem": "fac",
+     "missing": "tors"
+    },
+    " to ",
+    {
+     "stem": "pre",
+     "missing": "dict"
+    },
+    " weather ",
+    {
+     "stem": "condi",
+     "missing": "tions"
+    },
+    " and ",
+    {
+     "stem": "under",
+     "missing": "stand"
+    },
+    " climate ",
+    {
+     "stem": "cha",
+     "missing": "nge"
+    },
+    ". Tools ",
+    {
+     "stem": "li",
+     "missing": "ke"
+    },
+    " satellites ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " radar ",
+    {
+     "stem": "al",
+     "missing": "low"
+    },
+    " meteorologists ",
+    {
+     "stem": "t",
+     "missing": "o"
+    },
+    " monitor weather systems in great detail. Accurate weather forecasting is crucial for agriculture, disaster preparedness, and daily planning. It should be noted, however, that despite technological advancements, weather is inherently unpredictable due to the numerous atmospheric variables that can change rapidly."
+   ]
+  },
+  {
+   "id": "neo-05-3",
+   "title": "Paleontology and fossils",
+   "sources": [
+    5
+   ],
+   "blankCount": 10,
+   "letterCount": 33,
+   "parts": [
+    "Paleontology, the study of ancient life through fossils, provides valuable insights into Earth's biological history. Fossils, ",
+    {
+     "stem": "incl",
+     "missing": "uding"
+    },
+    " bones and ",
+    {
+     "stem": "she",
+     "missing": "lls"
+    },
+    ", offer ",
+    {
+     "stem": "evid",
+     "missing": "ence"
+    },
+    " of ",
+    {
+     "stem": "orga",
+     "missing": "nisms"
+    },
+    " that ",
+    {
+     "stem": "li",
+     "missing": "ved"
+    },
+    " millions ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " years ",
+    {
+     "stem": "a",
+     "missing": "go"
+    },
+    ". By ",
+    {
+     "stem": "stud",
+     "missing": "ying"
+    },
+    " these ",
+    {
+     "stem": "rem",
+     "missing": "ains"
+    },
+    ", paleontologists ",
+    {
+     "stem": "c",
+     "missing": "an"
+    },
+    " reconstruct the appearance, behavior, and ecological relationships of extinct species. Techniques such as radiometric dating help determine the age of fossils and the geological context in which they were found. Research in paleontology contributes to our understanding of evolutionary processes, environmental changes, and the development of life on Earth."
+   ]
+  },
+  {
+   "id": "neo-06-1",
+   "title": "How glaciers shape land",
+   "sources": [
+    6
+   ],
+   "blankCount": 10,
+   "letterCount": 27,
+   "parts": [
+    "Glaciers are massive, slow-moving bodies of ice that form in areas where snow accumulates over time and compresses into ice. ",
+    {
+     "stem": "Th",
+     "missing": "ey"
+    },
+    " can ",
+    {
+     "stem": "cha",
+     "missing": "nge"
+    },
+    " landscapes ",
+    {
+     "stem": "thr",
+     "missing": "ough"
+    },
+    " processes ",
+    {
+     "stem": "li",
+     "missing": "ke"
+    },
+    " erosion ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " deposition. ",
+    {
+     "stem": "A",
+     "missing": "s"
+    },
+    " glaciers ",
+    {
+     "stem": "mo",
+     "missing": "ve"
+    },
+    ", they ",
+    {
+     "stem": "ca",
+     "missing": "rve"
+    },
+    " out ",
+    {
+     "stem": "val",
+     "missing": "leys"
+    },
+    " and fjords, ",
+    {
+     "stem": "lea",
+     "missing": "ving"
+    },
+    " behind distinct geological features. Scientists study glaciers to understand past climate conditions and predict future changes. Glaciers are of particular concern today because their melting contributes to rising sea levels, impacting coastal communities worldwide."
+   ]
+  },
+  {
+   "id": "neo-06-2",
+   "title": "Philosophy of mind",
+   "sources": [
+    6
+   ],
+   "blankCount": 10,
+   "letterCount": 34,
+   "parts": [
+    "The field of philosophy of mind delves into the nature of consciousness, thought processes, and the intricate relationship between the mind and body. ",
+    {
+     "stem": "I",
+     "missing": "t"
+    },
+    " addresses ",
+    {
+     "stem": "funda",
+     "missing": "mental"
+    },
+    " questions ",
+    {
+     "stem": "ab",
+     "missing": "out"
+    },
+    " perception, ",
+    {
+     "stem": "iden",
+     "missing": "tity"
+    },
+    ", self-awareness, ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " subjective ",
+    {
+     "stem": "exper",
+     "missing": "ience"
+    },
+    ". The ",
+    {
+     "stem": "disci",
+     "missing": "pline"
+    },
+    " explores ",
+    {
+     "stem": "h",
+     "missing": "ow"
+    },
+    " and ",
+    {
+     "stem": "w",
+     "missing": "hy"
+    },
+    " we ",
+    {
+     "stem": "perc",
+     "missing": "eive"
+    },
+    " the world as we do, examining the mechanisms behind thought, emotion, and awareness. This field is a deeply interdisciplinary one that intersects with psychology, neuroscience, and cognitive science, providing a comprehensive approach to understanding human cognition and consciousness."
+   ]
+  },
+  {
+   "id": "neo-06-3",
+   "title": "History of the piano",
+   "sources": [
+    6
+   ],
+   "blankCount": 10,
+   "letterCount": 19,
+   "parts": [
+    "The piano has a rich history that spans over 300 years, evolving from earlier keyboard instruments like the clavichord and harpsichord. The ",
+    {
+     "stem": "mod",
+     "missing": "ern"
+    },
+    " piano ",
+    {
+     "stem": "w",
+     "missing": "as"
+    },
+    " invented ",
+    {
+     "stem": "aro",
+     "missing": "und"
+    },
+    " 1700 ",
+    {
+     "stem": "b",
+     "missing": "y"
+    },
+    " Bartolomeo Cristofori, ",
+    {
+     "stem": "w",
+     "missing": "ho"
+    },
+    " developed a ",
+    {
+     "stem": "n",
+     "missing": "ew"
+    },
+    " mechanism ",
+    {
+     "stem": "th",
+     "missing": "at"
+    },
+    " made ",
+    {
+     "stem": "i",
+     "missing": "t"
+    },
+    " possible ",
+    {
+     "stem": "f",
+     "missing": "or"
+    },
+    " players ",
+    {
+     "stem": "t",
+     "missing": "o"
+    },
+    " control the dynamics—soft and loud sounds—by varying the pressure on the keys. Later key improvements include the addition of a cast iron frame and felt-covered hammers, which allowed for greater volume and durability. These changes made the piano a central instrument in both classical and popular music."
+   ]
+  },
+  {
+   "id": "neo-07-1",
+   "title": "Human cognition",
+   "sources": [
+    7
+   ],
+   "blankCount": 10,
+   "letterCount": 33,
+   "parts": [
+    "Human cognition refers to the mental processes involved in acquiring, processing, storing, and using knowledge. These ",
+    {
+     "stem": "inc",
+     "missing": "lude"
+    },
+    " the ",
+    {
+     "stem": "wa",
+     "missing": "ys"
+    },
+    " that ",
+    {
+     "stem": "peo",
+     "missing": "ple"
+    },
+    " interpret sensory ",
+    {
+     "stem": "sig",
+     "missing": "nals"
+    },
+    " (perception), ",
+    {
+     "stem": "h",
+     "missing": "ow"
+    },
+    " we ",
+    {
+     "stem": "st",
+     "missing": "ore"
+    },
+    " and ",
+    {
+     "stem": "retr",
+     "missing": "ieve"
+    },
+    " information (",
+    {
+     "stem": "mem",
+     "missing": "ory"
+    },
+    "), how ",
+    {
+     "stem": "lang",
+     "missing": "uage"
+    },
+    " is ",
+    {
+     "stem": "prod",
+     "missing": "uced"
+    },
+    " (speech), and how humans analyze and solve problems. Researchers study cognitive functions to uncover how the brain processes information and how these processes influence behavior. Insights from cognitive science can improve educational methods and help develop interventions for cognitive disorders."
+   ]
+  },
+  {
+   "id": "neo-07-2",
+   "title": "Extinctions in Earth's history",
+   "sources": [
+    7
+   ],
+   "blankCount": 10,
+   "letterCount": 31,
+   "parts": [
+    "Extinctions are a natural part of Earth's history, marking the end of species that die out and paving the way for new ones. These ",
+    {
+     "stem": "inci",
+     "missing": "dents"
+    },
+    " can ",
+    {
+     "stem": "b",
+     "missing": "e"
+    },
+    " caused ",
+    {
+     "stem": "b",
+     "missing": "y"
+    },
+    " varying ",
+    {
+     "stem": "fac",
+     "missing": "tors"
+    },
+    ", such ",
+    {
+     "stem": "a",
+     "missing": "s"
+    },
+    " environmental ",
+    {
+     "stem": "cha",
+     "missing": "nges"
+    },
+    ", habitat ",
+    {
+     "stem": "lo",
+     "missing": "ss"
+    },
+    ", and ",
+    {
+     "stem": "catast",
+     "missing": "rophic"
+    },
+    " events. ",
+    {
+     "stem": "Stud",
+     "missing": "ying"
+    },
+    " extinctions ",
+    {
+     "stem": "he",
+     "missing": "lps"
+    },
+    " scientists understand biodiversity and the resilience of ecosystems. Notable extinctions, like the one that wiped out most of the dinosaurs, offer insights into how life on Earth can dramatically shift. Modern conservation efforts aim to prevent human-induced extinctions and preserve remaining species."
+   ]
+  },
+  {
+   "id": "neo-07-3",
+   "title": "An underwater stone wall",
+   "sources": [
+    7
+   ],
+   "blankCount": 10,
+   "letterCount": 32,
+   "parts": [
+    "Archaeologists typically study human history and prehistory through the excavation of artifacts buried underground. Sometimes, ",
+    {
+     "stem": "how",
+     "missing": "ever"
+    },
+    ", they ",
+    {
+     "stem": "disc",
+     "missing": "over"
+    },
+    " artifacts ",
+    {
+     "stem": "subm",
+     "missing": "erged"
+    },
+    " underwater. A stone wall ",
+    {
+     "stem": "w",
+     "missing": "as"
+    },
+    " found ",
+    {
+     "stem": "ben",
+     "missing": "eath"
+    },
+    " the Baltic Sea ",
+    {
+     "stem": "i",
+     "missing": "n"
+    },
+    " 2012 ",
+    {
+     "stem": "th",
+     "missing": "at"
+    },
+    " dates ",
+    {
+     "stem": "t",
+     "missing": "o"
+    },
+    " over 10,000 ",
+    {
+     "stem": "ye",
+     "missing": "ars"
+    },
+    " ago. ",
+    {
+     "stem": "Resea",
+     "missing": "rchers"
+    },
+    " believe it was used by hunter-gatherer societies to guide and trap reindeer. The wall consists of approximately 1,670 stones and is considered one of the oldest documented hunting structures made by humans."
+   ]
+  },
+  {
+   "id": "neo-08-1",
+   "title": "Mass extinctions",
+   "sources": [
+    8
+   ],
+   "blankCount": 10,
+   "letterCount": 30,
+   "parts": [
+    "Mass extinctions have periodically reshaped the diversity of life on Earth, representing significant biological and ecological shifts. The most famous event, the Cretaceous-Paleogene extinction, occurred approximately 66 million years ago and led to the demise of the dinosaurs. Large-scale ",
+    {
+     "stem": "los",
+     "missing": "ses"
+    },
+    " of ",
+    {
+     "stem": "spe",
+     "missing": "cies"
+    },
+    " are ",
+    {
+     "stem": "of",
+     "missing": "ten"
+    },
+    " caused ",
+    {
+     "stem": "b",
+     "missing": "y"
+    },
+    " catastrophic ",
+    {
+     "stem": "eve",
+     "missing": "nts"
+    },
+    " such ",
+    {
+     "stem": "a",
+     "missing": "s"
+    },
+    " volcanic ",
+    {
+     "stem": "erup",
+     "missing": "tions"
+    },
+    ", asteroid ",
+    {
+     "stem": "imp",
+     "missing": "acts"
+    },
+    ", and ",
+    {
+     "stem": "cli",
+     "missing": "mate"
+    },
+    " change. ",
+    {
+     "stem": "T",
+     "missing": "he"
+    },
+    " resulting damage to biodiversity disrupts ecosystems and alters evolutionary trajectories. Studying past extinctions provides insights into the resilience and adaptability of life, helping scientists predict and mitigate future biodiversity loss."
+   ]
+  },
+  {
+   "id": "neo-08-2",
+   "title": "Crop rotation",
+   "sources": [
+    8
+   ],
+   "blankCount": 10,
+   "letterCount": 33,
+   "parts": [
+    "Crop rotation is a farming technique that involves growing a series of different types of crops in the same area across a sequence of seasons. Different crops use different nutrients from the soil, so rotating them prevents the soil from becoming depleted. ",
+    {
+     "stem": "Th",
+     "missing": "is"
+    },
+    " method ",
+    {
+     "stem": "he",
+     "missing": "lps"
+    },
+    " to ",
+    {
+     "stem": "red",
+     "missing": "uce"
+    },
+    " pests ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " diseases; ",
+    {
+     "stem": "i",
+     "missing": "t"
+    },
+    " also ",
+    {
+     "stem": "decr",
+     "missing": "eases"
+    },
+    " the ",
+    {
+     "stem": "ne",
+     "missing": "ed"
+    },
+    " for ",
+    {
+     "stem": "chem",
+     "missing": "ical"
+    },
+    " fertilizers, ",
+    {
+     "stem": "prom",
+     "missing": "oting"
+    },
+    " sustainable ",
+    {
+     "stem": "agric",
+     "missing": "ulture"
+    },
+    ". Farmers use this practice to improve crop yields and maintain healthy soil."
+   ]
+  },
+  {
+   "id": "neo-08-3",
+   "title": "Museums as cultural hubs",
+   "sources": [
+    8
+   ],
+   "blankCount": 10,
+   "letterCount": 36,
+   "parts": [
+    "Museums often serve as cultural hubs, preserving and exhibiting artifacts that reflect human history and creativity. They ",
+    {
+     "stem": "pro",
+     "missing": "vide"
+    },
+    " educational ",
+    {
+     "stem": "reso",
+     "missing": "urces"
+    },
+    " that ",
+    {
+     "stem": "he",
+     "missing": "lp"
+    },
+    " visitors ",
+    {
+     "stem": "under",
+     "missing": "stand"
+    },
+    " diverse ",
+    {
+     "stem": "cult",
+     "missing": "ures"
+    },
+    ", historical ",
+    {
+     "stem": "er",
+     "missing": "as"
+    },
+    ", and ",
+    {
+     "stem": "arti",
+     "missing": "stic"
+    },
+    " movements. ",
+    {
+     "stem": "Exhi",
+     "missing": "bits"
+    },
+    " are ",
+    {
+     "stem": "desi",
+     "missing": "gned"
+    },
+    " to ",
+    {
+     "stem": "te",
+     "missing": "ll"
+    },
+    " compelling stories and engage the audience. Museums also play a crucial role in conservation, employing techniques to preserve delicate or ancient items. They foster a deeper appreciation for heritage and inspire curious minds to explore the past and present through tangible connections."
+   ]
+  },
+  {
+   "id": "neo-09-1",
+   "title": "The role of museums",
+   "sources": [
+    9
+   ],
+   "blankCount": 10,
+   "letterCount": 31,
+   "parts": [
+    "Museums play a crucial role in preserving and showcasing art, history, and culture. They ",
+    {
+     "stem": "pro",
+     "missing": "vide"
+    },
+    " a ",
+    {
+     "stem": "sp",
+     "missing": "ace"
+    },
+    " where ",
+    {
+     "stem": "peo",
+     "missing": "ple"
+    },
+    " can ",
+    {
+     "stem": "eng",
+     "missing": "age"
+    },
+    " with ",
+    {
+     "stem": "mult",
+     "missing": "iple"
+    },
+    " forms ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " artistic ",
+    {
+     "stem": "experie",
+     "missing": "nces"
+    },
+    " and ",
+    {
+     "stem": "histo",
+     "missing": "rical"
+    },
+    " artifacts. ",
+    {
+     "stem": "Ma",
+     "missing": "ny"
+    },
+    " museums ",
+    {
+     "stem": "al",
+     "missing": "so"
+    },
+    " offer educational programs and workshops, fostering a deeper understanding of the subjects they display. In addition, digital innovations have enabled museums to reach global audiences through virtual tours and online collections. The patronage of visual arts by individuals and organizations helps support artists and ensures the continued growth and diversity of the cultural landscape."
+   ]
+  },
+  {
+   "id": "neo-09-2",
+   "title": "Human causes of climate change",
+   "sources": [
+    9
+   ],
+   "blankCount": 10,
+   "letterCount": 28,
+   "parts": [
+    "Global temperatures and weather patterns are experiencing notable shifts, which scientific research strongly associates with human-related factors. Activities ",
+    {
+     "stem": "su",
+     "missing": "ch"
+    },
+    " as ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " use ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " fossil ",
+    {
+     "stem": "fu",
+     "missing": "els"
+    },
+    ", changes ",
+    {
+     "stem": "i",
+     "missing": "n"
+    },
+    " land ",
+    {
+     "stem": "u",
+     "missing": "se"
+    },
+    ", and industrial ",
+    {
+     "stem": "produ",
+     "missing": "ction"
+    },
+    " contribute ",
+    {
+     "stem": "t",
+     "missing": "o"
+    },
+    " the ",
+    {
+     "stem": "accumu",
+     "missing": "lation"
+    },
+    " of ",
+    {
+     "stem": "green",
+     "missing": "house"
+    },
+    " gases in the atmosphere. These gases retain heat, gradually increasing the Earth's average temperature. If emissions continue at current levels, potential outcomes may include more frequent extreme weather events, rising sea levels, and disruptions to ecosystems. Experts emphasize that timely and coordinated efforts are essential to reduce risks and promote long-term environmental stability."
+   ]
+  },
+  {
+   "id": "neo-09-3",
+   "title": "Medieval Europe and feudalism",
+   "sources": [
+    9
+   ],
+   "blankCount": 10,
+   "letterCount": 34,
+   "parts": [
+    "Medieval European history encompasses the time period from the fall of the Roman Empire to the onset of the Renaissance. This era lasted around 900 years and is also called the Middle Ages. ",
+    {
+     "stem": "Dur",
+     "missing": "ing"
+    },
+    " these ",
+    {
+     "stem": "cent",
+     "missing": "uries"
+    },
+    ", feudalism ",
+    {
+     "stem": "w",
+     "missing": "as"
+    },
+    " the ",
+    {
+     "stem": "domi",
+     "missing": "nant"
+    },
+    " social ",
+    {
+     "stem": "stru",
+     "missing": "cture"
+    },
+    ", shaping ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " political, ",
+    {
+     "stem": "econ",
+     "missing": "omic"
+    },
+    ", and ",
+    {
+     "stem": "cult",
+     "missing": "ural"
+    },
+    " landscape. ",
+    {
+     "stem": "Da",
+     "missing": "ily"
+    },
+    " life ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " governance were strongly influenced by the Catholic Church. Studying medieval history reveals the foundations of modern European society and the profound changes that occurred over time. It also helps students understand how people lived, worked, and believed during this important time in history."
+   ]
+  },
+  {
+   "id": "neo-10-1",
+   "title": "What is agriculture?",
+   "sources": [
+    10
+   ],
+   "blankCount": 10,
+   "letterCount": 33,
+   "parts": [
+    "Agriculture refers to the systematic cultivation of crops and the domestication of animals to produce food and other essential resources. This ",
+    {
+     "stem": "prac",
+     "missing": "tice"
+    },
+    " has ",
+    {
+     "stem": "sust",
+     "missing": "ained"
+    },
+    " human ",
+    {
+     "stem": "soci",
+     "missing": "eties"
+    },
+    " for ",
+    {
+     "stem": "mill",
+     "missing": "ennia"
+    },
+    ". Farmers ",
+    {
+     "stem": "emp",
+     "missing": "loy"
+    },
+    " various ",
+    {
+     "stem": "techn",
+     "missing": "iques"
+    },
+    " such ",
+    {
+     "stem": "a",
+     "missing": "s"
+    },
+    " plowing ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " irrigation ",
+    {
+     "stem": "t",
+     "missing": "o"
+    },
+    " manage ",
+    {
+     "stem": "la",
+     "missing": "nd"
+    },
+    " effectively. Additionally, livestock including cattle, poultry, and sheep are raised for products like milk, meat, and wool. Agriculture remains a cornerstone of global food security and plays a vital role in supporting economies and communities worldwide."
+   ]
+  },
+  {
+   "id": "neo-10-2",
+   "title": "How coral reefs form",
+   "sources": [
+    10
+   ],
+   "blankCount": 10,
+   "letterCount": 33,
+   "parts": [
+    "Coral reefs are vibrant underwater ecosystems found in warm, shallow oceans around the world. Coral reefs are ",
+    {
+     "stem": "prod",
+     "missing": "uced"
+    },
+    " by ",
+    {
+     "stem": "colo",
+     "missing": "nies"
+    },
+    " of ",
+    {
+     "stem": "ti",
+     "missing": "ny"
+    },
+    " animals ",
+    {
+     "stem": "cal",
+     "missing": "led"
+    },
+    " coral polyps, ",
+    {
+     "stem": "wh",
+     "missing": "ich"
+    },
+    " secrete calcium carbonate ",
+    {
+     "stem": "t",
+     "missing": "o"
+    },
+    " build ",
+    {
+     "stem": "th",
+     "missing": "eir"
+    },
+    " hard ",
+    {
+     "stem": "skel",
+     "missing": "etons"
+    },
+    ". These ",
+    {
+     "stem": "nat",
+     "missing": "ural"
+    },
+    " formations ",
+    {
+     "stem": "pro",
+     "missing": "vide"
+    },
+    " critical habitats for a diverse array of marine species, including fish, crustaceans, and mollusks. They also offer protection to coastal areas by reducing the impact of waves and storms. However, coral reefs are facing threats from climate change, pollution, and overfishing."
+   ]
+  },
+  {
+   "id": "neo-10-3",
+   "title": "The Spix's macaw",
+   "sources": [
+    10
+   ],
+   "blankCount": 10,
+   "letterCount": 29,
+   "parts": [
+    "The Spix's Macaw, native to Brazil and famously known as the inspiration for the animated movie Rio, is critically endangered, with fewer than a hundred individuals remaining. The ",
+    {
+     "stem": "popul",
+     "missing": "ation"
+    },
+    " of ",
+    {
+     "stem": "th",
+     "missing": "is"
+    },
+    " vibrant ",
+    {
+     "stem": "bl",
+     "missing": "ue"
+    },
+    " bird ",
+    {
+     "stem": "decl",
+     "missing": "ined"
+    },
+    " because ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " habitat ",
+    {
+     "stem": "lo",
+     "missing": "ss"
+    },
+    " and ",
+    {
+     "stem": "ill",
+     "missing": "egal"
+    },
+    " trapping ",
+    {
+     "stem": "f",
+     "missing": "or"
+    },
+    " sale ",
+    {
+     "stem": "abr",
+     "missing": "oad"
+    },
+    ", where ",
+    {
+     "stem": "pri",
+     "missing": "vate"
+    },
+    " collectors and pet stores spent large sums of money on the birds. Conservationists have initiated captive breeding programs and habitat restoration efforts to reintroduce the Spix's Macaw into the wild, where it was officially declared extinct in 2019."
+   ]
+  },
+  {
+   "id": "neo-11-1",
+   "title": "Sanitation and public health",
+   "sources": [
+    11
+   ],
+   "blankCount": 10,
+   "letterCount": 34,
+   "parts": [
+    "The introduction of sanitation practices in urban areas during the nineteenth century significantly improved public health. Innovations such as ",
+    {
+     "stem": "sew",
+     "missing": "age"
+    },
+    " systems ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " clean ",
+    {
+     "stem": "wa",
+     "missing": "ter"
+    },
+    " supplies ",
+    {
+     "stem": "deve",
+     "missing": "loped"
+    },
+    " from ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " growing ",
+    {
+     "stem": "awar",
+     "missing": "eness"
+    },
+    " of the ",
+    {
+     "stem": "conne",
+     "missing": "ction"
+    },
+    " between ",
+    {
+     "stem": "po",
+     "missing": "or"
+    },
+    " hygiene and ",
+    {
+     "stem": "ill",
+     "missing": "ness"
+    },
+    ", and reduced the ",
+    {
+     "stem": "spr",
+     "missing": "ead"
+    },
+    " of infectious diseases like cholera and typhoid. Public health campaigns, supported by local governments and medical professionals, educated communities on the importance of hygiene. These efforts were instrumental in decreasing mortality rates and enhancing quality of life."
+   ]
+  },
+  {
+   "id": "neo-11-2",
+   "title": "Ocean currents and climate",
+   "sources": [
+    11
+   ],
+   "blankCount": 10,
+   "letterCount": 31,
+   "parts": [
+    "Ocean currents are critical components of Earth's climate system, influencing weather patterns and marine ecosystems. Driven ",
+    {
+     "stem": "b",
+     "missing": "y"
+    },
+    " wind, ",
+    {
+     "stem": "tempe",
+     "missing": "rature"
+    },
+    " changes, ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " differences ",
+    {
+     "stem": "i",
+     "missing": "n"
+    },
+    " salinity, ocean currents ",
+    {
+     "stem": "distr",
+     "missing": "ibute"
+    },
+    " heat ",
+    {
+     "stem": "acr",
+     "missing": "oss"
+    },
+    " the ",
+    {
+     "stem": "gl",
+     "missing": "obe"
+    },
+    ". The Gulf Stream, ",
+    {
+     "stem": "f",
+     "missing": "or"
+    },
+    " instance, ",
+    {
+     "stem": "wa",
+     "missing": "rms"
+    },
+    " the North Atlantic Current, ",
+    {
+     "stem": "affe",
+     "missing": "cting"
+    },
+    " climate in Europe. Deep ocean currents, known as thermohaline circulation, play a role in regulating global temperatures and carbon dioxide levels. Research in oceanography continues to reveal the complexities of these dynamic systems."
+   ]
+  },
+  {
+   "id": "neo-11-3",
+   "title": "The Erie Canal",
+   "sources": [
+    11
+   ],
+   "blankCount": 10,
+   "letterCount": 43,
+   "parts": [
+    "The Erie Canal, completed in 1825, is a historic waterway in the United States that linked the Atlantic Ocean to the Great Lakes. Its ",
+    {
+     "stem": "constr",
+     "missing": "uction"
+    },
+    " was a ",
+    {
+     "stem": "remar",
+     "missing": "kable"
+    },
+    " engineering ",
+    {
+     "stem": "fe",
+     "missing": "at"
+    },
+    " and ",
+    {
+     "stem": "pion",
+     "missing": "eered"
+    },
+    " many ",
+    {
+     "stem": "innov",
+     "missing": "ative"
+    },
+    " techniques. ",
+    {
+     "stem": "T",
+     "missing": "he"
+    },
+    " canal ",
+    {
+     "stem": "signif",
+     "missing": "icantly"
+    },
+    " reduced ",
+    {
+     "stem": "transpo",
+     "missing": "rtation"
+    },
+    " costs ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " time ",
+    {
+     "stem": "fr",
+     "missing": "om"
+    },
+    " New York City to the interior of the nation, propelling the city into a major commercial hub. The success of the Erie Canal inspired the building of other canals and infrastructure projects across the United States."
+   ]
+  },
+  {
+   "id": "neo-12-1",
+   "title": "Honeybee society",
+   "sources": [
+    12
+   ],
+   "blankCount": 10,
+   "letterCount": 27,
+   "parts": [
+    "Honeybee social structure is a fascinating example of cooperation and division of labor in the animal kingdom. The main role of the queen bee is to lay ",
+    {
+     "stem": "thou",
+     "missing": "sands"
+    },
+    " of ",
+    {
+     "stem": "eg",
+     "missing": "gs"
+    },
+    " to ",
+    {
+     "stem": "ke",
+     "missing": "ep"
+    },
+    " the ",
+    {
+     "stem": "col",
+     "missing": "ony"
+    },
+    " growing. ",
+    {
+     "stem": "Wor",
+     "missing": "ker"
+    },
+    " bees ",
+    {
+     "stem": "a",
+     "missing": "re"
+    },
+    " the ",
+    {
+     "stem": "bu",
+     "missing": "sy"
+    },
+    " multitaskers; ",
+    {
+     "stem": "th",
+     "missing": "ey"
+    },
+    " collect ",
+    {
+     "stem": "nec",
+     "missing": "tar"
+    },
+    " and ",
+    {
+     "stem": "pol",
+     "missing": "len"
+    },
+    ", feed baby bees, clean the hive, and stand guard against intruders. The only job of the male drones is to mate with a queen from another hive. Each bee plays a unique role, and this organized system of cooperation helps the colony survive and thrive."
+   ]
+  },
+  {
+   "id": "neo-12-2",
+   "title": "Microfinance",
+   "sources": [
+    12
+   ],
+   "blankCount": 10,
+   "letterCount": 45,
+   "parts": [
+    "The concept of microfinance has transformed the way people access financial services. Microfinance institutions provide small loans to individuals or groups who lack access to traditional banking. These loans empower ",
+    {
+     "stem": "recip",
+     "missing": "ients"
+    },
+    " to ",
+    {
+     "stem": "st",
+     "missing": "art"
+    },
+    " or ",
+    {
+     "stem": "exp",
+     "missing": "and"
+    },
+    " small ",
+    {
+     "stem": "busin",
+     "missing": "esses"
+    },
+    ", improving ",
+    {
+     "stem": "th",
+     "missing": "eir"
+    },
+    " living ",
+    {
+     "stem": "condi",
+     "missing": "tions"
+    },
+    " and ",
+    {
+     "stem": "commu",
+     "missing": "nities"
+    },
+    ". By ",
+    {
+     "stem": "encou",
+     "missing": "raging"
+    },
+    " financial ",
+    {
+     "stem": "lite",
+     "missing": "racy"
+    },
+    " and ",
+    {
+     "stem": "adva",
+     "missing": "ncing"
+    },
+    " financial inclusion, microfinance helps reduce poverty, foster economic development, and build long-term stability at the grassroots level. Understanding this system helps design effective financial inclusion strategies."
+   ]
+  },
+  {
+   "id": "neo-12-3",
+   "title": "The Great Barrier Reef",
+   "sources": [
+    12
+   ],
+   "blankCount": 10,
+   "letterCount": 28,
+   "parts": [
+    "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It ",
+    {
+     "stem": "ho",
+     "missing": "sts"
+    },
+    " a ",
+    {
+     "stem": "div",
+     "missing": "erse"
+    },
+    " array ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " marine ",
+    {
+     "stem": "li",
+     "missing": "fe"
+    },
+    ", including ",
+    {
+     "stem": "fi",
+     "missing": "sh"
+    },
+    ", mollusks, ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " sea ",
+    {
+     "stem": "tur",
+     "missing": "tles"
+    },
+    ". Coral ",
+    {
+     "stem": "re",
+     "missing": "efs"
+    },
+    " are ",
+    {
+     "stem": "bu",
+     "missing": "ilt"
+    },
+    " by ",
+    {
+     "stem": "colo",
+     "missing": "nies"
+    },
+    " of tiny organisms called coral polyps that secrete calcium carbonate skeletons; these hard structures grow together to form massive reefs over time. The Great Barrier Reef ecosystem is crucial for biodiversity, providing habitat and food for numerous marine species. Climate change, pollution, and overfishing threaten the health of the Great Barrier Reef."
+   ]
+  },
+  {
+   "id": "neo-13-1",
+   "title": "Art as a mirror of culture",
+   "sources": [
+    13
+   ],
+   "blankCount": 10,
+   "letterCount": 36,
+   "parts": [
+    "Art has long reflected human culture, mirroring society's values and beliefs. Throughout history, artists have expressed emotions, told stories, and challenged norms. During the Renaissance, figures like Leonardo da Vinci and Michelangelo explored ",
+    {
+     "stem": "ana",
+     "missing": "tomy"
+    },
+    " and ",
+    {
+     "stem": "persp",
+     "missing": "ective"
+    },
+    ", echoing ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " era's ",
+    {
+     "stem": "inte",
+     "missing": "rest"
+    },
+    " in ",
+    {
+     "stem": "sci",
+     "missing": "ence"
+    },
+    " and ",
+    {
+     "stem": "nat",
+     "missing": "ure"
+    },
+    ". Later, ",
+    {
+     "stem": "move",
+     "missing": "ments"
+    },
+    " such ",
+    {
+     "stem": "a",
+     "missing": "s"
+    },
+    " Impressionism ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " Abstract Expressionism ",
+    {
+     "stem": "rede",
+     "missing": "fined"
+    },
+    " traditional boundaries. These styles invited viewers to see the world differently, highlighting art's lasting ability to provoke thought, inspire change, and deepen our understanding of human experience."
+   ]
+  },
+  {
+   "id": "neo-13-2",
+   "title": "Cognition and consciousness",
+   "sources": [
+    13
+   ],
+   "blankCount": 10,
+   "letterCount": 43,
+   "parts": [
+    "Cognition encompasses mental processes involved in acquiring, storing, and using information, including perception, memory, and decision-making. Researchers ",
+    {
+     "stem": "invest",
+     "missing": "igate"
+    },
+    " the ",
+    {
+     "stem": "mecha",
+     "missing": "nisms"
+    },
+    " underlying ",
+    {
+     "stem": "cogn",
+     "missing": "itive"
+    },
+    " processes, ",
+    {
+     "stem": "aim",
+     "missing": "ing"
+    },
+    " to ",
+    {
+     "stem": "under",
+     "missing": "stand"
+    },
+    " how ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " brain ",
+    {
+     "stem": "sto",
+     "missing": "res"
+    },
+    " and ",
+    {
+     "stem": "retr",
+     "missing": "ieves"
+    },
+    " information. ",
+    {
+     "stem": "Consci",
+     "missing": "ousness"
+    },
+    ", the ",
+    {
+     "stem": "st",
+     "missing": "ate"
+    },
+    " of being aware of one's thoughts and surroundings, remains a particularly elusive aspect of cognition. Theories about this state explore whether it arises from specific brain structures or emerges from the interplay of neural networks. Advances in neuroimaging techniques offer glimpses into the complex workings of the brain."
+   ]
+  },
+  {
+   "id": "neo-13-3",
+   "title": "Climate versus weather",
+   "sources": [
+    13
+   ],
+   "blankCount": 10,
+   "letterCount": 38,
+   "parts": [
+    "Climate change has become one of the most pressing current issues of our time, sparking global conversations. When discussing climate, it is often confused with weather. Climate ",
+    {
+     "stem": "specif",
+     "missing": "ically"
+    },
+    " refers ",
+    {
+     "stem": "t",
+     "missing": "o"
+    },
+    " long-term ",
+    {
+     "stem": "tre",
+     "missing": "nds"
+    },
+    " in ",
+    {
+     "stem": "tempe",
+     "missing": "rature"
+    },
+    ", humidity, ",
+    {
+     "stem": "wi",
+     "missing": "nd"
+    },
+    ", and ",
+    {
+     "stem": "precip",
+     "missing": "itation"
+    },
+    " that ",
+    {
+     "stem": "def",
+     "missing": "ine"
+    },
+    " typical ",
+    {
+     "stem": "condi",
+     "missing": "tions"
+    },
+    " for a ",
+    {
+     "stem": "reg",
+     "missing": "ion"
+    },
+    " —not ",
+    {
+     "stem": "ju",
+     "missing": "st"
+    },
+    " the daily forecast. While weather can shift dramatically from one day to the next, the climate of an area describes what is normal over decades."
+   ]
+  },
+  {
+   "id": "neo-14-1",
+   "title": "The strength of spider silk",
+   "sources": [
+    14
+   ],
+   "blankCount": 10,
+   "letterCount": 28,
+   "parts": [
+    "The unusual properties of spider silk—a remarkable combination of strength and elasticity—have long attracted the attention of many. Spider ",
+    {
+     "stem": "si",
+     "missing": "lk"
+    },
+    " has a ",
+    {
+     "stem": "brea",
+     "missing": "king"
+    },
+    " point ",
+    {
+     "stem": "f",
+     "missing": "ar"
+    },
+    " greater ",
+    {
+     "stem": "th",
+     "missing": "an"
+    },
+    " steel ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " may ",
+    {
+     "stem": "str",
+     "missing": "etch"
+    },
+    " its ",
+    {
+     "stem": "fu",
+     "missing": "ll"
+    },
+    " length ",
+    {
+     "stem": "bef",
+     "missing": "ore"
+    },
+    " breaking: a 0.01 ",
+    {
+     "stem": "centi",
+     "missing": "meter"
+    },
+    " thread ",
+    {
+     "stem": "c",
+     "missing": "an"
+    },
+    " support eighty grams. Spider silk is also very durable, a feature well illustrated by the persistence of cobwebs. Throughout history, humans have adapted spider silk for many purposes. For a long period, thick webs were used in Europe as bandages."
+   ]
+  },
+  {
+   "id": "neo-14-2",
+   "title": "Conservation ecology",
+   "sources": [
+    14
+   ],
+   "blankCount": 10,
+   "letterCount": 42,
+   "parts": [
+    "Conservation ecology focuses on preserving biodiversity and protecting ecosystems from degradation. This ",
+    {
+     "stem": "disci",
+     "missing": "pline"
+    },
+    " involves ",
+    {
+     "stem": "stud",
+     "missing": "ying"
+    },
+    " the ",
+    {
+     "stem": "intera",
+     "missing": "ctions"
+    },
+    " between ",
+    {
+     "stem": "spe",
+     "missing": "cies"
+    },
+    " and ",
+    {
+     "stem": "th",
+     "missing": "eir"
+    },
+    " environments ",
+    {
+     "stem": "t",
+     "missing": "o"
+    },
+    " develop ",
+    {
+     "stem": "strat",
+     "missing": "egies"
+    },
+    " for ",
+    {
+     "stem": "maint",
+     "missing": "aining"
+    },
+    " ecological ",
+    {
+     "stem": "bal",
+     "missing": "ance"
+    },
+    ". Efforts ",
+    {
+     "stem": "inc",
+     "missing": "lude"
+    },
+    " habitat restoration, sustainable resource management, and the establishment of protected areas. Conservation ecologists work to mitigate the impacts of human activities such as deforestation, pollution, and climate change. Public awareness campaigns and policy advocacy are crucial components of conservation initiatives. By safeguarding natural habitats, conservation ecology aims to ensure the survival of diverse species and the health of the planet."
+   ]
+  },
+  {
+   "id": "neo-14-3",
+   "title": "The Renaissance",
+   "sources": [
+    14
+   ],
+   "blankCount": 10,
+   "letterCount": 32,
+   "parts": [
+    "The Renaissance was a period of cultural rebirth in Europe, spanning the fourteenth to seventeenth centuries. A ",
+    {
+     "stem": "vib",
+     "missing": "rant"
+    },
+    " period ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " cultural, ",
+    {
+     "stem": "arti",
+     "missing": "stic"
+    },
+    ", and ",
+    {
+     "stem": "intell",
+     "missing": "ectual"
+    },
+    " revival, ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " Renaissance ",
+    {
+     "stem": "mar",
+     "missing": "ked"
+    },
+    " a ",
+    {
+     "stem": "ren",
+     "missing": "ewed"
+    },
+    " interest ",
+    {
+     "stem": "i",
+     "missing": "n"
+    },
+    " classical ",
+    {
+     "stem": "liter",
+     "missing": "ature"
+    },
+    ", art, ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " science. The Renaissance had a profound historical impact, serving as a bridge between the Middle Ages and the modern era. It sparked a cultural awakening that emphasized humanism, individual achievement, and secular learning, which reshaped European thought and institutions."
+   ]
+  },
+  {
+   "id": "neo-15-1",
+   "title": "Lions and their prides",
+   "sources": [
+    15
+   ],
+   "blankCount": 10,
+   "letterCount": 29,
+   "parts": [
+    "Lions, known as the kings of the jungle, are actually savanna (grassland) dwellers found mainly in Africa. They are the only truly ",
+    {
+     "stem": "soc",
+     "missing": "ial"
+    },
+    " big ",
+    {
+     "stem": "ca",
+     "missing": "ts"
+    },
+    ", living ",
+    {
+     "stem": "i",
+     "missing": "n"
+    },
+    " prides, ",
+    {
+     "stem": "wh",
+     "missing": "ich"
+    },
+    " are ",
+    {
+     "stem": "gro",
+     "missing": "ups"
+    },
+    " that ",
+    {
+     "stem": "typi",
+     "missing": "cally"
+    },
+    " include ",
+    {
+     "stem": "rel",
+     "missing": "ated"
+    },
+    " females, ",
+    {
+     "stem": "th",
+     "missing": "eir"
+    },
+    " offspring, ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " some ",
+    {
+     "stem": "ma",
+     "missing": "les"
+    },
+    ". The pride structure aids in hunting, cub protection, and territorial defense. Lions communicate through vocalizations, such as roars, which can be heard up to 5 miles away. These vocal signals help maintain territorial boundaries and coordinate group activities."
+   ]
+  },
+  {
+   "id": "neo-15-2",
+   "title": "Basket weaving",
+   "sources": [
+    15
+   ],
+   "blankCount": 10,
+   "letterCount": 33,
+   "parts": [
+    "Basket weaving is an ancient craft that has been practiced by various cultures around the world. Using ",
+    {
+     "stem": "nat",
+     "missing": "ural"
+    },
+    " materials ",
+    {
+     "stem": "li",
+     "missing": "ke"
+    },
+    " reeds ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " bamboo, ",
+    {
+     "stem": "arti",
+     "missing": "sans"
+    },
+    " create ",
+    {
+     "stem": "funct",
+     "missing": "ional"
+    },
+    " and ",
+    {
+     "stem": "decor",
+     "missing": "ative"
+    },
+    " baskets. Basket weaving ",
+    {
+     "stem": "of",
+     "missing": "ten"
+    },
+    " serves ",
+    {
+     "stem": "a",
+     "missing": "s"
+    },
+    " a communal ",
+    {
+     "stem": "acti",
+     "missing": "vity"
+    },
+    ", with ",
+    {
+     "stem": "ski",
+     "missing": "lls"
+    },
+    " passed down through generations. The craft not only produces useful items but also reflects cultural heritage and creativity, and studying basket weaving provides insights into traditional craftsmanship and the sustainable use of resources."
+   ]
+  },
+  {
+   "id": "neo-15-3",
+   "title": "Coral reef ecosystems",
+   "sources": [
+    15
+   ],
+   "blankCount": 10,
+   "letterCount": 35,
+   "parts": [
+    "Coral reefs are among the most diverse and productive ecosystems on Earth. ",
+    {
+     "stem": "Bu",
+     "missing": "ilt"
+    },
+    " by ",
+    {
+     "stem": "colo",
+     "missing": "nies"
+    },
+    " of ",
+    {
+     "stem": "ti",
+     "missing": "ny"
+    },
+    " coral polyps, ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " underwater ",
+    {
+     "stem": "struc",
+     "missing": "tures"
+    },
+    " support ",
+    {
+     "stem": "a",
+     "missing": "n"
+    },
+    " incredible ",
+    {
+     "stem": "ra",
+     "missing": "nge"
+    },
+    " of ",
+    {
+     "stem": "mar",
+     "missing": "ine"
+    },
+    " life, ",
+    {
+     "stem": "incl",
+     "missing": "uding"
+    },
+    " fish, ",
+    {
+     "stem": "invert",
+     "missing": "ebrates"
+    },
+    ", and algae. Coral reefs act as nurseries and shelter for various species. However, coral reefs face threats from climate change, pollution, and overfishing. Efforts to conserve and restore these ecosystems are crucial for maintaining biodiversity and the health of the oceans."
+   ]
+  },
+  {
+   "id": "neo-16-1",
+   "title": "The classical world",
+   "sources": [
+    16
+   ],
+   "blankCount": 10,
+   "letterCount": 33,
+   "parts": [
+    "The study of the classical world involves examining the cultural, political, and social structures of ancient civilizations such as Greece and Rome. These ",
+    {
+     "stem": "soci",
+     "missing": "eties"
+    },
+    " have ",
+    {
+     "stem": "gre",
+     "missing": "atly"
+    },
+    " influenced ",
+    {
+     "stem": "mod",
+     "missing": "ern"
+    },
+    " governance, ",
+    {
+     "stem": "philo",
+     "missing": "sophy"
+    },
+    ", and ",
+    {
+     "stem": "a",
+     "missing": "rt"
+    },
+    ". The ",
+    {
+     "stem": "con",
+     "missing": "cept"
+    },
+    " of ",
+    {
+     "stem": "demo",
+     "missing": "cracy"
+    },
+    " originated ",
+    {
+     "stem": "i",
+     "missing": "n"
+    },
+    " Athens, ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " Romans ",
+    {
+     "stem": "we",
+     "missing": "re"
+    },
+    " superb engineers, building roads, aqueducts, and impressive buildings like the Pantheon. By understanding their advancements and contributions, we gain insight into the foundations of contemporary society. Archaeologists and historians employ various methods to uncover artifacts and interpret historical records from ancient times."
+   ]
+  },
+  {
+   "id": "neo-16-2",
+   "title": "Feudal Europe",
+   "sources": [
+    16
+   ],
+   "blankCount": 10,
+   "letterCount": 38,
+   "parts": [
+    "Medieval European history, lasting approximately from 500 C.E. to 1500 C.E., is marked by significant cultural, political, and economic changes. Feudalism ",
+    {
+     "stem": "domi",
+     "missing": "nated"
+    },
+    " the ",
+    {
+     "stem": "soc",
+     "missing": "ial"
+    },
+    " structure, ",
+    {
+     "stem": "wi",
+     "missing": "th"
+    },
+    " lords ",
+    {
+     "stem": "gove",
+     "missing": "rning"
+    },
+    " lands ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " vassals ",
+    {
+     "stem": "prov",
+     "missing": "iding"
+    },
+    " military ",
+    {
+     "stem": "ser",
+     "missing": "vice"
+    },
+    ". The Church ",
+    {
+     "stem": "exe",
+     "missing": "rted"
+    },
+    " substantial ",
+    {
+     "stem": "infl",
+     "missing": "uence"
+    },
+    " over ",
+    {
+     "stem": "da",
+     "missing": "ily"
+    },
+    " life and governance. Trade routes expanded, facilitating the exchange of goods and ideas. Art and architecture flourished, exemplified by Gothic cathedrals and illuminated manuscripts. Studying this era involves analyzing historical documents, artifacts, and architectural remains to understand the complexities of medieval society."
+   ]
+  },
+  {
+   "id": "neo-16-3",
+   "title": "Cosmology",
+   "sources": [
+    16
+   ],
+   "blankCount": 10,
+   "letterCount": 36,
+   "parts": [
+    "Cosmology is the study of how the universe began, changed over time, and might evolve in the future. Scientists ",
+    {
+     "stem": "exa",
+     "missing": "mine"
+    },
+    " stars, ",
+    {
+     "stem": "pla",
+     "missing": "nets"
+    },
+    ", and ",
+    {
+     "stem": "gala",
+     "missing": "xies"
+    },
+    " using ",
+    {
+     "stem": "observ",
+     "missing": "ations"
+    },
+    " and ",
+    {
+     "stem": "mod",
+     "missing": "els"
+    },
+    " to ",
+    {
+     "stem": "desc",
+     "missing": "ribe"
+    },
+    " cosmic ",
+    {
+     "stem": "eve",
+     "missing": "nts"
+    },
+    ". One ",
+    {
+     "stem": "wid",
+     "missing": "ely"
+    },
+    " accepted ",
+    {
+     "stem": "id",
+     "missing": "ea"
+    },
+    " is the big bang, ",
+    {
+     "stem": "wh",
+     "missing": "ich"
+    },
+    " suggests the universe started from a single point and has been expanding ever since. Ongoing research helps improve our understanding of space, time, and the forces shaping the cosmos, revealing new discoveries about the vast universe."
+   ]
+  },
+  {
+   "id": "neo-17-1",
+   "title": "The first bicycles",
+   "sources": [
+    17
+   ],
+   "blankCount": 10,
+   "letterCount": 25,
+   "parts": [
+    "The earliest ancestor of the modern bicycle is probably a machine used in England in the early 1800s called a hobbyhorse. It ",
+    {
+     "stem": "h",
+     "missing": "ad"
+    },
+    " two ",
+    {
+     "stem": "whe",
+     "missing": "els"
+    },
+    " and a ",
+    {
+     "stem": "pl",
+     "missing": "ace"
+    },
+    " to ",
+    {
+     "stem": "s",
+     "missing": "it"
+    },
+    ", but ",
+    {
+     "stem": "n",
+     "missing": "o"
+    },
+    " pedals; ",
+    {
+     "stem": "rid",
+     "missing": "ers"
+    },
+    " would ",
+    {
+     "stem": "pu",
+     "missing": "sh"
+    },
+    " it ",
+    {
+     "stem": "al",
+     "missing": "ong"
+    },
+    " with ",
+    {
+     "stem": "th",
+     "missing": "eir"
+    },
+    " feet. ",
+    {
+     "stem": "La",
+     "missing": "ter"
+    },
+    ", an inventor added pedals directly to the front wheel, like a modern child's tricycle. This version, with a huge front wheel, was faster, but it was unsafe. Riders were high off the ground, and the two wheels were close together, making both balance and stopping difficult."
+   ]
+  },
+  {
+   "id": "neo-17-2",
+   "title": "What economics studies",
+   "sources": [
+    17
+   ],
+   "blankCount": 10,
+   "letterCount": 41,
+   "parts": [
+    "Economics is the social science that studies the production, distribution, and consumption of goods and services. It ",
+    {
+     "stem": "exam",
+     "missing": "ines"
+    },
+    " how ",
+    {
+     "stem": "indiv",
+     "missing": "iduals"
+    },
+    ", households, ",
+    {
+     "stem": "busin",
+     "missing": "esses"
+    },
+    ", and ",
+    {
+     "stem": "gover",
+     "missing": "nments"
+    },
+    " make ",
+    {
+     "stem": "cho",
+     "missing": "ices"
+    },
+    " about ",
+    {
+     "stem": "reso",
+     "missing": "urce"
+    },
+    " allocation ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " how ",
+    {
+     "stem": "su",
+     "missing": "ch"
+    },
+    " decisions ",
+    {
+     "stem": "aff",
+     "missing": "ect"
+    },
+    " overall ",
+    {
+     "stem": "stab",
+     "missing": "ility"
+    },
+    " and growth in the economy. Through the application of theoretical models and the collection of empirical data, economists can help policymakers formulate strategies to address issues such as inflation, unemployment, and trade imbalances, thereby improving societal well-being."
+   ]
+  },
+  {
+   "id": "neo-17-3",
+   "title": "Plant structures",
+   "sources": [
+    17
+   ],
+   "blankCount": 10,
+   "letterCount": 28,
+   "parts": [
+    "Plants have evolved various structures to optimize photosynthesis (the capture and conversion of light energy) and survival. Roots ",
+    {
+     "stem": "anc",
+     "missing": "hor"
+    },
+    " the plant ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " absorb ",
+    {
+     "stem": "wa",
+     "missing": "ter"
+    },
+    " and ",
+    {
+     "stem": "mine",
+     "missing": "rals"
+    },
+    " from ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " soil. Leaves ",
+    {
+     "stem": "a",
+     "missing": "re"
+    },
+    " the ",
+    {
+     "stem": "pri",
+     "missing": "mary"
+    },
+    " sites ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " photosynthesis. Their ",
+    {
+     "stem": "br",
+     "missing": "oad"
+    },
+    ", flat ",
+    {
+     "stem": "surf",
+     "missing": "aces"
+    },
+    " maximize light absorption. The stem supports the leaves and transports nutrients and water through the vascular system, which consists of xylem and phloem. Some plants, like succulents, store water in their thick leaves to endure arid conditions."
+   ]
+  },
+  {
+   "id": "neo-18-1",
+   "title": "Stars and galaxies",
+   "sources": [
+    18
+   ],
+   "blankCount": 10,
+   "letterCount": 22,
+   "parts": [
+    "The stars we see in the night sky are massive balls of gas that give off light and heat. Our ",
+    {
+     "stem": "S",
+     "missing": "un"
+    },
+    " is ",
+    {
+     "stem": "o",
+     "missing": "ne"
+    },
+    " of these, and ",
+    {
+     "stem": "i",
+     "missing": "t"
+    },
+    " provides ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " energy ",
+    {
+     "stem": "nee",
+     "missing": "ded"
+    },
+    " for ",
+    {
+     "stem": "li",
+     "missing": "fe"
+    },
+    " on ",
+    {
+     "stem": "Ea",
+     "missing": "rth"
+    },
+    ". These celestial bodies ",
+    {
+     "stem": "a",
+     "missing": "re"
+    },
+    " grouped ",
+    {
+     "stem": "in",
+     "missing": "to"
+    },
+    " collections ",
+    {
+     "stem": "cal",
+     "missing": "led"
+    },
+    " galaxies. Our solar system belongs to the Milky Way galaxy. Scientists known as astronomers study these distant lights to better understand the universe and how it came to be."
+   ]
+  },
+  {
+   "id": "neo-18-2",
+   "title": "The adult brain",
+   "sources": [
+    18
+   ],
+   "blankCount": 10,
+   "letterCount": 27,
+   "parts": [
+    "We are exquisitely sensitive to our surroundings, and environment plays a critical role in the development of a child's brain. But ",
+    {
+     "stem": "wh",
+     "missing": "at"
+    },
+    " happens ",
+    {
+     "stem": "on",
+     "missing": "ce"
+    },
+    " we've ",
+    {
+     "stem": "rea",
+     "missing": "ched"
+    },
+    " adulthood? ",
+    {
+     "stem": "C",
+     "missing": "an"
+    },
+    " the ",
+    {
+     "stem": "br",
+     "missing": "ain"
+    },
+    " still ",
+    {
+     "stem": "und",
+     "missing": "ergo"
+    },
+    " the ",
+    {
+     "stem": "ki",
+     "missing": "nds"
+    },
+    " of ",
+    {
+     "stem": "cha",
+     "missing": "nges"
+    },
+    " it ",
+    {
+     "stem": "d",
+     "missing": "id"
+    },
+    " when ",
+    {
+     "stem": "w",
+     "missing": "e"
+    },
+    " were younger? By the time we are twenty-five years old, the brain transformations of childhood are finally over and our brain appears to be fully developed. You might think that who we are as adults is then fixed in place, immovable. But it's not: in adulthood our brains continue to change."
+   ]
+  },
+  {
+   "id": "neo-18-3",
+   "title": "Circadian rhythm disruption",
+   "sources": [
+    18
+   ],
+   "blankCount": 10,
+   "letterCount": 44,
+   "parts": [
+    "The circadian rhythm regulates sleep-wake cycles and other physiological processes, operating on a roughly 24-hour cycle influenced by external cues such as light and temperature. Disruptions to this rhythm, like ",
+    {
+     "stem": "irre",
+     "missing": "gular"
+    },
+    " sleep ",
+    {
+     "stem": "patt",
+     "missing": "erns"
+    },
+    ", can ",
+    {
+     "stem": "le",
+     "missing": "ad"
+    },
+    " to ",
+    {
+     "stem": "hea",
+     "missing": "lth"
+    },
+    " issues ",
+    {
+     "stem": "incl",
+     "missing": "uding"
+    },
+    " insomnia, ",
+    {
+     "stem": "exhau",
+     "missing": "stion"
+    },
+    ", and ",
+    {
+     "stem": "decr",
+     "missing": "eased"
+    },
+    " cognitive ",
+    {
+     "stem": "func",
+     "missing": "tion"
+    },
+    ". Some ",
+    {
+     "stem": "resea",
+     "missing": "rchers"
+    },
+    " are ",
+    {
+     "stem": "expl",
+     "missing": "oring"
+    },
+    " the mechanisms of circadian rhythms, aiming to develop treatments for sleep disorders and improve overall health. Understanding these rhythms is crucial for addressing various health concerns."
+   ]
+  },
+  {
+   "id": "neo-19-1",
+   "title": "Bison and the Great Plains",
+   "sources": [
+    19
+   ],
+   "blankCount": 10,
+   "letterCount": 37,
+   "parts": [
+    "The Great Plains of North America were once home to vast herds of bison, which played a crucial role in the lives of Indigenous peoples, who made use of bison meat, hides, and bones. These ",
+    {
+     "stem": "commu",
+     "missing": "nities"
+    },
+    " relied ",
+    {
+     "stem": "o",
+     "missing": "n"
+    },
+    " bison ",
+    {
+     "stem": "f",
+     "missing": "or"
+    },
+    " food, ",
+    {
+     "stem": "clot",
+     "missing": "hing"
+    },
+    ", and ",
+    {
+     "stem": "she",
+     "missing": "lter"
+    },
+    ". Hunting ",
+    {
+     "stem": "prac",
+     "missing": "tices"
+    },
+    " were ",
+    {
+     "stem": "of",
+     "missing": "ten"
+    },
+    " sophisticated, ",
+    {
+     "stem": "invo",
+     "missing": "lving"
+    },
+    " coordinated ",
+    {
+     "stem": "eff",
+     "missing": "orts"
+    },
+    " to ",
+    {
+     "stem": "dr",
+     "missing": "ive"
+    },
+    " bison into traps or over cliffs. The arrival of European settlers dramatically altered the landscape, leading to overhunting and near extinction of bison populations. Conservation efforts in the twentieth century helped restore bison numbers, symbolizing resilience and recovery."
+   ]
+  },
+  {
+   "id": "neo-19-2",
+   "title": "The Pinta Island tortoise",
+   "sources": [
+    19
+   ],
+   "blankCount": 10,
+   "letterCount": 32,
+   "parts": [
+    "The Pinta Island tortoise, a subspecies of giant tortoise native to Ecuador's Galápagos Islands, became extinct with the death of the last known individual, Lonesome George, in 2012. Pinta tortoises were ",
+    {
+     "stem": "kn",
+     "missing": "own"
+    },
+    " for ",
+    {
+     "stem": "th",
+     "missing": "eir"
+    },
+    " domed ",
+    {
+     "stem": "she",
+     "missing": "lls"
+    },
+    " and ",
+    {
+     "stem": "lo",
+     "missing": "ng"
+    },
+    " necks ",
+    {
+     "stem": "ada",
+     "missing": "pted"
+    },
+    " for ",
+    {
+     "stem": "fee",
+     "missing": "ding"
+    },
+    "; they ",
+    {
+     "stem": "pla",
+     "missing": "yed"
+    },
+    " a ",
+    {
+     "stem": "cru",
+     "missing": "cial"
+    },
+    " role ",
+    {
+     "stem": "i",
+     "missing": "n"
+    },
+    " shaping ",
+    {
+     "stem": "veget",
+     "missing": "ation"
+    },
+    " by grazing on plants and dispersing seeds. The extinction of this subspecies highlights the impact of human activity on isolated ecosystems. Invasive species and habitat destruction were significant factors contributing to its decline."
+   ]
+  },
+  {
+   "id": "neo-19-3",
+   "title": "How children learn language",
+   "sources": [
+    19
+   ],
+   "blankCount": 10,
+   "letterCount": 26,
+   "parts": [
+    "Language development in children is a complex process influenced by both genetics and environment. From ",
+    {
+     "stem": "bi",
+     "missing": "rth"
+    },
+    ", infants ",
+    {
+     "stem": "be",
+     "missing": "gin"
+    },
+    " to recognize ",
+    {
+     "stem": "sou",
+     "missing": "nds"
+    },
+    " and ",
+    {
+     "stem": "patt",
+     "missing": "erns"
+    },
+    " in ",
+    {
+     "stem": "spe",
+     "missing": "ech"
+    },
+    ". By ",
+    {
+     "stem": "o",
+     "missing": "ne"
+    },
+    " year ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " age, ",
+    {
+     "stem": "mo",
+     "missing": "st"
+    },
+    " can ",
+    {
+     "stem": "s",
+     "missing": "ay"
+    },
+    " simple ",
+    {
+     "stem": "wo",
+     "missing": "rds"
+    },
+    " like “mama” or “dada.” As they grow, their vocabulary expands rapidly. Interacting with caregivers and peers plays a crucial role in this development. Reading to children and engaging in conversations are effective ways to support language acquisition."
+   ]
+  },
+  {
+   "id": "neo-20-1",
+   "title": "Oceanography",
+   "sources": [
+    20
+   ],
+   "blankCount": 10,
+   "letterCount": 33,
+   "parts": [
+    "Oceanography is the study of the physical, chemical, and biological aspects of the ocean. This ",
+    {
+     "stem": "fi",
+     "missing": "eld"
+    },
+    " encompasses ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " exploration ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " ocean ",
+    {
+     "stem": "curr",
+     "missing": "ents"
+    },
+    ", marine ",
+    {
+     "stem": "ecosy",
+     "missing": "stems"
+    },
+    ", and ",
+    {
+     "stem": "geolo",
+     "missing": "gical"
+    },
+    " seabed ",
+    {
+     "stem": "struc",
+     "missing": "tures"
+    },
+    ". Oceanographers ",
+    {
+     "stem": "u",
+     "missing": "se"
+    },
+    " satellites ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " other ",
+    {
+     "stem": "adva",
+     "missing": "nced"
+    },
+    " technology to monitor and analyze ocean conditions. By tracking sea surface temperatures, currents, salinity, and other features, researchers contribute to our understanding of climate change. Their work is vital for sustaining ocean health and preserving marine biodiversity."
+   ]
+  },
+  {
+   "id": "neo-20-2",
+   "title": "Life in deserts",
+   "sources": [
+    20
+   ],
+   "blankCount": 10,
+   "letterCount": 39,
+   "parts": [
+    "Deserts and extreme environments pose unique challenges for the organisms that inhabit them. These ",
+    {
+     "stem": "ar",
+     "missing": "eas"
+    },
+    " are ",
+    {
+     "stem": "charac",
+     "missing": "terized"
+    },
+    " by ",
+    {
+     "stem": "ha",
+     "missing": "rsh"
+    },
+    " conditions ",
+    {
+     "stem": "su",
+     "missing": "ch"
+    },
+    " as ",
+    {
+     "stem": "int",
+     "missing": "ense"
+    },
+    " temperatures, ",
+    {
+     "stem": "sca",
+     "missing": "rce"
+    },
+    " water, ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " limited ",
+    {
+     "stem": "veget",
+     "missing": "ation"
+    },
+    ". Specialized ",
+    {
+     "stem": "adapt",
+     "missing": "ations"
+    },
+    " have ",
+    {
+     "stem": "evo",
+     "missing": "lved"
+    },
+    " in both plants and animals to increase survival. Studying these traits provides insights into the resilience of life and helps in understanding how ecosystems function under stress. Desert cacti store water in specialized tissues, while fennec foxes have enlarged ears for heat dissipation."
+   ]
+  },
+  {
+   "id": "neo-20-3",
+   "title": "What fossils reveal",
+   "sources": [
+    20
+   ],
+   "blankCount": 10,
+   "letterCount": 38,
+   "parts": [
+    "Paleontology is the scientific study of life's history through the examination of fossil remains. Fossils, ",
+    {
+     "stem": "incl",
+     "missing": "uding"
+    },
+    " bones, ",
+    {
+     "stem": "she",
+     "missing": "lls"
+    },
+    ", and ",
+    {
+     "stem": "foot",
+     "missing": "prints"
+    },
+    ", provide ",
+    {
+     "stem": "crit",
+     "missing": "ical"
+    },
+    " evidence ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " past ",
+    {
+     "stem": "orga",
+     "missing": "nisms"
+    },
+    " and ",
+    {
+     "stem": "th",
+     "missing": "eir"
+    },
+    " environments. ",
+    {
+     "stem": "B",
+     "missing": "y"
+    },
+    " analyzing ",
+    {
+     "stem": "su",
+     "missing": "ch"
+    },
+    " remnants, ",
+    {
+     "stem": "paleont",
+     "missing": "ologists"
+    },
+    " can reconstruct ancient ecosystems and track evolutionary changes over millions of years. This field offers valuable insights into the development and extinction of species. Advanced techniques like radiometric dating and CT scanning allow scientists to determine precise ages of specimens and examine internal structures without damaging delicate fossils."
+   ]
+  },
+  {
+   "id": "neo-21-1",
+   "title": "Biochemistry",
+   "sources": [
+    21
+   ],
+   "blankCount": 10,
+   "letterCount": 25,
+   "parts": [
+    "Rooted in both biology and chemistry, modern biochemistry has grown into a foundational science that explores the molecular basis of life. ",
+    {
+     "stem": "I",
+     "missing": "t"
+    },
+    " emerged ",
+    {
+     "stem": "fr",
+     "missing": "om"
+    },
+    " early ",
+    {
+     "stem": "investi",
+     "missing": "gations"
+    },
+    " into ",
+    {
+     "stem": "nat",
+     "missing": "ural"
+    },
+    " processes ",
+    {
+     "stem": "li",
+     "missing": "ke"
+    },
+    " fermentation ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " digestion and ",
+    {
+     "stem": "n",
+     "missing": "ow"
+    },
+    " encompasses ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " study ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " biomolecules ",
+    {
+     "stem": "su",
+     "missing": "ch"
+    },
+    " as proteins, carbohydrates, and nucleic acids. Biochemistry plays a vital role in diverse fields including agriculture, environmental science, and pharmacology, contributing to innovations in areas like crop improvement, pollution control, and drug design, for example. Its broad applications continue to shape our understanding of living systems and support solutions to global challenges."
+   ]
+  },
+  {
+   "id": "neo-21-2",
+   "title": "Prehistoric art and religion",
+   "sources": [
+    21
+   ],
+   "blankCount": 10,
+   "letterCount": 34,
+   "parts": [
+    "Prehistoric art and religion provide invaluable insights into the spiritual life of early humans. Cave paintings and carvings often depict animals and symbolic figures, reflecting the beliefs and rituals of ancient communities. These artworks ",
+    {
+     "stem": "se",
+     "missing": "rve"
+    },
+    " as a ",
+    {
+     "stem": "win",
+     "missing": "dow"
+    },
+    " into ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " social ",
+    {
+     "stem": "struc",
+     "missing": "tures"
+    },
+    " and ",
+    {
+     "stem": "cult",
+     "missing": "ural"
+    },
+    " practices ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " prehistoric ",
+    {
+     "stem": "ti",
+     "missing": "mes"
+    },
+    ". By ",
+    {
+     "stem": "stud",
+     "missing": "ying"
+    },
+    " them, ",
+    {
+     "stem": "resea",
+     "missing": "rchers"
+    },
+    " can ",
+    {
+     "stem": "bet",
+     "missing": "ter"
+    },
+    " understand the evolution of human thought and spirituality. These early forms of art show that even long ago, people had deep feelings, ideas, and questions about life and the world around them."
+   ]
+  },
+  {
+   "id": "neo-21-3",
+   "title": "Social classes in ancient Rome",
+   "sources": [
+    21,
+    34
+   ],
+   "blankCount": 10,
+   "letterCount": 33,
+   "parts": [
+    "The society of ancient Rome was a complex hierarchy, featuring a distinct class system. At the top were the patricians, the ",
+    {
+     "stem": "el",
+     "missing": "ite"
+    },
+    " aristocratic ",
+    {
+     "stem": "fami",
+     "missing": "lies"
+    },
+    " who ",
+    {
+     "stem": "he",
+     "missing": "ld"
+    },
+    " the ",
+    {
+     "stem": "majo",
+     "missing": "rity"
+    },
+    " of ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " political ",
+    {
+     "stem": "po",
+     "missing": "wer"
+    },
+    ". Most ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " the ",
+    {
+     "stem": "popul",
+     "missing": "ation"
+    },
+    " had ",
+    {
+     "stem": "lim",
+     "missing": "ited"
+    },
+    " privileges, ",
+    {
+     "stem": "infl",
+     "missing": "uence"
+    },
+    ", and rights. They were called plebeians. Despite their larger numbers, plebeians were largely excluded from formal political decision-making in the early Republic. Over time, however, they fought for and gradually secured more privileges, such as the ability to hold public office."
+   ]
+  },
+  {
+   "id": "neo-22-1",
+   "title": "Why glaciers matter",
+   "sources": [
+    22
+   ],
+   "blankCount": 10,
+   "letterCount": 41,
+   "parts": [
+    "Glaciers play a crucial role in Earth's climate and ecosystems. They store about 70% of the planet's freshwater and help regulate global temperatures by reflecting sunlight. As they move, glaciers shape ",
+    {
+     "stem": "lands",
+     "missing": "capes"
+    },
+    ", carving ",
+    {
+     "stem": "val",
+     "missing": "leys"
+    },
+    " and ",
+    {
+     "stem": "transp",
+     "missing": "orting"
+    },
+    " sediment. ",
+    {
+     "stem": "Th",
+     "missing": "eir"
+    },
+    " seasonal ",
+    {
+     "stem": "mel",
+     "missing": "ting"
+    },
+    " feeds ",
+    {
+     "stem": "riv",
+     "missing": "ers"
+    },
+    " and ",
+    {
+     "stem": "la",
+     "missing": "kes"
+    },
+    ", supporting ",
+    {
+     "stem": "agric",
+     "missing": "ulture"
+    },
+    " and ",
+    {
+     "stem": "wild",
+     "missing": "life"
+    },
+    ". Glaciers ",
+    {
+     "stem": "se",
+     "missing": "rve"
+    },
+    " as indicators of climate change—rapid melting signals shifts in global temperatures. Studying glaciers helps scientists understand past climate patterns and predict future environmental impacts, making them vital to global research."
+   ]
+  },
+  {
+   "id": "neo-22-2",
+   "title": "Human anatomy",
+   "sources": [
+    22
+   ],
+   "blankCount": 10,
+   "letterCount": 30,
+   "parts": [
+    "Human anatomy is the scientific study of human structure. Anatomy ",
+    {
+     "stem": "rev",
+     "missing": "eals"
+    },
+    " how different ",
+    {
+     "stem": "pa",
+     "missing": "rts"
+    },
+    " of ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " body ",
+    {
+     "stem": "inte",
+     "missing": "ract"
+    },
+    " and ",
+    {
+     "stem": "func",
+     "missing": "tion"
+    },
+    " together ",
+    {
+     "stem": "t",
+     "missing": "o"
+    },
+    " maintain ",
+    {
+     "stem": "li",
+     "missing": "fe"
+    },
+    ". For ",
+    {
+     "stem": "exa",
+     "missing": "mple"
+    },
+    ", the circulatory ",
+    {
+     "stem": "sys",
+     "missing": "tem"
+    },
+    " transports ",
+    {
+     "stem": "bl",
+     "missing": "ood"
+    },
+    " throughout the body, carrying oxygen and nutrients to cells while removing waste products. Anatomists must also understand the organization of organs, tissues, and cells. Medical professionals use anatomical knowledge to diagnose and treat illnesses, improving patient care and health outcomes."
+   ]
+  },
+  {
+   "id": "neo-22-3",
+   "title": "How grasshoppers stay safe",
+   "sources": [
+    22
+   ],
+   "blankCount": 10,
+   "letterCount": 26,
+   "parts": [
+    "Grasshoppers are insects commonly found in dry places with grass and plants. Grasshoppers ",
+    {
+     "stem": "ha",
+     "missing": "ve"
+    },
+    " several ",
+    {
+     "stem": "wa",
+     "missing": "ys"
+    },
+    " they ",
+    {
+     "stem": "pro",
+     "missing": "tect"
+    },
+    " themselves ",
+    {
+     "stem": "aga",
+     "missing": "inst"
+    },
+    " danger. ",
+    {
+     "stem": "Th",
+     "missing": "ey"
+    },
+    " have ",
+    {
+     "stem": "powe",
+     "missing": "rful"
+    },
+    " back ",
+    {
+     "stem": "le",
+     "missing": "gs"
+    },
+    ", which ",
+    {
+     "stem": "al",
+     "missing": "low"
+    },
+    " them ",
+    {
+     "stem": "t",
+     "missing": "o"
+    },
+    " jump ",
+    {
+     "stem": "aw",
+     "missing": "ay"
+    },
+    " from enemies, such as rodents and snakes. Some grasshoppers can jump twenty times the length of their bodies. By the time they are adults, grasshoppers can also fly. Adult grasshoppers fly very quickly and this helps them avoid danger."
+   ]
+  },
+  {
+   "id": "neo-23-1",
+   "title": "Stomata and water loss",
+   "sources": [
+    23
+   ],
+   "blankCount": 10,
+   "letterCount": 31,
+   "parts": [
+    "Plants have tiny holes called stomata on their leaves and stems that allow them to take in carbon dioxide from the air and release oxygen into the air. ",
+    {
+     "stem": "How",
+     "missing": "ever"
+    },
+    ", stomata ",
+    {
+     "stem": "c",
+     "missing": "an"
+    },
+    " also ",
+    {
+     "stem": "l",
+     "missing": "et"
+    },
+    " water vapor ",
+    {
+     "stem": "esc",
+     "missing": "ape"
+    },
+    " which ",
+    {
+     "stem": "cau",
+     "missing": "ses"
+    },
+    " problems ",
+    {
+     "stem": "i",
+     "missing": "n"
+    },
+    " dry ",
+    {
+     "stem": "enviro",
+     "missing": "nments"
+    },
+    ". To ",
+    {
+     "stem": "man",
+     "missing": "age"
+    },
+    " this, ",
+    {
+     "stem": "dur",
+     "missing": "ing"
+    },
+    " hot ",
+    {
+     "stem": "per",
+     "missing": "iods"
+    },
+    " when water loss is especially severe, some plants close their stomata temporarily. Another special adaptation is thick, waxy coatings on plant leaves that help conserve water."
+   ]
+  },
+  {
+   "id": "neo-23-2",
+   "title": "Art colonies",
+   "sources": [
+    23
+   ],
+   "blankCount": 10,
+   "letterCount": 34,
+   "parts": [
+    "Art colonies have historically served as vibrant communities where artists gather to share ideas, collaborate, and create. The ",
+    {
+     "stem": "comm",
+     "missing": "unity"
+    },
+    " environment ",
+    {
+     "stem": "all",
+     "missing": "ows"
+    },
+    " artists ",
+    {
+     "stem": "t",
+     "missing": "o"
+    },
+    " receive ",
+    {
+     "stem": "feed",
+     "missing": "back"
+    },
+    " from ",
+    {
+     "stem": "pe",
+     "missing": "ers"
+    },
+    " and ",
+    {
+     "stem": "exper",
+     "missing": "iment"
+    },
+    " with ",
+    {
+     "stem": "n",
+     "missing": "ew"
+    },
+    " techniques, ",
+    {
+     "stem": "enri",
+     "missing": "ching"
+    },
+    " their ",
+    {
+     "stem": "arti",
+     "missing": "stic"
+    },
+    " practice. ",
+    {
+     "stem": "Su",
+     "missing": "ch"
+    },
+    " enclaves often emerge in picturesque locations that inspire creativity, such as coastal towns or rural landscapes. Notable art colonies, like those in Montmartre or Taos, have produced influential works and fostered new movements such as Impressionism and Modernism. Contemporary art colonies continue this tradition, adapting to modern mediums and technologies while maintaining a spirit of collaboration and innovation."
+   ]
+  },
+  {
+   "id": "neo-23-3",
+   "title": "Water and volcanoes beyond Earth",
+   "sources": [
+    23
+   ],
+   "blankCount": 10,
+   "letterCount": 34,
+   "parts": [
+    "The presence of water and volcanic activity on other planets is central to the search for extraterrestrial life. Water is a key ingredient for life as we know it, and its discovery on Mars and moons like Europa and Enceladus raises intriguing possibilities. ",
+    {
+     "stem": "Volc",
+     "missing": "anic"
+    },
+    " activity ",
+    {
+     "stem": "prov",
+     "missing": "ides"
+    },
+    " heat ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " nutrients ",
+    {
+     "stem": "th",
+     "missing": "at"
+    },
+    " could ",
+    {
+     "stem": "sup",
+     "missing": "port"
+    },
+    " microbial ",
+    {
+     "stem": "li",
+     "missing": "fe"
+    },
+    ". Missions ",
+    {
+     "stem": "equi",
+     "missing": "pped"
+    },
+    " with ",
+    {
+     "stem": "adva",
+     "missing": "nced"
+    },
+    " instruments ",
+    {
+     "stem": "col",
+     "missing": "lect"
+    },
+    " and ",
+    {
+     "stem": "exa",
+     "missing": "mine"
+    },
+    " surface and atmospheric samples to detect signs of liquid water and geothermal activity. Discoveries of liquid water and geothermal energy are pivotal in assessing the habitability of extraterrestrial environments."
+   ]
+  },
+  {
+   "id": "neo-24-1",
+   "title": "The golden toad",
+   "sources": [
+    24
+   ],
+   "blankCount": 10,
+   "letterCount": 31,
+   "parts": [
+    "The extinction of the golden toad, a brightly colored amphibian once found in the cloud forests of Costa Rica, serves as a poignant example of the fragility of tropical ecosystems. The golden toad's last confirmed sighting was in 1989. Scientists ",
+    {
+     "stem": "bel",
+     "missing": "ieve"
+    },
+    " its ",
+    {
+     "stem": "dec",
+     "missing": "line"
+    },
+    " is ",
+    {
+     "stem": "d",
+     "missing": "ue"
+    },
+    " to ",
+    {
+     "stem": "hab",
+     "missing": "itat"
+    },
+    " destruction, ",
+    {
+     "stem": "chan",
+     "missing": "ging"
+    },
+    " weather ",
+    {
+     "stem": "patt",
+     "missing": "erns"
+    },
+    ", and ",
+    {
+     "stem": "dis",
+     "missing": "ease"
+    },
+    " caused ",
+    {
+     "stem": "b",
+     "missing": "y"
+    },
+    " a ",
+    {
+     "stem": "ty",
+     "missing": "pe"
+    },
+    " of fungus ",
+    {
+     "stem": "th",
+     "missing": "at"
+    },
+    " attacks the skin of amphibians. Conservationists study the golden toad's demise to understand how climate factors affect amphibian populations. This case underscores the importance of preserving sensitive habitats and addressing global environmental challenges to protect biodiversity."
+   ]
+  },
+  {
+   "id": "neo-24-2",
+   "title": "Insect behavior",
+   "sources": [
+    24
+   ],
+   "blankCount": 10,
+   "letterCount": 25,
+   "parts": [
+    "The study of animal behavior, specifically that of insects, provides insight into the complex interactions within ecosystems. Insects ",
+    {
+     "stem": "exh",
+     "missing": "ibit"
+    },
+    " a ",
+    {
+     "stem": "br",
+     "missing": "oad"
+    },
+    " range ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " behaviors ",
+    {
+     "stem": "fr",
+     "missing": "om"
+    },
+    " foraging ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " mating ",
+    {
+     "stem": "t",
+     "missing": "o"
+    },
+    " complex ",
+    {
+     "stem": "soc",
+     "missing": "ial"
+    },
+    " organization. ",
+    {
+     "stem": "F",
+     "missing": "or"
+    },
+    " instance, ",
+    {
+     "stem": "be",
+     "missing": "es"
+    },
+    " perform ",
+    {
+     "stem": "intr",
+     "missing": "icate"
+    },
+    " dances to communicate the location of food sources. Ants communicate using chemical signals called pheromones, which help coordinate complex tasks like defending the colony and locating resources. This cooperative behavior ensures the survival and efficiency of their communities."
+   ]
+  },
+  {
+   "id": "neo-24-3",
+   "title": "Textile weaving",
+   "sources": [
+    24
+   ],
+   "blankCount": 10,
+   "letterCount": 31,
+   "parts": [
+    "Textile weaving is a traditional craft that involves interlacing threads to create fabric. Weavers use looms to hold the threads in place while they work. ",
+    {
+     "stem": "Nat",
+     "missing": "ural"
+    },
+    " fibers ",
+    {
+     "stem": "li",
+     "missing": "ke"
+    },
+    " wool, ",
+    {
+     "stem": "cot",
+     "missing": "ton"
+    },
+    ", and ",
+    {
+     "stem": "si",
+     "missing": "lk"
+    },
+    " are ",
+    {
+     "stem": "comm",
+     "missing": "only"
+    },
+    " used, ",
+    {
+     "stem": "tho",
+     "missing": "ugh"
+    },
+    " synthetic ",
+    {
+     "stem": "mate",
+     "missing": "rials"
+    },
+    " are ",
+    {
+     "stem": "al",
+     "missing": "so"
+    },
+    " popular. ",
+    {
+     "stem": "Techn",
+     "missing": "iques"
+    },
+    " such ",
+    {
+     "stem": "a",
+     "missing": "s"
+    },
+    " plain weave, twill, and satin weave produce different textures and patterns. Textile weaving has been practiced by cultures worldwide, each developing unique styles. Ikat weaving from Indonesia, for example, uses a resist-dye method to create vibrant colors and symbolic motifs that reflect cultural identity and regional traditions."
+   ]
+  },
+  {
+   "id": "neo-25-1",
+   "title": "Industrial cities grow",
+   "sources": [
+    25
+   ],
+   "blankCount": 10,
+   "letterCount": 33,
+   "parts": [
+    "During the late nineteenth and early twentieth centuries, the landscape of North American urban centers underwent dramatic transformations as industrialization accelerated. Cities expanded ",
+    {
+     "stem": "rap",
+     "missing": "idly"
+    },
+    ", fueled ",
+    {
+     "stem": "b",
+     "missing": "y"
+    },
+    " the ",
+    {
+     "stem": "arr",
+     "missing": "ival"
+    },
+    " of ",
+    {
+     "stem": "immig",
+     "missing": "rants"
+    },
+    " and ",
+    {
+     "stem": "ru",
+     "missing": "ral"
+    },
+    " populations ",
+    {
+     "stem": "see",
+     "missing": "king"
+    },
+    " employment ",
+    {
+     "stem": "i",
+     "missing": "n"
+    },
+    " factories. This ",
+    {
+     "stem": "dyn",
+     "missing": "amic"
+    },
+    " era ",
+    {
+     "stem": "witn",
+     "missing": "essed"
+    },
+    " the ",
+    {
+     "stem": "ri",
+     "missing": "se"
+    },
+    " of skyscrapers, symbolizing progress and technological triumph. Architects and planners grappled with the challenges posed by such quick growth, including overcrowding and sanitation issues. Public transit systems, like streetcars, emerged as pivotal solutions to urban congestion, altering the rhythm of daily life."
+   ]
+  },
+  {
+   "id": "neo-25-2",
+   "title": "3D printing",
+   "sources": [
+    25
+   ],
+   "blankCount": 10,
+   "letterCount": 34,
+   "parts": [
+    "The advancement of 3D printing technology has revolutionized manufacturing by enabling precise, layer-by-layer fabrication of complex objects. 3D printing can use ",
+    {
+     "stem": "div",
+     "missing": "erse"
+    },
+    " materials ",
+    {
+     "stem": "su",
+     "missing": "ch"
+    },
+    " as ",
+    {
+     "stem": "plas",
+     "missing": "tics"
+    },
+    ", metals, ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " ceramics. ",
+    {
+     "stem": "Engi",
+     "missing": "neers"
+    },
+    " are ",
+    {
+     "stem": "ab",
+     "missing": "le"
+    },
+    " to ",
+    {
+     "stem": "fabr",
+     "missing": "icate"
+    },
+    " lightweight, ",
+    {
+     "stem": "str",
+     "missing": "ong"
+    },
+    " components ",
+    {
+     "stem": "wi",
+     "missing": "th"
+    },
+    " internal ",
+    {
+     "stem": "struc",
+     "missing": "tures"
+    },
+    " that are impossible to produce using traditional methods. In the medical field, 3D printing facilitates the production of patient-specific implants and prosthetics tailored to anatomical data from imaging scans. 3D printing enhances design flexibility and production efficiency by streamlining prototyping and reducing material waste."
+   ]
+  },
+  {
+   "id": "neo-25-3",
+   "title": "Artificial intelligence",
+   "sources": [
+    25
+   ],
+   "blankCount": 10,
+   "letterCount": 37,
+   "parts": [
+    "Understanding the potential and limitations of artificial intelligence (AI) is crucial for harnessing its benefits while mitigating associated risks. AI technologies enable computers to ",
+    {
+     "stem": "mi",
+     "missing": "mic"
+    },
+    " human ",
+    {
+     "stem": "cogn",
+     "missing": "itive"
+    },
+    " functions, ",
+    {
+     "stem": "allo",
+     "missing": "wing"
+    },
+    " them ",
+    {
+     "stem": "t",
+     "missing": "o"
+    },
+    " analyze ",
+    {
+     "stem": "la",
+     "missing": "rge"
+    },
+    " datasets ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " make ",
+    {
+     "stem": "predi",
+     "missing": "ctions"
+    },
+    " with ",
+    {
+     "stem": "sp",
+     "missing": "eed"
+    },
+    " and ",
+    {
+     "stem": "accu",
+     "missing": "racy"
+    },
+    ". These ",
+    {
+     "stem": "capabi",
+     "missing": "lities"
+    },
+    " have been particularly beneficial in fields like healthcare, where AI assists in diagnosing diseases by recognizing patterns in medical images. As AI continues to evolve, ethical considerations surrounding data privacy and employment displacement must be addressed."
+   ]
+  },
+  {
+   "id": "neo-26-1",
+   "title": "Photoperiodism",
+   "sources": [
+    26
+   ],
+   "blankCount": 10,
+   "letterCount": 41,
+   "parts": [
+    "The reaction of plants and animals to sunlight and seasonal changes, known as photoperiodism or seasonality, is vital to many biological and behavioral processes. Photoperiods, ",
+    {
+     "stem": "toge",
+     "missing": "ther"
+    },
+    " with ",
+    {
+     "stem": "tempe",
+     "missing": "rature"
+    },
+    " changes, ",
+    {
+     "stem": "imp",
+     "missing": "act"
+    },
+    " seasonal ",
+    {
+     "stem": "migr",
+     "missing": "ation"
+    },
+    ", mating ",
+    {
+     "stem": "rit",
+     "missing": "uals"
+    },
+    ", and ",
+    {
+     "stem": "hiber",
+     "missing": "nation"
+    },
+    ". In ",
+    {
+     "stem": "ma",
+     "missing": "ny"
+    },
+    " birds, ",
+    {
+     "stem": "hor",
+     "missing": "mone"
+    },
+    " levels ",
+    {
+     "stem": "incr",
+     "missing": "ease"
+    },
+    " in ",
+    {
+     "stem": "spr",
+     "missing": "ing"
+    },
+    ", which leads to an increase in singing frequency in males and mating behaviors. Photoperiodism allows plants and animals to respond to changes in the environment associated with changing seasons and varying day length."
+   ]
+  },
+  {
+   "id": "neo-26-2",
+   "title": "Understanding other minds",
+   "sources": [
+    26
+   ],
+   "blankCount": 10,
+   "letterCount": 28,
+   "parts": [
+    "One of the topics psychologists investigate is our capacity to understand the mental states of others. This ",
+    {
+     "stem": "abi",
+     "missing": "lity"
+    },
+    " is ",
+    {
+     "stem": "funda",
+     "missing": "mental"
+    },
+    " for ",
+    {
+     "stem": "soc",
+     "missing": "ial"
+    },
+    " interaction ",
+    {
+     "stem": "bec",
+     "missing": "ause"
+    },
+    " it ",
+    {
+     "stem": "ena",
+     "missing": "bles"
+    },
+    " us ",
+    {
+     "stem": "t",
+     "missing": "o"
+    },
+    " predict ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " explain ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " behavior ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " others. ",
+    {
+     "stem": "I",
+     "missing": "s"
+    },
+    " this skill innate or shaped by experience? Is understanding others' mental states a matter of simulation (imagining ourselves in their place) or theory (applying a set of rules or concepts)? These inquiries contribute to broader discussions about human cognition."
+   ]
+  },
+  {
+   "id": "neo-26-3",
+   "title": "Causes of climate change",
+   "sources": [
+    26
+   ],
+   "blankCount": 10,
+   "letterCount": 33,
+   "parts": [
+    "Climate change refers to significant and lasting changes in weather patterns over periods ranging from decades to millions of years. It is ",
+    {
+     "stem": "dri",
+     "missing": "ven"
+    },
+    " by ",
+    {
+     "stem": "nat",
+     "missing": "ural"
+    },
+    " factors ",
+    {
+     "stem": "li",
+     "missing": "ke"
+    },
+    " volcanic ",
+    {
+     "stem": "erup",
+     "missing": "tions"
+    },
+    " and ",
+    {
+     "stem": "hu",
+     "missing": "man"
+    },
+    " activities ",
+    {
+     "stem": "su",
+     "missing": "ch"
+    },
+    " as ",
+    {
+     "stem": "bur",
+     "missing": "ning"
+    },
+    " fossil ",
+    {
+     "stem": "fu",
+     "missing": "els"
+    },
+    " and ",
+    {
+     "stem": "remo",
+     "missing": "ving"
+    },
+    " trees, ",
+    {
+     "stem": "wh",
+     "missing": "ich"
+    },
+    " release large amounts of greenhouse gases into the atmosphere. These gases trap heat, leading to global warming, rising sea levels, and more extreme weather events. Addressing climate change requires sustainable practices and international cooperation to mitigate its impacts."
+   ]
+  },
+  {
+   "id": "neo-27-1",
+   "title": "The craft of pottery",
+   "sources": [
+    27
+   ],
+   "blankCount": 10,
+   "letterCount": 33,
+   "parts": [
+    "Pottery is an ancient craft that involves shaping and firing clay in special wood-fired ovens (kilns) to create functional and decorative objects. Early ",
+    {
+     "stem": "po",
+     "missing": "ts"
+    },
+    " were ",
+    {
+     "stem": "sha",
+     "missing": "ped"
+    },
+    " by ",
+    {
+     "stem": "ha",
+     "missing": "nd"
+    },
+    " and ",
+    {
+     "stem": "hea",
+     "missing": "ted"
+    },
+    " in ",
+    {
+     "stem": "sim",
+     "missing": "ple"
+    },
+    " kilns, ",
+    {
+     "stem": "prod",
+     "missing": "ucing"
+    },
+    " ceramics ",
+    {
+     "stem": "th",
+     "missing": "at"
+    },
+    " lasted ",
+    {
+     "stem": "lon",
+     "missing": "ger"
+    },
+    ". As ",
+    {
+     "stem": "soci",
+     "missing": "eties"
+    },
+    " developed, ",
+    {
+     "stem": "techn",
+     "missing": "iques"
+    },
+    " became more refined, with different cultures creating distinct styles. Over time, pottery evolved into both a practical craft and a significant form of artistic and cultural expression. Pottery has been practiced by cultures worldwide, reflecting their unique artistic traditions and functional needs."
+   ]
+  },
+  {
+   "id": "neo-27-2",
+   "title": "How camels survive",
+   "sources": [
+    27
+   ],
+   "blankCount": 10,
+   "letterCount": 22,
+   "parts": [
+    "Camels live in the desert where the weather is hot and dry. Sometimes ",
+    {
+     "stem": "i",
+     "missing": "n"
+    },
+    " the ",
+    {
+     "stem": "des",
+     "missing": "ert"
+    },
+    ", camels ",
+    {
+     "stem": "ha",
+     "missing": "ve"
+    },
+    " to ",
+    {
+     "stem": "tra",
+     "missing": "vel"
+    },
+    " for a ",
+    {
+     "stem": "lo",
+     "missing": "ng"
+    },
+    " time ",
+    {
+     "stem": "wit",
+     "missing": "hout"
+    },
+    " finding ",
+    {
+     "stem": "a",
+     "missing": "ny"
+    },
+    " food ",
+    {
+     "stem": "o",
+     "missing": "r"
+    },
+    " water. ",
+    {
+     "stem": "S",
+     "missing": "o"
+    },
+    " when ",
+    {
+     "stem": "cam",
+     "missing": "els"
+    },
+    " do find food, they are able to eat and drink a lot. Camels turn extra food into fat and store this fat in a special hump on their back. Then they change this fat into energy to help them cross the desert."
+   ]
+  },
+  {
+   "id": "neo-27-3",
+   "title": "The Ottoman Empire",
+   "sources": [
+    27
+   ],
+   "blankCount": 10,
+   "letterCount": 33,
+   "parts": [
+    "The Ottoman Empire, which lasted from 1299 to 1922, was a formidable force that reshaped the political and cultural landscapes of Europe, the Middle East, and North Africa. Renowned for its ",
+    {
+     "stem": "mili",
+     "missing": "tary"
+    },
+    " prowess ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " strategic ",
+    {
+     "stem": "conq",
+     "missing": "uests"
+    },
+    ", the ",
+    {
+     "stem": "emp",
+     "missing": "ire"
+    },
+    " reached ",
+    {
+     "stem": "i",
+     "missing": "ts"
+    },
+    " zenith ",
+    {
+     "stem": "un",
+     "missing": "der"
+    },
+    " the ",
+    {
+     "stem": "re",
+     "missing": "ign"
+    },
+    " of Suleyman the Magnificent, ",
+    {
+     "stem": "dur",
+     "missing": "ing"
+    },
+    " which ",
+    {
+     "stem": "ar",
+     "missing": "ts"
+    },
+    " and ",
+    {
+     "stem": "archit",
+     "missing": "ecture"
+    },
+    " flourished. The Ottomans also played a pivotal role in global commerce, controlling key trade routes that linked the spice markets of Asia with the merchant hubs of Europe."
+   ]
+  },
+  {
+   "id": "neo-28-1",
+   "title": "How mushrooms grow",
+   "sources": [
+    28
+   ],
+   "blankCount": 10,
+   "letterCount": 28,
+   "parts": [
+    "Mushrooms are made up of two main parts: the mycelium and the fruiting body. The mycelium ",
+    {
+     "stem": "i",
+     "missing": "s"
+    },
+    " long-lived, ",
+    {
+     "stem": "wh",
+     "missing": "ile"
+    },
+    " the fruiting body ",
+    {
+     "stem": "app",
+     "missing": "ears"
+    },
+    " only ",
+    {
+     "stem": "wh",
+     "missing": "en"
+    },
+    " conditions ",
+    {
+     "stem": "a",
+     "missing": "re"
+    },
+    " ideal ",
+    {
+     "stem": "f",
+     "missing": "or"
+    },
+    " reproduction (",
+    {
+     "stem": "li",
+     "missing": "ke"
+    },
+    " after ",
+    {
+     "stem": "ra",
+     "missing": "in"
+    },
+    "). Usually ",
+    {
+     "stem": "under",
+     "missing": "ground"
+    },
+    " the mycelium ",
+    {
+     "stem": "cons",
+     "missing": "ists"
+    },
+    " of a network of thread-like structures that absorb nutrients from the soil. The fruiting body is above ground and responsible for producing and spreading spores. These spores are released into the air to help the mushroom reproduce."
+   ]
+  },
+  {
+   "id": "neo-28-2",
+   "title": "Aquariums",
+   "sources": [
+    28
+   ],
+   "blankCount": 10,
+   "letterCount": 34,
+   "parts": [
+    "Aquariums provide an opportunity to observe a variety of fish and other aquatic organisms in a controlled environment. These ",
+    {
+     "stem": "facil",
+     "missing": "ities"
+    },
+    " carefully ",
+    {
+     "stem": "repli",
+     "missing": "cate"
+    },
+    " natural ",
+    {
+     "stem": "habi",
+     "missing": "tats"
+    },
+    ", allowing ",
+    {
+     "stem": "visi",
+     "missing": "tors"
+    },
+    " to ",
+    {
+     "stem": "le",
+     "missing": "arn"
+    },
+    " about ",
+    {
+     "stem": "mar",
+     "missing": "ine"
+    },
+    " life ",
+    {
+     "stem": "with",
+     "missing": "out"
+    },
+    " venturing ",
+    {
+     "stem": "in",
+     "missing": "to"
+    },
+    " the ",
+    {
+     "stem": "oc",
+     "missing": "ean"
+    },
+    ". Exhibits ",
+    {
+     "stem": "of",
+     "missing": "ten"
+    },
+    " include coral reefs, kelp forests, and freshwater streams, showcasing the diversity of aquatic ecosystems. Educational programs and guided tours enhance the experience, offering insights into the behavior, diet, and conservation of these organisms. Maintaining an aquarium requires expertise in water chemistry, filtration systems, and species compatibility."
+   ]
+  },
+  {
+   "id": "neo-28-3",
+   "title": "Logic and reasoning",
+   "sources": [
+    28
+   ],
+   "blankCount": 10,
+   "letterCount": 39,
+   "parts": [
+    "Logic and reasoning are essential components of academic methodology. These ",
+    {
+     "stem": "ski",
+     "missing": "lls"
+    },
+    " involve ",
+    {
+     "stem": "evalu",
+     "missing": "ating"
+    },
+    " arguments, ",
+    {
+     "stem": "ident",
+     "missing": "ifying"
+    },
+    " fallacies, ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " constructing ",
+    {
+     "stem": "cohe",
+     "missing": "rent"
+    },
+    " conclusions ",
+    {
+     "stem": "ba",
+     "missing": "sed"
+    },
+    " on ",
+    {
+     "stem": "evid",
+     "missing": "ence"
+    },
+    ". Mastering ",
+    {
+     "stem": "log",
+     "missing": "ical"
+    },
+    " principles ",
+    {
+     "stem": "enha",
+     "missing": "nces"
+    },
+    " critical ",
+    {
+     "stem": "thin",
+     "missing": "king"
+    },
+    " and problem-solving abilities. In various disciplines, from science to philosophy, these principles are used to analyze complex issues and develop informed perspectives, contributing to intellectual growth and effective decision-making. Formal logic systems include propositional and predicate logic, while informal logic addresses everyday reasoning, helping individuals recognize cognitive biases and construct more persuasive and sound arguments."
+   ]
+  },
+  {
+   "id": "neo-29-1",
+   "title": "Transcontinental railroads",
+   "sources": [
+    29
+   ],
+   "blankCount": 10,
+   "letterCount": 34,
+   "parts": [
+    "The development of transcontinental railroads was a pivotal moment in North American history, fundamentally altering the landscape and economy. By linking the eastern and western coasts, these rail lines facilitated unprecedented movement of goods, people, and ideas. The railroad ",
+    {
+     "stem": "accel",
+     "missing": "erated"
+    },
+    " national ",
+    {
+     "stem": "integ",
+     "missing": "ration"
+    },
+    ", supported ",
+    {
+     "stem": "indus",
+     "missing": "trial"
+    },
+    " growth, ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " contributed ",
+    {
+     "stem": "t",
+     "missing": "o"
+    },
+    " the ",
+    {
+     "stem": "expa",
+     "missing": "nsion"
+    },
+    " of ",
+    {
+     "stem": "tr",
+     "missing": "ade"
+    },
+    ", transforming ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " United States ",
+    {
+     "stem": "in",
+     "missing": "to"
+    },
+    " a ",
+    {
+     "stem": "mo",
+     "missing": "re"
+    },
+    " interconnected and economically dynamic nation. Advances in engineering, such as the use of steel rails, standardized gauges, and telegraph communication, enabled efficient construction and coordination across vast distances."
+   ]
+  },
+  {
+   "id": "neo-29-2",
+   "title": "The evolution of paint",
+   "sources": [
+    29
+   ],
+   "blankCount": 10,
+   "letterCount": 33,
+   "parts": [
+    "The evolution of paint as a medium has significantly impacted the development of visual arts. Early ",
+    {
+     "stem": "art",
+     "missing": "ists"
+    },
+    " used ",
+    {
+     "stem": "nat",
+     "missing": "ural"
+    },
+    " pigments ",
+    {
+     "stem": "der",
+     "missing": "ived"
+    },
+    " from ",
+    {
+     "stem": "mine",
+     "missing": "rals"
+    },
+    ", plants, ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " animal ",
+    {
+     "stem": "sou",
+     "missing": "rces"
+    },
+    " to ",
+    {
+     "stem": "cre",
+     "missing": "ate"
+    },
+    " their ",
+    {
+     "stem": "wo",
+     "missing": "rks"
+    },
+    ". Advances ",
+    {
+     "stem": "i",
+     "missing": "n"
+    },
+    " chemistry ",
+    {
+     "stem": "resu",
+     "missing": "lted"
+    },
+    " in the synthesis of vibrant, durable colors, expanding the artist's palette. Techniques such as oil painting allowed for greater detail and expression. The introduction of acrylic paints offered versatility and fast drying times. Modern painters continue to explore innovative materials and methods, pushing the boundaries of artistic creation. Understanding the history of paint enriches appreciation for the diversity and complexity of artistic practices."
+   ]
+  },
+  {
+   "id": "neo-29-3",
+   "title": "Ice moons and hidden oceans",
+   "sources": [
+    29
+   ],
+   "blankCount": 10,
+   "letterCount": 31,
+   "parts": [
+    "In recent years, the search for extraterrestrial organisms has increasingly focused on water as an important clue. On Earth, water supports biological processes, and its detection on ice-covered moons such as Europa and Enceladus has attracted ",
+    {
+     "stem": "scien",
+     "missing": "tific"
+    },
+    " attention. ",
+    {
+     "stem": "Evid",
+     "missing": "ence"
+    },
+    " suggests ",
+    {
+     "stem": "th",
+     "missing": "at"
+    },
+    " these ",
+    {
+     "stem": "i",
+     "missing": "cy"
+    },
+    " moons ",
+    {
+     "stem": "con",
+     "missing": "tain"
+    },
+    " oceans ",
+    {
+     "stem": "ke",
+     "missing": "pt"
+    },
+    " liquid ",
+    {
+     "stem": "b",
+     "missing": "y"
+    },
+    " tidal ",
+    {
+     "stem": "hea",
+     "missing": "ting"
+    },
+    ", a ",
+    {
+     "stem": "pro",
+     "missing": "cess"
+    },
+    " in ",
+    {
+     "stem": "wh",
+     "missing": "ich"
+    },
+    " gravitational forces generated by nearby planets produce internal warmth. This energy source may create environments comparable to Earth's deep-sea hydrothermal regions, where biological activity occurs without sunlight."
+   ]
+  },
+  {
+   "id": "neo-30-1",
+   "title": "Deductive and inductive reasoning",
+   "sources": [
+    30
+   ],
+   "blankCount": 10,
+   "letterCount": 42,
+   "parts": [
+    "Logical reasoning is a cornerstone of academic methodology, providing a structured approach to analyzing arguments and evidence. Deductive ",
+    {
+     "stem": "reas",
+     "missing": "oning"
+    },
+    " starts ",
+    {
+     "stem": "wi",
+     "missing": "th"
+    },
+    " general ",
+    {
+     "stem": "princ",
+     "missing": "iples"
+    },
+    " and ",
+    {
+     "stem": "der",
+     "missing": "ives"
+    },
+    " specific ",
+    {
+     "stem": "concl",
+     "missing": "usions"
+    },
+    ", while ",
+    {
+     "stem": "indu",
+     "missing": "ctive"
+    },
+    " thinking ",
+    {
+     "stem": "invo",
+     "missing": "lves"
+    },
+    " drawing ",
+    {
+     "stem": "br",
+     "missing": "oad"
+    },
+    " generalizations ",
+    {
+     "stem": "fr",
+     "missing": "om"
+    },
+    " specific ",
+    {
+     "stem": "observ",
+     "missing": "ations"
+    },
+    ". Critical thinking skills enable scholars to identify logical fallacies, assess the credibility of sources, and construct coherent arguments. The application of logic extends across disciplines, from mathematics to philosophy to the natural sciences. Developing proficiency in logical reasoning enhances the ability to solve complex problems and communicate effectively, fostering intellectual rigor and innovation."
+   ]
+  },
+  {
+   "id": "neo-30-2",
+   "title": "Shadow puppetry",
+   "sources": [
+    30
+   ],
+   "blankCount": 10,
+   "letterCount": 35,
+   "parts": [
+    "Shadow puppetry is an ancient form of storytelling that uses flat, articulated (movable) figures cast onto a screen by a light source. Shadow puppetry ",
+    {
+     "stem": "comb",
+     "missing": "ines"
+    },
+    " visual ",
+    {
+     "stem": "arti",
+     "missing": "stry"
+    },
+    " with ",
+    {
+     "stem": "dram",
+     "missing": "atic"
+    },
+    " narration, ",
+    {
+     "stem": "crea",
+     "missing": "ting"
+    },
+    " engaging ",
+    {
+     "stem": "perfor",
+     "missing": "mances"
+    },
+    " that ",
+    {
+     "stem": "con",
+     "missing": "vey"
+    },
+    " traditional ",
+    {
+     "stem": "ta",
+     "missing": "les"
+    },
+    " and ",
+    {
+     "stem": "mo",
+     "missing": "ral"
+    },
+    " lessons. ",
+    {
+     "stem": "Th",
+     "missing": "is"
+    },
+    " art ",
+    {
+     "stem": "fo",
+     "missing": "rm"
+    },
+    " originated in Asia and spread to various cultures around the world. The puppets are typically made of leather or paper and manipulated by sticks or strings. Performers narrate stories, often accompanied by music or sound effects."
+   ]
+  },
+  {
+   "id": "neo-30-3",
+   "title": "Europa and Enceladus",
+   "sources": [
+    30
+   ],
+   "blankCount": 10,
+   "letterCount": 31,
+   "parts": [
+    "The discovery of water and volcanic activity on moons like Europa and Enceladus has sparked interest in the potential for extraterrestrial life. These moons, ",
+    {
+     "stem": "orbi",
+     "missing": "ting"
+    },
+    " the ",
+    {
+     "stem": "pla",
+     "missing": "nets"
+    },
+    " Jupiter ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " Saturn, ",
+    {
+     "stem": "ha",
+     "missing": "ve"
+    },
+    " ice-covered ",
+    {
+     "stem": "surf",
+     "missing": "aces"
+    },
+    " with ",
+    {
+     "stem": "oce",
+     "missing": "ans"
+    },
+    " lying ",
+    {
+     "stem": "under",
+     "missing": "neath"
+    },
+    ". Volcanic ",
+    {
+     "stem": "acti",
+     "missing": "vity"
+    },
+    ", in ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " form ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " hydrothermal vents, provides heat and nutrients, creating environments where microbial life could potentially thrive. Missions by spacecraft such as the Galileo and Cassini have gathered valuable data on these moons."
+   ]
+  },
+  {
+   "id": "neo-31-1",
+   "title": "What clouds are made of",
+   "sources": [
+    31
+   ],
+   "blankCount": 10,
+   "letterCount": 23,
+   "parts": [
+    "Although there are many different types of clouds, they are all composed of the same basic substance. ",
+    {
+     "stem": "Ea",
+     "missing": "ch"
+    },
+    " cloud ",
+    {
+     "stem": "cons",
+     "missing": "ists"
+    },
+    " of ",
+    {
+     "stem": "ti",
+     "missing": "ny"
+    },
+    " drops ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " water ",
+    {
+     "stem": "o",
+     "missing": "r"
+    },
+    " ice, ",
+    {
+     "stem": "wh",
+     "missing": "ich"
+    },
+    " are ",
+    {
+     "stem": "usu",
+     "missing": "ally"
+    },
+    " too ",
+    {
+     "stem": "sm",
+     "missing": "all"
+    },
+    " to ",
+    {
+     "stem": "b",
+     "missing": "e"
+    },
+    " seen ",
+    {
+     "stem": "wi",
+     "missing": "th"
+    },
+    " the naked eye. These particles cluster together and form an invisible gas known as water vapor. Some of this vapor attaches to microscopic bits of dust or ice floating in the atmosphere. When enough of these elements combine, they create a visible cloud."
+   ]
+  },
+  {
+   "id": "neo-31-2",
+   "title": "Reusable rockets",
+   "sources": [
+    31
+   ],
+   "blankCount": 10,
+   "letterCount": 34,
+   "parts": [
+    "Space exploration has advanced significantly with the development of rockets that can be reused. Traditional rockets were discarded after a single use, but new designs allow them to return to Earth and be refurbished for multiple missions. This ",
+    {
+     "stem": "innov",
+     "missing": "ation"
+    },
+    " reduces ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " cost ",
+    {
+     "stem": "assoc",
+     "missing": "iated"
+    },
+    " with ",
+    {
+     "stem": "sp",
+     "missing": "ace"
+    },
+    " travel ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " increases ",
+    {
+     "stem": "freq",
+     "missing": "uency"
+    },
+    " of ",
+    {
+     "stem": "miss",
+     "missing": "ions"
+    },
+    ". Companies ",
+    {
+     "stem": "li",
+     "missing": "ke"
+    },
+    " SpaceX ",
+    {
+     "stem": "ha",
+     "missing": "ve"
+    },
+    " pioneered ",
+    {
+     "stem": "reus",
+     "missing": "able"
+    },
+    " rocket technology, successfully launching and landing rockets. These advancements pave the way for more ambitious projects, including potential manned missions to Mars and beyond."
+   ]
+  },
+  {
+   "id": "neo-31-3",
+   "title": "Environmental geology",
+   "sources": [
+    31
+   ],
+   "blankCount": 10,
+   "letterCount": 30,
+   "parts": [
+    "Geology involves the study of Earth's physical structure and substances, the processes that act upon them, and the history of the planet and its life forms. Environmental geology ",
+    {
+     "stem": "specif",
+     "missing": "ically"
+    },
+    " focuses ",
+    {
+     "stem": "o",
+     "missing": "n"
+    },
+    " how ",
+    {
+     "stem": "geolo",
+     "missing": "gical"
+    },
+    " processes ",
+    {
+     "stem": "aff",
+     "missing": "ect"
+    },
+    " human ",
+    {
+     "stem": "activ",
+     "missing": "ities"
+    },
+    " and ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " environment. ",
+    {
+     "stem": "I",
+     "missing": "t"
+    },
+    " encompasses ",
+    {
+     "stem": "ar",
+     "missing": "eas"
+    },
+    " such ",
+    {
+     "stem": "a",
+     "missing": "s"
+    },
+    " natural ",
+    {
+     "stem": "haz",
+     "missing": "ard"
+    },
+    " assessment, resource management, and land-use planning. By understanding the geological factors that influence environmental conditions, geologists can help mitigate the impacts of natural disasters and promote sustainable development."
+   ]
+  },
+  {
+   "id": "neo-32-1",
+   "title": "A short history of theater",
+   "sources": [
+    32
+   ],
+   "blankCount": 10,
+   "letterCount": 31,
+   "parts": [
+    "Theater has been an integral part of human culture for centuries, providing a medium for storytelling and artistic expression. Many ",
+    {
+     "stem": "feat",
+     "missing": "ures"
+    },
+    " of ",
+    {
+     "stem": "Anc",
+     "missing": "ient"
+    },
+    " Greek theater ",
+    {
+     "stem": "a",
+     "missing": "re"
+    },
+    " still ",
+    {
+     "stem": "fo",
+     "missing": "und"
+    },
+    " in ",
+    {
+     "stem": "mod",
+     "missing": "ern"
+    },
+    " theater, such ",
+    {
+     "stem": "a",
+     "missing": "s"
+    },
+    " wearing ",
+    {
+     "stem": "ma",
+     "missing": "sks"
+    },
+    " and ",
+    {
+     "stem": "us",
+     "missing": "ing"
+    },
+    " a chorus. ",
+    {
+     "stem": "Dur",
+     "missing": "ing"
+    },
+    " the Renaissance, theater ",
+    {
+     "stem": "flour",
+     "missing": "ished"
+    },
+    " as playwrights, like Shakespeare, created enduring works. Modern theater continues to evolve, incorporating technology and diverse narratives. The communal experience of live performance remains a powerful way to explore human emotions and societal issues."
+   ]
+  },
+  {
+   "id": "neo-32-2",
+   "title": "Wind currents",
+   "sources": [
+    32
+   ],
+   "blankCount": 10,
+   "letterCount": 30,
+   "parts": [
+    "Wind currents form due to differences in atmospheric pressure, which arise from uneven solar heating across Earth's surface. As warmer air rises and cooler air sinks, pressure differentials are created, driving horizontal air movement known as wind. Wind currents transport ",
+    {
+     "stem": "mois",
+     "missing": "ture"
+    },
+    " and ",
+    {
+     "stem": "infl",
+     "missing": "uence"
+    },
+    " temperature, ",
+    {
+     "stem": "pla",
+     "missing": "ying"
+    },
+    " a ",
+    {
+     "stem": "k",
+     "missing": "ey"
+    },
+    " role ",
+    {
+     "stem": "i",
+     "missing": "n"
+    },
+    " shaping ",
+    {
+     "stem": "wea",
+     "missing": "ther"
+    },
+    " patterns. ",
+    {
+     "stem": "T",
+     "missing": "he"
+    },
+    " Coriolis ",
+    {
+     "stem": "eff",
+     "missing": "ect"
+    },
+    ", caused ",
+    {
+     "stem": "b",
+     "missing": "y"
+    },
+    " Earth's ",
+    {
+     "stem": "rota",
+     "missing": "tion"
+    },
+    ", further alters wind direction, creating prevailing winds that impact regional climates and storm systems. Understanding these interactions is crucial for accurate forecasting."
+   ]
+  },
+  {
+   "id": "neo-32-3",
+   "title": "Reading rock formations",
+   "sources": [
+    32
+   ],
+   "blankCount": 10,
+   "letterCount": 32,
+   "parts": [
+    "Rock formations offer valuable insights into Earth's history. Sedimentary layers, for example, reveal past environments. By analyzing their composition and arrangement, geologists can determine if an area was once underwater or exposed. Over time, pressure ",
+    {
+     "stem": "trans",
+     "missing": "forms"
+    },
+    " sediments ",
+    {
+     "stem": "in",
+     "missing": "to"
+    },
+    " solid ",
+    {
+     "stem": "ro",
+     "missing": "ck"
+    },
+    ", preserving ",
+    {
+     "stem": "evid",
+     "missing": "ence"
+    },
+    " of ",
+    {
+     "stem": "anc",
+     "missing": "ient"
+    },
+    " climates ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " geological ",
+    {
+     "stem": "eve",
+     "missing": "nts"
+    },
+    ". Fossils ",
+    {
+     "stem": "wit",
+     "missing": "hin"
+    },
+    " layers ",
+    {
+     "stem": "sh",
+     "missing": "ow"
+    },
+    " what ",
+    {
+     "stem": "orga",
+     "missing": "nisms"
+    },
+    " once lived there. Through such studies, scientists reconstruct Earth's past and gain a deeper understanding of the dynamic processes that continue to shape the planet's surface."
+   ]
+  },
+  {
+   "id": "neo-33-1",
+   "title": "Neolithic pottery",
+   "sources": [
+    33
+   ],
+   "blankCount": 10,
+   "letterCount": 34,
+   "parts": [
+    "During the Neolithic period, craftspeople began producing pottery that served both practical and aesthetic purposes. Initially created ",
+    {
+     "stem": "f",
+     "missing": "or"
+    },
+    " storing ",
+    {
+     "stem": "fo",
+     "missing": "od"
+    },
+    " and ",
+    {
+     "stem": "wa",
+     "missing": "ter"
+    },
+    ", these ",
+    {
+     "stem": "cl",
+     "missing": "ay"
+    },
+    " vessels ",
+    {
+     "stem": "event",
+     "missing": "ually"
+    },
+    " featured ",
+    {
+     "stem": "decor",
+     "missing": "ative"
+    },
+    " elements ",
+    {
+     "stem": "su",
+     "missing": "ch"
+    },
+    " as ",
+    {
+     "stem": "care",
+     "missing": "fully"
+    },
+    " incised ",
+    {
+     "stem": "patt",
+     "missing": "erns"
+    },
+    " and ",
+    {
+     "stem": "pai",
+     "missing": "nted"
+    },
+    " designs. This dual function—utility and beauty—marks one of the earliest examples of craftsmanship evolving into artistic expression. The refinement of pottery techniques, including firing and glazing, reflected growing technical skill and cultural values."
+   ]
+  },
+  {
+   "id": "neo-33-2",
+   "title": "Kinship in prehistoric communities",
+   "sources": [
+    33
+   ],
+   "blankCount": 10,
+   "letterCount": 48,
+   "parts": [
+    "The role of kinship was central to the social structure of prehistoric communities. Kinship not only structured family relationships but also shaped how resources were shared, labor was organized, and social hierarchies were maintained within the group. ",
+    {
+     "stem": "Arc",
+     "missing": "haeological"
+    },
+    " evidence ",
+    {
+     "stem": "su",
+     "missing": "ggests"
+    },
+    " that ",
+    {
+     "stem": "indiv",
+     "missing": "iduals"
+    },
+    " held ",
+    {
+     "stem": "sp",
+     "missing": "ecific"
+    },
+    " roles ",
+    {
+     "stem": "b",
+     "missing": "ased"
+    },
+    " on ",
+    {
+     "stem": "a",
+     "missing": "ge"
+    },
+    " and ",
+    {
+     "stem": "g",
+     "missing": "ender"
+    },
+    ", contributing ",
+    {
+     "stem": "t",
+     "missing": "o"
+    },
+    " a ",
+    {
+     "stem": "sophist",
+     "missing": "icated"
+    },
+    " division ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " labor. The intricacy of these social structures is further evidenced by the existence of ceremonial sites, which indicate collective activities and social gatherings."
+   ]
+  },
+  {
+   "id": "neo-33-3",
+   "title": "Black holes",
+   "sources": [
+    33
+   ],
+   "blankCount": 10,
+   "letterCount": 27,
+   "parts": [
+    "The universe is a vast expanse, filled with mysteries that have intrigued humans for centuries. Black holes are ",
+    {
+     "stem": "reg",
+     "missing": "ions"
+    },
+    " in ",
+    {
+     "stem": "sp",
+     "missing": "ace"
+    },
+    " where ",
+    {
+     "stem": "gra",
+     "missing": "vity"
+    },
+    " is ",
+    {
+     "stem": "s",
+     "missing": "o"
+    },
+    " strong ",
+    {
+     "stem": "th",
+     "missing": "at"
+    },
+    " nothing, ",
+    {
+     "stem": "n",
+     "missing": "ot"
+    },
+    " even ",
+    {
+     "stem": "li",
+     "missing": "ght"
+    },
+    ", can ",
+    {
+     "stem": "esc",
+     "missing": "ape"
+    },
+    ". Even ",
+    {
+     "stem": "tho",
+     "missing": "ugh"
+    },
+    " they ",
+    {
+     "stem": "a",
+     "missing": "re"
+    },
+    " invisible, black holes can be detected by observing their effects on nearby matter. Black holes play a crucial role in astrophysics, influencing galaxy formation and offering insights into the nature of space, time, and gravity."
+   ]
+  },
+  {
+   "id": "neo-34-1",
+   "title": "Color and pigment",
+   "sources": [
+    34
+   ],
+   "blankCount": 10,
+   "letterCount": 39,
+   "parts": [
+    "In visual arts, the interplay between color and pigment is fundamental in shaping artistic expression. Pigments, the materials that give color to paint, are ",
+    {
+     "stem": "der",
+     "missing": "ived"
+    },
+    " from ",
+    {
+     "stem": "var",
+     "missing": "ious"
+    },
+    " sources, ",
+    {
+     "stem": "incl",
+     "missing": "uding"
+    },
+    " minerals, ",
+    {
+     "stem": "pla",
+     "missing": "nts"
+    },
+    ", and ",
+    {
+     "stem": "synt",
+     "missing": "hetic"
+    },
+    " compounds. ",
+    {
+     "stem": "Art",
+     "missing": "ists"
+    },
+    " selected ",
+    {
+     "stem": "mate",
+     "missing": "rials"
+    },
+    " based ",
+    {
+     "stem": "o",
+     "missing": "n"
+    },
+    " their ",
+    {
+     "stem": "abi",
+     "missing": "lity"
+    },
+    " to ",
+    {
+     "stem": "con",
+     "missing": "ceal"
+    },
+    " underlying layers (opacity) and resist fading over time. The transformation of pigments into vibrant colors involves the complex interaction of light with the pigment's molecular structure. This interaction determines the color's intensity and luminosity."
+   ]
+  },
+  {
+   "id": "neo-34-2",
+   "title": "What geologists study",
+   "sources": [
+    34
+   ],
+   "blankCount": 10,
+   "letterCount": 31,
+   "parts": [
+    "Geology is the scientific study of our planet, including its composition, structure, and processes. ",
+    {
+     "stem": "Geolo",
+     "missing": "gists"
+    },
+    " analyze ",
+    {
+     "stem": "ro",
+     "missing": "cks"
+    },
+    ", minerals, ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " the ",
+    {
+     "stem": "nat",
+     "missing": "ural"
+    },
+    " forces ",
+    {
+     "stem": "th",
+     "missing": "at"
+    },
+    " change ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " outer ",
+    {
+     "stem": "la",
+     "missing": "yer"
+    },
+    " of ",
+    {
+     "stem": "Ea",
+     "missing": "rth"
+    },
+    " over ",
+    {
+     "stem": "ti",
+     "missing": "me"
+    },
+    ". This ",
+    {
+     "stem": "know",
+     "missing": "ledge"
+    },
+    " helps scientists understand the planet's history and predict future changes. It is essential for natural resource management, hazard mitigation, and environmental protection. Advances in geologic research—such as satellite-based remote sensing, deep-Earth imaging, and isotopic dating—have greatly improved our ability to monitor earthquakes, track volcanic activity, and assess groundwater resources."
+   ]
+  },
+  {
+   "id": "neo-35-1",
+   "title": "Cognition and awareness",
+   "sources": [
+    35
+   ],
+   "blankCount": 10,
+   "letterCount": 36,
+   "parts": [
+    "Understanding the relationship between cognition and consciousness is pivotal for unraveling the complexities of human thinking and behavior, as both are fundamental activities of the brain. Cognition is the ",
+    {
+     "stem": "men",
+     "missing": "tal"
+    },
+    " process ",
+    {
+     "stem": "b",
+     "missing": "y"
+    },
+    " which ",
+    {
+     "stem": "indiv",
+     "missing": "iduals"
+    },
+    " acquire ",
+    {
+     "stem": "know",
+     "missing": "ledge"
+    },
+    " and ",
+    {
+     "stem": "unders",
+     "missing": "tanding"
+    },
+    " through ",
+    {
+     "stem": "tho",
+     "missing": "ught"
+    },
+    ", experience, ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " the ",
+    {
+     "stem": "sen",
+     "missing": "ses"
+    },
+    ". Consciousness ",
+    {
+     "stem": "ref",
+     "missing": "ers"
+    },
+    " to ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " state of being aware of and responsive to one's surroundings. The advancements of neuroimaging technologies have provided insights into how consciousness arises from neural networks and how cognitive processes can occur both with and without conscious awareness."
+   ]
+  },
+  {
+   "id": "neo-35-2",
+   "title": "Why geography education matters",
+   "sources": [
+    35
+   ],
+   "blankCount": 10,
+   "letterCount": 43,
+   "parts": [
+    "Geographic education equips students with the tools to understand global issues through a spatial lens. For example, studying how rising sea levels affect coastal communities helps learners connect physical geography with human impact. This ",
+    {
+     "stem": "know",
+     "missing": "ledge"
+    },
+    " is ",
+    {
+     "stem": "esse",
+     "missing": "ntial"
+    },
+    " for ",
+    {
+     "stem": "plan",
+     "missing": "ning"
+    },
+    " disaster ",
+    {
+     "stem": "resp",
+     "missing": "onse"
+    },
+    ", managing ",
+    {
+     "stem": "reso",
+     "missing": "urces"
+    },
+    ", and ",
+    {
+     "stem": "addre",
+     "missing": "ssing"
+    },
+    " climate ",
+    {
+     "stem": "cha",
+     "missing": "nge"
+    },
+    ". Geographic ",
+    {
+     "stem": "lite",
+     "missing": "racy"
+    },
+    " also ",
+    {
+     "stem": "fos",
+     "missing": "ters"
+    },
+    " critical ",
+    {
+     "stem": "thin",
+     "missing": "king"
+    },
+    " about migration, urban development, and environmental sustainability. By teaching students to analyze maps, data, and patterns, geography empowers them to make informed decisions in an increasingly interconnected and environmentally challenged world."
+   ]
+  },
+  {
+   "id": "neo-35-3",
+   "title": "The Middle Ages",
+   "sources": [
+    35
+   ],
+   "blankCount": 10,
+   "letterCount": 33,
+   "parts": [
+    "The Middle Ages was a period in Europe that spanned roughly between the fifth and fifteenth centuries. This ",
+    {
+     "stem": "e",
+     "missing": "ra"
+    },
+    " saw ",
+    {
+     "stem": "signi",
+     "missing": "ficant"
+    },
+    " changes, ",
+    {
+     "stem": "mo",
+     "missing": "st"
+    },
+    " notably ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " spread ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " Christianity ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " the ",
+    {
+     "stem": "establ",
+     "missing": "ishment"
+    },
+    " of ",
+    {
+     "stem": "powe",
+     "missing": "rful"
+    },
+    " kingdoms. ",
+    {
+     "stem": "Des",
+     "missing": "pite"
+    },
+    " being ",
+    {
+     "stem": "of",
+     "missing": "ten"
+    },
+    " referred to as the \"Dark Ages,\" a name that suggests stagnation and decline, this period also witnessed remarkable achievements in art, architecture, and learning, laying the groundwork for Europe's transition into the Renaissance and the age of discovery."
+   ]
+  },
+  {
+   "id": "neo-36-1",
+   "title": "From nomads to farmers",
+   "sources": [
+    36
+   ],
+   "blankCount": 10,
+   "letterCount": 32,
+   "parts": [
+    "Early humans gradually transitioned from a nomadic lifestyle to establishing permanent settlements. Instead of ",
+    {
+     "stem": "const",
+     "missing": "antly"
+    },
+    " moving ",
+    {
+     "stem": "aro",
+     "missing": "und"
+    },
+    " in ",
+    {
+     "stem": "sea",
+     "missing": "rch"
+    },
+    " of ",
+    {
+     "stem": "fo",
+     "missing": "od"
+    },
+    ", they ",
+    {
+     "stem": "be",
+     "missing": "gan"
+    },
+    " to ",
+    {
+     "stem": "exper",
+     "missing": "iment"
+    },
+    " with ",
+    {
+     "stem": "plan",
+     "missing": "ting"
+    },
+    " seeds, ",
+    {
+     "stem": "lea",
+     "missing": "ding"
+    },
+    " to ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " development ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " agriculture and a more reliable food supply. As communities grew, people began organizing themselves into social groups with defined roles and shared practices. These early settlements became centers for the emergence of language, artistic expression, and religious rituals."
+   ]
+  },
+  {
+   "id": "neo-36-2",
+   "title": "Adaptations of land mammals",
+   "sources": [
+    36
+   ],
+   "blankCount": 10,
+   "letterCount": 46,
+   "parts": [
+    "Terrestrial mammals exhibit a fascinating array of adaptations that help them survive and thrive in diverse environments. From ",
+    {
+     "stem": "com",
+     "missing": "plex"
+    },
+    " social ",
+    {
+     "stem": "inter",
+     "missing": "actions"
+    },
+    " that ",
+    {
+     "stem": "imp",
+     "missing": "rove"
+    },
+    " group ",
+    {
+     "stem": "sur",
+     "missing": "vival"
+    },
+    " to ",
+    {
+     "stem": "ingen",
+     "missing": "iously"
+    },
+    " designed ",
+    {
+     "stem": "lu",
+     "missing": "ngs"
+    },
+    " that ",
+    {
+     "stem": "enh",
+     "missing": "ance"
+    },
+    " oxygen ",
+    {
+     "stem": "absor",
+     "missing": "ption"
+    },
+    ", these ",
+    {
+     "stem": "crea",
+     "missing": "tures"
+    },
+    " are ",
+    {
+     "stem": "bu",
+     "missing": "ilt"
+    },
+    " for resilience. Some have evolved powerful limbs for digging deep burrows, while others have agile bodies perfect for scaling trees or sprinting across open plains. Their sharp senses and stealthy movements are often the result of a high-stakes evolutionary arms race between predator and prey."
+   ]
+  },
+  {
+   "id": "neo-36-3",
+   "title": "Using color in art",
+   "sources": [
+    36
+   ],
+   "blankCount": 10,
+   "letterCount": 43,
+   "parts": [
+    "Color usage in art is a powerful tool that conveys emotion, creates depth, and guides the viewer’s attention. Artists use color theory to combine hues in ways that ",
+    {
+     "stem": "eli",
+     "missing": "cit"
+    },
+    " specific ",
+    {
+     "stem": "mo",
+     "missing": "ods"
+    },
+    ". By ",
+    {
+     "stem": "care",
+     "missing": "fully"
+    },
+    " selecting ",
+    {
+     "stem": "comple",
+     "missing": "mentary"
+    },
+    " or ",
+    {
+     "stem": "contr",
+     "missing": "asting"
+    },
+    " colors, ",
+    {
+     "stem": "th",
+     "missing": "ey"
+    },
+    " can ",
+    {
+     "stem": "heig",
+     "missing": "hten"
+    },
+    " visual ",
+    {
+     "stem": "imp",
+     "missing": "act"
+    },
+    " and ",
+    {
+     "stem": "cre",
+     "missing": "ate"
+    },
+    " dynamic ",
+    {
+     "stem": "compo",
+     "missing": "sitions"
+    },
+    ". Warm colors, like red and orange, can suggest energy or passion. Cool tones, like blue and green, can evoke calm or melancholy. Through deliberate choices, artists shape the visual and emotional impact of their work."
+   ]
+  },
+  {
+   "id": "neo-37-1",
+   "title": "The changing role of craftsmanship",
+   "sources": [
+    37
+   ],
+   "blankCount": 10,
+   "letterCount": 39,
+   "parts": [
+    "Craftsmanship has undergone a profound transformation over the centuries, shifting from a demonstration of manual skill to an expression of artistic vision and communal identity. In medieval Europe, skilled makers—known as artisans—were highly valued not only for their ",
+    {
+     "stem": "tech",
+     "missing": "nical"
+    },
+    " expertise ",
+    {
+     "stem": "b",
+     "missing": "ut"
+    },
+    " also ",
+    {
+     "stem": "f",
+     "missing": "or"
+    },
+    " their ",
+    {
+     "stem": "abi",
+     "missing": "lity"
+    },
+    " to ",
+    {
+     "stem": "inf",
+     "missing": "use"
+    },
+    " their ",
+    {
+     "stem": "crea",
+     "missing": "tions"
+    },
+    " with ",
+    {
+     "stem": "mea",
+     "missing": "ning"
+    },
+    " and ",
+    {
+     "stem": "repr",
+     "missing": "esent"
+    },
+    " deeper ",
+    {
+     "stem": "spir",
+     "missing": "itual"
+    },
+    " or ",
+    {
+     "stem": "cult",
+     "missing": "ural"
+    },
+    " themes. The intricate details in woodwork, textiles, and pottery served as a testament to the craftsman's mastery and the motifs prevalent during that era."
+   ]
+  },
+  {
+   "id": "neo-37-2",
+   "title": "Underwater robots",
+   "sources": [
+    37
+   ],
+   "blankCount": 10,
+   "letterCount": 31,
+   "parts": [
+    "Advancements in underwater robotics are revolutionizing ocean exploration. These robots, known as autonomous underwater vehicles (AUVs), can navigate deep-sea environments independently. Equipped with ",
+    {
+     "stem": "sen",
+     "missing": "sors"
+    },
+    " and ",
+    {
+     "stem": "cam",
+     "missing": "eras"
+    },
+    ", AUVs ",
+    {
+     "stem": "col",
+     "missing": "lect"
+    },
+    " data ",
+    {
+     "stem": "o",
+     "missing": "n"
+    },
+    " marine ",
+    {
+     "stem": "li",
+     "missing": "fe"
+    },
+    ", ocean ",
+    {
+     "stem": "curr",
+     "missing": "ents"
+    },
+    ", and ",
+    {
+     "stem": "under",
+     "missing": "water"
+    },
+    " geology. ",
+    {
+     "stem": "Th",
+     "missing": "ey"
+    },
+    " can ",
+    {
+     "stem": "re",
+     "missing": "ach"
+    },
+    " depths ",
+    {
+     "stem": "th",
+     "missing": "at"
+    },
+    " are inaccessible to human divers, providing valuable insights into uncharted regions. Researchers use AUVs to study the impact of climate change on ocean ecosystems and to explore underwater archaeological sites, enhancing our understanding of the ocean."
+   ]
+  },
+  {
+   "id": "neo-37-3",
+   "title": "Clever ravens",
+   "sources": [
+    37
+   ],
+   "blankCount": 10,
+   "letterCount": 24,
+   "parts": [
+    "Ravens are highly intelligent birds known for their problem-solving abilities and complex social behaviors. They ",
+    {
+     "stem": "u",
+     "missing": "se"
+    },
+    " tools, ",
+    {
+     "stem": "su",
+     "missing": "ch"
+    },
+    " as ",
+    {
+     "stem": "sti",
+     "missing": "cks"
+    },
+    ", to ",
+    {
+     "stem": "obt",
+     "missing": "ain"
+    },
+    " food ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " have ",
+    {
+     "stem": "be",
+     "missing": "en"
+    },
+    " observed ",
+    {
+     "stem": "enga",
+     "missing": "ged"
+    },
+    " in ",
+    {
+     "stem": "pla",
+     "missing": "yful"
+    },
+    " behaviors ",
+    {
+     "stem": "li",
+     "missing": "ke"
+    },
+    " sliding ",
+    {
+     "stem": "o",
+     "missing": "n"
+    },
+    " snow. Ravens communicate with a wide range of vocalizations, conveying different messages to their peers. Their adaptability allows them to thrive in various environments, from forests to urban areas. Studying raven behavior provides insights into avian intelligence and the evolutionary mechanisms that support cognitive development."
+   ]
+  },
+  {
+   "id": "neo-38-1",
+   "title": "Why weather is hard to predict",
+   "sources": [
+    38
+   ],
+   "blankCount": 10,
+   "letterCount": 42,
+   "parts": [
+    "The atmosphere is a dynamic and complex system, shaped by countless interacting variables such as solar radiation, air pressure, and moisture levels. Meteorologists use advanced ",
+    {
+     "stem": "mod",
+     "missing": "els"
+    },
+    " to ",
+    {
+     "stem": "simu",
+     "missing": "late"
+    },
+    " these ",
+    {
+     "stem": "intera",
+     "missing": "ctions"
+    },
+    ", but ",
+    {
+     "stem": "predi",
+     "missing": "cting"
+    },
+    " weather ",
+    {
+     "stem": "rem",
+     "missing": "ains"
+    },
+    " a ",
+    {
+     "stem": "chal",
+     "missing": "lenge"
+    },
+    " due ",
+    {
+     "stem": "t",
+     "missing": "o"
+    },
+    " the ",
+    {
+     "stem": "inher",
+     "missing": "ently"
+    },
+    " chaotic ",
+    {
+     "stem": "nat",
+     "missing": "ure"
+    },
+    " of ",
+    {
+     "stem": "atmos",
+     "missing": "pheric"
+    },
+    " processes. Small changes in initial conditions can lead to vastly different outcomes, making long-term forecasts especially uncertain. Despite technological progress, the atmosphere's unpredictability continues to pose limits to accurate and consistent weather prediction."
+   ]
+  },
+  {
+   "id": "neo-38-2",
+   "title": "Geographers and GIS",
+   "sources": [
+    38
+   ],
+   "blankCount": 10,
+   "letterCount": 32,
+   "parts": [
+    "Modern geographers employ advanced technologies, including geographic information systems (GIS), to analyze spatial data, enabling them to visualize patterns of urban development, resource allocation, and environmental change. This ",
+    {
+     "stem": "analy",
+     "missing": "tical"
+    },
+    " approach ",
+    {
+     "stem": "a",
+     "missing": "ids"
+    },
+    " geographers ",
+    {
+     "stem": "t",
+     "missing": "o"
+    },
+    " provide ",
+    {
+     "stem": "insi",
+     "missing": "ghts"
+    },
+    " into ",
+    {
+     "stem": "pres",
+     "missing": "sing"
+    },
+    " global ",
+    {
+     "stem": "iss",
+     "missing": "ues"
+    },
+    " such ",
+    {
+     "stem": "a",
+     "missing": "s"
+    },
+    " climate ",
+    {
+     "stem": "cha",
+     "missing": "nge"
+    },
+    ", migration, ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " sustainable ",
+    {
+     "stem": "devel",
+     "missing": "opment"
+    },
+    ", offering frameworks for informed decision-making and policy implementation. Understanding the geographic dimensions of these challenges is crucial for fostering resilience and adaptability in a rapidly changing world."
+   ]
+  },
+  {
+   "id": "neo-38-3",
+   "title": "Beavers as keystone species",
+   "sources": [
+    38
+   ],
+   "blankCount": 10,
+   "letterCount": 34,
+   "parts": [
+    "In the realm of conservation ecology, the role of keystone species is profoundly significant. These species, although not necessarily abundant, exert a substantial influence on the structure and functioning of their ecosystems. Beavers, for example, transform landscapes by building dams that ",
+    {
+     "stem": "cr",
+     "missing": "eate"
+    },
+    " wetlands, ",
+    {
+     "stem": "habi",
+     "missing": "tats"
+    },
+    " rich ",
+    {
+     "stem": "i",
+     "missing": "n"
+    },
+    " biodiversity ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " vital ",
+    {
+     "stem": "f",
+     "missing": "or"
+    },
+    " water ",
+    {
+     "stem": "purifi",
+     "missing": "cation"
+    },
+    " and ",
+    {
+     "stem": "fl",
+     "missing": "ood"
+    },
+    " control. Their ",
+    {
+     "stem": "rem",
+     "missing": "oval"
+    },
+    " often ",
+    {
+     "stem": "trig",
+     "missing": "gers"
+    },
+    " a ",
+    {
+     "stem": "cas",
+     "missing": "cade"
+    },
+    " of ecological changes, potentially leading to the decline or transformation of the ecosystem. Consequently, conservation efforts frequently prioritize the protection of these pivotal organisms to maintain ecological balance."
+   ]
+  },
+  {
+   "id": "neo-39-1",
+   "title": "Oceanography and hydrology",
+   "sources": [
+    39
+   ],
+   "blankCount": 10,
+   "letterCount": 35,
+   "parts": [
+    "Oceanography and hydrology are fields that study the dynamics of water on Earth, encompassing aspects like ocean currents, tides, and the hydrological cycle. Ocean currents, ",
+    {
+     "stem": "influ",
+     "missing": "enced"
+    },
+    " by ",
+    {
+     "stem": "fac",
+     "missing": "tors"
+    },
+    " such ",
+    {
+     "stem": "a",
+     "missing": "s"
+    },
+    " wind ",
+    {
+     "stem": "patt",
+     "missing": "erns"
+    },
+    " and Earth's ",
+    {
+     "stem": "rota",
+     "missing": "tion"
+    },
+    ", play a ",
+    {
+     "stem": "cru",
+     "missing": "cial"
+    },
+    " role ",
+    {
+     "stem": "i",
+     "missing": "n"
+    },
+    " regulating ",
+    {
+     "stem": "glo",
+     "missing": "bal"
+    },
+    " climate ",
+    {
+     "stem": "si",
+     "missing": "nce"
+    },
+    " they ",
+    {
+     "stem": "redist",
+     "missing": "ribute"
+    },
+    " heat across the planet. The hydrological cycle, on the other hand, describes the continuous movement of water between the Earth's surface and atmosphere, involving processes such as evaporation, condensation, and precipitation. Together, these phenomena illustrate the interconnected nature of Earth's water systems."
+   ]
+  },
+  {
+   "id": "neo-39-2",
+   "title": "Atmospheric pressure",
+   "sources": [
+    39
+   ],
+   "blankCount": 10,
+   "letterCount": 46,
+   "parts": [
+    "Atmospheric pressure plays a critical role in weather systems. High-pressure zones bring clear, calm conditions due to descending air that inhibits cloud formation. In low-pressure systems, warm air rises, cools, and condenses into clouds, ",
+    {
+     "stem": "wh",
+     "missing": "ich"
+    },
+    " can ",
+    {
+     "stem": "le",
+     "missing": "ad"
+    },
+    " to ",
+    {
+     "stem": "precip",
+     "missing": "itation"
+    },
+    ". Barometric pressure ",
+    {
+     "stem": "varia",
+     "missing": "tions"
+    },
+    " help ",
+    {
+     "stem": "meteoro",
+     "missing": "logists"
+    },
+    " improve ",
+    {
+     "stem": "fore",
+     "missing": "casts"
+    },
+    ", as ",
+    {
+     "stem": "ra",
+     "missing": "pid"
+    },
+    " fluctuations of ",
+    {
+     "stem": "pres",
+     "missing": "sure"
+    },
+    " signal ",
+    {
+     "stem": "appro",
+     "missing": "aching"
+    },
+    " storms. ",
+    {
+     "stem": "Adva",
+     "missing": "nced"
+    },
+    " models use atmospheric force gradients, temperature, and humidity to predict storm movement and intensity, providing vital information for both short-term weather outlooks and long-term climate assessments."
+   ]
+  },
+  {
+   "id": "neo-39-3",
+   "title": "The first tools",
+   "sources": [
+    39
+   ],
+   "blankCount": 10,
+   "letterCount": 32,
+   "parts": [
+    "Initially, humans used naturally occurring objects as tools (for instance, a sharp stone or a forked stick). Later, ",
+    {
+     "stem": "peo",
+     "missing": "ple"
+    },
+    " began ",
+    {
+     "stem": "purpos",
+     "missing": "efully"
+    },
+    " to ",
+    {
+     "stem": "sh",
+     "missing": "ape"
+    },
+    " wood ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " stone ",
+    {
+     "stem": "in",
+     "missing": "to"
+    },
+    " tools. ",
+    {
+     "stem": "Bec",
+     "missing": "ause"
+    },
+    " of ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " perishable ",
+    {
+     "stem": "nat",
+     "missing": "ure"
+    },
+    " of ",
+    {
+     "stem": "wo",
+     "missing": "od"
+    },
+    " modern ",
+    {
+     "stem": "know",
+     "missing": "ledge"
+    },
+    " of how it was used in prehistoric times is largely a matter of inference. With tools of stone, however, archaeologists are on firmer ground; there are a vast number of surviving artifacts. Throughout the world, flint was a favored material because of its unusual physical properties."
+   ]
+  },
+  {
+   "id": "neo-40-1",
+   "title": "Craft and function",
+   "sources": [
+    40
+   ],
+   "blankCount": 10,
+   "letterCount": 29,
+   "parts": [
+    "Craftsmanship blends art with functional design through a meticulous process requiring creativity and precision. Artisans ",
+    {
+     "stem": "wo",
+     "missing": "rk"
+    },
+    " with ",
+    {
+     "stem": "mater",
+     "missing": "ials"
+    },
+    " like ",
+    {
+     "stem": "me",
+     "missing": "tal"
+    },
+    ", wood, ",
+    {
+     "stem": "a",
+     "missing": "nd"
+    },
+    " fabric ",
+    {
+     "stem": "t",
+     "missing": "o"
+    },
+    " create ",
+    {
+     "stem": "prod",
+     "missing": "ucts"
+    },
+    " that ",
+    {
+     "stem": "a",
+     "missing": "re"
+    },
+    " both ",
+    {
+     "stem": "use",
+     "missing": "ful"
+    },
+    " and ",
+    {
+     "stem": "beau",
+     "missing": "tiful"
+    },
+    ". Each ",
+    {
+     "stem": "pi",
+     "missing": "ece"
+    },
+    " shows the maker's skill, attention to detail, and personal style. Beyond utility, handcrafted items carry cultural significance. Even as societies modernize, the value of tradition and quality endures, highlighting a lasting appreciation for the uniqueness and care embedded in artisanal work."
+   ]
+  },
+  {
+   "id": "neo-40-2",
+   "title": "Reggae music",
+   "sources": [
+    40
+   ],
+   "blankCount": 10,
+   "letterCount": 31,
+   "parts": [
+    "Reggae music, originating in Jamaica in the late 1960s, has become a global cultural phenomenon. Rooted in earlier styles like ska and rocksteady, reggae evolved as a voice for the marginalized and against violence and war. Characterized by its distinctive ",
+    {
+     "stem": "rhy",
+     "missing": "thm"
+    },
+    " and ",
+    {
+     "stem": "soci",
+     "missing": "ally"
+    },
+    " conscious ",
+    {
+     "stem": "lyr",
+     "missing": "ics"
+    },
+    ", the ",
+    {
+     "stem": "ge",
+     "missing": "nre"
+    },
+    " ",
+    {
+     "stem": "addr",
+     "missing": "esses"
+    },
+    " themes ",
+    {
+     "stem": "o",
+     "missing": "f"
+    },
+    " resistance, ",
+    {
+     "stem": "pe",
+     "missing": "ace"
+    },
+    ", and ",
+    {
+     "stem": "spir",
+     "missing": "itual"
+    },
+    " unity. ",
+    {
+     "stem": "Dee",
+     "missing": "ply"
+    },
+    " connected ",
+    {
+     "stem": "t",
+     "missing": "o"
+    },
+    " Jamaican culture, reggae has impacted fashion, language, and political movements. Today, reggae continues to inspire new generations of musicians and activists, maintaining its relevance in a rapidly changing world."
+   ]
+  },
+  {
+   "id": "neo-40-3",
+   "title": "The nervous system",
+   "sources": [
+    40
+   ],
+   "blankCount": 10,
+   "letterCount": 36,
+   "parts": [
+    "The human nervous system is responsible for coordinating actions and processing sensory information by transmitting signals between different parts of the body. This ",
+    {
+     "stem": "com",
+     "missing": "plex"
+    },
+    " network ",
+    {
+     "stem": "ena",
+     "missing": "bles"
+    },
+    " essential ",
+    {
+     "stem": "func",
+     "missing": "tions"
+    },
+    " such ",
+    {
+     "stem": "a",
+     "missing": "s"
+    },
+    " sensation, ",
+    {
+     "stem": "move",
+     "missing": "ment"
+    },
+    ", and ",
+    {
+     "stem": "tho",
+     "missing": "ught"
+    },
+    ". The ",
+    {
+     "stem": "ce",
+     "missing": "lls"
+    },
+    " in ",
+    {
+     "stem": "t",
+     "missing": "he"
+    },
+    " nervous ",
+    {
+     "stem": "sys",
+     "missing": "tem"
+    },
+    " (neurons) ",
+    {
+     "stem": "commu",
+     "missing": "nicate"
+    },
+    " through electrical impulses and chemical signals. This system controls voluntary actions like movement by sending messages from the brain to muscles, and it also controls involuntary functions such as heart rate, breathing, and digestion."
+   ]
+  }
+ ]
+}

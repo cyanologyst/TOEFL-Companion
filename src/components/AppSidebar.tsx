@@ -6,7 +6,7 @@ export interface AppSidebarProps {
   targetDate: string;
   dueCount?: number;
   onSelect: (
-    area: "dashboard" | "vocabulary" | "speaking" | "writing" | "progress" | "settings",
+    area: "dashboard" | "vocabulary" | "reading" | "speaking" | "writing" | "progress" | "settings",
   ) => void;
 }
 
@@ -29,6 +29,7 @@ const GROUPS: ReadonlyArray<{
     label: "Practice",
     items: [
       { area: "vocabulary", label: "Vocabulary", icon: "doc", tone: "mint" },
+      { area: "reading", label: "Reading", icon: "bookmark", tone: "lime" },
       { area: "speaking", label: "Speaking", icon: "mic", tone: "sky" },
       { area: "writing", label: "Writing", icon: "pen", tone: "grape" },
     ],

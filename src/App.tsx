@@ -9,6 +9,8 @@ import rawDiscussions from "./data/academic-discussions.json";
 import rawTopics from "./data/toefl-data.json";
 import { DashboardPage } from "./features/dashboard/DashboardPage";
 import { ProgressPage } from "./features/progress/ProgressPage";
+import { ReadingPage } from "./features/reading/ReadingPage";
+import { completeTheWords, sourceLabel } from "./features/reading/readingModel";
 import { SettingsPage } from "./features/settings/SettingsPage";
 import { SpeakingPage } from "./features/speaking/SpeakingPage";
 import { VocabularyLibraryPage } from "./features/vocabulary/VocabularyLibraryPage";
@@ -48,6 +50,7 @@ function routeFromHash(): AppRoute {
     dashboard: "dashboard",
     home: "dashboard",
     vocabulary: "vocabulary",
+    reading: "reading",
     speaking: "speaking",
     practice: "speaking",
     writing: "writing",
@@ -58,7 +61,12 @@ function routeFromHash(): AppRoute {
   return {
     area: areaMap[view ?? ""] ?? "dashboard",
     vocabularyEntry: params.get("section") === "review" ? "review" : "library",
-    targetId: params.get("word") ?? params.get("topic") ?? params.get("discussion") ?? undefined,
+    targetId:
+      params.get("word") ??
+      params.get("topic") ??
+      params.get("discussion") ??
+      params.get("passage") ??
+      undefined,
   };
 }
 
@@ -73,6 +81,8 @@ function hashForRoute(route: AppRoute): string {
     params.set("topic", route.targetId);
   } else if (route.area === "writing" && route.targetId) {
     params.set("discussion", route.targetId);
+  } else if (route.area === "reading" && route.targetId) {
+    params.set("passage", route.targetId);
   }
   return `#${params.toString()}`;
 }
@@ -298,6 +308,21 @@ export function App(): React.JSX.Element {
               onOpenLibrary={() => navigate("vocabulary", "library")}
             />
           )
+        ) : activeArea === "reading" ? (
+          <ReadingPage
+            studyState={studyState}
+            requestedPassageId={routeTargetId}
+            onChanged={refreshStudy}
+            onPassageChange={(passageId) => {
+              // Keeps the address shareable without pushing a history entry per passage.
+              window.history.replaceState(
+                null,
+                "",
+                hashForRoute({ area: "reading", vocabularyEntry, targetId: passageId }),
+              );
+              setRouteTargetId(passageId);
+            }}
+          />
         ) : activeArea === "speaking" ? (
           <SpeakingPage
             key={routeTargetId ?? "speaking"}
@@ -467,6 +492,13 @@ function GlobalSearch({
           icon: "doc",
         },
         {
+          id: "reading",
+          area: "reading",
+          title: "Reading practice",
+          detail: "Complete the words, from 119 NEO passages",
+          icon: "bookmark",
+        },
+        {
           id: "speaking",
           area: "speaking",
           title: "Speaking practice",
@@ -545,7 +577,22 @@ function GlobalSearch({
         detail: `Writing · ${discussion.course}`,
         icon: "pen",
       }));
-    return [...vocabularyResults, ...topicResults, ...discussionResults].slice(0, 9);
+    // Titles only: a passage's text would let a search for a word reveal where it is hidden.
+    const readingResults: SearchResult[] = completeTheWords.passages
+      .filter((passage) => passage.title.toLocaleLowerCase().includes(normalized))
+      .slice(0, 4)
+      .map((passage) => ({
+        id: `passage-${passage.id}`,
+        targetId: passage.id,
+        area: "reading",
+        title: passage.title,
+        detail: `Reading · ${sourceLabel(passage.sources)}`,
+        icon: "bookmark",
+      }));
+    return [...vocabularyResults, ...readingResults, ...topicResults, ...discussionResults].slice(
+      0,
+      9,
+    );
   }, [normalized, vocabularyWords]);
 
   return (

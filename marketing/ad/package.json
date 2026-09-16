@@ -1,0 +1,21 @@
+{
+  "name": "toefl-companion-ad",
+  "private": true,
+  "description": "A 15-second teaser for TOEFL Companion, made with Remotion from real captures of the app.",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts Teaser out/toefl-companion-teaser-16x9.mp4",
+    "poster": "remotion still src/index.ts Teaser out/toefl-companion-teaser-poster.png --frame=390",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.525",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.525"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.2",
+    "typescript": "5.9.3"
+  }
+}

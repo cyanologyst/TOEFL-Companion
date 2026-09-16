@@ -1,7 +1,7 @@
 # Releasing TOEFL Companion
 
-Everything here was run for 1.0.0 on Windows 11 (26H2) and the outputs recorded
-below are what that run actually produced.
+Everything here was run on Windows 11 (26H2), first for 1.0.0 and again for
+1.1.0, and the outputs recorded below are what those runs actually produced.
 
 ## 1. Version
 
@@ -20,8 +20,9 @@ npm run quality
 ```
 
 Format, lint, both TypeScript projects, then the unit suite. 1.0.0 shipped at
-25 files / 107 tests with no warnings. A warning here is a failure; the gate is
-worth nothing if it is allowed to be noisy.
+25 files / 107 tests, 1.1.0 at 35 files / 156 tests, both with no warnings. A
+warning here is a failure; the gate is worth nothing if it is allowed to be
+noisy.
 
 ## 3. Build
 
@@ -38,8 +39,8 @@ a simple test program", which sends you looking in entirely the wrong place.
 Outputs:
 
 ```text
-~/.toefl-companion-build/release/toefl-companion.exe                      (portable, 45.5 MB)
-~/.toefl-companion-build/release/bundle/nsis/TOEFL Companion_<v>_x64-setup.exe  (35.4 MB)
+~/.toefl-companion-build/release/toefl-companion.exe                      (portable, 45.4 MB)
+~/.toefl-companion-build/release/bundle/nsis/TOEFL Companion_<v>_x64-setup.exe  (35.2 MB)
 ```
 
 Vite warns that the vendor chunk is over 500 kB. The app loads from local disk,

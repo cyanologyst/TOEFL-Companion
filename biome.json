@@ -14,7 +14,8 @@
       "!!src-tauri",
       "!!src/data",
       "!!client-screenshots",
-      "!!public"
+      "!!public",
+      "!!marketing"
     ]
   },
   "formatter": {

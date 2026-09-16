@@ -1234,9 +1234,15 @@
   flex: 0 0 auto;
 }
 
+/* Grows into a tall card, but never shrinks under the row's own content.
+   `min-height: 0` let the box get shorter than the items it was centring, so
+   on a wide short card the wave and the timer fell through the bottom border
+   and the record button landed on top of them. When the window is too short
+   for the whole card, the card scrolls: that is what its overflow guard is
+   for, and losing content behind a border is not an option. */
 .rp-card.repeat-recorder > .repeat-recorder__stage {
-  min-height: 0;
-  flex: 1;
+  flex: 1 1 auto;
+  min-height: min-content;
 }
 
 /* Nothing in a frame should touch its border. This catches any card whose
@@ -1260,8 +1266,14 @@
   font-size: 10px;
 }
 
+/* Floors, not fractions. `minmax(0, 0.82fr)` handed each row a share of
+   whatever the window had left, which on a wide short window was less than a
+   card can show: the recorder then scrolled its own record button out of
+   sight. A floor sets the share, `auto` lets any card take the height its
+   content needs, and the workflow column above scrolls when they outrun the
+   window — which is what that scroller is for. */
 .repeat__grid {
-  grid-template-rows: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  grid-template-rows: minmax(196px, auto) minmax(244px, auto);
 }
 
 /* Whatever height a card ends up with, its content adapts rather than being

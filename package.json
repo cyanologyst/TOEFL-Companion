@@ -1,6 +1,6 @@
 {
   "name": "toefl-companion",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A local-first TOEFL vocabulary, speaking, and Academic Discussion desktop study app.",
   "private": true,
   "type": "module",

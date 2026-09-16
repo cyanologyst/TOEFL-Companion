@@ -66,6 +66,12 @@ Confirm afterwards:
 - The app launches from the Start Menu shortcut, not only from the exe
 - The main window is visible and the process responds
 - A reminder opens as its own desktop window at the bottom left
+- The taskbar button carries the app icon, not a blank placeholder. Ask the
+  window: `WM_GETICON` with `ICON_BIG` must come back as a handle rather than
+  0. Tauri puts `bundle.icon` into the installer and the exe resources only,
+  so the window gets no icon of its own and Windows falls back to a generic
+  one; `src-tauri/src/lib.rs` assigns the icon to every window at startup.
+  1.1.0 shipped with this wrong, and the shortcuts hid it: they read the exe.
 
 To drive the installed app for the last two, launch it with WebView2's debug
 port and talk to it over CDP:

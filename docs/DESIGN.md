@@ -173,6 +173,7 @@ Then walk every route and dialog state, in every theme, and assert per element:
 | Clipping           | Hides overflow **and** cannot scroll. A scrolling ancestor is not a clip — `getBoundingClientRect` reports position either way, so walk up per axis and stop at the first scroll container. |
 | Page scroll        | `documentElement.scrollHeight > clientHeight`                   |
 | Edge contact       | A control's box touching the frame border                       |
+| Spill              | A child painted outside the bordered box it sits in. A flex item with `min-height: 0` can be given less height than its own content while it keeps centring it, which puts the content through the border rather than scrolling |
 | Nested frames      | A bordered box directly inside another bordered box             |
 | Clipped shadow     | A shadow's extent falling outside a scroller — compute per side from `(dx, dy, blur)`, or a down-right shadow gets reported as cut on the left |
 | Theme contrast     | Visible text under 4.5:1 (3:1 when large), or an icon under 3:1, against the background actually beneath it, semi-transparent layers and ancestor opacity blended in |
